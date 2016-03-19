@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_summary"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Recently added" />
+
+        <item
+            android:id="@+id/nav_showall"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Show all" />
+    </group>
+
+    <item android:title="Configuration">
+        <menu>
+            <item
+                android:id="@+id/nav_email"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Change email" />
+            <item
+                android:id="@+id/nav_limit"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Set calories limit" />
+        </menu>
+    </item>
+
+</menu>

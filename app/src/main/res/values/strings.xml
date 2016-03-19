@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Feed Me</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">About</string>
+    <string name="title_activity_specific_food_type_scrolling">SpecificFoodTypeScrollingActivity
+    </string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "Lorem ipsum dolor sit amet, cu putant definitiones nam, aliquid qualisque patrioque no nam. Sea at adhuc urbanitas comprehensam, legendos deseruisse usu ea. Ex nihil neglegentur sit, sea admodum mediocritatem ad, quo quod graeco offendit no. Ad sit ridens nemore quaeque. Sit ad malorum nostrum, no sea sumo nostrud eripuit.
+Nonumy dolorum comprehensam nam ne, no dolor prompta has, stet nostrud consequat est ut. An cum porro labore. Nisl prompta et nec, hinc semper volutpat vel cu, vidit periculis in est. Id has eripuit oporteat salutatus, mea at oblique scriptorem.
+In duo veri erat veritus, vis eu tantas mediocritatem. Meis torquatos et duo, vis amet velit lucilius ne. Quo et eripuit percipitur cotidieque, autem dolorum cu vel, cum in augue debet dicunt. Vis insolens intellegam ei, vocent accommodare per no, duo ne augue delicata. Ad diam modus vix, an dico paulo cotidieque eum. Menandri assentior at vim.
+Eu nec officiis deterruisset, et eum porro constituam. Et quas deleniti mei, diam everti consequuntur ex vel. Mei at movet quodsi theophrastus, affert fuisset placerat vim et. Libris doctus adolescens vix ex, pri ei ridens aliquando, idque nemore constituam pro an. Nec munere temporibus te, sea alii consul in.
+Causae expetendis argumentum at usu. Ei qui dolorum officiis vivendum, ius at idque euismod fastidii. Mei eu solet iuvaret, aliquip pericula eu quo. Mei no cetero fierent, vix an primis aperiam reformidans."
+    </string>
+    <string name="title_activity_food_summary_scrolling">Food summary</string>
+    <string name="user_email">Change email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="dialog_email">Change email</string>
+    <string name="dialog_about">About</string>
+    <string name="dialog_about_message">For Bartosz :) with love.</string>
+    <string name="dialog_about_confirm">OK</string>
+</resources>
