@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="alertDialogStyle">@style/CustomDialogTheme</item>
+        <item name="android:fontFamily">Roboto</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,5 +18,44 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- AlertDialog style -->
+    <style name="CustomDialogTheme" parent="@style/Theme.AppCompat.Dialog.Alert">
+        <!-- Used for the buttons, checkboxes -->
+        <item name="colorAccent">@color/colorText</item>
+
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@color/colorBrokeWhite</item>
+
+        <!-- Used for the background -->
+        <item name="android:background">@color/colorBackground</item>
+
+        <item name="android:textSize">@dimen/button_font_size</item>
+
+    </style>
+
+    <!-- AlertDialog About style -->
+    <style name="CustomAboutDialogTheme" parent="@style/Theme.AppCompat.Dialog.Alert">
+        <!-- Used for the buttons, checkboxes -->
+        <item name="colorAccent">@color/colorYellow</item>
+
+        <!-- Used for the background -->
+        <item name="android:background">@color/colorAboutBackground</item>
+
+        <!-- Used for the text size on buttons -->
+        <item name="android:textSize">@dimen/button_font_size</item>
+
+        <item name="android:windowTitleStyle">@style/CustomAboutTitleDialogTheme</item>
+    </style>
+
+    <style name="CustomAboutTitleDialogTheme">
+        <item name="android:textColor">@color/colorYellow</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:textSize">@dimen/title_font_size</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
 
 </resources>

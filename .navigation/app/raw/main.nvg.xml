@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+  ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+  <locations  
+    class = "java.util.ArrayList">
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "pl.grudowska.feedme.LaunchScreenActivity"/>
+      <point      
+        x = "2832"      
+        y = "236"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "pl.grudowska.feedme.SpecificFoodTypeScrollingActivity"/>
+      <point      
+        x = "2020"      
+        y = "240"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "pl.grudowska.feedme.FoodSummaryScrollingActivity"/>
+      <point      
+        x = "336"      
+        y = "244"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "pl.grudowska.feedme.MainFoodTypeCardsActivity"/>
+      <point      
+        x = "1196"      
+        y = "240"/>
+    </statePointEntry>
+  </locations>
+</navigationModel>

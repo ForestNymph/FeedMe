@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:scaleType="center"
-        android:background="#FFFFBB33"
-        android:contentDescription="@string/app_name" />
+        android:src="@mipmap/scroll_bcg" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/colorYellow"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/text_padding"
+        android:paddingStart="@dimen/text_padding"
+        android:text="@string/dialog_email"
+        android:textColor="@color/colorBrokeWhite"
+        android:textSize="@dimen/text_font_size" />
 
     <EditText
         android:id="@+id/useremail"
-        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="@string/user_email" />
+        android:layout_gravity="center"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginRight="@dimen/text_margin"
+        android:layout_marginTop="@dimen/text_margin"
+        android:fontFamily="Roboto"
+        android:inputType="textEmailAddress"
+        android:singleLine="true"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/text_font_size" />
 </LinearLayout>

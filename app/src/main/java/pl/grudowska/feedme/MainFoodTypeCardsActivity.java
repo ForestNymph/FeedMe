@@ -2,6 +2,7 @@ package pl.grudowska.feedme;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -13,9 +14,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 
-public class MainFoodTypeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
+
+public class MainFoodTypeCardsActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, OnDismissCallback {
+
+    private static final int INITIAL_DELAY_MILLIS = 300;
+
+    private FoodTypeAdapter mFoodCardsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +56,27 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ListView listView = (ListView) findViewById(R.id.activity_cards_listview);
+        mFoodCardsAdapter = new FoodTypeAdapter(this);
+        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
+                new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodCardsAdapter, this));
+        swingBottomInAnimationAdapter.setAbsListView(listView);
+
+        assert swingBottomInAnimationAdapter.getViewAnimator() != null;
+        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+
+        listView.setAdapter(swingBottomInAnimationAdapter);
+
+        for (int i = 0; i < 10; i++) {
+            mFoodCardsAdapter.add(i);
+        }
+    }
+
+    public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
+        for (int position : reverseSortedPositions) {
+            mFoodCardsAdapter.remove(position);
+        }
     }
 
     @Override
@@ -95,7 +128,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
             EmailDialogFragment dialog = new EmailDialogFragment();
             dialog.show(getFragmentManager(), "");
         } else if (id == R.id.nav_limit) {
-
+            LimitDialogFragment dialog = new LimitDialogFragment();
+            dialog.show(getFragmentManager(), "");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

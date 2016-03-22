@@ -7,11 +7,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
+
         <activity
-            android:name=".MainFoodTypeActivity"
+            android:name=".LaunchScreenActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,13 +20,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainFoodTypeCardsActivity"
+            android:label="@string/app_name" />
+        <activity
             android:name=".SpecificFoodTypeScrollingActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/app_name" />
         <activity
             android:name=".FoodSummaryScrollingActivity"
-            android:label="@string/title_activity_food_summary_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/app_name" />
+
     </application>
 
 </manifest>
