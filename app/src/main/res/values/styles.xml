@@ -20,27 +20,27 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- AlertDialog style -->
-    <style name="CustomDialogTheme" parent="@style/Theme.AppCompat.Dialog.Alert">
+    <style name="CustomDialogTheme" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
         <!-- Used for the buttons, checkboxes -->
-        <item name="colorAccent">@color/colorText</item>
+        <item name="colorAccent">@color/colorTextGray</item>
+        <item name="android:fontFamily">Roboto</item>
 
         <!-- Used for the title and text -->
-        <item name="android:textColorPrimary">@color/colorBrokeWhite</item>
+        <item name="android:textColorPrimary">@color/colorDialogText</item>
 
         <!-- Used for the background -->
-        <item name="android:background">@color/colorBackground</item>
+        <item name="android:background">@color/colorBrokeWhite</item>
 
         <item name="android:textSize">@dimen/button_font_size</item>
-
     </style>
 
     <!-- AlertDialog About style -->
     <style name="CustomAboutDialogTheme" parent="@style/Theme.AppCompat.Dialog.Alert">
         <!-- Used for the buttons, checkboxes -->
-        <item name="colorAccent">@color/colorYellow</item>
+        <item name="colorAccent">@color/colorDialogText</item>
 
         <!-- Used for the background -->
-        <item name="android:background">@color/colorAboutBackground</item>
+        <item name="android:background">#CC7C08</item>
 
         <!-- Used for the text size on buttons -->
         <item name="android:textSize">@dimen/button_font_size</item>
@@ -49,8 +49,7 @@
     </style>
 
     <style name="CustomAboutTitleDialogTheme">
-        <item name="android:textColor">@color/colorYellow</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:textColor">@color/colorDialogText</item>
         <item name="android:textSize">@dimen/title_font_size</item>
     </style>
 

@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="Roboto"
         android:paddingBottom="8dp"
-        android:textColor="@color/colorAboutBackground"
+        android:textColor="@color/colorTextGray"
         android:textSize="@dimen/button_font_size"
         tools:ignore="UnusedAttribute" />
 

@@ -1,17 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="@color/colorYellow"
+    android:orientation="vertical"
+    android:padding="@dimen/text_padding">
+
+    <ImageView
+        android:id="@+id/about_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginStart="@dimen/text_margin"
+        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_marginBottom="6dp"
+        android:contentDescription="@string/cd_image"
+        android:src="@drawable/about" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/text_margin"
+        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_toEndOf="@id/about_image"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/email_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4sp"
+            android:text="@string/dialog_about"
+            android:textColor="@color/colorBrokeWhite"
+            android:textSize="@dimen/title_font_size" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/about_image"
         android:paddingBottom="0dp"
         android:paddingEnd="@dimen/text_margin"
         android:paddingStart="@dimen/text_margin"
         android:paddingTop="@dimen/text_margin"
+        android:layout_marginBottom="@dimen/text_margin"
         android:text="@string/dialog_about_message"
         android:textColor="@color/colorBrokeWhite"
         android:textSize="@dimen/text_font_size" />
-</LinearLayout>
+</RelativeLayout>

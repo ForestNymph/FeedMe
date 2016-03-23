@@ -11,15 +11,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 
 public class MainFoodTypeCardsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnDismissCallback {
@@ -59,18 +60,34 @@ public class MainFoodTypeCardsActivity extends AppCompatActivity
 
         ListView listView = (ListView) findViewById(R.id.activity_cards_listview);
         mFoodCardsAdapter = new FoodTypeAdapter(this);
+
+//        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
+//                new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodCardsAdapter, this));
+//        swingBottomInAnimationAdapter.setAbsListView(listView);
+
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
-                new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodCardsAdapter, this));
+                new SwingBottomInAnimationAdapter(mFoodCardsAdapter);
         swingBottomInAnimationAdapter.setAbsListView(listView);
 
         assert swingBottomInAnimationAdapter.getViewAnimator() != null;
         swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
 
         listView.setAdapter(swingBottomInAnimationAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> l, View v, int position,
+                                    long id) {
+                Log.d("############", "Items " + "" + position);
+                Intent intent = new Intent(getApplicationContext(), FoodSummaryScrollingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         for (int i = 0; i < 10; i++) {
             mFoodCardsAdapter.add(i);
         }
+
     }
 
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {

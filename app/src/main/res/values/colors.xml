@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorYellow">#e59500</color>
-    <color name="colorGreen">#12CC4B</color>
+    <color name="colorGreen">#12AA4B</color>
     <color name="colorPrimary">#E0570A</color>
     <color name="colorPrimaryDark">#BF1E0A</color>
-    <color name="colorText">#4c4c4c</color>
-    <color name="colorBrokeWhite">#fcf7ec</color>
-    <color name="colorBackground">#fcf7ec</color>
-    <color name="colorAboutBackground">#2a0f00</color>
     <color name="colorAccent">#997565</color>
-    <color name="colorGrayBlue">#29343c</color>
-    <color name="colorMainBackground">#E8E5E3</color>
-    <color name="colorFiche">#fff</color>
+    <color name="colorTextGray">#717171</color>
+    <color name="colorBrokeWhite">#fcf7ec</color>
+    <color name="colorFiche">#ffffff</color>
+    <color name="colorDialogText">#e2e2e2</color>
+    <color name="colorMainBackground">#e2e2e2</color>
 </resources>

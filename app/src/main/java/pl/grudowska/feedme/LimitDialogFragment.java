@@ -6,7 +6,6 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +34,7 @@ public class LimitDialogFragment extends DialogFragment {
         picker.setWrapSelectorWheel(true);
 
         // change divider color by reflection
-        setDividerColor(picker, R.color.colorAccent);
+        setDividerColor(picker);
 
         builder.setPositiveButton(R.string.dialog_about_confirm,
                 new DialogInterface.OnClickListener() {
@@ -51,15 +50,14 @@ public class LimitDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    private void setDividerColor(NumberPicker picker, int color) {
+    private void setDividerColor(NumberPicker picker) {
 
         java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
         for (java.lang.reflect.Field pf : pickerFields) {
             if (pf.getName().equals("mSelectionDivider")) {
                 pf.setAccessible(true);
                 try {
-                    ColorDrawable colorDrawable = new ColorDrawable(color);
-                    pf.set(picker, colorDrawable);
+                    pf.set(picker, getResources().getDrawable(R.color.colorBrokeWhite));
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 } catch (Resources.NotFoundException e) {

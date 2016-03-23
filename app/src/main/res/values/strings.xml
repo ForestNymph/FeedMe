@@ -15,8 +15,8 @@
     <string name="user_email">\@</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="cancel">Cancel</string>
-    <string name="apply">Apply</string>
+    <string name="cancel">CANCEL</string>
+    <string name="apply">APPLY</string>
     <string name="dialog_email">CHANGE EMAIL</string>
     <string name="dialog_about">ABOUT</string>
     <string name="dialog_about_message">
@@ -42,4 +42,8 @@
         <item>RICE</item>
         <item>MACARONI</item>
     </string-array>
+
+
+    <!-- Content description -->
+    <string name="cd_image">email image</string>
 </resources>
