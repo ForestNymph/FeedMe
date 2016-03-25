@@ -22,12 +22,14 @@ import android.widget.ListView;
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
 
+import java.util.Arrays;
+
 public class MainFoodTypeCardsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnDismissCallback {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
 
-    private FoodTypeAdapter mFoodCardsAdapter;
+    private MainFoodTypeAdapter mFoodCardsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class MainFoodTypeCardsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         ListView listView = (ListView) findViewById(R.id.activity_cards_listview);
-        mFoodCardsAdapter = new FoodTypeAdapter(this);
+        mFoodCardsAdapter = new MainFoodTypeAdapter(this);
 
 //        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
 //                new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodCardsAdapter, this));
@@ -79,15 +81,17 @@ public class MainFoodTypeCardsActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> l, View v, int position,
                                     long id) {
                 Log.d("############", "Items " + "" + position);
-                Intent intent = new Intent(getApplicationContext(), FoodSummaryScrollingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SpecificFoodTypeActivity.class);
+                intent.putExtra("FoodType", Arrays.asList(getResources()
+                        .getStringArray(R.array.typefood_array)).get(position));
                 startActivity(intent);
             }
         });
 
+        //
         for (int i = 0; i < 10; i++) {
             mFoodCardsAdapter.add(i);
         }
-
     }
 
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
@@ -139,7 +143,7 @@ public class MainFoodTypeCardsActivity extends AppCompatActivity
             Intent intent = new Intent(this, FoodSummaryScrollingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_showall) {
-            Intent intent = new Intent(this, SpecificFoodTypeScrollingActivity.class);
+            Intent intent = new Intent(this, SpecificFoodTypeActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_email) {
             EmailDialogFragment dialog = new EmailDialogFragment();

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/orange_gradient"
+    android:background="@drawable/coffee"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -23,15 +23,15 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Feed Me"
-        android:textColor="#fbede5"
-        android:textSize="22dp"/>
+        android:textColor="@color/colorBrokeWhite"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Some text maybe email"
-        android:textColor="#fbede5"
-        android:textSize="16dp"/>
+        android:text="sylwiagrudowska@gmail.com"
+        android:textColor="@color/colorBrokeWhite"
+        android:textSize="14dp" />
 
 </LinearLayout>

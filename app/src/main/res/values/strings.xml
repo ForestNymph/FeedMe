@@ -23,7 +23,7 @@
         " Programmer: Sylwia Grudowska\n"
         "Designer: Sylwia Grudowska\n\n"
         "Date: 10.03.2016\n"
-        "Version 0.1"</string>
+        "Version: "</string>
     <string name="dialog_about_confirm">OK</string>
     <string name="summary_txt">Summary of daily calorie intake</string>
     <string name="dialog_limit">SET CALORIES LIMIT</string>

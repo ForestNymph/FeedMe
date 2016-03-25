@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="Current: sylwiagrudowska@gmail.com"
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <EditText

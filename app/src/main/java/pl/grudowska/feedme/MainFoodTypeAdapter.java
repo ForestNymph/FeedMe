@@ -32,13 +32,13 @@ import java.util.List;
 
 import pl.grudowska.feedme.util.BitmapCache;
 
-public class FoodTypeAdapter extends ArrayAdapter<Integer> {
+public class MainFoodTypeAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
     private final List<String> mFoodType;
 
-    FoodTypeAdapter(final Context context) {
+    MainFoodTypeAdapter(final Context context) {
         mContext = context;
         mMemoryCache = new BitmapCache();
         // get list of food type from resources and convert to Array
@@ -50,7 +50,7 @@ public class FoodTypeAdapter extends ArrayAdapter<Integer> {
         ViewHolder viewHolder;
         View view = convertView;
         if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.content_food_card, parent, false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.content_main_food_card, parent, false);
 
             viewHolder = new ViewHolder();
             viewHolder.textView = (TextView) view.findViewById(R.id.activity_card_food_textview);
