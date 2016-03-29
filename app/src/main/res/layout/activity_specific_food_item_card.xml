@@ -12,17 +12,88 @@
     <FrameLayout
         android:id="@+id/card_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/text_padding"
+        android:paddingStart="@dimen/text_padding" />
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/card_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="4dp">
-        <Button
-            android:id="@+id/button_add"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_default_one"
+                style="@style/CustomYellowAmountButtonTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ONE" />
+
+            <Button
+                android:id="@+id/button_default_two"
+                style="@style/CustomYellowAmountButtonTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TWO" />
+
+            <Button
+                android:id="@+id/button_default_three"
+                style="@style/CustomYellowAmountButtonTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="THREE" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/custom_amount_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/edittext_custom_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="grammes"
+                android:inputType="number"
+                android:paddingBottom="@dimen/text_padding"
+                android:paddingEnd="@dimen/text_padding"
+                android:paddingStart="@dimen/text_padding"
+                android:singleLine="true"
+                android:textColor="@color/colorTextGray"
+                android:textColorHighlight="@color/colorDialogText"
+                android:textSize="@dimen/text_font_size" />
+
+            <Button
+                android:id="@+id/button_add_custom_amount"
+                style="@style/CustomGreenAmountButtonTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ADD" />
+
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

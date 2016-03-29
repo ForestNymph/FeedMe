@@ -53,6 +53,22 @@
         <item name="android:textSize">@dimen/title_font_size</item>
     </style>
 
+    <style name="CustomYellowAmountButtonTheme" parent="android:Widget">
+        <item name="android:background">@color/colorYellowButton</item>
+        <item name="android:textSize">@dimen/text_font_size</item>
+        <item name="android:layout_marginStart">4sp</item>
+        <item name="android:layout_marginEnd">4sp</item>
+        <item name="android:textColor">@color/colorBrokeWhite</item>
+    </style>
+
+    <style name="CustomGreenAmountButtonTheme" parent="android:Widget">
+        <item name="android:background">@color/colorGreen</item>
+        <item name="android:textSize">@dimen/text_font_size</item>
+        <item name="android:layout_marginStart">4sp</item>
+        <item name="android:layout_marginEnd">4sp</item>
+        <item name="android:textColor">@color/colorBrokeWhite</item>
+    </style>
+
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
