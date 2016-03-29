@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainFoodTypeCardsActivity"
+    tools:context=".MainFoodTypeActivity"
     tools:showIn="@layout/activity_main_food_type">
 
     <android.support.design.widget.AppBarLayout
@@ -22,7 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main_food_type" />
+    <include layout="@layout/content_main_food_listview" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

@@ -24,12 +24,12 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCa
 
 import java.util.Arrays;
 
-public class MainFoodTypeCardsActivity extends AppCompatActivity
+public class MainFoodTypeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnDismissCallback {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
 
-    private MainFoodTypeAdapter mFoodCardsAdapter;
+    private MainFoodTypeListItemAdapter mFoodCardsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,8 @@ public class MainFoodTypeCardsActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ListView listView = (ListView) findViewById(R.id.activity_cards_listview);
-        mFoodCardsAdapter = new MainFoodTypeAdapter(this);
+        ListView listView = (ListView) findViewById(R.id.activity_main_listview);
+        mFoodCardsAdapter = new MainFoodTypeListItemAdapter(this);
 
 //        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
 //                new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodCardsAdapter, this));
@@ -140,7 +140,7 @@ public class MainFoodTypeCardsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_summary) {
-            Intent intent = new Intent(this, FoodSummaryScrollingActivity.class);
+            Intent intent = new Intent(this, FoodSummaryActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_showall) {
             Intent intent = new Intent(this, SpecificFoodTypeActivity.class);

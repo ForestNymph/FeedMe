@@ -35,7 +35,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
             "Product 28", "Product 29", "Product 30"));
 
     public SpecificFoodTypeListItemAdapter(final Context context) {
-        super(context, R.layout.activity_specific_food_item_card, R.id.card_title, R.id.card_content);
+        super(context, R.layout.activity_specific_food_card, R.id.card_title, R.id.card_content);
         mContext = context;
 
         for (int i = 0; i < mFoodName.size(); ++i) {
@@ -63,7 +63,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
         View view = convertView;
 
         if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.activity_specific_food_item_card, parent, false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.activity_specific_food_card, parent, false);
 
             viewHolder = new ViewHolder();
 

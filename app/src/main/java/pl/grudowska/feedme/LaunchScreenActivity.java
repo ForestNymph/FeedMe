@@ -9,7 +9,7 @@ public class LaunchScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, MainFoodTypeCardsActivity.class);
+        Intent intent = new Intent(this, MainFoodTypeActivity.class);
         startActivity(intent);
         finish();
     }

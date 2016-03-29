@@ -1,9 +1,9 @@
 package pl.grudowska.feedme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,7 +21,7 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_specific_food_type_scrolling);
+        setContentView(R.layout.activity_specific_food_type);
         ListView listView = (ListView) findViewById(R.id.activity_specific_listview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -47,14 +47,15 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         toolbarView.setBackgroundResource(R.drawable.bread_small);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "You can eat today XXX more calories", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(), FoodSummaryActivity.class);
+                startActivity(intent);
             }
         });
-
         mSpecificFoodTypeListItemAdapter = new SpecificFoodTypeListItemAdapter(this);
         AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mSpecificFoodTypeListItemAdapter);
         alphaInAnimationAdapter.setAbsListView(listView);

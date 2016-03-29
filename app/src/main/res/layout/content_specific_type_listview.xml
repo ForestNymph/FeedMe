@@ -12,7 +12,7 @@
     android:paddingTop="@dimen/text_padding"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".SpecificFoodTypeActivity"
-    tools:showIn="@layout/activity_specific_food_type_scrolling">
+    tools:showIn="@layout/activity_specific_food_type">
 
     <ListView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_specific_listview"
@@ -26,5 +26,4 @@
         android:fitsSystemWindows="true"
         android:scrollbarStyle="outsideOverlay"
         tools:ignore="overdraw" />
-
 </RelativeLayout>

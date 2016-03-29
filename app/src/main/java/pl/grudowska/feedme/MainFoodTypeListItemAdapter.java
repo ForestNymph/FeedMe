@@ -32,13 +32,13 @@ import java.util.List;
 
 import pl.grudowska.feedme.util.BitmapCache;
 
-public class MainFoodTypeAdapter extends ArrayAdapter<Integer> {
+public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
     private final List<String> mFoodType;
 
-    MainFoodTypeAdapter(final Context context) {
+    MainFoodTypeListItemAdapter(final Context context) {
         mContext = context;
         mMemoryCache = new BitmapCache();
         // get list of food type from resources and convert to Array

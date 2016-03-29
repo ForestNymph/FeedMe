@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorYellow">#e59500</color>
     <color name="colorGreen">#41bb6e</color>
     <color name="colorBlue">#1EA7EB</color>
     <color name="colorPrimary">#E0570A</color>
     <color name="colorPrimaryDark">#BF1E0A</color>
     <color name="colorAccent">#FFBA5B</color>
-    <color name="colorYellowButton">#FFAF41</color>
+    <color name="colorYellow">#FFAF41</color>
     <color name="colorTextGray">#717171</color>
     <color name="colorBrokeWhite">#fcf7ec</color>
     <color name="colorFiche">#ffffff</color>
     <color name="colorDialogText">#e2e2e2</color>
     <color name="colorMainBackground">#e2e2e2</color>
     <color name="colorAndroid">#4F3A2D</color>
-
 </resources>

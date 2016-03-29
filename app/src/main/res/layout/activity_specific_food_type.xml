@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorMainBackground"
     android:fitsSystemWindows="true"
-    tools:context="pl.grudowska.feedme.FoodSummaryScrollingActivity">
+    tools:context=".SpecificFoodTypeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -18,39 +19,45 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <ImageView
-                android:id="@+id/bgheader"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/scroll_bcg"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="pin" />
-
+            android:fitsSystemWindows="true">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.NoActionBar" />
+                android:layout_height="?attr/actionBarSize" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/orange_gradient_reverse" />
+
 
         </android.support.design.widget.CollapsingToolbarLayout>
+
+
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_food_summary_scrolling" />
+    <include layout="@layout/content_specific_type_listview" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_android"
+        android:src="@drawable/ic_dialog_dialer"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
+
+    <Button
+        android:id="@+id/button_done"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_gravity="bottom"
+        android:background="#1AB244"
+        android:gravity="center"
+        android:text="DONE"
+        android:textColor="@color/colorBrokeWhite"
+        android:textSize="@dimen/text_font_size" />
 
 </android.support.design.widget.CoordinatorLayout>

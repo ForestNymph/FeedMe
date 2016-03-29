@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="76sp"
     android:background="@color/colorMainBackground"
-    android:paddingBottom="@dimen/text_padding"
     android:paddingEnd="@dimen/text_padding"
     android:paddingStart="@dimen/text_padding"
-    android:paddingTop="0dp"
+    android:paddingTop="@dimen/text_padding"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="pl.grudowska.feedme.MainFoodTypeCardsActivity"
-    tools:showIn="@layout/app_bar_main_food_type">
+    tools:context=".FoodSummaryActivity"
+    tools:showIn="@layout/activity_summary_food">
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_cards_listview"
+        android:id="@+id/activity_summary_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorMainBackground"
         android:clipToPadding="false"
         android:divider="@null"
         android:dividerHeight="10dp"

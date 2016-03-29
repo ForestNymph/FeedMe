@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorMainBackground"
+    android:paddingBottom="@dimen/text_padding"
+    android:paddingEnd="@dimen/text_padding"
+    android:paddingStart="@dimen/text_padding"
+    android:paddingTop="0dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainFoodTypeActivity"
+    tools:showIn="@layout/app_bar_main_food_type">
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorMainBackground"
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:drawSelectorOnTop="true"
+        android:fadingEdge="none"
+        android:fitsSystemWindows="true"
+        android:scrollbarStyle="outsideOverlay"
+        tools:ignore="overdraw" />
+</RelativeLayout>

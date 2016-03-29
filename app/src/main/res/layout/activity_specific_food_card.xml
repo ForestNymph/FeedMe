@@ -39,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:text="ONE" />
 
             <Button
@@ -47,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:text="TWO" />
 
             <Button
@@ -55,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:text="THREE" />
 
         </LinearLayout>
@@ -83,7 +86,6 @@
                 android:paddingStart="@dimen/text_padding"
                 android:singleLine="true"
                 android:textColor="@color/colorTextGray"
-                android:textColorHighlight="@color/colorDialogText"
                 android:textSize="@dimen/text_font_size" />
 
             <Button
@@ -92,6 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:stateListAnimator="@null"
                 android:text="ADD" />
 
         </LinearLayout>
