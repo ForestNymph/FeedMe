@@ -50,7 +50,7 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         ViewHolder viewHolder;
         View view = convertView;
         if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.content_main_food_card, parent, false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.content_main_card, parent, false);
 
             viewHolder = new ViewHolder();
             viewHolder.textView = (TextView) view.findViewById(R.id.activity_card_food_textview);

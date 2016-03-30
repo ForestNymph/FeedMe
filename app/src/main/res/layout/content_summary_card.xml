@@ -6,28 +6,29 @@
     android:layout_height="wrap_content"
     android:background="@color/colorFiche"
     android:orientation="horizontal"
-    android:padding="10dp"
+    android:padding="16sp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:ignore="overdraw">
 
     <TextView
-        android:id="@+id/activity_card_food_textview"
+        android:id="@+id/activity_card_summary_left_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:fontFamily="Roboto"
-        android:paddingBottom="8dp"
+        android:gravity="start|center_vertical"
         android:textColor="@color/colorTextGray"
         android:textSize="@dimen/button_font_size"
         tools:ignore="UnusedAttribute" />
 
     <TextView
-        android:id="@+id/activity_card_food_imageview"
+        android:id="@+id/activity_card_summary_right_imageview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:fontFamily="Roboto"
-        android:paddingBottom="8dp"
+        android:gravity="end|center_vertical"
+        android:paddingRight="@dimen/text_padding"
         android:textColor="@color/colorTextGray"
         android:textSize="@dimen/button_font_size"
         tools:ignore="UnusedAttribute" />

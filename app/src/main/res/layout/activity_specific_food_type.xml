@@ -28,9 +28,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="10sp"
                 android:layout_gravity="bottom"
-                android:background="@drawable/orange_gradient_reverse" />
+                android:background="@color/colorYellow" />
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -38,7 +38,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_specific_type_listview" />
+    <include layout="@layout/content_specific_listview" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

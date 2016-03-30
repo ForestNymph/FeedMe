@@ -140,7 +140,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_summary) {
-            Intent intent = new Intent(this, FoodSummaryActivity.class);
+            Intent intent = new Intent(this, SummaryFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_showall) {
             Intent intent = new Intent(this, SpecificFoodTypeActivity.class);
