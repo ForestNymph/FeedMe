@@ -23,7 +23,7 @@ public class AboutDialogFragment extends DialogFragment {
         // Pass null as the parent view because its going in the dialog layout
         View aboutDialogView = inflater.inflate(R.layout.about_dialog, null);
         builder.setView(aboutDialogView).
-                setPositiveButton(R.string.dialog_about_confirm, new DialogInterface.OnClickListener() {
+                setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         AboutDialogFragment.this.getDialog().cancel();
                     }

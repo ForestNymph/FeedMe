@@ -27,10 +27,9 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/drawer_email_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sylwiagrudowska@gmail.com"
         android:textColor="@color/colorBrokeWhite"
         android:textSize="14dp" />
 

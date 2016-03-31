@@ -14,7 +14,6 @@ import java.util.Arrays;
 public class SummaryFoodListItemAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
-
     // dummy data
     private ArrayList<String> mFoodType = new ArrayList<>(Arrays.asList(
             "Product 1", "Product 2", "Product 3",
@@ -46,8 +45,8 @@ public class SummaryFoodListItemAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.textView_name.setText(mFoodType.get(position));
-        viewHolder.textView_amount.setText(mFoodType.get(position));
+        viewHolder.textView_name.setText(mFoodType.get(getItem(position)));
+        viewHolder.textView_amount.setText(mContext.getString(R.string.card_number, getItem(position) + 1));
 
         return view;
     }

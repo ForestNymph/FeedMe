@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
-    android:background="@color/colorYellow"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="@dimen/text_padding">
 

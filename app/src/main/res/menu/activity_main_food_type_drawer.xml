@@ -4,24 +4,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_summary"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@mipmap/ic_list"
             android:title="Recently added" />
 
         <item
             android:id="@+id/nav_showall"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Show all" />
+            android:icon="@mipmap/ic_showall"
+            android:title="Show all past lists" />
     </group>
 
     <item android:title="Configuration">
         <menu>
             <item
                 android:id="@+id/nav_email"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@mipmap/ic_email"
                 android:title="Change email" />
             <item
                 android:id="@+id/nav_limit"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@mipmap/ic_limit"
                 android:title="Set calories limit" />
         </menu>
     </item>

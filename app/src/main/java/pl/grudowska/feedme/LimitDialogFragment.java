@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
 
+import pl.grudowska.feedme.util.SharedPreferencesManager;
+
 public class LimitDialogFragment extends DialogFragment {
 
     @Override
@@ -30,15 +32,16 @@ public class LimitDialogFragment extends DialogFragment {
         final NumberPicker picker = (NumberPicker) view.findViewById(R.id.pickerView);
         picker.setMaxValue(3000);
         picker.setMinValue(1500);
-        picker.setValue(2400);
+        picker.setValue(SharedPreferencesManager.loadDataInt(getActivity(), "limit", 2400));
         picker.setWrapSelectorWheel(true);
 
         // change divider color by reflection
         setDividerColor(picker);
 
-        builder.setPositiveButton(R.string.dialog_about_confirm,
+        builder.setPositiveButton(R.string.ok,
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                    public void onClick(DialogInterface dialogInterface, int id) {
+                        SharedPreferencesManager.saveDataInt(getActivity(), "limit", picker.getValue());
                         Log.e("New value", "" + picker.getValue());
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

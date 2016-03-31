@@ -2,7 +2,6 @@ package pl.grudowska.feedme;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -11,25 +10,28 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
 
 import java.util.Arrays;
 
+import pl.grudowska.feedme.util.SharedPreferencesManager;
+
 public class MainFoodTypeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnDismissCallback {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
 
     private MainFoodTypeListItemAdapter mFoodCardsAdapter;
+    private NavigationView mNavigationView;
+    private ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +52,23 @@ public class MainFoodTypeActivity extends AppCompatActivity
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        mToggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        drawer.setDrawerListener(mToggle);
+        mToggle.syncState();
         // open drawer on start
         // drawer.openDrawer(Gravity.LEFT);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        assert mNavigationView != null;
+        mNavigationView.setNavigationItemSelectedListener(this);
+
+        LayoutInflater.from(this).inflate(R.layout.nav_header, mNavigationView);
+        TextView email = (TextView) mNavigationView.findViewById(R.id.drawer_email_textview);
+        email.setText(SharedPreferencesManager.loadDataString(this, "email", "test@test.pl"));
 
         ListView listView = (ListView) findViewById(R.id.activity_main_listview);
         mFoodCardsAdapter = new MainFoodTypeListItemAdapter(this);
-
-//        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
-//                new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodCardsAdapter, this));
-//        swingBottomInAnimationAdapter.setAbsListView(listView);
 
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
                 new SwingBottomInAnimationAdapter(mFoodCardsAdapter);
@@ -80,23 +83,14 @@ public class MainFoodTypeActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> l, View v, int position,
                                     long id) {
-                Log.d("############", "Items " + "" + position);
                 Intent intent = new Intent(getApplicationContext(), SpecificFoodTypeActivity.class);
                 intent.putExtra("FoodType", Arrays.asList(getResources()
                         .getStringArray(R.array.typefood_array)).get(position));
                 startActivity(intent);
             }
         });
-
-        //
         for (int i = 0; i < 10; i++) {
             mFoodCardsAdapter.add(i);
-        }
-    }
-
-    public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
-        for (int position : reverseSortedPositions) {
-            mFoodCardsAdapter.remove(position);
         }
     }
 
@@ -136,6 +130,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -143,16 +138,19 @@ public class MainFoodTypeActivity extends AppCompatActivity
             Intent intent = new Intent(this, SummaryFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_showall) {
-            Intent intent = new Intent(this, SpecificFoodTypeActivity.class);
+            Intent intent = new Intent(this, SummaryFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_email) {
             EmailDialogFragment dialog = new EmailDialogFragment();
             dialog.show(getFragmentManager(), "");
+
+            LayoutInflater.from(this).inflate(R.layout.nav_header, mNavigationView);
+            TextView email = (TextView) mNavigationView.findViewById(R.id.drawer_email_textview);
+            email.setText(SharedPreferencesManager.loadDataString(this, "email", "test@test.pl"));
         } else if (id == R.id.nav_limit) {
             LimitDialogFragment dialog = new LimitDialogFragment();
             dialog.show(getFragmentManager(), "");
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

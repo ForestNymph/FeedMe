@@ -1,35 +1,24 @@
 <resources>
     <string name="app_name">Feed Me</string>
-    <string name="summary">Summary</string>
+    <string name="summary">Recently added</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">About</string>
-    <string name="title_activity_specific_food_type_scrolling">SpecificFoodTypeScrollingActivity
-    </string>
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-    </string>
-    <string name="title_activity_food_summary_scrolling">Food summary</string>
-    <string name="user_email">\@</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cancel">CANCEL</string>
     <string name="apply">APPLY</string>
+    <string name="ok">OK</string>
+
     <string name="dialog_email">CHANGE EMAIL</string>
+    <string name="dialog_limit">SET CALORIES LIMIT</string>
     <string name="dialog_about">ABOUT</string>
     <string name="dialog_about_message">
         " Programmer: Sylwia Grudowska\n"
         "Designer: Sylwia Grudowska\n\n"
         "Date: 03.2016\n"
         "Version: "</string>
-    <string name="dialog_about_confirm">OK</string>
-    <string name="summary_txt">Summary of daily calorie intake</string>
-    <string name="dialog_limit">SET CALORIES LIMIT</string>
-    <string name="title_activity_launch_screen">Launch Screen</string>
-    <string name="card_number">This is card %d</string>
 
     <string-array name="typefood_array">
         <item>BREAD</item>
@@ -44,6 +33,7 @@
         <item>MACARONI</item>
     </string-array>
 
+    <string name="card_number">This is card %d</string>
 
     <!-- Content description -->
     <string name="cd_image">email image</string>
