@@ -23,16 +23,28 @@ public class EmailDialogFragment extends DialogFragment {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         View dialogView = inflater.inflate(R.layout.email_dialog, null);
-        TextView currentEmailView = (TextView) dialogView.findViewById(R.id.email_current);
+        TextView currentEmailFromView = (TextView) dialogView.findViewById(R.id.email_current);
         builder.setView(dialogView)
                 .setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
                         Dialog dialog = (Dialog) dialogInterface;
-                        String mail_value = ((EditText) dialog.findViewById(R.id.useremail)).getText().toString();
-                        if (mail_value.isEmpty()) {
+                        String mailTo_value = ((EditText) dialog.findViewById(R.id.mailto_mail)).getText().toString();
+                        if (mailTo_value.isEmpty()) {
                             // do nothing
                         } else {
-                            SharedPreferencesManager.saveDataString(getActivity(), "email", mail_value);
+                            SharedPreferencesManager.saveDataString(getActivity(), "mailTo", mailTo_value);
+                        }
+                        String mailFrom_value = ((EditText) dialog.findViewById(R.id.mailfrom_mail)).getText().toString();
+                        if (mailFrom_value.isEmpty()) {
+                            // do nothing
+                        } else {
+                            SharedPreferencesManager.saveDataString(getActivity(), "mailFrom", mailFrom_value);
+                        }
+                        String password_value = ((EditText) dialog.findViewById(R.id.mailfrom_password)).getText().toString();
+                        if (password_value.isEmpty()) {
+                            // do nothing
+                        } else {
+                            SharedPreferencesManager.saveDataString(getActivity(), "password", password_value);
                         }
                     }
                 })
@@ -42,7 +54,8 @@ public class EmailDialogFragment extends DialogFragment {
                         EmailDialogFragment.this.getDialog().cancel();
                     }
                 });
-        currentEmailView.setText(SharedPreferencesManager.loadDataString(getActivity(), "email", "test@test.pl"));
+        currentEmailFromView.setText("Destination: " + SharedPreferencesManager.loadDataString(getActivity(),
+                "mailTo", "test@test.pl"));
         return builder.create();
     }
 }

@@ -59,7 +59,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
                 View v = mNavigationView.getHeaderView(0);
                 TextView email = (TextView) v.findViewById(R.id.drawer_email_textview);
-                email.setText(SharedPreferencesManager.loadDataString(getApplicationContext(), "email", "test@test.pl"));
+                email.setText(SharedPreferencesManager.loadDataString(getApplicationContext(), "mailFrom", "test@test.pl"));
             }
         };
         drawer.setDrawerListener(toggle);

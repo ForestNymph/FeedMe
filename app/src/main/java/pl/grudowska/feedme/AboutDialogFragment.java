@@ -9,10 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import pl.grudowska.feedme.util.EmailManager;
+
 public class AboutDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+        new EmailManager(getActivity());
 
         String verName = BuildConfig.VERSION_NAME;
 

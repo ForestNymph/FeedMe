@@ -3,7 +3,6 @@ package pl.grudowska.feedme.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 public class SharedPreferencesManager {
 
@@ -13,14 +12,14 @@ public class SharedPreferencesManager {
         editor.putString(preference, value);
         editor.apply();
 
-        Log.i("SPManager ", "saveDataString() " + "PREFERENCE: " + preference + ": " + value);
+        //Log.i("SPManager ", "saveDataString() " + "PREFERENCE: " + preference + ": " + value);
     }
 
     public static String loadDataString(Context context, String preference, String defaultValue) {
         SharedPreferences settings = context.getSharedPreferences(preference, 0);
         String data = settings.getString(preference, defaultValue);
 
-        Log.i("SPManager ", "loadDataString() " + "PREFERENCE: " + preference + ": " + data);
+        //Log.i("SPManager ", "loadDataString() " + "PREFERENCE: " + preference + ": " + data);
 
         return data;
     }
@@ -31,14 +30,14 @@ public class SharedPreferencesManager {
         editor.putInt(preference, value);
         editor.apply();
 
-        Log.i("SPManager ", "saveDataString() " + "PREFERENCE: " + preference + ": " + value);
+        //Log.i("SPManager ", "saveDataString() " + "PREFERENCE: " + preference + ": " + value);
     }
 
     public static int loadDataInt(Context context, String preference, int defaultValue) {
         SharedPreferences settings = context.getSharedPreferences(preference, 0);
         int data = settings.getInt(preference, defaultValue);
 
-        Log.i("SPManager ", "loadDataString() " + "PREFERENCE: " + preference + ": " + data);
+        //Log.i("SPManager ", "loadDataString() " + "PREFERENCE: " + preference + ": " + data);
 
         return data;
     }

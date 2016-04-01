@@ -1,65 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
     android:background="@color/colorLightOrange"
-    android:orientation="vertical"
-    android:padding="@dimen/text_padding">
-
-    <ImageView
-        android:id="@+id/email_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="@dimen/text_margin"
-        android:contentDescription="@string/cd_image"
-        android:src="@drawable/email" />
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/text_margin"
-        android:layout_marginEnd="@dimen/text_margin"
-        android:layout_marginTop="@dimen/text_margin"
-        android:layout_toEndOf="@id/email_image"
+        android:layout_margin="@dimen/text_margin"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/email_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:layout_weight="1"
+            android:contentDescription="@string/cd_image"
+            android:src="@drawable/email" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/email_change"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_email"
+                android:textColor="@color/colorDialogText"
+                android:textSize="@dimen/title_font_size" />
+
+            <TextView
+                android:id="@+id/email_current"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDialogText"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/email_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4sp"
-            android:text="@string/dialog_email"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:text="Lorem ipsum dolor sit amet, eos at graece putent expetendis, mea te saperet alienum, munere ignota mnesarchum eum no. His ei iudico fierent noluisse, sed possim inso."
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/title_font_size" />
+            android:textSize="@dimen/text_small_font_size" />
 
         <TextView
-            android:id="@+id/email_current"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:text="This device gmail address:"
             android:textColor="@color/colorDialogText"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_small_font_size" />
+
+        <EditText
+            android:id="@+id/mailfrom_mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:background="@color/colorBrokeWhite"
+            android:fontFamily="Roboto"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="8sp"
+            android:paddingEnd="@dimen/text_padding"
+            android:paddingStart="@dimen/text_padding"
+            android:paddingTop="8sp"
+            android:singleLine="true"
+            android:textColor="@color/colorTextGray"
+            android:textSize="@dimen/text_font_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:text="Gmail password:"
+            android:textColor="@color/colorDialogText"
+            android:textSize="@dimen/text_small_font_size" />
+
+        <EditText
+            android:id="@+id/mailfrom_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:background="@color/colorBrokeWhite"
+            android:fontFamily="Roboto"
+            android:inputType="textPassword"
+            android:paddingBottom="8sp"
+            android:paddingEnd="@dimen/text_padding"
+            android:paddingStart="@dimen/text_padding"
+            android:paddingTop="8sp"
+            android:singleLine="true"
+            android:textColor="@color/colorTextGray"
+            android:textSize="@dimen/text_font_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:text="Destination address:"
+            android:textColor="@color/colorDialogText"
+            android:textSize="@dimen/text_small_font_size" />
+
+        <EditText
+            android:id="@+id/mailto_mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/text_margin"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
+            android:background="@color/colorBrokeWhite"
+            android:fontFamily="Roboto"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="8sp"
+            android:paddingEnd="@dimen/text_padding"
+            android:paddingStart="@dimen/text_padding"
+            android:paddingTop="8sp"
+            android:singleLine="true"
+            android:textColor="@color/colorTextGray"
+            android:textSize="@dimen/text_font_size" />
+
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/useremail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/email_image"
-        android:layout_gravity="center"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="@dimen/text_margin"
-        android:layout_marginRight="@dimen/text_margin"
-        android:layout_marginTop="@dimen/text_margin"
-        android:background="@color/colorBrokeWhite"
-        android:fontFamily="Roboto"
-        android:inputType="textEmailAddress"
-        android:paddingBottom="8sp"
-        android:paddingEnd="@dimen/text_padding"
-        android:paddingStart="@dimen/text_padding"
-        android:paddingTop="8sp"
-        android:singleLine="true"
-        android:textColor="@color/colorTextGray"
-        android:textSize="@dimen/text_font_size" />
-</RelativeLayout>
+
+</LinearLayout>
+
