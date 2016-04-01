@@ -17,6 +17,7 @@
 
     <!-- Default font size -->
     <dimen name="text_font_size">18sp</dimen>
+    <dimen name="text_small_font_size">16sp</dimen>
     <dimen name="title_font_size">20sp</dimen>
     <dimen name="button_font_size">18sp</dimen>
 </resources>

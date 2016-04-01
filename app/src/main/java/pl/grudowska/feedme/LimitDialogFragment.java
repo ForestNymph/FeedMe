@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import pl.grudowska.feedme.util.SharedPreferencesManager;
 
@@ -29,10 +30,16 @@ public class LimitDialogFragment extends DialogFragment {
 
         builder.setView(view);
 
+        TextView limitCurrent = (TextView) view.findViewById(R.id.limit_current);
+        int limitInt = SharedPreferencesManager.loadDataInt(getActivity(), "limit", 2400);
+
+        String limitText = "Current: " + limitInt + " kCal";
+        limitCurrent.setText(limitText);
+
         final NumberPicker picker = (NumberPicker) view.findViewById(R.id.pickerView);
         picker.setMaxValue(3000);
         picker.setMinValue(1500);
-        picker.setValue(SharedPreferencesManager.loadDataInt(getActivity(), "limit", 2400));
+        picker.setValue(limitInt);
         picker.setWrapSelectorWheel(true);
 
         // change divider color by reflection

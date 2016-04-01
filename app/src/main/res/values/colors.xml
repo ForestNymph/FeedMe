@@ -8,6 +8,7 @@
     <color name="colorAccent">#FFBA5B</color>
     <color name="colorYellow">#FFAF41</color>
     <color name="colorTextGray">#717171</color>
+    <color name="colorDarkGray">#323232</color>
     <color name="colorBrokeWhite">#fcf7ec</color>
     <color name="colorFiche">#ffffff</color>
     <color name="colorDialogText">#e2e2e2</color>

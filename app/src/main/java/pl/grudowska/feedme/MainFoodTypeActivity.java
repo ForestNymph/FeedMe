@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +30,6 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
     private MainFoodTypeListItemAdapter mFoodCardsAdapter;
     private NavigationView mNavigationView;
-    private ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,21 +49,27 @@ public class MainFoodTypeActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(mToggle);
-        mToggle.syncState();
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+
+                View v = mNavigationView.getHeaderView(0);
+                TextView email = (TextView) v.findViewById(R.id.drawer_email_textview);
+                email.setText(SharedPreferencesManager.loadDataString(getApplicationContext(), "email", "test@test.pl"));
+            }
+        };
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
         // open drawer on start
         // drawer.openDrawer(Gravity.LEFT);
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
-
-        LayoutInflater.from(this).inflate(R.layout.nav_header, mNavigationView);
-        TextView email = (TextView) mNavigationView.findViewById(R.id.drawer_email_textview);
-        email.setText(SharedPreferencesManager.loadDataString(this, "email", "test@test.pl"));
 
         ListView listView = (ListView) findViewById(R.id.activity_main_listview);
         mFoodCardsAdapter = new MainFoodTypeListItemAdapter(this);
@@ -107,7 +111,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_food_type, menu);
+        getMenuInflater().inflate(R.menu.menu_right_dots, menu);
         return true;
     }
 
@@ -143,10 +147,6 @@ public class MainFoodTypeActivity extends AppCompatActivity
         } else if (id == R.id.nav_email) {
             EmailDialogFragment dialog = new EmailDialogFragment();
             dialog.show(getFragmentManager(), "");
-
-            LayoutInflater.from(this).inflate(R.layout.nav_header, mNavigationView);
-            TextView email = (TextView) mNavigationView.findViewById(R.id.drawer_email_textview);
-            email.setText(SharedPreferencesManager.loadDataString(this, "email", "test@test.pl"));
         } else if (id == R.id.nav_limit) {
             LimitDialogFragment dialog = new LimitDialogFragment();
             dialog.show(getFragmentManager(), "");

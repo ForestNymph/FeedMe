@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
     android:background="@color/colorLightOrange"
@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/limit_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="@dimen/text_margin"
         android:contentDescription="@string/cd_image"
         android:src="@drawable/limit" />
@@ -26,7 +26,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/email_change"
+            android:id="@+id/limit_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8sp"
@@ -35,12 +35,12 @@
             android:textSize="@dimen/title_font_size" />
 
         <TextView
-            android:id="@+id/email_current"
+            android:id="@+id/limit_current"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current: 2400 kCal"
+            android:text="Current: 2400 kcal"
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size" />
+            android:textSize="@dimen/text_small_font_size" />
     </LinearLayout>
 
     <NumberPicker
@@ -50,6 +50,7 @@
         android:layout_below="@id/limit_image"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
+        android:scrollbarSize="@dimen/text_margin"
         android:descendantFocusability="blocksDescendants" />
 </RelativeLayout>
 

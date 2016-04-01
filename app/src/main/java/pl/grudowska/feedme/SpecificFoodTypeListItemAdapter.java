@@ -1,6 +1,5 @@
 package pl.grudowska.feedme;
 
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -15,7 +14,6 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 
 public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<Integer> {
 

@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:layout_gravity="bottom"
-        android:background="#323232"
+        android:background="@color/colorDarkGray"
         android:gravity="center"
         android:text="Swipe to dissmis"
         android:textColor="@color/colorBrokeWhite"
