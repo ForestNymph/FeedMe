@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Feed Me</string>
     <string name="summary">Recently added</string>
+    <string name="show_all_lists">Show all lists</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -37,4 +38,6 @@
 
     <!-- Content description -->
     <string name="cd_image">email image</string>
+    <string name="title_activity_summary_dialog_fragment">SummaryDialogFragment</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, eos at graece putent expetendis, mea te saperet alienum, munere ignota mnesarchum eum no. His ei iudico fierent noluisse, sed possim inso.</string>
 </resources>

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -44,8 +43,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "You can eat today XXX more calories", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                SummaryDialogFragment summary = new SummaryDialogFragment();
+                summary.show(getFragmentManager(), "");
             }
         });
 
@@ -59,7 +58,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
                 View v = mNavigationView.getHeaderView(0);
                 TextView email = (TextView) v.findViewById(R.id.drawer_email_textview);
-                email.setText(SharedPreferencesManager.loadDataString(getApplicationContext(), "mailFrom", "test@test.pl"));
+                email.setText(SharedPreferencesManager.loadDataString(getApplicationContext(), "mailTo", "test@test.pl"));
             }
         };
         drawer.setDrawerListener(toggle);
@@ -139,10 +138,10 @@ public class MainFoodTypeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_summary) {
-            Intent intent = new Intent(this, SummaryFoodActivity.class);
+            Intent intent = new Intent(this, RecentlyAddedFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_showall) {
-            Intent intent = new Intent(this, SummaryFoodActivity.class);
+            Intent intent = new Intent(this, ShowAllSentFoodListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_email) {
             EmailDialogFragment dialog = new EmailDialogFragment();

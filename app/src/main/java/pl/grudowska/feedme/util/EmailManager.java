@@ -14,9 +14,9 @@ public class EmailManager {
 
         String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
 
-        String mailFrom = SharedPreferencesManager.loadDataString(context, "mailFrom", "");
-        String password = SharedPreferencesManager.loadDataString(context, "password", "");
-        String mailTo = SharedPreferencesManager.loadDataString(context, "mailTo", "");
+        String mailFrom = SharedPreferencesManager.loadDataString(context, "mailFrom", "test@test.com");
+        String password = SharedPreferencesManager.loadDataString(context, "password", "321");
+        String mailTo = SharedPreferencesManager.loadDataString(context, "mailTo", "test@test.com");
 
         BackgroundMail.newBuilder(context)
                 .withUsername(mailFrom)

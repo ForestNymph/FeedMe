@@ -11,7 +11,7 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SummaryFoodListItemAdapter extends ArrayAdapter<Integer> {
+public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
     // dummy data
@@ -27,7 +27,7 @@ public class SummaryFoodListItemAdapter extends ArrayAdapter<Integer> {
             "Product 25", "Product 26", "Product 27",
             "Product 28", "Product 29", "Product 30"));
 
-    SummaryFoodListItemAdapter(final Context context) {
+    RecentlyAddedFoodListItemAdapter(final Context context) {
         mContext = context;
     }
 
@@ -36,7 +36,7 @@ public class SummaryFoodListItemAdapter extends ArrayAdapter<Integer> {
         ViewHolder viewHolder;
         View view = convertView;
         if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.content_summary_card, parent, false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.content_recentlyadded_card, parent, false);
 
             viewHolder = new ViewHolder();
             viewHolder.textView_name = (TextView) view.findViewById(R.id.activity_card_summary_left_textview);

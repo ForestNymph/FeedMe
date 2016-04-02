@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import pl.grudowska.feedme.util.SharedPreferencesManager;
 
@@ -23,7 +22,6 @@ public class EmailDialogFragment extends DialogFragment {
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         View dialogView = inflater.inflate(R.layout.email_dialog, null);
-        TextView currentEmailFromView = (TextView) dialogView.findViewById(R.id.email_current);
         builder.setView(dialogView)
                 .setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
@@ -54,8 +52,6 @@ public class EmailDialogFragment extends DialogFragment {
                         EmailDialogFragment.this.getDialog().cancel();
                     }
                 });
-        currentEmailFromView.setText("Destination: " + SharedPreferencesManager.loadDataString(getActivity(),
-                "mailTo", "test@test.pl"));
         return builder.create();
     }
 }

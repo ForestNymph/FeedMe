@@ -22,7 +22,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "pl.grudowska.feedme.SummaryFoodActivity"/>
+        className = "pl.grudowska.feedme.RecentlyAddedFoodActivity"/>
       <point      
         x = "336"      
         y = "244"/>

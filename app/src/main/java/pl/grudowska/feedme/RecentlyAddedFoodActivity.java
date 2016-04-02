@@ -14,15 +14,15 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 
-public class SummaryFoodActivity extends AppCompatActivity implements OnDismissCallback {
+public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDismissCallback {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
-    private SummaryFoodListItemAdapter mFoodSummaryAdapter;
+    private RecentlyAddedFoodListItemAdapter mFoodSummaryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_summary_food);
+        setContentView(R.layout.activity_recentlyadded_food);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -31,13 +31,13 @@ public class SummaryFoodActivity extends AppCompatActivity implements OnDismissC
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Count food...", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                SummaryDialogFragment summary = new SummaryDialogFragment();
+                summary.show(getFragmentManager(), "");
             }
         });
 
         ListView listView = (ListView) findViewById(R.id.activity_summary_listview);
-        mFoodSummaryAdapter = new SummaryFoodListItemAdapter(this);
+        mFoodSummaryAdapter = new RecentlyAddedFoodListItemAdapter(this);
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
                 new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodSummaryAdapter, this));
         swingBottomInAnimationAdapter.setAbsListView(listView);

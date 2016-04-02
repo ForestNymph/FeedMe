@@ -15,14 +15,13 @@ import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter
 public class SpecificFoodTypeActivity extends AppCompatActivity {
 
     private static final int INITIAL_DELAY_MILLIS = 400;
-    private SpecificFoodTypeListItemAdapter mSpecificFoodTypeListItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_specific_food_type);
-        ListView listView = (ListView) findViewById(R.id.activity_specific_listview);
+        ListView listView = (ListView) findViewById(R.id.specific_listview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -43,8 +42,10 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout toolbarView =
                 (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        assert toolbarView != null;
         toolbarView.setTitle(value);
-        toolbarView.setBackgroundResource(R.drawable.bread_small);
+        //toolbarView.setBackgroundResource(R.drawable.bread_small);
+        toolbarView.setBackgroundResource(R.drawable.orange_gradient);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -52,12 +53,13 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SummaryFoodActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RecentlyAddedFoodActivity.class);
                 startActivity(intent);
             }
         });
-        mSpecificFoodTypeListItemAdapter = new SpecificFoodTypeListItemAdapter(this);
+        SpecificFoodTypeListItemAdapter mSpecificFoodTypeListItemAdapter = new SpecificFoodTypeListItemAdapter(this);
         AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mSpecificFoodTypeListItemAdapter);
+        assert listView != null;
         alphaInAnimationAdapter.setAbsListView(listView);
 
         assert alphaInAnimationAdapter.getViewAnimator() != null;
