@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorMainBackground"
     android:fitsSystemWindows="true"
-    tools:context=".ShowAllSentFoodListActivity">
+    tools:context=".AllSentFoodActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

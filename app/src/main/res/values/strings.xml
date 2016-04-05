@@ -14,6 +14,7 @@
 
     <string name="dialog_email">CHANGE EMAIL</string>
     <string name="dialog_limit">SET CALORIES LIMIT</string>
+    <string name="dialog_time">SET EMAIL TIME</string>
     <string name="dialog_about">ABOUT</string>
     <string name="dialog_about_message">
         " Programmer: Sylwia Grudowska\n"

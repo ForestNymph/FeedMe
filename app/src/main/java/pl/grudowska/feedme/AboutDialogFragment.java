@@ -11,12 +11,14 @@ import android.widget.TextView;
 
 public class AboutDialogFragment extends DialogFragment {
 
+    private AlertDialog mDialog;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         String verName = BuildConfig.VERSION_NAME;
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.CustomDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
         // Inflate and set the layout for the dialog
@@ -31,6 +33,16 @@ public class AboutDialogFragment extends DialogFragment {
         TextView aboutTv = (TextView) aboutDialogView.findViewById(R.id.about_view);
         aboutTv.append(verName);
 
-        return builder.create();
+        mDialog = builder.create();
+
+        mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+            }
+        });
+
+        return mDialog;
     }
 }

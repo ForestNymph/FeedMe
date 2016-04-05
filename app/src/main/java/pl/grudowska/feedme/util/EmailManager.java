@@ -5,14 +5,9 @@ import android.widget.Toast;
 
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class EmailManager {
 
-    public EmailManager(final Context context) {
-
-        String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
+    public EmailManager(final Context context, String date, String content) {
 
         String mailFrom = SharedPreferencesManager.loadDataString(context, "mailFrom", "test@test.com");
         String password = SharedPreferencesManager.loadDataString(context, "password", "321");
@@ -23,9 +18,7 @@ public class EmailManager {
                 .withPassword(password)
                 .withMailto(mailTo)
                 .withSubject("[FeedMe] " + date)
-                .withBody("this is the body\n" +
-                        "and more body\n" +
-                        "and more")
+                .withBody(content)
                 .withOnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
                     @Override
                     public void onSuccess() {

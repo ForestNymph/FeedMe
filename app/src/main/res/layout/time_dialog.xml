@@ -12,13 +12,13 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/limit_image"
+            android:id="@+id/time_image"
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_marginEnd="@dimen/text_margin"
             android:layout_weight="1"
             android:contentDescription="@string/cd_image"
-            android:src="@drawable/summary" />
+            android:src="@drawable/time" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,11 +28,20 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/time_change"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SUMMARY"
+                android:text="@string/dialog_time"
                 android:textColor="@color/colorDialogText"
                 android:textSize="@dimen/title_font_size" />
+
+            <TextView
+                android:id="@+id/time_current"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Current: "
+                android:textColor="@color/colorDialogText"
+                android:textSize="@dimen/text_small_font_size" />
         </LinearLayout>
 
     </LinearLayout>
@@ -41,20 +50,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/summary_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="32sp"
-            android:layout_marginEnd="@dimen/text_margin"
-            android:layout_marginStart="@dimen/text_margin"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/text_margin"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="@dimen/text_margin"
             android:layout_marginTop="0dp"
+            android:text="@string/lorem_ipsum"
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/title_font_size" />
+            android:textSize="@dimen/text_small_font_size" />
 
     </LinearLayout>
+
+    <TimePicker
+        android:id="@+id/picker_time_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/text_margin"
+        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_marginStart="@dimen/text_margin" />
 
 </LinearLayout>
 

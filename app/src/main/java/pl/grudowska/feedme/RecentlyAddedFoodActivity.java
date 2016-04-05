@@ -23,6 +23,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recentlyadded_food);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,10 +47,6 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
 
         listView.setAdapter(swingBottomInAnimationAdapter);
-
-        for (int i = 0; i < 30; i++) {
-            mFoodSummaryAdapter.add(i);
-        }
     }
 
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {

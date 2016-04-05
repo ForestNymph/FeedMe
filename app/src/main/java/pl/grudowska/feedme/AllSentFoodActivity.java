@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 
-public class ShowAllSentFoodListActivity extends AppCompatActivity {
+public class AllSentFoodActivity extends AppCompatActivity {
 
     private static final int INITIAL_DELAY_MILLIS = 400;
 
@@ -21,8 +21,8 @@ public class ShowAllSentFoodListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ShowAllSentFoodListAdapter mShowAllSentFoodListAdapter = new ShowAllSentFoodListAdapter(this);
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mShowAllSentFoodListAdapter);
+        AllSentFoodListItemAdapter mAllSentFoodListItemAdapter = new AllSentFoodListItemAdapter(this);
+        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mAllSentFoodListItemAdapter);
         assert listView != null;
         alphaInAnimationAdapter.setAbsListView(listView);
 

@@ -8,27 +8,33 @@ import android.widget.TextView;
 
 import com.nhaarman.listviewanimations.ArrayAdapter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
+
+import pl.grudowska.feedme.database.RecentlyAdded;
+import pl.grudowska.feedme.database.RecentlyAddedDataSource;
 
 public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
-    // dummy data
-    private ArrayList<String> mFoodType = new ArrayList<>(Arrays.asList(
-            "Product 1", "Product 2", "Product 3",
-            "Product 4", "Product 5", "Product 6",
-            "Product 7", "Product 8", "Product 9",
-            "Product 10", "Product 11", "Product 12",
-            "Product 13", "Product 14", "Product 15",
-            "Product 16", "Product 17", "Product 18",
-            "Product 19", "Product 20", "Product 21",
-            "Product 22", "Product 23", "Product 24",
-            "Product 25", "Product 26", "Product 27",
-            "Product 28", "Product 29", "Product 30"));
+    private List<RecentlyAdded> mValues;
 
     RecentlyAddedFoodListItemAdapter(final Context context) {
         mContext = context;
+
+        RecentlyAddedDataSource dataSource = new RecentlyAddedDataSource(mContext);
+        dataSource.open();
+
+        mValues = dataSource.getAllAddedProducts();
+
+        for (int i = 0; i < mValues.size(); ++i) {
+            add(i);
+        }
+        int j = 0;
+        while (mValues.size() < 10) {
+            mValues.add(j++, dataSource.createProduct("Product ", j));
+        }
+
+        dataSource.close();
     }
 
     //@Override
@@ -45,8 +51,14 @@ public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.textView_name.setText(mFoodType.get(getItem(position)));
-        viewHolder.textView_amount.setText(mContext.getString(R.string.card_number, getItem(position) + 1));
+
+
+        // viewHolder.textView_name.setText(mFoodType.get(getItem(position)));
+        // viewHolder.textView_amount.setText(mContext.getString(R.string.card_number, getItem(position) + 1));
+
+        viewHolder.textView_name.setText(mValues.get(position).getProduct());
+        String amount = mValues.get(position).getAmount() + " gramm";
+        viewHolder.textView_amount.setText(amount);
 
         return view;
     }

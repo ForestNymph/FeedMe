@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/email_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/icon_image_dialog"
+            android:layout_height="@dimen/icon_image_dialog"
             android:layout_marginEnd="@dimen/text_margin"
             android:layout_weight="1"
             android:contentDescription="@string/cd_image"

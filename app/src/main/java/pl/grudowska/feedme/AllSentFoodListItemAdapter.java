@@ -15,9 +15,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import pl.grudowska.feedme.util.EmailManager;
-
-public class ShowAllSentFoodListAdapter extends ExpandableListItemAdapter<Integer> {
+public class AllSentFoodListItemAdapter extends ExpandableListItemAdapter<Integer> {
 
 
     private final Context mContext;
@@ -35,7 +33,7 @@ public class ShowAllSentFoodListAdapter extends ExpandableListItemAdapter<Intege
             "Product 25", "Product 26", "Product 27",
             "Product 28", "Product 29", "Product 30"));
 
-    public ShowAllSentFoodListAdapter(final Context context) {
+    public AllSentFoodListItemAdapter(final Context context) {
         super(context, R.layout.content_showall_card, R.id.card_title, R.id.card_content);
         mContext = context;
 
@@ -83,7 +81,6 @@ public class ShowAllSentFoodListAdapter extends ExpandableListItemAdapter<Intege
         viewHolder.buttonView_resend.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("Resend", "click");
-                new EmailManager(mContext);
 
                 Toast.makeText(mContext, "Message was sent", Toast.LENGTH_LONG).show();
             }

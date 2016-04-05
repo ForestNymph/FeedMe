@@ -29,8 +29,13 @@
             android:name=".RecentlyAddedFoodActivity"
             android:label="@string/summary" />
         <activity
-            android:name=".ShowAllSentFoodListActivity"
+            android:name=".AllSentFoodActivity"
             android:label="@string/show_all_lists" />
+
+        <service
+            android:name=".DailySummaryEmailIntentService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

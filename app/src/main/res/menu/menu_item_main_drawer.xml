@@ -23,6 +23,10 @@
                 android:id="@+id/nav_limit"
                 android:icon="@mipmap/ic_limit"
                 android:title="Set calories limit" />
+            <item
+                android:id="@+id/nav_time"
+                android:icon="@mipmap/ic_time"
+                android:title="Set email time" />
         </menu>
     </item>
 

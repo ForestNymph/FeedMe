@@ -13,12 +13,12 @@
 
         <ImageView
             android:id="@+id/limit_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/icon_image_dialog"
+            android:layout_height="@dimen/icon_image_dialog"
             android:layout_marginEnd="@dimen/text_margin"
             android:layout_weight="1"
             android:contentDescription="@string/cd_image"
-            android:src="@drawable/limit" />
+            android:src="@drawable/calories" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:id="@+id/limit_current"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Current: 2400 kcal"
+                android:text="Current: "
                 android:textColor="@color/colorDialogText"
                 android:textSize="@dimen/text_small_font_size" />
         </LinearLayout>
@@ -53,7 +53,7 @@
         android:orientation="horizontal">
 
         <NumberPicker
-            android:id="@+id/pickerView"
+            android:id="@+id/picker_number_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/text_margin"

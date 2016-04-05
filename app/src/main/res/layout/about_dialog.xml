@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkGray"
+    android:background="#947D5C"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,8 +12,8 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
             android:layout_marginEnd="@dimen/text_margin"
             android:layout_weight="1"
             android:contentDescription="@string/cd_image"
@@ -53,7 +53,7 @@
             android:layout_marginTop="0dp"
             android:text="@string/dialog_about_message"
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/title_font_size" />
+            android:textSize="16dp" />
     </LinearLayout>
 </LinearLayout>
 

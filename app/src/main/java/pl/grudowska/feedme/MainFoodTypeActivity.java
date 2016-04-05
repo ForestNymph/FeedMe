@@ -141,7 +141,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
             Intent intent = new Intent(this, RecentlyAddedFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_showall) {
-            Intent intent = new Intent(this, ShowAllSentFoodListActivity.class);
+            Intent intent = new Intent(this, AllSentFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_email) {
             EmailDialogFragment dialog = new EmailDialogFragment();
@@ -149,8 +149,12 @@ public class MainFoodTypeActivity extends AppCompatActivity
         } else if (id == R.id.nav_limit) {
             LimitDialogFragment dialog = new LimitDialogFragment();
             dialog.show(getFragmentManager(), "");
+        } else if (id == R.id.nav_time) {
+            TimeDialogFragment dialog = new TimeDialogFragment();
+            dialog.show(getFragmentManager(), "");
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

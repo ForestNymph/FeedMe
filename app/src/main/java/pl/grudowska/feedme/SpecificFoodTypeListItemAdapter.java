@@ -18,6 +18,7 @@ import java.util.Arrays;
 public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<Integer> {
 
     private final Context mContext;
+    private int mAmount;
 
     // dummy data
     ArrayList<String> mFoodName = new ArrayList<>(Arrays.asList(
@@ -80,6 +81,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
     }
 
     private void setListeners(final ViewHolder viewHolder) {
+
         viewHolder.buttonView_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("Button 1", "click");
@@ -97,10 +99,15 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
         });
         viewHolder.buttonView_add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String value = viewHolder.editView.getText().toString();
-                Log.d("Edit text", value);
-                if (value.isEmpty()) {
+
+                String result = viewHolder.editView.getText().toString();
+                int value = Integer.getInteger(result, 0);
+
+                Log.d("Edit text", result);
+                if (result.isEmpty()) {
                     // do nothing
+                } else {
+                    mAmount = value;
                 }
                 // action
                 // 1. add to eaten product list

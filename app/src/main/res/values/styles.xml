@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="alertDialogStyle">@style/CustomDialogTheme</item>
         <item name="android:fontFamily">Roboto</item>
+        <item name="android:timePickerStyle">@style/customTimePickerTheme</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -23,37 +24,23 @@
     <style name="CustomDialogTheme" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
         <!-- Used for the buttons, checkboxes -->
         <item name="colorAccent">@color/colorTextGray</item>
-        <item name="android:fontFamily">Roboto</item>
 
         <!-- Used for the title and text -->
         <item name="android:textColorPrimary">@color/colorDialogText</item>
 
         <!-- Used for the background -->
         <item name="android:background">@color/colorBrokeWhite</item>
-
-        <item name="android:textSize">@dimen/button_font_size</item>
     </style>
 
-    <!-- AlertDialog About style -->
-    <style name="CustomAboutDialogTheme" parent="@style/Theme.AppCompat.Dialog.Alert">
-        <!-- Used for the buttons, checkboxes -->
-        <item name="colorAccent">@color/colorDialogText</item>
-
-        <!-- Used for the background -->
-        <item name="android:background">#CC7C08</item>
-
-        <!-- Used for the text size on buttons -->
-        <item name="android:textSize">@dimen/button_font_size</item>
-
-        <item name="android:windowTitleStyle">@style/CustomAboutTitleDialogTheme</item>
-    </style>
-
-    <style name="CustomAboutTitleDialogTheme">
-        <item name="android:textColor">@color/colorDialogText</item>
-        <item name="android:textSize">@dimen/title_font_size</item>
+    <style name="customTimePickerTheme" parent="android:style/Widget.Material.Light.TimePicker">
+        <item name="android:numbersTextColor">#fff</item>
+        <item name="android:numbersBackgroundColor">@color/colorAccent</item>
+        <item name="android:numbersSelectorColor">#5d5444</item>
+        <item name="android:headerBackground">#d9a256</item>
     </style>
 
     <style name="CustomYellowAmountButtonTheme" parent="android:Widget.Button">
+        <item name="android:timePickerMode">clock</item>
         <item name="android:background">@color/colorYellow</item>
         <item name="android:textSize">@dimen/text_font_size</item>
         <item name="android:layout_marginStart">4sp</item>
