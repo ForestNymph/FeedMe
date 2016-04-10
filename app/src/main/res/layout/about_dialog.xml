@@ -8,13 +8,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_marginBottom="@dimen/text_margin_16"
+        android:layout_marginEnd="@dimen/text_margin_32"
+        android:layout_marginStart="@dimen/text_margin_32"
+        android:layout_marginTop="@dimen/text_margin_16"
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="50sp"
             android:layout_height="50sp"
-            android:layout_marginEnd="@dimen/text_margin"
+            android:layout_marginEnd="@dimen/text_margin_32"
             android:layout_weight="1"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/about" />
@@ -48,8 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="32sp"
-            android:layout_marginEnd="@dimen/text_margin"
-            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginEnd="@dimen/text_margin_32"
+            android:layout_marginStart="@dimen/text_margin_32"
             android:layout_marginTop="0dp"
             android:text="@string/dialog_about_message"
             android:textColor="@color/colorDialogText"

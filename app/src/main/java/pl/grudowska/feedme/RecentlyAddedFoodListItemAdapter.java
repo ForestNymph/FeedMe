@@ -21,6 +21,7 @@ public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
     RecentlyAddedFoodListItemAdapter(final Context context) {
         mContext = context;
 
+        // Open DB's
         RecentlyAddedDataSource dataSource = new RecentlyAddedDataSource(mContext);
         dataSource.open();
 
@@ -29,38 +30,31 @@ public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
         for (int i = 0; i < mValues.size(); ++i) {
             add(i);
         }
-        int j = 0;
-        while (mValues.size() < 10) {
-            mValues.add(j++, dataSource.createProduct("Product ", j));
-        }
-
+        // Close DB's
         dataSource.close();
     }
 
-    //@Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
+    @Override
+    public View getView(final int position, View convertView, final ViewGroup parent) {
+
         ViewHolder viewHolder;
-        View view = convertView;
-        if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.content_recentlyadded_card, parent, false);
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_recentlyadded_card, parent, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.textView_name = (TextView) view.findViewById(R.id.activity_card_summary_left_textview);
-            viewHolder.textView_amount = (TextView) view.findViewById(R.id.activity_card_summary_right_imageview);
-            view.setTag(viewHolder);
+            viewHolder.textView_name = (TextView) convertView.findViewById(R.id.activity_card_summary_left_textview);
+            viewHolder.textView_amount = (TextView) convertView.findViewById(R.id.activity_card_summary_right_imageview);
+            convertView.setTag(viewHolder);
+
         } else {
-            viewHolder = (ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-
-
-        // viewHolder.textView_name.setText(mFoodType.get(getItem(position)));
-        // viewHolder.textView_amount.setText(mContext.getString(R.string.card_number, getItem(position) + 1));
-
-        viewHolder.textView_name.setText(mValues.get(position).getProduct());
-        String amount = mValues.get(position).getAmount() + " gramm";
+        viewHolder.textView_name.setText(mValues.get(getItem(position)).getProduct());
+        String amount = mValues.get(getItem(position)).getAmount() + " gramm";
         viewHolder.textView_amount.setText(amount);
 
-        return view;
+        return convertView;
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})

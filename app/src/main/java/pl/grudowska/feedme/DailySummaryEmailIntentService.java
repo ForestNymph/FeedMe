@@ -2,6 +2,7 @@ package pl.grudowska.feedme;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,15 +11,13 @@ import java.util.List;
 import pl.grudowska.feedme.database.AllSentFoodDataSource;
 import pl.grudowska.feedme.database.RecentlyAdded;
 import pl.grudowska.feedme.database.RecentlyAddedDataSource;
-import pl.grudowska.feedme.util.EmailManager;
+import pl.grudowska.feedme.utils.EmailManager;
 
 public class DailySummaryEmailIntentService extends IntentService {
 
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
+    private RecentlyAddedDataSource mRecentlyDataSource;
+    private AllSentFoodDataSource mSentDataSource;
+
     public DailySummaryEmailIntentService(String name) {
         super(name);
     }
@@ -30,50 +29,35 @@ public class DailySummaryEmailIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent workIntent) {
         // Gets data from the incoming Intent
-        String dataString = workIntent.getDataString();
+        // String dataString = workIntent.getDataString();
 
-        // Log.d(getClass().getSimpleName(), "Prepare and sending email");
+        Log.d(getClass().getSimpleName(), "Prepare and sending email");
 
-        RecentlyAddedDataSource recentlyDataSource = new RecentlyAddedDataSource(getApplicationContext());
-        recentlyDataSource.open();
-        AllSentFoodDataSource sentDataSource = new AllSentFoodDataSource(getApplicationContext());
-        sentDataSource.open();
+        // Open DB's
+        mRecentlyDataSource = new RecentlyAddedDataSource(getApplicationContext());
+        mRecentlyDataSource.open();
+        mSentDataSource = new AllSentFoodDataSource(getApplicationContext());
+        mSentDataSource.open();
 
-        List<RecentlyAdded> mValues = recentlyDataSource.getAllAddedProducts();
-        String content = "";
-
-        for (int i = 0; i < mValues.size(); ++i) {
-            content += mValues.get(i).getProduct();
-            content += mValues.get(i).getAmount();
-            content += "\n";
-        }
+        String content = getContentAddedRecentlyDB();
         String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
-        new EmailManager(getApplicationContext(), date, content);
 
-        //sentDataSource.createSentItem(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()), content);
-
-        recentlyDataSource.deleteAll();
-
-        // close db
-        recentlyDataSource.close();
-        sentDataSource.close();
-
-
-
-/*        String content = getContentAddedRecentlyDB();
-        sendDailySummaryEmail(content);
-        moveRecentlyAddedToSentDB(content);
-        clearRecentlyAddedDB();*/
+        // If recently added product list is empty do nothing
+        if (mRecentlyDataSource.getAllAddedProducts().size() == 0) {
+            // do nothing
+        } else {
+            sendDailySummaryEmail(date, content);
+            moveRecentlyAddedToSentDB(date, content);
+            clearRecentlyAddedDB();
+        }
+        // Close DB's
+        mRecentlyDataSource.close();
+        mSentDataSource.close();
     }
 
     private String getContentAddedRecentlyDB() {
 
-        RecentlyAddedDataSource recentlyDataSource = new RecentlyAddedDataSource(getApplicationContext());
-        recentlyDataSource.open();
-        AllSentFoodDataSource sentDataSource = new AllSentFoodDataSource(getApplicationContext());
-        sentDataSource.open();
-
-        List<RecentlyAdded> mValues = recentlyDataSource.getAllAddedProducts();
+        List<RecentlyAdded> mValues = mRecentlyDataSource.getAllAddedProducts();
         String content = "";
 
         for (int i = 0; i < mValues.size(); ++i) {
@@ -81,24 +65,18 @@ public class DailySummaryEmailIntentService extends IntentService {
             content += mValues.get(i).getAmount();
             content += "\n";
         }
-
-        recentlyDataSource.deleteAll();
-        // close db
-        recentlyDataSource.close();
-        sentDataSource.close();
-
         return content;
     }
 
-    private void sendDailySummaryEmail(String content) {
-        new EmailManager(getApplicationContext(), content, content);
+    private void sendDailySummaryEmail(String date, String content) {
+        new EmailManager(getApplicationContext(), date, content);
     }
 
-    private void moveRecentlyAddedToSentDB(String content) {
-
+    private void moveRecentlyAddedToSentDB(String date, String content) {
+        mSentDataSource.createSentItem(date, content);
     }
 
     private void clearRecentlyAddedDB() {
-
+        mRecentlyDataSource.deleteAllItems();
     }
 }

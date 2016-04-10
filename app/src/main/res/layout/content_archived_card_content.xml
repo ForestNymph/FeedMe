@@ -9,13 +9,7 @@
     android:padding="@dimen/text_padding"
     tools:ignore="overdraw">
 
-    <FrameLayout
-        android:id="@+id/card_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingEnd="@dimen/text_padding"
-        android:paddingStart="@dimen/text_padding" />
+    <include layout="@layout/content_archived_card_title" />
 
     <LinearLayout
         android:id="@+id/card_content"
@@ -25,10 +19,9 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/showll_item"
+            android:id="@+id/card_content_sent_lists_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/lorem_ipsum"
             android:textSize="@dimen/title_font_size" />
 
         <LinearLayout
@@ -43,7 +36,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/button_resend"
+                android:id="@+id/resend_btn"
                 style="@style/CustomGreenAmountButtonTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

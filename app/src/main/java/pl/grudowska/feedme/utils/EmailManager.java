@@ -1,7 +1,6 @@
-package pl.grudowska.feedme.util;
+package pl.grudowska.feedme.utils;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 
@@ -22,13 +21,11 @@ public class EmailManager {
                 .withOnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(context, "Message was sent successfully", Toast.LENGTH_LONG).show();
                     }
                 })
                 .withOnFailCallback(new BackgroundMail.OnFailCallback() {
                     @Override
                     public void onFail() {
-                        Toast.makeText(context, "Message was not sent", Toast.LENGTH_LONG).show();
                     }
                 })
                 .send();

@@ -1,4 +1,4 @@
-package pl.grudowska.feedme.util;
+package pl.grudowska.feedme.utils;
 
 
 import android.content.Context;

@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-import pl.grudowska.feedme.util.SharedPreferencesManager;
+import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class EmailDialogFragment extends DialogFragment {
 

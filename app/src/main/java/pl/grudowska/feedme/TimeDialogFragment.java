@@ -16,7 +16,7 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-import pl.grudowska.feedme.util.SharedPreferencesManager;
+import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class TimeDialogFragment extends DialogFragment {
 

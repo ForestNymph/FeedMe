@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Feed Me</string>
     <string name="summary">Recently added</string>
-    <string name="show_all_lists">Show all lists</string>
+    <string name="show_all_lists">Archived lists</string>
+    <string name="sent_message">Message was sent</string>
+    <string name="sent_nothing">Nothing to sent</string>
+    <string name="delete_nothing">Nothing to delete</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -12,6 +15,7 @@
     <string name="apply">APPLY</string>
     <string name="ok">OK</string>
 
+    <string name="dialog_remove">REMOVE ALL</string>
     <string name="dialog_email">CHANGE EMAIL</string>
     <string name="dialog_limit">SET CALORIES LIMIT</string>
     <string name="dialog_time">SET EMAIL TIME</string>
@@ -40,5 +44,6 @@
     <!-- Content description -->
     <string name="cd_image">email image</string>
     <string name="title_activity_summary_dialog_fragment">SummaryDialogFragment</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, eos at graece putent expetendis, mea te saperet alienum, munere ignota mnesarchum eum no. His ei iudico fierent noluisse, sed possim inso.</string>
+    <string name="warning_delete_inf">Do you want to delete all archived data?</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, eos at graece putent expetendis, mea te saperet alienum, munere ignota mnesarchum eum no.</string>
 </resources>

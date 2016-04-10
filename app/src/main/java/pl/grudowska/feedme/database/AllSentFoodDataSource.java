@@ -52,6 +52,10 @@ public class AllSentFoodDataSource {
                 + " = " + id, null);
     }
 
+    public void deleteAllItems() {
+        database.execSQL("delete from " + AllSentFoodDB_SQL.TABLE_SENT);
+    }
+
     public List<AllSentFood> getAllSentLists() {
         List<AllSentFood> sentLists = new ArrayList<>();
 

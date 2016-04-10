@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pl.grudowska.feedme.util;
+package pl.grudowska.feedme.utils;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;

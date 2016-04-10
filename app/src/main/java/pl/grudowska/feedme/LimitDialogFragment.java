@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import pl.grudowska.feedme.util.SharedPreferencesManager;
+import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class LimitDialogFragment extends DialogFragment {
 

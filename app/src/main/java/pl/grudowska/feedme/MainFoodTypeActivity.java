@@ -20,7 +20,7 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 
 import java.util.Arrays;
 
-import pl.grudowska.feedme.util.SharedPreferencesManager;
+import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -141,7 +141,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
             Intent intent = new Intent(this, RecentlyAddedFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_showall) {
-            Intent intent = new Intent(this, AllSentFoodActivity.class);
+            Intent intent = new Intent(this, ArchivedListsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_email) {
             EmailDialogFragment dialog = new EmailDialogFragment();

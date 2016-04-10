@@ -29,7 +29,7 @@
             android:name=".RecentlyAddedFoodActivity"
             android:label="@string/summary" />
         <activity
-            android:name=".AllSentFoodActivity"
+            android:name=".ArchivedListsActivity"
             android:label="@string/show_all_lists" />
 
         <service

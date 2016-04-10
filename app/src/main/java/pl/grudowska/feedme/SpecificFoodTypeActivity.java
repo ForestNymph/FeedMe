@@ -45,7 +45,7 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         assert toolbarView != null;
         toolbarView.setTitle(value);
         //toolbarView.setBackgroundResource(R.drawable.bread_small);
-        toolbarView.setBackgroundResource(R.drawable.orange_gradient);
+        //toolbarView.setBackgroundResource(R.drawable.orange_gradient);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 

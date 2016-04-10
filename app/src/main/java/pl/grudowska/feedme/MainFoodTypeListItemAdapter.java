@@ -14,7 +14,7 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 import java.util.Arrays;
 import java.util.List;
 
-import pl.grudowska.feedme.util.BitmapCache;
+import pl.grudowska.feedme.utils.BitmapCache;
 
 public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
 
@@ -30,25 +30,26 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
+
         ViewHolder viewHolder;
-        View view = convertView;
-        if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.content_main_card, parent, false);
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_main_card, parent, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.textView = (TextView) view.findViewById(R.id.activity_card_food_textview);
-            view.setTag(viewHolder);
+            viewHolder.textView = (TextView) convertView.findViewById(R.id.activity_card_food_textview);
+            convertView.setTag(viewHolder);
 
-            viewHolder.imageView = (ImageView) view.findViewById(R.id.activity_card_food_imageview);
+            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.activity_card_food_imageview);
         } else {
-            viewHolder = (ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
         // viewHolder.textView.setText(mContext.getString(R.string.card_number, getItem(position) + 1));
         viewHolder.textView.setText(mFoodType.get(getItem(position) % mFoodType.size()));
         setImageView(viewHolder, position);
 
-        return view;
+        return convertView;
     }
 
     private void setImageView(final ViewHolder viewHolder, final int position) {

@@ -51,7 +51,7 @@ public class RecentlyAddedDataSource {
                 + " = " + id, null);
     }
 
-    public void deleteAll() {
+    public void deleteAllItems() {
         database.execSQL("delete from " + RecentlyAddedDB_SQL.TABLE_RECENTLY);
     }
 

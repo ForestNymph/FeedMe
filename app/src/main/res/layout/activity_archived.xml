@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorMainBackground"
     android:fitsSystemWindows="true"
-    tools:context=".AllSentFoodActivity">
+    tools:context=".ArchivedListsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -18,7 +19,7 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/orange_gradient"
+            android:background="@color/colorLightOrange"
             android:fitsSystemWindows="true">
 
             <android.support.v7.widget.Toolbar
@@ -26,16 +27,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="10sp"
-                android:layout_gravity="bottom"
-                android:background="@color/colorYellow" />
-
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_showall_listview" />
+    <include layout="@layout/content_archived_listview" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/ic_trash"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end" />
 
 </android.support.design.widget.CoordinatorLayout>

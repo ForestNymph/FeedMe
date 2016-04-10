@@ -19,22 +19,15 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="true"
+            android:background="@color/colorLightOrange">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="10sp"
-                android:layout_gravity="bottom"
-                android:background="@color/colorYellow" />
-
-
         </android.support.design.widget.CollapsingToolbarLayout>
-
 
     </android.support.design.widget.AppBarLayout>
 

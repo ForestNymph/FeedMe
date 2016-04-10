@@ -2,24 +2,24 @@ package pl.grudowska.feedme;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.ExpandableListItemAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import pl.grudowska.feedme.database.RecentlyAddedDataSource;
+
 public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<Integer> {
 
     private final Context mContext;
-    private int mAmount;
-
     // dummy data
     ArrayList<String> mFoodName = new ArrayList<>(Arrays.asList(
             "Product 1", "Product 2", "Product 3",
@@ -35,6 +35,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
 
     public SpecificFoodTypeListItemAdapter(final Context context) {
         super(context, R.layout.content_specific_card, R.id.card_title, R.id.card_content);
+
         mContext = context;
 
         for (int i = 0; i < mFoodName.size(); ++i) {
@@ -45,76 +46,88 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
     @NonNull
     @Override
     public View getTitleView(final int position, final View convertView, @NonNull final ViewGroup parent) {
-        TextView tv = (TextView) convertView;
 
+        TextView tv = (TextView) convertView;
         if (tv == null) {
             tv = new TextView(mContext);
         }
-        tv.setText(mFoodName.get(position));
+        tv.setText(mFoodName.get(getItem(position)));
         tv.setTextSize(20);
         return tv;
     }
 
     @NonNull
     @Override
-    public View getContentView(final int position, final View convertView, @NonNull final ViewGroup parent) {
+    public View getContentView(final int position, View convertView, @NonNull final ViewGroup parent) {
         final ViewHolder viewHolder;
-        View view = convertView;
 
-        if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.content_specific_card, parent, false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_specific_card, parent, false);
 
             viewHolder = new ViewHolder();
 
-            viewHolder.buttonView_1 = (Button) view.findViewById(R.id.button_default_one);
-            viewHolder.buttonView_2 = (Button) view.findViewById(R.id.button_default_two);
-            viewHolder.buttonView_3 = (Button) view.findViewById(R.id.button_default_three);
-            viewHolder.buttonView_add = (Button) view.findViewById(R.id.button_add_custom_amount);
-            viewHolder.editView = (EditText) view.findViewById(R.id.edittext_custom_amount);
+            viewHolder.buttonView_1 = (Button) convertView.findViewById(R.id.button_default_one);
+            viewHolder.buttonView_2 = (Button) convertView.findViewById(R.id.button_default_two);
+            viewHolder.buttonView_3 = (Button) convertView.findViewById(R.id.button_default_three);
+            viewHolder.buttonView_add = (Button) convertView.findViewById(R.id.button_add_custom_amount);
+            viewHolder.editView = (EditText) convertView.findViewById(R.id.edittext_custom_amount);
 
-            view.setTag(viewHolder);
+            convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        setListeners(viewHolder);
-        return view;
+        setListeners(viewHolder, position);
+
+        return convertView;
     }
 
-    private void setListeners(final ViewHolder viewHolder) {
+    private void setListeners(final ViewHolder viewHolder, final int position) {
 
         viewHolder.buttonView_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.d("Button 1", "click");
+                addProductToDB(position, 1);
+                afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.d("Button 2", "click");
+                addProductToDB(position, 2);
+                afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.d("Button 3", "click");
+                addProductToDB(position, 3);
+                afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String result = viewHolder.editView.getText().toString();
-                int value = Integer.getInteger(result, 0);
-
-                Log.d("Edit text", result);
-                if (result.isEmpty()) {
+                int amount;
+                String resultEditText = viewHolder.editView.getText().toString();
+                try {
+                    amount = Integer.parseInt(resultEditText);
+                    addProductToDB(position, amount);
+                    afterAddedProductAction(position);
+                    viewHolder.editView.getText().clear();
+                } catch (NumberFormatException e) {
                     // do nothing
-                } else {
-                    mAmount = value;
                 }
-                // action
-                // 1. add to eaten product list
-                // 2. close product fiche
-                // 3. Toast about added amount to list
             }
         });
+    }
+
+    private void addProductToDB(int position, int amount) {
+        RecentlyAddedDataSource mDataSource = new RecentlyAddedDataSource(mContext);
+        mDataSource.open();
+        mDataSource.createProduct(mFoodName.get(getItem(position)), amount);
+        mDataSource.close();
+    }
+
+    private void afterAddedProductAction(int position) {
+        collapse(position);
+        Toast.makeText(mContext, mFoodName.get(getItem(position)) + " added", Toast.LENGTH_SHORT).show();
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})

@@ -10,7 +10,7 @@
         <item
             android:id="@+id/nav_showall"
             android:icon="@mipmap/ic_showall"
-            android:title="Show all past lists" />
+            android:title="Archived lists" />
     </group>
 
     <item android:title="Configuration">
