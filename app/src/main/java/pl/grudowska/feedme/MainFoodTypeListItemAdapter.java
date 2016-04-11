@@ -28,9 +28,6 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         mContext = context;
         mMemoryCache = new BitmapCache();
 
-        // Uncomment if data in MainTypeDataLoader class was modified
-        // MainTypeDataLoader.inflateMainTypeDB(mContext);
-
         // get size of database
         MainTypeDataSource mMainTypeDataSource = new MainTypeDataSource(context);
         mMainTypeDataSource.open();

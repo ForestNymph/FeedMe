@@ -15,7 +15,7 @@ public class SpecificFoodDataSource {
     private SQLiteDatabase database;
     private SpecificFoodDB_SQL dbHelper;
     private String[] allColumns = {SpecificFoodDB_SQL.COLUMN_ID,
-            SpecificFoodDB_SQL.COLUMN_TYPE_NAME, SpecificFoodDB_SQL.COLUMN_DEF1,
+            SpecificFoodDB_SQL.COLUMN_TYPE, SpecificFoodDB_SQL.COLUMN_NAME, SpecificFoodDB_SQL.COLUMN_DEF1,
             SpecificFoodDB_SQL.COLUMN_DEF2, SpecificFoodDB_SQL.COLUMN_DEF3, SpecificFoodDB_SQL.COLUMN_KCAL,
             SpecificFoodDB_SQL.COLUMN_PROTEIN, SpecificFoodDB_SQL.COLUMN_CARBOHYDRATES, SpecificFoodDB_SQL.COLUMN_ROUGHAGE,
             SpecificFoodDB_SQL.COLUMN_FATS_UNSATURATED, SpecificFoodDB_SQL.COLUMN_FATS_SATURATED, SpecificFoodDB_SQL.COLUMN_FATS_MONOUNSATURATED,
@@ -33,11 +33,12 @@ public class SpecificFoodDataSource {
         dbHelper.close();
     }
 
-    public SpecificFood createFullProduct(String name, int def1, int def2, int def3, double kcal, double protein,
+    public SpecificFood createFullProduct(String type, String name, int def1, int def2, int def3, double kcal, double protein,
                                           double carbohydrates, double roughage, double unsaturated, double saturated,
                                           double monounsaturated, double omega3, double omega6) {
         ContentValues values = new ContentValues();
-        values.put(SpecificFoodDB_SQL.COLUMN_TYPE_NAME, name);
+        values.put(SpecificFoodDB_SQL.COLUMN_TYPE, type);
+        values.put(SpecificFoodDB_SQL.COLUMN_NAME, name);
         values.put(SpecificFoodDB_SQL.COLUMN_DEF1, def1);
         values.put(SpecificFoodDB_SQL.COLUMN_DEF2, def2);
         values.put(SpecificFoodDB_SQL.COLUMN_DEF3, def3);
@@ -61,18 +62,18 @@ public class SpecificFoodDataSource {
         return newProduct;
     }
 
-    public void deleteProduct(MainType type) {
+    public void deleteProduct(SpecificFood type) {
         long id = type.getId();
         System.out.println("Type deleted with id: " + id);
-        database.delete(MainTypeDB_SQL.TABLE_MAIN, MainTypeDB_SQL.COLUMN_ID
+        database.delete(SpecificFoodDB_SQL.TABLE_SPECIFIC, SpecificFoodDB_SQL.COLUMN_ID
                 + " = " + id, null);
     }
 
     public void deleteAllItems() {
-        database.execSQL("delete from " + MainTypeDB_SQL.TABLE_MAIN);
+        database.execSQL("delete from " + SpecificFoodDB_SQL.TABLE_SPECIFIC);
     }
 
-    public List<SpecificFood> getAllAddedTypes() {
+    public List<SpecificFood> getAllProducts() {
         List<SpecificFood> types = new ArrayList<>();
 
         Cursor cursor = database.query(SpecificFoodDB_SQL.TABLE_SPECIFIC,
@@ -89,24 +90,43 @@ public class SpecificFoodDataSource {
         return types;
     }
 
+    public List<SpecificFood> getProductsByType(String specified_type) {
+        List<SpecificFood> types = new ArrayList<>();
+
+        Cursor cursor = database.query(SpecificFoodDB_SQL.TABLE_SPECIFIC,
+                allColumns, null, null, null, null, null);
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()) {
+            SpecificFood type = cursorToProduct(cursor);
+            if (type.getType().equals(specified_type)) {
+                types.add(type);
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return types;
+    }
+
     // set data types in columns
     private SpecificFood cursorToProduct(Cursor cursor) {
 
         SpecificFood type = new SpecificFood();
         type.setId(cursor.getLong(0));
-        type.setTypeName(cursor.getString(1));
-        type.setDef1(cursor.getInt(2));
-        type.setDef2(cursor.getInt(3));
-        type.setDef3(cursor.getInt(4));
-        type.setKcal(cursor.getDouble(5));
-        type.setProtein(cursor.getDouble(6));
-        type.setCarbohydrates(cursor.getDouble(7));
-        type.setRoughage(cursor.getDouble(8));
-        type.setFatsUnsaturated(cursor.getDouble(9));
-        type.setFatsSaturated(cursor.getDouble(10));
-        type.setFatsMonounsaturated(cursor.getDouble(11));
-        type.setOmega3(cursor.getDouble(12));
-        type.setOmega6(cursor.getDouble(13));
+        type.setType(cursor.getString(1));
+        type.setName(cursor.getString(2));
+        type.setDef1(cursor.getInt(3));
+        type.setDef2(cursor.getInt(4));
+        type.setDef3(cursor.getInt(5));
+        type.setKcal(cursor.getDouble(6));
+        type.setProtein(cursor.getDouble(7));
+        type.setCarbohydrates(cursor.getDouble(8));
+        type.setRoughage(cursor.getDouble(9));
+        type.setFatsUnsaturated(cursor.getDouble(10));
+        type.setFatsSaturated(cursor.getDouble(11));
+        type.setFatsMonounsaturated(cursor.getDouble(12));
+        type.setOmega3(cursor.getDouble(13));
+        type.setOmega6(cursor.getDouble(14));
 
         return type;
     }

@@ -21,6 +21,7 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 
 import java.util.List;
 
+import pl.grudowska.feedme.data.AllProductsDataLoader;
 import pl.grudowska.feedme.data.MainTypeDataLoader;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
@@ -40,9 +41,9 @@ public class MainFoodTypeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        assert fab != null;
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton summary_fab = (FloatingActionButton) findViewById(R.id.fab_summary);
+        assert summary_fab != null;
+        summary_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mFoodCardsAdapter.getCount() == 0) {
@@ -51,6 +52,17 @@ public class MainFoodTypeActivity extends AppCompatActivity
                     SummaryDialogFragment summary = new SummaryDialogFragment();
                     summary.show(getFragmentManager(), "");
                 }
+            }
+        });
+
+        FloatingActionButton refresh_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
+        assert refresh_fab != null;
+        refresh_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(getApplicationContext(), "Refreshing databases...", Toast.LENGTH_LONG).show();
+                MainTypeDataLoader.inflateMainTypeDB(getApplicationContext());
+                AllProductsDataLoader.inflateAllProductsDB(getApplicationContext());
             }
         });
 

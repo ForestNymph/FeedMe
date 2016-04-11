@@ -45,8 +45,6 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
                 (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         assert toolbarView != null;
         toolbarView.setTitle(value);
-        //toolbarView.setBackgroundResource(R.drawable.bread_small);
-        //toolbarView.setBackgroundResource(R.drawable.orange_gradient);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -58,7 +56,7 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        SpecificFoodTypeListItemAdapter mSpecificFoodTypeListItemAdapter = new SpecificFoodTypeListItemAdapter(this);
+        SpecificFoodTypeListItemAdapter mSpecificFoodTypeListItemAdapter = new SpecificFoodTypeListItemAdapter(this, value);
         AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mSpecificFoodTypeListItemAdapter);
         assert listView != null;
         alphaInAnimationAdapter.setAbsListView(listView);

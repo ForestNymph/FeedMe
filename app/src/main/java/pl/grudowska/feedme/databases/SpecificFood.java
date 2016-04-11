@@ -3,7 +3,8 @@ package pl.grudowska.feedme.databases;
 public class SpecificFood {
 
     private long mId;
-    private String mTypeName;
+    private String mType;
+    private String mName;
     private int mDef1;
     private int mDef2;
     private int mDef3;
@@ -25,12 +26,20 @@ public class SpecificFood {
         mId = id;
     }
 
-    public String getTypeName() {
-        return mTypeName;
+    public String getType() {
+        return mType;
     }
 
-    public void setTypeName(String name) {
-        mTypeName = name;
+    public void setType(String type) {
+        mType = type;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String name) {
+        mName = name;
     }
 
     public int getDef1() {
@@ -132,7 +141,7 @@ public class SpecificFood {
     // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
-        return mTypeName + " " + mDef1 + " " + mDef2 + " " + mDef3 + " "
+        return mType + " " + mName + " " + mDef1 + " " + mDef2 + " " + mDef3 + " "
                 + mKcal + " " + mProtein + " " + mCarbohydrates + " " + mRoughage + " "
                 + mFatsMonounsaturated + " " + mFatsSaturated + " " + mFatsUnsaturated + " "
                 + mOmega3 + " " + mOmega6;

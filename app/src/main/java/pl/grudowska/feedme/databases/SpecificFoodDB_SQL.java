@@ -9,7 +9,8 @@ public class SpecificFoodDB_SQL extends SQLiteOpenHelper {
 
     public static final String TABLE_SPECIFIC = "all_products";
     public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_TYPE_NAME = "product_name";
+    public static final String COLUMN_TYPE = "product_type";
+    public static final String COLUMN_NAME = "product_name";
     public static final String COLUMN_DEF1 = "def1";
     public static final String COLUMN_DEF2 = "def2";
     public static final String COLUMN_DEF3 = "def3";
@@ -29,13 +30,13 @@ public class SpecificFoodDB_SQL extends SQLiteOpenHelper {
     // Database creation sql statement
     private static final String DATABASE_CREATE = "create table "
             + TABLE_SPECIFIC + "(" + COLUMN_ID
-            + " integer primary key autoincrement, " + COLUMN_TYPE_NAME
-            + " text not null, " + COLUMN_DEF1 + " integer, " + COLUMN_DEF2 + " integer, "
+            + " integer primary key autoincrement, " + COLUMN_TYPE
+            + " text not null, " + COLUMN_NAME + " text not null, " + COLUMN_DEF1 + " integer, " + COLUMN_DEF2 + " integer, "
             + COLUMN_DEF3 + " integer, " + COLUMN_KCAL + " double, " + COLUMN_PROTEIN + " double, "
             + COLUMN_CARBOHYDRATES + " double, " + COLUMN_ROUGHAGE + " double, "
             + COLUMN_FATS_UNSATURATED + " double, " + COLUMN_FATS_SATURATED + " double, "
             + COLUMN_FATS_MONOUNSATURATED + " double, " + COLUMN_FATS_OMEGA3 + " double, "
-            + COLUMN_FATS_OMEGA6 + " double, " + ");";
+            + COLUMN_FATS_OMEGA6 + " double);";
 
     public SpecificFoodDB_SQL(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
