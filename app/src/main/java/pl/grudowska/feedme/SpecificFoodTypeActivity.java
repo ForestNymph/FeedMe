@@ -27,6 +27,7 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Button done = (Button) findViewById(R.id.button_done);
+        assert done != null;
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -6,11 +6,14 @@
             android:id="@+id/nav_summary"
             android:icon="@mipmap/ic_list"
             android:title="Recently added" />
-
         <item
             android:id="@+id/nav_showall"
             android:icon="@mipmap/ic_showall"
             android:title="Archived lists" />
+        <item
+            android:id="@+id/custom_meals"
+            android:icon="@mipmap/ic_showall"
+            android:title="Add custom meals" />
     </group>
 
     <item android:title="Configuration">

@@ -11,22 +11,35 @@ import android.widget.TextView;
 
 import com.nhaarman.listviewanimations.ArrayAdapter;
 
-import java.util.Arrays;
 import java.util.List;
 
+import pl.grudowska.feedme.database.MainType;
+import pl.grudowska.feedme.database.MainTypeDataSource;
 import pl.grudowska.feedme.utils.BitmapCache;
 
 public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
-    private final List<String> mFoodType;
+    private List<MainType> mMainTypes;
 
     MainFoodTypeListItemAdapter(final Context context) {
+
         mContext = context;
         mMemoryCache = new BitmapCache();
-        // get list of food type from resources and convert to Array
-        mFoodType = Arrays.asList(context.getResources().getStringArray(R.array.typefood_array));
+
+        // Uncomment if data in MainTypeDataLoader class was modified
+        // MainTypeDataLoader.inflateMainTypeDB(mContext);
+
+        // get size of database
+        MainTypeDataSource mMainTypeDataSource = new MainTypeDataSource(context);
+        mMainTypeDataSource.open();
+        mMainTypes = mMainTypeDataSource.getAllAddedTypes();
+        mMainTypeDataSource.close();
+
+        for (int i = 0; i < mMainTypes.size(); i++) {
+            add(i);
+        }
     }
 
     @Override
@@ -45,49 +58,14 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        // viewHolder.textView.setText(mContext.getString(R.string.card_number, getItem(position) + 1));
-        viewHolder.textView.setText(mFoodType.get(getItem(position) % mFoodType.size()));
+        viewHolder.textView.setText(mMainTypes.get(getItem(position)).getTypeName());
         setImageView(viewHolder, position);
 
         return convertView;
     }
 
     private void setImageView(final ViewHolder viewHolder, final int position) {
-        int imageResId;
-        switch (getItem(position) % mFoodType.size()) {
-            case 0:
-                imageResId = R.drawable.bread;
-                break;
-            case 1:
-                imageResId = R.drawable.vegetables;
-                break;
-            case 2:
-                imageResId = R.drawable.meat;
-                break;
-            case 3:
-                imageResId = R.drawable.diary;
-                break;
-            case 4:
-                imageResId = R.drawable.fruits;
-                break;
-            case 5:
-                imageResId = R.drawable.fish;
-                break;
-            case 6:
-                imageResId = R.drawable.sweets;
-                break;
-            case 7:
-                imageResId = R.drawable.grains;
-                break;
-            case 8:
-                imageResId = R.drawable.rice;
-                break;
-            case 9:
-                imageResId = R.drawable.macaroni;
-                break;
-            default:
-                imageResId = R.drawable.fruits;
-        }
+        int imageResId = mMainTypes.get(getItem(position)).getmResImage();
 
         Bitmap bitmap = getBitmapFromMemCache(imageResId);
         if (bitmap == null) {
@@ -104,7 +82,6 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
     }
 
     private Bitmap getBitmapFromMemCache(final int key) {
-
         return mMemoryCache.get(key);
     }
 

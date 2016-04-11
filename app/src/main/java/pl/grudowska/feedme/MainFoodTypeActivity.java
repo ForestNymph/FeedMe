@@ -15,11 +15,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 
-import java.util.Arrays;
+import java.util.List;
 
+import pl.grudowska.feedme.data.MainTypeDataLoader;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
@@ -43,8 +45,12 @@ public class MainFoodTypeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SummaryDialogFragment summary = new SummaryDialogFragment();
-                summary.show(getFragmentManager(), "");
+                if (mFoodCardsAdapter.getCount() == 0) {
+                    Toast.makeText(getApplicationContext(), R.string.no_products, Toast.LENGTH_SHORT).show();
+                } else {
+                    SummaryDialogFragment summary = new SummaryDialogFragment();
+                    summary.show(getFragmentManager(), "");
+                }
             }
         });
 
@@ -61,6 +67,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 email.setText(SharedPreferencesManager.loadDataString(getApplicationContext(), "mailTo", "test@test.pl"));
             }
         };
+        assert drawer != null;
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         // open drawer on start
@@ -86,15 +93,12 @@ public class MainFoodTypeActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> l, View v, int position,
                                     long id) {
+                List<String> titles = MainTypeDataLoader.getTypeTitles(getApplicationContext());
                 Intent intent = new Intent(getApplicationContext(), SpecificFoodTypeActivity.class);
-                intent.putExtra("FoodType", Arrays.asList(getResources()
-                        .getStringArray(R.array.typefood_array)).get(position));
+                intent.putExtra("FoodType", titles.get(position));
                 startActivity(intent);
             }
         });
-        for (int i = 0; i < 10; i++) {
-            mFoodCardsAdapter.add(i);
-        }
     }
 
     @Override
@@ -152,6 +156,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
         } else if (id == R.id.nav_time) {
             TimeDialogFragment dialog = new TimeDialogFragment();
             dialog.show(getFragmentManager(), "");
+        } else if (id == R.id.custom_meals) {
+
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;

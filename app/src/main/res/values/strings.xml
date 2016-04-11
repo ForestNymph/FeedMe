@@ -5,6 +5,7 @@
     <string name="sent_message">Message was sent</string>
     <string name="sent_nothing">Nothing to sent</string>
     <string name="delete_nothing">Nothing to delete</string>
+    <string name="no_products">No added products</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -23,26 +24,12 @@
     <string name="dialog_about_message">
         " Programmer: Sylwia Grudowska\n"
         "Designer: Sylwia Grudowska\n\n"
-        "Date: 03.2016\n"
+        "Date: 2016\n"
         "Version: "</string>
-
-    <string-array name="typefood_array">
-        <item>BREAD</item>
-        <item>VEGETABLES</item>
-        <item>MEAT</item>
-        <item>DIARY</item>
-        <item>FRUITS</item>
-        <item>FISH</item>
-        <item>SWEETS</item>
-        <item>GRAINS</item>
-        <item>RICE</item>
-        <item>MACARONI</item>
-    </string-array>
-
-    <string name="card_number">This is card %d</string>
 
     <!-- Content description -->
     <string name="cd_image">email image</string>
+
     <string name="title_activity_summary_dialog_fragment">SummaryDialogFragment</string>
     <string name="warning_delete_inf">Do you want to delete all archived data?</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, eos at graece putent expetendis, mea te saperet alienum, munere ignota mnesarchum eum no.</string>
