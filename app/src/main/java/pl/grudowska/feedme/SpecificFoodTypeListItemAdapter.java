@@ -15,7 +15,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import pl.grudowska.feedme.database.RecentlyAddedDataSource;
+import pl.grudowska.feedme.databases.RecentlyAddedDataSource;
 
 public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<Integer> {
 

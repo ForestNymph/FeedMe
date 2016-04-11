@@ -8,9 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import pl.grudowska.feedme.database.AllSentFoodDataSource;
-import pl.grudowska.feedme.database.RecentlyAdded;
-import pl.grudowska.feedme.database.RecentlyAddedDataSource;
+import pl.grudowska.feedme.databases.AllSentFoodDataSource;
+import pl.grudowska.feedme.databases.RecentlyAdded;
+import pl.grudowska.feedme.databases.RecentlyAddedDataSource;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class DailySummaryEmailIntentService extends IntentService {

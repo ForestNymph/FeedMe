@@ -1,4 +1,4 @@
-package pl.grudowska.feedme.database;
+package pl.grudowska.feedme.databases;
 
 public class MainType {
 
@@ -18,11 +18,11 @@ public class MainType {
         return mTypeName;
     }
 
-    public void setmTypeName(String product) {
+    public void setTypeName(String product) {
         this.mTypeName = product;
     }
 
-    public int getmResImage() {
+    public int getResImage() {
         return mResImage;
     }
 

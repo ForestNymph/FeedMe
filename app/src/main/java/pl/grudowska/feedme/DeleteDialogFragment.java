@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import pl.grudowska.feedme.database.AllSentFoodDataSource;
+import pl.grudowska.feedme.databases.AllSentFoodDataSource;
 
 public class DeleteDialogFragment extends DialogFragment {
 

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.grudowska.feedme.R;
-import pl.grudowska.feedme.database.MainType;
-import pl.grudowska.feedme.database.MainTypeDataSource;
+import pl.grudowska.feedme.databases.MainType;
+import pl.grudowska.feedme.databases.MainTypeDataSource;
 
 public class MainTypeDataLoader {
 

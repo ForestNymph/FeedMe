@@ -13,8 +13,8 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 
 import java.util.List;
 
-import pl.grudowska.feedme.database.AllSentFood;
-import pl.grudowska.feedme.database.AllSentFoodDataSource;
+import pl.grudowska.feedme.databases.AllSentFood;
+import pl.grudowska.feedme.databases.AllSentFoodDataSource;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> {

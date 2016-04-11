@@ -1,4 +1,4 @@
-package pl.grudowska.feedme.database;
+package pl.grudowska.feedme.databases;
 
 public class AllSentFood {
     private long mId;

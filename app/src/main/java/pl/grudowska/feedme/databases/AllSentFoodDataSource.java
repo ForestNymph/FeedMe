@@ -1,4 +1,4 @@
-package pl.grudowska.feedme.database;
+package pl.grudowska.feedme.databases;
 
 
 import android.content.ContentValues;

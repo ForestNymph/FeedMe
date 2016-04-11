@@ -10,8 +10,8 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
-import pl.grudowska.feedme.database.RecentlyAdded;
-import pl.grudowska.feedme.database.RecentlyAddedDataSource;
+import pl.grudowska.feedme.databases.RecentlyAdded;
+import pl.grudowska.feedme.databases.RecentlyAddedDataSource;
 
 public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
 

@@ -1,5 +1,4 @@
-package pl.grudowska.feedme.database;
-
+package pl.grudowska.feedme.databases;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -57,7 +56,7 @@ public class MainTypeDataSource {
     }
 
     public List<MainType> getAllAddedTypes() {
-        List<MainType> types = new ArrayList<MainType>();
+        List<MainType> types = new ArrayList<>();
 
         Cursor cursor = database.query(MainTypeDB_SQL.TABLE_MAIN,
                 allColumns, null, null, null, null, null);
@@ -76,7 +75,7 @@ public class MainTypeDataSource {
     private MainType cursorToMainType(Cursor cursor) {
         MainType type = new MainType();
         type.setId(cursor.getLong(0));
-        type.setmTypeName(cursor.getString(1));
+        type.setTypeName(cursor.getString(1));
         type.setImage(cursor.getInt(2));
         return type;
     }

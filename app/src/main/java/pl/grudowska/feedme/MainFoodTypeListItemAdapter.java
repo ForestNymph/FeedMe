@@ -13,8 +13,8 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
-import pl.grudowska.feedme.database.MainType;
-import pl.grudowska.feedme.database.MainTypeDataSource;
+import pl.grudowska.feedme.databases.MainType;
+import pl.grudowska.feedme.databases.MainTypeDataSource;
 import pl.grudowska.feedme.utils.BitmapCache;
 
 public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
@@ -65,7 +65,7 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
     }
 
     private void setImageView(final ViewHolder viewHolder, final int position) {
-        int imageResId = mMainTypes.get(getItem(position)).getmResImage();
+        int imageResId = mMainTypes.get(getItem(position)).getResImage();
 
         Bitmap bitmap = getBitmapFromMemCache(imageResId);
         if (bitmap == null) {
