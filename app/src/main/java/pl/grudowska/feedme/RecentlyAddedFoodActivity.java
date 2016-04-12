@@ -19,8 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import pl.grudowska.feedme.databases.RecentlyAdded;
-import pl.grudowska.feedme.databases.RecentlyAddedDataSource;
+import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDismissCallback {
@@ -28,7 +28,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     private static final int INITIAL_DELAY_MILLIS = 300;
     private int mSavedRowData;
     private RecentlyAddedFoodListItemAdapter mFoodSummaryAdapter;
-    private RecentlyAddedDataSource mRecentlyDataSource;
+    private ProductDataSource mAddedProductsDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +54,14 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
             @Override
             public void onClick(View view) {
                 // Open DB's
-                mRecentlyDataSource = new RecentlyAddedDataSource(getApplicationContext());
-                mRecentlyDataSource.open();
+                mAddedProductsDataSource = new ProductDataSource(getApplicationContext());
+                mAddedProductsDataSource.open();
 
                 String content = getContentAddedRecentlyDB();
                 String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
 
                 // If recently added product list is empty do nothing
-                if (mRecentlyDataSource.getAllAddedProducts().size() == 0) {
+                if (mAddedProductsDataSource.getAllAddedProducts().size() == 0) {
                     Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_SHORT).show();
                     // do nothing
                 } else {
@@ -69,8 +69,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                     Toast.makeText(getApplicationContext(), R.string.sent_message, Toast.LENGTH_SHORT).show();
                 }
                 // Close DB's
-                mRecentlyDataSource.close();
-
+                mAddedProductsDataSource.close();
             }
         });
 
@@ -87,7 +86,6 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     }
 
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
-
         for (final int position : reverseSortedPositions) {
 
             // in case of undo save row before remove product from adapter
@@ -127,28 +125,26 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     }
 
     private void removeProductFromDB(int position) {
-
-        mRecentlyDataSource = new RecentlyAddedDataSource(this);
-        mRecentlyDataSource.open();
-        List<RecentlyAdded> values = mRecentlyDataSource.getAllAddedProducts();
-        mRecentlyDataSource.deleteProduct(values.get(position));
-        mRecentlyDataSource.close();
+        mAddedProductsDataSource = new ProductDataSource(this);
+        mAddedProductsDataSource.open();
+        List<Product> values = mAddedProductsDataSource.getAllAddedProducts();
+        mAddedProductsDataSource.deleteAddedProduct(values.get(position));
+        mAddedProductsDataSource.close();
     }
 
     private void sendDailySummaryEmail(String date, String content) {
-
         new EmailManager(getApplicationContext(), date, content);
     }
 
     private String getContentAddedRecentlyDB() {
-
-        List<RecentlyAdded> mValues = mRecentlyDataSource.getAllAddedProducts();
+        List<Product> values = mAddedProductsDataSource.getAllAddedProducts();
         String content = "";
 
-        for (int i = 0; i < mValues.size(); ++i) {
-            content += mValues.get(i).getProduct();
-            content += mValues.get(i).getAmount();
-            content += "\n";
+        for (int i = 0; i < values.size(); ++i) {
+            content += values.get(i).getName();
+            content += " ";
+            content += values.get(i).getAmount();
+            content += " gramm\n";
         }
         return content;
     }
