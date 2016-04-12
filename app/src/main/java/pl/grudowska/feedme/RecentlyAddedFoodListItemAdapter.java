@@ -10,19 +10,20 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
-import pl.grudowska.feedme.databases.RecentlyAdded;
-import pl.grudowska.feedme.databases.RecentlyAddedDataSource;
+import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.databases.ProductDataSource;
+
 
 public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
-    private List<RecentlyAdded> mValues;
+    private List<Product> mValues;
 
     RecentlyAddedFoodListItemAdapter(final Context context) {
         mContext = context;
 
         // Open DB's
-        RecentlyAddedDataSource dataSource = new RecentlyAddedDataSource(mContext);
+        ProductDataSource dataSource = new ProductDataSource(mContext);
         dataSource.open();
 
         mValues = dataSource.getAllAddedProducts();
@@ -50,7 +51,7 @@ public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.textView_name.setText(mValues.get(getItem(position)).getProduct());
+        viewHolder.textView_name.setText(mValues.get(getItem(position)).getName());
         String amount = mValues.get(getItem(position)).getAmount() + " gramm";
         viewHolder.textView_amount.setText(amount);
 

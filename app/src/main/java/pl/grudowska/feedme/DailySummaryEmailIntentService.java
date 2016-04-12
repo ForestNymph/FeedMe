@@ -9,18 +9,14 @@ import java.util.Date;
 import java.util.List;
 
 import pl.grudowska.feedme.databases.AllSentFoodDataSource;
-import pl.grudowska.feedme.databases.RecentlyAdded;
-import pl.grudowska.feedme.databases.RecentlyAddedDataSource;
+import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class DailySummaryEmailIntentService extends IntentService {
 
-    private RecentlyAddedDataSource mRecentlyDataSource;
+    private ProductDataSource mAddedProductDataSource;
     private AllSentFoodDataSource mSentDataSource;
-
-    public DailySummaryEmailIntentService(String name) {
-        super(name);
-    }
 
     public DailySummaryEmailIntentService() {
         super("DailySummaryEmailIntentService");
@@ -31,11 +27,11 @@ public class DailySummaryEmailIntentService extends IntentService {
         // Gets data from the incoming Intent
         // String dataString = workIntent.getDataString();
 
-        Log.d(getClass().getSimpleName(), "Prepare and sending email");
+        Log.d(getClass().getSimpleName(), "Preparing and sending email");
 
         // Open DB's
-        mRecentlyDataSource = new RecentlyAddedDataSource(getApplicationContext());
-        mRecentlyDataSource.open();
+        mAddedProductDataSource = new ProductDataSource(getApplicationContext());
+        mAddedProductDataSource.open();
         mSentDataSource = new AllSentFoodDataSource(getApplicationContext());
         mSentDataSource.open();
 
@@ -43,7 +39,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
 
         // If recently added product list is empty do nothing
-        if (mRecentlyDataSource.getAllAddedProducts().size() == 0) {
+        if (mAddedProductDataSource.getAllAddedProducts().size() == 0) {
             // do nothing
         } else {
             sendDailySummaryEmail(date, content);
@@ -51,19 +47,20 @@ public class DailySummaryEmailIntentService extends IntentService {
             clearRecentlyAddedDB();
         }
         // Close DB's
-        mRecentlyDataSource.close();
+        mAddedProductDataSource.close();
         mSentDataSource.close();
     }
 
     private String getContentAddedRecentlyDB() {
 
-        List<RecentlyAdded> mValues = mRecentlyDataSource.getAllAddedProducts();
+        List<Product> mValues = mAddedProductDataSource.getAllAddedProducts();
         String content = "";
 
         for (int i = 0; i < mValues.size(); ++i) {
-            content += mValues.get(i).getProduct();
+            content += mValues.get(i).getName();
+            content += " ";
             content += mValues.get(i).getAmount();
-            content += "\n";
+            content += " gramm\n";
         }
         return content;
     }
@@ -77,6 +74,6 @@ public class DailySummaryEmailIntentService extends IntentService {
     }
 
     private void clearRecentlyAddedDB() {
-        mRecentlyDataSource.deleteAllItems();
+        mAddedProductDataSource.deleteAllAddedProducts();
     }
 }

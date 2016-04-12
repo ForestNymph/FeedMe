@@ -1,6 +1,6 @@
 package pl.grudowska.feedme.databases;
 
-public class SpecificFood {
+public class Product {
 
     private long mId;
     private String mType;
@@ -12,11 +12,12 @@ public class SpecificFood {
     private double mProtein;
     private double mCarbohydrates;
     private double mRoughage;
-    private double mFatsUnsaturated;
+    private double mFats;
     private double mFatsSaturated;
     private double mFatsMonounsaturated;
     private double mOmega3;
     private double mOmega6;
+    private double mAmount;
 
     public long getId() {
         return mId;
@@ -98,12 +99,12 @@ public class SpecificFood {
         mRoughage = roughage;
     }
 
-    public double getFatsUnsaturated() {
-        return mFatsUnsaturated;
+    public double getFats() {
+        return mFats;
     }
 
-    public void setFatsUnsaturated(double fatsUnsaturated) {
-        mFatsUnsaturated = fatsUnsaturated;
+    public void setFats(double fats) {
+        mFats = fats;
     }
 
     public double getFatsSaturated() {
@@ -111,7 +112,7 @@ public class SpecificFood {
     }
 
     public void setFatsSaturated(double fatsSaturated) {
-        this.mFatsSaturated = fatsSaturated;
+        mFatsSaturated = fatsSaturated;
     }
 
     public double getFatsMonounsaturated() {
@@ -138,13 +139,17 @@ public class SpecificFood {
         mOmega6 = omega6;
     }
 
+    public double getAmount() {
+        return mAmount;
+    }
+
+    public void setAmount(double amount) {
+        mAmount = amount;
+    }
+
     // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
-        return mType + " " + mName + " " + mDef1 + " " + mDef2 + " " + mDef3 + " "
-                + mKcal + " " + mProtein + " " + mCarbohydrates + " " + mRoughage + " "
-                + mFatsMonounsaturated + " " + mFatsSaturated + " " + mFatsUnsaturated + " "
-                + mOmega3 + " " + mOmega6;
+        return mName + " " + mAmount;
     }
 }
-

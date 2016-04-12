@@ -21,8 +21,7 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 
 import java.util.List;
 
-import pl.grudowska.feedme.data.AllProductsDataLoader;
-import pl.grudowska.feedme.data.MainTypeDataLoader;
+import pl.grudowska.feedme.data.ProductsDataLoader;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
@@ -60,9 +59,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
         refresh_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Toast.makeText(getApplicationContext(), "Refreshing databases...", Toast.LENGTH_LONG).show();
-                MainTypeDataLoader.inflateMainTypeDB(getApplicationContext());
-                AllProductsDataLoader.inflateAllProductsDB(getApplicationContext());
+                ProductsDataLoader.inflateProductType(getApplicationContext());
+                mFoodCardsAdapter.notifyDataSetChanged();
             }
         });
 
@@ -94,6 +92,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
                 new SwingBottomInAnimationAdapter(mFoodCardsAdapter);
+        assert listView != null;
         swingBottomInAnimationAdapter.setAbsListView(listView);
 
         assert swingBottomInAnimationAdapter.getViewAnimator() != null;
@@ -105,7 +104,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> l, View v, int position,
                                     long id) {
-                List<String> titles = MainTypeDataLoader.getTypeTitles(getApplicationContext());
+                List<String> titles = ProductsDataLoader.getTypeTitles(getApplicationContext());
                 Intent intent = new Intent(getApplicationContext(), SpecificFoodTypeActivity.class);
                 intent.putExtra("FoodType", titles.get(position));
                 startActivity(intent);

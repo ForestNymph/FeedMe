@@ -13,15 +13,15 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
-import pl.grudowska.feedme.databases.MainType;
-import pl.grudowska.feedme.databases.MainTypeDataSource;
+import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.utils.BitmapCache;
 
 public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
-    private List<MainType> mMainTypes;
+    private List<ProductType> mProductType;
 
     MainFoodTypeListItemAdapter(final Context context) {
 
@@ -29,12 +29,12 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         mMemoryCache = new BitmapCache();
 
         // get size of database
-        MainTypeDataSource mMainTypeDataSource = new MainTypeDataSource(context);
-        mMainTypeDataSource.open();
-        mMainTypes = mMainTypeDataSource.getAllAddedTypes();
-        mMainTypeDataSource.close();
+        ProductDataSource dataSource = new ProductDataSource(context);
+        dataSource.open();
+        mProductType = dataSource.getAllTypes();
+        dataSource.close();
 
-        for (int i = 0; i < mMainTypes.size(); i++) {
+        for (int i = 0; i < mProductType.size(); i++) {
             add(i);
         }
     }
@@ -55,14 +55,14 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.textView.setText(mMainTypes.get(getItem(position)).getTypeName());
+        viewHolder.textView.setText(mProductType.get(getItem(position)).getTypeName());
         setImageView(viewHolder, position);
 
         return convertView;
     }
 
     private void setImageView(final ViewHolder viewHolder, final int position) {
-        int imageResId = mMainTypes.get(getItem(position)).getResImage();
+        int imageResId = mProductType.get(getItem(position)).getResImage();
 
         Bitmap bitmap = getBitmapFromMemCache(imageResId);
         if (bitmap == null) {
