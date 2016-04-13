@@ -22,6 +22,7 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 import java.util.List;
 
 import pl.grudowska.feedme.data.ProductsDataLoader;
+import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
@@ -45,7 +46,11 @@ public class MainFoodTypeActivity extends AppCompatActivity
         summary_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mFoodCardsAdapter.getCount() == 0) {
+                ProductDataSource dataSource = new ProductDataSource(getApplicationContext());
+                dataSource.open();
+                int size = dataSource.getAllAddedProducts().size();
+                dataSource.close();
+                if (size == 0) {
                     Toast.makeText(getApplicationContext(), R.string.no_products, Toast.LENGTH_SHORT).show();
                 } else {
                     SummaryDialogFragment summary = new SummaryDialogFragment();
@@ -60,7 +65,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 ProductsDataLoader.inflateProductType(getApplicationContext());
-                mFoodCardsAdapter.notifyDataSetChanged();
+                mFoodCardsAdapter.refreshDataSource();
             }
         });
 

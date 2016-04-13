@@ -55,7 +55,7 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.date_tv.setText(mValues.get(position).getDate());
-        viewHolder.kcal_summary_tv.setText(mValues.get(position).getDate());
+        viewHolder.kcal_summary_tv.setText(mValues.get(position).getKcal());
 
         return convertView;
     }

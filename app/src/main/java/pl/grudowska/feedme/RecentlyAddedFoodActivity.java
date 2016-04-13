@@ -22,6 +22,7 @@ import java.util.List;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.EmailManager;
+import pl.grudowska.feedme.utils.MailFormatterManager;
 
 public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDismissCallback {
 
@@ -57,7 +58,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                 mAddedProductsDataSource = new ProductDataSource(getApplicationContext());
                 mAddedProductsDataSource.open();
 
-                String content = getContentAddedRecentlyDB();
+                String content = MailFormatterManager.getAllAddedProductsToMail(getApplicationContext());
                 String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
 
                 // If recently added product list is empty do nothing
@@ -75,6 +76,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
 
         ListView listView = (ListView) findViewById(R.id.activity_summary_listview);
         mFoodSummaryAdapter = new RecentlyAddedFoodListItemAdapter(this);
+        assert listView != null;
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
                 new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodSummaryAdapter, this));
         swingBottomInAnimationAdapter.setAbsListView(listView);
@@ -134,18 +136,5 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
 
     private void sendDailySummaryEmail(String date, String content) {
         new EmailManager(getApplicationContext(), date, content);
-    }
-
-    private String getContentAddedRecentlyDB() {
-        List<Product> values = mAddedProductsDataSource.getAllAddedProducts();
-        String content = "";
-
-        for (int i = 0; i < values.size(); ++i) {
-            content += values.get(i).getName();
-            content += " ";
-            content += values.get(i).getAmount();
-            content += " gramm\n";
-        }
-        return content;
     }
 }

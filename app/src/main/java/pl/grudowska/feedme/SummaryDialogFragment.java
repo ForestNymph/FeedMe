@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import pl.grudowska.feedme.alghoritms.CalculateSummary;
+
 public class SummaryDialogFragment extends DialogFragment {
 
     @Override
@@ -27,8 +29,9 @@ public class SummaryDialogFragment extends DialogFragment {
                         SummaryDialogFragment.this.getDialog().cancel();
                     }
                 });
-        TextView summary = (TextView) summaryDialogView.findViewById(R.id.summary_text);
-        summary.setText(R.string.lorem_ipsum);
+        TextView summary_product = (TextView) summaryDialogView.findViewById(R.id.summary_text_left);
+        String summary = CalculateSummary.calculate(getActivity());
+        summary_product.setText(summary);
         return builder.create();
     }
 }

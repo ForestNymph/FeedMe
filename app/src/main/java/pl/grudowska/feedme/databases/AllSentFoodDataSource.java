@@ -16,7 +16,7 @@ public class AllSentFoodDataSource {
     private SQLiteDatabase database;
     private AllSentFoodDB_SQL dbHelper;
     private String[] allColumns = {AllSentFoodDB_SQL.COLUMN_ID,
-            AllSentFoodDB_SQL.COLUMN_DATE, AllSentFoodDB_SQL.COLUMN_CONTENT};
+            AllSentFoodDB_SQL.COLUMN_DATE, AllSentFoodDB_SQL.COLUMN_CONTENT, AllSentFoodDB_SQL.COLUMN_KCAL};
 
     public AllSentFoodDataSource(Context context) {
         dbHelper = new AllSentFoodDB_SQL(context);
@@ -30,10 +30,11 @@ public class AllSentFoodDataSource {
         dbHelper.close();
     }
 
-    public AllSentFood createSentItem(String data, String content) {
+    public AllSentFood createSentItem(String data, String content, String kcal) {
         ContentValues values = new ContentValues();
         values.put(AllSentFoodDB_SQL.COLUMN_DATE, data);
         values.put(AllSentFoodDB_SQL.COLUMN_CONTENT, content);
+        values.put(AllSentFoodDB_SQL.COLUMN_KCAL, kcal);
         long insertId = database.insert(AllSentFoodDB_SQL.TABLE_SENT, null,
                 values);
         Cursor cursor = database.query(AllSentFoodDB_SQL.TABLE_SENT,
@@ -78,6 +79,7 @@ public class AllSentFoodDataSource {
         sent.setId(cursor.getLong(0));
         sent.setDate(cursor.getString(1));
         sent.setContent(cursor.getString(2));
+        sent.setKcal(cursor.getString(3));
         return sent;
     }
 }
