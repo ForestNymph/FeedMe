@@ -1,6 +1,6 @@
 package pl.grudowska.feedme.databases;
 
-public class MainType {
+public class ProductType {
 
     private long mId;
     private String mTypeName;
@@ -11,23 +11,23 @@ public class MainType {
     }
 
     public void setId(long id) {
-        this.mId = id;
+        mId = id;
     }
 
     public String getTypeName() {
         return mTypeName;
     }
 
-    public void setTypeName(String product) {
-        this.mTypeName = product;
+    public void setTypeName(String type) {
+        mTypeName = type;
     }
 
     public int getResImage() {
         return mResImage;
     }
 
-    public void setImage(int amount) {
-        this.mResImage = amount;
+    public void setImage(int image) {
+        mResImage = image;
     }
 
     // Will be used by the ArrayAdapter in the ListView

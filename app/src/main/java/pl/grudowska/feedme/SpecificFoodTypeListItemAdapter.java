@@ -14,27 +14,26 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 
 import java.util.List;
 
-import pl.grudowska.feedme.databases.RecentlyAddedDataSource;
-import pl.grudowska.feedme.databases.SpecificFood;
-import pl.grudowska.feedme.databases.SpecificFoodDataSource;
+import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.databases.ProductDataSource;
 
 public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<Integer> {
 
     private final Context mContext;
 
-    private List<SpecificFood> mFoodType;
+    private List<Product> mProduct;
 
-    public SpecificFoodTypeListItemAdapter(final Context context, String type) {
+    public SpecificFoodTypeListItemAdapter(final Context context, String typeName) {
         super(context, R.layout.content_specific_card, R.id.card_title, R.id.card_content);
 
         mContext = context;
 
-        SpecificFoodDataSource dataSource = new SpecificFoodDataSource(mContext);
+        ProductDataSource dataSource = new ProductDataSource(mContext);
         dataSource.open();
-        mFoodType = dataSource.getProductsByType(type);
+        mProduct = dataSource.getProductsByType(typeName);
         dataSource.close();
 
-        for (int i = 0; i < mFoodType.size(); ++i) {
+        for (int i = 0; i < mProduct.size(); ++i) {
             add(i);
         }
     }
@@ -47,7 +46,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
         if (tv == null) {
             tv = new TextView(mContext);
         }
-        tv.setText(mFoodType.get(getItem(position)).getName());
+        tv.setText(mProduct.get(getItem(position)).getName());
         tv.setTextSize(20);
         return tv;
     }
@@ -74,9 +73,9 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
         }
         setListeners(viewHolder, position);
 
-        viewHolder.buttonView_1.setText(mFoodType.get(getItem(position)).getDef1() + "");
-        viewHolder.buttonView_2.setText(mFoodType.get(getItem(position)).getDef2() + "");
-        viewHolder.buttonView_3.setText(mFoodType.get(getItem(position)).getDef3() + "");
+        viewHolder.buttonView_1.setText(mProduct.get(getItem(position)).getDef1() + "");
+        viewHolder.buttonView_2.setText(mProduct.get(getItem(position)).getDef2() + "");
+        viewHolder.buttonView_3.setText(mProduct.get(getItem(position)).getDef3() + "");
 
         return convertView;
     }
@@ -85,19 +84,19 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
 
         viewHolder.buttonView_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mFoodType.get(getItem(position)).getDef1());
+                addProductToDB(position, mProduct.get(getItem(position)).getDef1());
                 afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mFoodType.get(getItem(position)).getDef2());
+                addProductToDB(position, mProduct.get(getItem(position)).getDef2());
                 afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mFoodType.get(getItem(position)).getDef3());
+                addProductToDB(position, mProduct.get(getItem(position)).getDef3());
                 afterAddedProductAction(position);
             }
         });
@@ -119,15 +118,18 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
     }
 
     private void addProductToDB(int position, int amount) {
-        RecentlyAddedDataSource mDataSource = new RecentlyAddedDataSource(mContext);
-        mDataSource.open();
-        mDataSource.createProduct(mFoodType.get(getItem(position)).getName(), amount);
-        mDataSource.close();
+        ProductDataSource dataSource = new ProductDataSource(mContext);
+        dataSource.open();
+        Product product = dataSource.getProduct(mProduct.get(getItem(position)).getId());
+        product.setAmount(amount);
+        assert product != null;
+        dataSource.createSimpleAddedProduct(product);
+        dataSource.close();
     }
 
     private void afterAddedProductAction(int position) {
         collapse(position);
-        Toast.makeText(mContext, mFoodType.get(getItem(position)) + " added", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, mProduct.get(getItem(position)).getName() + " added", Toast.LENGTH_SHORT).show();
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
