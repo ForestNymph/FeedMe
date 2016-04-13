@@ -82,6 +82,15 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         return mMemoryCache.get(key);
     }
 
+    public void refreshDataSource() {
+        ProductDataSource dataSource = new ProductDataSource(mContext);
+        dataSource.open();
+        mProductType = dataSource.getAllTypes();
+        dataSource.close();
+
+        notifyDataSetChanged();
+    }
+
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
     private static class ViewHolder {
         TextView textView;

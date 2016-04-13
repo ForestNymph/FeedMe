@@ -13,7 +13,6 @@ import java.util.List;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
 
-
 public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;

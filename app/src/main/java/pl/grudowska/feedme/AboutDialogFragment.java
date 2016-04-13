@@ -42,7 +42,6 @@ public class AboutDialogFragment extends DialogFragment {
                         .setTextColor(getResources().getColor(R.color.colorTextGray));
             }
         });
-
         return mDialog;
     }
 }

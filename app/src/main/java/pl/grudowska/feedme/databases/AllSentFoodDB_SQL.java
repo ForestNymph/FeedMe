@@ -11,6 +11,7 @@ public class AllSentFoodDB_SQL extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_DATE = "sent_date";
     public static final String COLUMN_CONTENT = "content";
+    public static final String COLUMN_KCAL = "kcal";
 
     private static final String DATABASE_NAME = "sentemail.db";
     private static final int DATABASE_VERSION = 1;
@@ -19,7 +20,7 @@ public class AllSentFoodDB_SQL extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE = "create table "
             + TABLE_SENT + "(" + COLUMN_ID
             + " integer primary key autoincrement, " + COLUMN_DATE
-            + " text not null, " + COLUMN_CONTENT + " text not null);";
+            + " text not null, " + COLUMN_CONTENT + " text not null, " + COLUMN_KCAL + " text not null);";
 
 
     public AllSentFoodDB_SQL(Context context) {
