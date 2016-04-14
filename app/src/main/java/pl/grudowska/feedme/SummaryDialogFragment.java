@@ -29,8 +29,12 @@ public class SummaryDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View summaryDialogView = inflater.inflate(R.layout.summary_dialog_listview, null);
         ListView summaryListView;
+        TextView summaryTextView;
 
-        if (results != null) {
+        if (results == null) {
+            summaryTextView = (TextView) summaryDialogView.findViewById(R.id.text_no_summmary);
+            summaryTextView.setText(R.string.no_products);
+        } else {
             summaryListView = (ListView) summaryDialogView.findViewById(R.id.list_summmary);
             summaryListView.setAdapter(new SummaryDialogAdapter(getActivity(), results));
         }
@@ -46,21 +50,17 @@ public class SummaryDialogFragment extends DialogFragment {
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
                         .setTextColor(getResources().getColor(R.color.colorTextGray));
-                mDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
             }
         });
         return mDialog;
     }
 
     private class SummaryDialogAdapter extends ArrayAdapter<SummaryResult> {
-
         private Context mContext;
         private List<SummaryResult> mResults;
 
         public SummaryDialogAdapter(Context context, List<SummaryResult> result) {
             super(context, -1, result);
-
             mContext = context;
             mResults = result;
         }
