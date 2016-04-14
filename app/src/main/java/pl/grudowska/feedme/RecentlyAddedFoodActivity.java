@@ -44,6 +44,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         fab_summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 SummaryDialogFragment summary = new SummaryDialogFragment();
                 summary.show(getFragmentManager(), "");
             }

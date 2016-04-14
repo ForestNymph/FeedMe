@@ -15,14 +15,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 
 import java.util.List;
 
 import pl.grudowska.feedme.data.ProductsDataLoader;
-import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
@@ -46,16 +44,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
         summary_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductDataSource dataSource = new ProductDataSource(getApplicationContext());
-                dataSource.open();
-                int size = dataSource.getAllAddedProducts().size();
-                dataSource.close();
-                if (size == 0) {
-                    Toast.makeText(getApplicationContext(), R.string.no_products, Toast.LENGTH_SHORT).show();
-                } else {
-                    SummaryDialogFragment summary = new SummaryDialogFragment();
-                    summary.show(getFragmentManager(), "");
-                }
+                SummaryDialogFragment summary = new SummaryDialogFragment();
+                summary.show(getFragmentManager(), "");
             }
         });
 

@@ -27,8 +27,6 @@ public class DailySummaryEmailIntentService extends IntentService {
         // Gets data from the incoming Intent
         // String dataString = workIntent.getDataString();
 
-        Log.d(getClass().getSimpleName(), "Preparing and sending email");
-
         // Open DB's
         mAddedProductDataSource = new ProductDataSource(getApplicationContext());
         mAddedProductDataSource.open();
@@ -42,6 +40,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         if (mAddedProductDataSource.getAllAddedProducts().size() == 0) {
             // do nothing
         } else {
+            Log.d(getClass().getSimpleName(), "Preparing and sending email");
             sendDailySummaryEmail(date, content);
             moveRecentlyAddedToSentDB(date, content, CalculateSummary.getTotalKcal(getApplicationContext()));
             clearRecentlyAddedDB();
