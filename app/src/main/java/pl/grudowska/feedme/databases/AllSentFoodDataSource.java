@@ -30,7 +30,7 @@ public class AllSentFoodDataSource {
         dbHelper.close();
     }
 
-    public AllSentFood createSentItem(String data, String content, String kcal) {
+    public AllSentFood createSentItem(String data, String content, int kcal) {
         ContentValues values = new ContentValues();
         values.put(AllSentFoodDB_SQL.COLUMN_DATE, data);
         values.put(AllSentFoodDB_SQL.COLUMN_CONTENT, content);
@@ -79,7 +79,7 @@ public class AllSentFoodDataSource {
         sent.setId(cursor.getLong(0));
         sent.setDate(cursor.getString(1));
         sent.setContent(cursor.getString(2));
-        sent.setKcal(cursor.getString(3));
+        sent.setKcal(cursor.getInt(3));
         return sent;
     }
 }

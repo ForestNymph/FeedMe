@@ -20,7 +20,7 @@ public class AllSentFoodDB_SQL extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE = "create table "
             + TABLE_SENT + "(" + COLUMN_ID
             + " integer primary key autoincrement, " + COLUMN_DATE
-            + " text not null, " + COLUMN_CONTENT + " text not null, " + COLUMN_KCAL + " text not null);";
+            + " text not null, " + COLUMN_CONTENT + " text not null, " + COLUMN_KCAL + " integer);";
 
 
     public AllSentFoodDB_SQL(Context context) {

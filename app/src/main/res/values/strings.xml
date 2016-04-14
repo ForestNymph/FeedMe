@@ -15,8 +15,10 @@
     <string name="cancel">CANCEL</string>
     <string name="apply">APPLY</string>
     <string name="ok">OK</string>
+    <string name="consequences">I UNDERSTAND THE CONSEQUENCES</string>
 
     <string name="dialog_remove">REMOVE ALL</string>
+    <string name="dialog_warning">WARNING!</string>
     <string name="dialog_email">CHANGE EMAIL</string>
     <string name="dialog_limit">SET CALORIES LIMIT</string>
     <string name="dialog_time">SET EMAIL TIME</string>
@@ -30,6 +32,7 @@
     <!-- Content description -->
     <string name="cd_image">email image</string>
 
+    <string name="limit_exceed">Calorie limit has been exceeded by: </string>
     <string name="title_activity_summary_dialog_fragment">SummaryDialogFragment</string>
     <string name="warning_delete_inf">Do you want to delete all archived data?</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, eos at graece putent expetendis, mea te saperet alienum, munere ignota mnesarchum eum no.</string>

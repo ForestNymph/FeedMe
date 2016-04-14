@@ -5,14 +5,14 @@ public class AllSentFood {
     private long mId;
     private String mDate;
     private String mContent;
-    private String mKcal;
+    private int mKcal;
 
     public long getId() {
         return mId;
     }
 
     public void setId(long id) {
-        this.mId = id;
+        mId = id;
     }
 
     public String getDate() {
@@ -20,7 +20,7 @@ public class AllSentFood {
     }
 
     public void setDate(String date) {
-        this.mDate = date;
+        mDate = date;
     }
 
     public String getContent() {
@@ -28,15 +28,15 @@ public class AllSentFood {
     }
 
     public void setContent(String content) {
-        this.mContent = content;
+        mContent = content;
     }
 
-    public String getKcal() {
+    public int getKcal() {
         return mKcal;
     }
 
-    public void setKcal(String kcal) {
-        this.mKcal = kcal;
+    public void setKcal(int kcal) {
+        mKcal = kcal;
     }
 
     // Will be used by the ArrayAdapter in the ListView

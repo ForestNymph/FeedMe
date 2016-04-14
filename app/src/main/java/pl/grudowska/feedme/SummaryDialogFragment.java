@@ -13,10 +13,12 @@ import pl.grudowska.feedme.alghoritms.CalculateSummary;
 
 public class SummaryDialogFragment extends DialogFragment {
 
+    private AlertDialog mDialog;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.CustomDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
         // Inflate and set the layout for the dialog
@@ -32,6 +34,19 @@ public class SummaryDialogFragment extends DialogFragment {
         TextView summary_product = (TextView) summaryDialogView.findViewById(R.id.summary_text_left);
         String summary = CalculateSummary.calculate(getActivity());
         summary_product.setText(summary);
-        return builder.create();
+
+        mDialog = builder.create();
+
+        mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                mDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+            }
+        });
+
+        return mDialog;
     }
 }

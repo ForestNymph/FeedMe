@@ -2,6 +2,8 @@ package pl.grudowska.feedme;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +16,11 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 
 import java.util.List;
 
+import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.utils.SharedPreferencesManager;
+
 
 public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<Integer> {
 
@@ -129,7 +134,17 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
 
     private void afterAddedProductAction(int position) {
         collapse(position);
+        ifCalorieLimitExceeded();
         Toast.makeText(mContext, mProduct.get(getItem(position)).getName() + " added", Toast.LENGTH_SHORT).show();
+    }
+
+    private void ifCalorieLimitExceeded() {
+        if (CalculateSummary.getTotalKcal(mContext) > SharedPreferencesManager.loadDataInt(mContext, "limit", 0)) {
+            FragmentActivity activity = (FragmentActivity) (mContext);
+            FragmentManager fm = activity.getSupportFragmentManager();
+            WarningLimitDialogFragment dialog = new WarningLimitDialogFragment();
+            dialog.show(fm, "fragment_alert");
+        }
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})

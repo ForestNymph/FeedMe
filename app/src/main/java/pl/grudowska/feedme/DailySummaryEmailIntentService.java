@@ -43,7 +43,7 @@ public class DailySummaryEmailIntentService extends IntentService {
             // do nothing
         } else {
             sendDailySummaryEmail(date, content);
-            moveRecentlyAddedToSentDB(date, content, CalculateSummary.createTextKcal(getApplicationContext()));
+            moveRecentlyAddedToSentDB(date, content, CalculateSummary.getTotalKcal(getApplicationContext()));
             clearRecentlyAddedDB();
         }
         // Close DB's
@@ -55,7 +55,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         new EmailManager(getApplicationContext(), date, content);
     }
 
-    private void moveRecentlyAddedToSentDB(String date, String content, String kcal) {
+    private void moveRecentlyAddedToSentDB(String date, String content, int kcal) {
         mSentDataSource.createSentItem(date, content, kcal);
     }
 

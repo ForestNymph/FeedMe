@@ -32,20 +32,20 @@ public class CalculateSummary {
         for (int i = 0; i < addedProducts.size(); ++i) {
             factor = addedProducts.get(i).getAmount() / constant;
 
-            kcal += addedProducts.get(i).getKcal() / factor;
-            protein += addedProducts.get(i).getProtein() / factor;
-            carbohydrates += addedProducts.get(i).getCarbohydrates() / factor;
-            roughage += addedProducts.get(i).getRoughage() / factor;
-            fats += addedProducts.get(i).getFats() / factor;
+            kcal += addedProducts.get(i).getKcal() * factor;
+            protein += addedProducts.get(i).getProtein() * factor;
+            carbohydrates += addedProducts.get(i).getCarbohydrates() * factor;
+            roughage += addedProducts.get(i).getRoughage() * factor;
+            fats += addedProducts.get(i).getFats() * factor;
             amount += addedProducts.get(i).getAmount();
             checkFatsData = addedProducts.get(i).getFatsSaturated();
             if (checkFatsData == -1) {
                 // do not calculate fats, no data
             } else {
-                saturated += addedProducts.get(i).getFatsSaturated() / factor;
-                monosaturated += addedProducts.get(i).getFatsMonounsaturated() / factor;
-                omega3 += addedProducts.get(i).getOmega3() / factor;
-                omega6 += addedProducts.get(i).getOmega6() / factor;
+                saturated += addedProducts.get(i).getFatsSaturated() * factor;
+                monosaturated += addedProducts.get(i).getFatsMonounsaturated() * factor;
+                omega3 += addedProducts.get(i).getOmega3() * factor;
+                omega6 += addedProducts.get(i).getOmega6() * factor;
             }
         }
         return createTextSummary(kcal, protein, carbohydrates, roughage,
@@ -56,21 +56,21 @@ public class CalculateSummary {
                                             double roughage, double fats, double saturated, double monosaturated,
                                             double omega3, double omega6, double amount) {
 
-        String summary = "Total Energy: " + String.format("%.2f", kcal) + " kcal\n"
-                + "Total Weight: " + String.format("%.2f", amount) + " gramm\n"
-                + "Total Protein: (B): " + String.format("%.2f", protein) + " gramm\n"
-                + "Total Carbohydrate (W): " + String.format("%.2f", carbohydrates) + " gramm\n"
-                + "Total Fat (T): " + String.format("%.2f", fats) + " gramm\n"
-                + "   Total Saturated fat: " + String.format("%.2f", saturated) + " gramm\n"
-                + "   Total Monosaturated: " + String.format("%.2f", monosaturated) + " gramm\n"
-                + "   Total Omega3: " + String.format("%.2f", omega3) + " gramm\n"
-                + "   Total Omega6: " + String.format("%.2f", omega6) + " gramm\n"
-                + "Total Fiber (N): " + String.format("%.2f", roughage) + " gramm\n";
+        String summary = "Total Energy: " + String.format("%.1f", kcal) + " kcal\n"
+                + "Total Weight: " + String.format("%.1f", amount) + " gramm\n"
+                + "Total Protein: (B): " + String.format("%.1f", protein) + " gramm\n"
+                + "Total Carbohydrate (W): " + String.format("%.1f", carbohydrates) + " gramm\n"
+                + "Total Fat (T): " + String.format("%.1f", fats) + " gramm\n"
+                + "   Total Saturated fat: " + String.format("%.1f", saturated) + " gramm\n"
+                + "   Total Monosaturated: " + String.format("%.1f", monosaturated) + " gramm\n"
+                + "   Total Omega3: " + String.format("%.1f", omega3) + " gramm\n"
+                + "   Total Omega6: " + String.format("%.1f", omega6) + " gramm\n"
+                + "Total Fiber (N): " + String.format("%.1f", roughage) + " gramm\n";
 
         return summary;
     }
 
-    static public String createTextKcal(Context context) {
+    static public int getTotalKcal(Context context) {
 
         ProductDataSource dataSource = new ProductDataSource(context);
         dataSource.open();
@@ -83,8 +83,8 @@ public class CalculateSummary {
 
         for (int i = 0; i < addedProducts.size(); ++i) {
             factor = addedProducts.get(i).getAmount() / constant;
-            kcal += addedProducts.get(i).getKcal() / factor;
+            kcal += addedProducts.get(i).getKcal() * factor;
         }
-        return "Total kcal: " + String.format("%.2f", kcal);
+        return (int) kcal;
     }
 }
