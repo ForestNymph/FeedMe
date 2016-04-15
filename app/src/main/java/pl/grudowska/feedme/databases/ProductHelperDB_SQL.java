@@ -21,7 +21,7 @@ public class ProductHelperDB_SQL extends SQLiteOpenHelper {
     public static final String COLUMN_KCAL = "kcal";
     public static final String COLUMN_PROTEIN = "protein";
     public static final String COLUMN_CARBOHYDRATES = "carbohydrates";
-    public static final String COLUMN_ROUGHAGE = "roughage";
+    public static final String COLUMN_FIBER = "fiber";
     public static final String COLUMN_FATS = "fats";
     public static final String COLUMN_FATS_SATURATED = "fats_saturated";
     public static final String COLUMN_FATS_MONOUNSATURATED = "fats_monounsaturated";
@@ -49,7 +49,7 @@ public class ProductHelperDB_SQL extends SQLiteOpenHelper {
             + " integer primary key autoincrement, " + COLUMN_TYPE
             + " text not null, " + COLUMN_NAME_PROD + " text not null, " + COLUMN_DEF1 + " integer, "
             + COLUMN_DEF2 + " integer, " + COLUMN_DEF3 + " integer, " + COLUMN_KCAL + " double, "
-            + COLUMN_PROTEIN + " double, " + COLUMN_CARBOHYDRATES + " double, " + COLUMN_ROUGHAGE + " double, "
+            + COLUMN_PROTEIN + " double, " + COLUMN_CARBOHYDRATES + " double, " + COLUMN_FIBER + " double, "
             + COLUMN_FATS + " double, " + COLUMN_FATS_SATURATED + " double, "
             + COLUMN_FATS_MONOUNSATURATED + " double, " + COLUMN_FATS_OMEGA3 + " double, "
             + COLUMN_FATS_OMEGA6 + " double, " + COLUMN_AMOUNT + " double);";
@@ -63,7 +63,7 @@ public class ProductHelperDB_SQL extends SQLiteOpenHelper {
             + " integer primary key autoincrement, " + COLUMN_TYPE
             + " text not null, " + COLUMN_NAME_PROD + " text not null, " + COLUMN_DEF1 + " integer, "
             + COLUMN_DEF2 + " integer, " + COLUMN_DEF3 + " integer, " + COLUMN_KCAL + " double, "
-            + COLUMN_PROTEIN + " double, " + COLUMN_CARBOHYDRATES + " double, " + COLUMN_ROUGHAGE + " double, "
+            + COLUMN_PROTEIN + " double, " + COLUMN_CARBOHYDRATES + " double, " + COLUMN_FIBER + " double, "
             + COLUMN_FATS + " double, " + COLUMN_FATS_SATURATED + " double, "
             + COLUMN_FATS_MONOUNSATURATED + " double, " + COLUMN_FATS_OMEGA3 + " double, "
             + COLUMN_FATS_OMEGA6 + " double, " + COLUMN_AMOUNT + " double);";

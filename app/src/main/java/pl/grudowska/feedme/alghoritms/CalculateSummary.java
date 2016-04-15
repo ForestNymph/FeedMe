@@ -26,7 +26,7 @@ public class CalculateSummary {
             double kcal = 0;
             double protein = 0;
             double carbohydrates = 0;
-            double roughage = 0;
+            double fiber = 0;
             double fats = 0;
             double saturated = 0, checkFatsData = 0;
             double monosaturated = 0;
@@ -40,7 +40,7 @@ public class CalculateSummary {
                 kcal += addedProducts.get(i).getKcal() * factor;
                 protein += addedProducts.get(i).getProtein() * factor;
                 carbohydrates += addedProducts.get(i).getCarbohydrates() * factor;
-                roughage += addedProducts.get(i).getRoughage() * factor;
+                fiber += addedProducts.get(i).getFiber() * factor;
                 fats += addedProducts.get(i).getFats() * factor;
                 amount += addedProducts.get(i).getAmount();
                 checkFatsData = addedProducts.get(i).getFatsSaturated();
@@ -53,13 +53,13 @@ public class CalculateSummary {
                     omega6 += addedProducts.get(i).getOmega6() * factor;
                 }
             }
-            return createTextSummary(kcal, protein, carbohydrates, roughage,
+            return createTextSummary(kcal, protein, carbohydrates, fiber,
                     fats, saturated, monosaturated, omega3, omega6, amount);
         }
     }
 
     static private List<SummaryResult> createTextSummary(double kcal, double protein, double carbohydrates,
-                                                         double roughage, double fats, double saturated, double monosaturated,
+                                                         double fiber, double fats, double saturated, double monosaturated,
                                                          double omega3, double omega6, double amount) {
 
         List<SummaryResult> results = new ArrayList<>();
@@ -72,7 +72,7 @@ public class CalculateSummary {
         results.add(new SummaryResult("Total Monosaturated: ", (int) monosaturated, " gram"));
         results.add(new SummaryResult("Total Omega3: ", (int) omega3, " gram"));
         results.add(new SummaryResult("Total Omega6: ", (int) omega6, " gram"));
-        results.add(new SummaryResult("Total Fiber (N): ", (int) roughage, " gram"));
+        results.add(new SummaryResult("Total Fiber (N): ", (int) fiber, " gram"));
 
         return results;
     }

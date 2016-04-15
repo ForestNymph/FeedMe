@@ -18,14 +18,7 @@ public class ProductDataSource {
     private String[] productColumns = {ProductHelperDB_SQL.COLUMN_ID_PROD,
             ProductHelperDB_SQL.COLUMN_TYPE, ProductHelperDB_SQL.COLUMN_NAME_PROD, ProductHelperDB_SQL.COLUMN_DEF1,
             ProductHelperDB_SQL.COLUMN_DEF2, ProductHelperDB_SQL.COLUMN_DEF3, ProductHelperDB_SQL.COLUMN_KCAL,
-            ProductHelperDB_SQL.COLUMN_PROTEIN, ProductHelperDB_SQL.COLUMN_CARBOHYDRATES, ProductHelperDB_SQL.COLUMN_ROUGHAGE,
-            ProductHelperDB_SQL.COLUMN_FATS, ProductHelperDB_SQL.COLUMN_FATS_SATURATED, ProductHelperDB_SQL.COLUMN_FATS_MONOUNSATURATED,
-            ProductHelperDB_SQL.COLUMN_FATS_OMEGA3, ProductHelperDB_SQL.COLUMN_FATS_OMEGA6, ProductHelperDB_SQL.COLUMN_AMOUNT};
-
-    private String[] productColumnsAdded = {ProductHelperDB_SQL.COLUMN_ID_PROD,
-            ProductHelperDB_SQL.COLUMN_TYPE, ProductHelperDB_SQL.COLUMN_NAME_PROD, ProductHelperDB_SQL.COLUMN_DEF1,
-            ProductHelperDB_SQL.COLUMN_DEF2, ProductHelperDB_SQL.COLUMN_DEF3, ProductHelperDB_SQL.COLUMN_KCAL,
-            ProductHelperDB_SQL.COLUMN_PROTEIN, ProductHelperDB_SQL.COLUMN_CARBOHYDRATES, ProductHelperDB_SQL.COLUMN_ROUGHAGE,
+            ProductHelperDB_SQL.COLUMN_PROTEIN, ProductHelperDB_SQL.COLUMN_CARBOHYDRATES, ProductHelperDB_SQL.COLUMN_FIBER,
             ProductHelperDB_SQL.COLUMN_FATS, ProductHelperDB_SQL.COLUMN_FATS_SATURATED, ProductHelperDB_SQL.COLUMN_FATS_MONOUNSATURATED,
             ProductHelperDB_SQL.COLUMN_FATS_OMEGA3, ProductHelperDB_SQL.COLUMN_FATS_OMEGA6, ProductHelperDB_SQL.COLUMN_AMOUNT};
 
@@ -54,7 +47,7 @@ public class ProductDataSource {
                 product.getKcal(),
                 product.getProtein(),
                 product.getCarbohydrates(),
-                product.getRoughage(),
+                product.getFiber(),
                 product.getFats(),
                 product.getFatsSaturated(),
                 product.getFatsMonounsaturated(),
@@ -65,7 +58,7 @@ public class ProductDataSource {
     }
 
     public Product createAddedProduct(String type, String name, int def1, int def2, int def3, double kcal, double protein,
-                                      double carbohydrates, double roughage, double fats, double saturated,
+                                      double carbohydrates, double fiber, double fats, double saturated,
                                       double monounsaturated, double omega3, double omega6, double amount) {
         ContentValues values = new ContentValues();
         values.put(ProductHelperDB_SQL.COLUMN_TYPE, type);
@@ -76,7 +69,7 @@ public class ProductDataSource {
         values.put(ProductHelperDB_SQL.COLUMN_KCAL, kcal);
         values.put(ProductHelperDB_SQL.COLUMN_PROTEIN, protein);
         values.put(ProductHelperDB_SQL.COLUMN_CARBOHYDRATES, carbohydrates);
-        values.put(ProductHelperDB_SQL.COLUMN_ROUGHAGE, roughage);
+        values.put(ProductHelperDB_SQL.COLUMN_FIBER, fiber);
         values.put(ProductHelperDB_SQL.COLUMN_FATS, fats);
         values.put(ProductHelperDB_SQL.COLUMN_FATS_SATURATED, saturated);
         values.put(ProductHelperDB_SQL.COLUMN_FATS_MONOUNSATURATED, monounsaturated);
@@ -86,7 +79,7 @@ public class ProductDataSource {
 
         long productId = database.insert(ProductHelperDB_SQL.TABLE_PRODUCT_ADDED, null, values);
         Cursor cursor = database.query(ProductHelperDB_SQL.TABLE_PRODUCT_ADDED,
-                productColumnsAdded, ProductHelperDB_SQL.COLUMN_ID_PROD + " = " + productId, null,
+                productColumns, ProductHelperDB_SQL.COLUMN_ID_PROD + " = " + productId, null,
                 null, null, null);
         cursor.moveToFirst();
         Product newProduct = cursorToProduct(cursor);
@@ -99,7 +92,7 @@ public class ProductDataSource {
     }
 
     public Product createProduct(String type, String name, int def1, int def2, int def3, double kcal, double protein,
-                                 double carbohydrates, double roughage, double fats, double saturated,
+                                 double carbohydrates, double fiber, double fats, double saturated,
                                  double monounsaturated, double omega3, double omega6, double amount) {
         ContentValues values = new ContentValues();
         values.put(ProductHelperDB_SQL.COLUMN_TYPE, type);
@@ -110,7 +103,7 @@ public class ProductDataSource {
         values.put(ProductHelperDB_SQL.COLUMN_KCAL, kcal);
         values.put(ProductHelperDB_SQL.COLUMN_PROTEIN, protein);
         values.put(ProductHelperDB_SQL.COLUMN_CARBOHYDRATES, carbohydrates);
-        values.put(ProductHelperDB_SQL.COLUMN_ROUGHAGE, roughage);
+        values.put(ProductHelperDB_SQL.COLUMN_FIBER, fiber);
         values.put(ProductHelperDB_SQL.COLUMN_FATS, fats);
         values.put(ProductHelperDB_SQL.COLUMN_FATS_SATURATED, saturated);
         values.put(ProductHelperDB_SQL.COLUMN_FATS_MONOUNSATURATED, monounsaturated);
@@ -221,7 +214,7 @@ public class ProductDataSource {
         List<Product> products = new ArrayList<>();
 
         Cursor cursor = database.query(ProductHelperDB_SQL.TABLE_PRODUCT_ADDED,
-                productColumnsAdded, null, null, null, null, null);
+                productColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -276,7 +269,7 @@ public class ProductDataSource {
         type.setKcal(cursor.getDouble(6));
         type.setProtein(cursor.getDouble(7));
         type.setCarbohydrates(cursor.getDouble(8));
-        type.setRoughage(cursor.getDouble(9));
+        type.setFiber(cursor.getDouble(9));
         type.setFats(cursor.getDouble(10));
         type.setFatsSaturated(cursor.getDouble(11));
         type.setFatsMonounsaturated(cursor.getDouble(12));

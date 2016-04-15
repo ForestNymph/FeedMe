@@ -11,7 +11,7 @@ public class Product {
     private double mKcal;
     private double mProtein;
     private double mCarbohydrates;
-    private double mRoughage;
+    private double mFiber;
     private double mFats;
     private double mFatsSaturated;
     private double mFatsMonounsaturated;
@@ -91,12 +91,12 @@ public class Product {
         mCarbohydrates = carbohydrates;
     }
 
-    public double getRoughage() {
-        return mRoughage;
+    public double getFiber() {
+        return mFiber;
     }
 
-    public void setRoughage(double roughage) {
-        mRoughage = roughage;
+    public void setFiber(double fiber) {
+        mFiber = fiber;
     }
 
     public double getFats() {

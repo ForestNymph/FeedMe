@@ -6,7 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="alertDialogStyle">@style/CustomDialogTheme</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:timePickerStyle">@style/customTimePickerTheme</item>
     </style>
@@ -19,18 +18,6 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <!-- AlertDialog style -->
-    <style name="CustomDialogTheme" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
-        <!-- Used for the buttons, checkboxes -->
-        <item name="colorAccent">@color/colorTextGray</item>
-
-        <!-- Used for the title and text -->
-        <item name="android:textColorPrimary">@color/colorDialogText</item>
-
-        <!-- Used for the background -->
-        <item name="android:background">@color/colorBrokeWhite</item>
-    </style>
 
     <style name="customTimePickerTheme" parent="android:style/Widget.Material.Light.TimePicker">
         <item name="android:numbersTextColor">#fff</item>
