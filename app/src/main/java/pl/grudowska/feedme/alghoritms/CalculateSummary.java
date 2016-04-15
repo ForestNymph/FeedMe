@@ -64,15 +64,15 @@ public class CalculateSummary {
 
         List<SummaryResult> results = new ArrayList<>();
         results.add(new SummaryResult("Total Energy: ", (int) kcal, " kcal"));
-        results.add(new SummaryResult("Total Weight: ", (int) amount, " gram"));
-        results.add(new SummaryResult("Total Protein (B): ", (int) protein, " gram"));
-        results.add(new SummaryResult("Total Carbohydrate (W): ", (int) carbohydrates, " gram"));
-        results.add(new SummaryResult("Total Fat (T): ", (int) fats, " gram"));
-        results.add(new SummaryResult("Total Saturated fat: ", (int) saturated, " gram"));
-        results.add(new SummaryResult("Total Monosaturated: ", (int) monosaturated, " gram"));
-        results.add(new SummaryResult("Total Omega3: ", (int) omega3, " gram"));
-        results.add(new SummaryResult("Total Omega6: ", (int) omega6, " gram"));
-        results.add(new SummaryResult("Total Fiber (N): ", (int) fiber, " gram"));
+        results.add(new SummaryResult("Total Weight: ", (int) amount, " gramm"));
+        results.add(new SummaryResult("Total Protein (B): ", (int) protein, " gramm"));
+        results.add(new SummaryResult("Total Carbohydrate (W): ", (int) carbohydrates, " gramm"));
+        results.add(new SummaryResult("Total Fat (T): ", (int) fats, " gramm"));
+        results.add(new SummaryResult("Total Saturated fat: ", (int) saturated, " gramm"));
+        results.add(new SummaryResult("Total Monosaturated: ", (int) monosaturated, " gramm"));
+        results.add(new SummaryResult("Total Omega3: ", (int) omega3, " gramm"));
+        results.add(new SummaryResult("Total Omega6: ", (int) omega6, " gramm"));
+        results.add(new SummaryResult("Total Fiber (N): ", (int) fiber, " gramm"));
 
         return results;
     }

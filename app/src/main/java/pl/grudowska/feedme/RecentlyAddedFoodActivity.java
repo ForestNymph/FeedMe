@@ -59,13 +59,13 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                 mAddedProductsDataSource = new ProductDataSource(getApplicationContext());
                 mAddedProductsDataSource.open();
 
-                String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
-                String content = ArchivedListFormatterManager.createMailContent(getApplicationContext());
                 // If recently added product list is empty do nothing
                 if (mAddedProductsDataSource.getAllAddedProducts().size() == 0) {
                     Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_SHORT).show();
                     // do nothing
                 } else {
+                    String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
+                    String content = ArchivedListFormatterManager.createMailContent(getApplicationContext());
                     sendDailySummaryEmail(date, content);
                     Toast.makeText(getApplicationContext(), R.string.sent_message, Toast.LENGTH_SHORT).show();
                 }

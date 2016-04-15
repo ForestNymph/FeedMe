@@ -56,7 +56,7 @@ public class ArchivedListFormatterManager {
         initializeDataSource(context);
 
         // get only needed data (product name and amount)
-        String contentMail = "";
+        String contentMail = "\nProducts:\n";
         for (int i = 0; i < mValues.size(); ++i) {
             contentMail += mValues.get(i).getName();
             contentMail += " ";
@@ -69,7 +69,7 @@ public class ArchivedListFormatterManager {
 
     static private String addSummary(Context context) {
         List<SummaryResult> summary = CalculateSummary.calculate(context);
-        String result = "/nSummary:/n";
+        String result = "\nSummary:\n";
         for (int i = 0; i < summary.size(); ++i) {
             SummaryResult res = summary.get(i);
             result += res.getResultType();
