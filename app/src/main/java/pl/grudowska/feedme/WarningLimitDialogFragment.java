@@ -28,7 +28,7 @@ public class WarningLimitDialogFragment extends DialogFragment {
         builder.setView(view);
 
         int limit = CalculateSummary.getTotalKcal(getActivity()) -
-                SharedPreferencesManager.loadDataInt(getActivity(), "limit", 0);
+                SharedPreferencesManager.loadDataInt(getActivity(), "limit", 2300);
 
         TextView limitCurrent = (TextView) view.findViewById(R.id.exceeded_by);
         limitCurrent.setText(limit + "");

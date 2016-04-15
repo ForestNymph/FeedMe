@@ -13,23 +13,23 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 
 import java.util.List;
 
-import pl.grudowska.feedme.databases.AllSentFood;
-import pl.grudowska.feedme.databases.AllSentFoodDataSource;
+import pl.grudowska.feedme.databases.ArchivedProduct;
+import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> {
 
     private final Context mContext;
-    private List<AllSentFood> mValues;
+    private List<ArchivedProduct> mValues;
 
     public ArchivedListItemAdapter(final Context context) {
         super(context, R.layout.content_archived_card_content, R.id.card_title, R.id.card_content);
         mContext = context;
 
         // Get all data from SQL DB
-        AllSentFoodDataSource sentDataSource = new AllSentFoodDataSource(context);
+        ArchivedProductDataSource sentDataSource = new ArchivedProductDataSource(context);
         sentDataSource.open();
-        mValues = sentDataSource.getAllSentLists();
+        mValues = sentDataSource.getAllArchivedLists();
         sentDataSource.close();
 
         for (int i = 0; i < mValues.size(); ++i) {
@@ -71,14 +71,16 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
             convertView = LayoutInflater.from(mContext).inflate(R.layout.content_archived_card_content, parent, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.fullday_list_tv = (TextView) convertView.findViewById(R.id.card_content_sent_lists_tv);
+            viewHolder.product_list_tv = (TextView) convertView.findViewById(R.id.card_product_list_tv);
+            viewHolder.amount_list_tv = (TextView) convertView.findViewById(R.id.card_amount_list_tv);
             viewHolder.resend_btn = (Button) convertView.findViewById(R.id.resend_btn);
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.fullday_list_tv.setText(mValues.get(position).getContent());
+        viewHolder.product_list_tv.setText(mValues.get(position).getContentName());
+        viewHolder.amount_list_tv.setText(mValues.get(position).getContentAmount());
         setListeners(viewHolder, position);
 
         return convertView;
@@ -88,7 +90,7 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
         viewHolder.resend_btn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                new EmailManager(mContext, mValues.get(position).getDate(), mValues.get(position).getContent());
+                new EmailManager(mContext, mValues.get(position).getDate(), mValues.get(position).getContentFull());
                 Toast.makeText(mContext, R.string.sent_message, Toast.LENGTH_LONG).show();
             }
         });
@@ -98,7 +100,8 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
     private static class ViewHolder {
         TextView date_tv;
         TextView kcal_summary_tv;
-        TextView fullday_list_tv;
+        TextView product_list_tv;
+        TextView amount_list_tv;
         Button resend_btn;
     }
 }

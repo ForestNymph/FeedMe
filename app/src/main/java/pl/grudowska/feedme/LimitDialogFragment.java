@@ -33,7 +33,7 @@ public class LimitDialogFragment extends DialogFragment {
         builder.setView(view);
 
         TextView limitCurrent = (TextView) view.findViewById(R.id.limit_current);
-        int limitInt = SharedPreferencesManager.loadDataInt(getActivity(), "limit", 2400);
+        int limitInt = SharedPreferencesManager.loadDataInt(getActivity(), "limit", 2300);
 
         String limitText = limitInt + " kCal";
         limitCurrent.append(limitText);

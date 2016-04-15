@@ -8,15 +8,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
-import pl.grudowska.feedme.databases.AllSentFoodDataSource;
+import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.utils.ArchivedListFormatterManager;
 import pl.grudowska.feedme.utils.EmailManager;
-import pl.grudowska.feedme.utils.MailFormatterManager;
 
 public class DailySummaryEmailIntentService extends IntentService {
 
     private ProductDataSource mAddedProductDataSource;
-    private AllSentFoodDataSource mSentDataSource;
+    private ArchivedProductDataSource mSentDataSource;
 
     public DailySummaryEmailIntentService() {
         super("DailySummaryEmailIntentService");
@@ -30,19 +30,25 @@ public class DailySummaryEmailIntentService extends IntentService {
         // Open DB's
         mAddedProductDataSource = new ProductDataSource(getApplicationContext());
         mAddedProductDataSource.open();
-        mSentDataSource = new AllSentFoodDataSource(getApplicationContext());
+        mSentDataSource = new ArchivedProductDataSource(getApplicationContext());
         mSentDataSource.open();
 
-        String content = MailFormatterManager.getAllAddedProductsToMail(getApplicationContext());
         String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
+        String contentFull = ArchivedListFormatterManager.createContentFull(getApplicationContext());
+        String mailContent = ArchivedListFormatterManager.createMailContent(getApplicationContext());
+        String contentName =
+                ArchivedListFormatterManager.createContentNames(getApplicationContext());
+        String contentAmount =
+                ArchivedListFormatterManager.createContentAmounts(getApplicationContext());
+        int totalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
 
         // If recently added product list is empty do nothing
         if (mAddedProductDataSource.getAllAddedProducts().size() == 0) {
             // do nothing
         } else {
             Log.d(getClass().getSimpleName(), "Preparing and sending email");
-            sendDailySummaryEmail(date, content);
-            moveRecentlyAddedToSentDB(date, content, CalculateSummary.getTotalKcal(getApplicationContext()));
+            sendDailySummaryEmail(date, mailContent);
+            archiveRecentlyAddedList(date, contentFull, contentName, contentAmount, totalKcal);
             clearRecentlyAddedDB();
         }
         // Close DB's
@@ -54,8 +60,8 @@ public class DailySummaryEmailIntentService extends IntentService {
         new EmailManager(getApplicationContext(), date, content);
     }
 
-    private void moveRecentlyAddedToSentDB(String date, String content, int kcal) {
-        mSentDataSource.createSentItem(date, content, kcal);
+    private void archiveRecentlyAddedList(String date, String contentFull, String contentName, String contentAmount, int totalKcal) {
+        mSentDataSource.createArchivedItem(date, contentFull, contentName, contentAmount, totalKcal);
     }
 
     private void clearRecentlyAddedDB() {

@@ -21,8 +21,8 @@ import java.util.List;
 
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.utils.ArchivedListFormatterManager;
 import pl.grudowska.feedme.utils.EmailManager;
-import pl.grudowska.feedme.utils.MailFormatterManager;
 
 public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDismissCallback {
 
@@ -59,9 +59,8 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                 mAddedProductsDataSource = new ProductDataSource(getApplicationContext());
                 mAddedProductsDataSource.open();
 
-                String content = MailFormatterManager.getAllAddedProductsToMail(getApplicationContext());
                 String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
-
+                String content = ArchivedListFormatterManager.createMailContent(getApplicationContext());
                 // If recently added product list is empty do nothing
                 if (mAddedProductsDataSource.getAllAddedProducts().size() == 0) {
                     Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_SHORT).show();

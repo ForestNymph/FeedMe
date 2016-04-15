@@ -20,6 +20,7 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 
 import java.util.List;
 
+import pl.grudowska.feedme.data.ExampleDataLoader;
 import pl.grudowska.feedme.data.ProductsDataLoader;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
@@ -54,7 +55,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
         refresh_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductsDataLoader.inflateProductType(getApplicationContext());
+                // ProductsDataLoader.inflateProductType(getApplicationContext());
+                ExampleDataLoader.inflateProductType(getApplicationContext());
                 mFoodCardsAdapter.refreshDataSource();
             }
         });

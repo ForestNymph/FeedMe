@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import pl.grudowska.feedme.databases.AllSentFoodDataSource;
+import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 
 public class DeleteDialogFragment extends DialogFragment {
 
@@ -28,13 +28,13 @@ public class DeleteDialogFragment extends DialogFragment {
         builder.setView(deleteDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        AllSentFoodDataSource dataSource = new AllSentFoodDataSource(getActivity());
+                        ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getActivity());
                         dataSource.open();
-                        if (dataSource.getAllSentLists().size() == 0) {
+                        if (dataSource.getAllArchivedLists().size() == 0) {
                             mListener.onClearItemsCommand(false);
                             // do nothing
                         } else {
-                            dataSource.deleteAllItems();
+                            dataSource.deleteAllArchivedItems();
                             mListener.onClearItemsCommand(true);
                         }
                         dataSource.close();

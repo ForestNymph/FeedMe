@@ -139,7 +139,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
     }
 
     private void ifCalorieLimitExceeded() {
-        if (CalculateSummary.getTotalKcal(mContext) > SharedPreferencesManager.loadDataInt(mContext, "limit", 0)) {
+        if (CalculateSummary.getTotalKcal(mContext) > SharedPreferencesManager.loadDataInt(mContext, "limit", 2300)) {
             FragmentActivity activity = (FragmentActivity) (mContext);
             FragmentManager fm = activity.getSupportFragmentManager();
             WarningLimitDialogFragment dialog = new WarningLimitDialogFragment();
