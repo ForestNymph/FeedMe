@@ -13,6 +13,13 @@ public class ArchivedListFormatterManager {
 
     static private List<Product> mValues;
 
+    static private void initializeDataSource(Context context) {
+        ProductDataSource mAddedProductsDataSource = new ProductDataSource(context);
+        mAddedProductsDataSource.open();
+        mValues = mAddedProductsDataSource.getAllAddedProducts();
+        mAddedProductsDataSource.close();
+    }
+
     static public String createContentNames(Context context) {
 
         initializeDataSource(context);
@@ -35,20 +42,6 @@ public class ArchivedListFormatterManager {
             allAmounts += " gramm\n";
         }
         return allAmounts;
-    }
-
-    static public String createContentFull(Context context) {
-
-        initializeDataSource(context);
-
-        String content = "";
-        for (int i = 0; i < mValues.size(); ++i) {
-            content += mValues.get(i).getName();
-            content += " ";
-            content += mValues.get(i).getAmount();
-            content += " gramm\n";
-        }
-        return content;
     }
 
     static public String createMailContent(Context context) {
@@ -80,12 +73,5 @@ public class ArchivedListFormatterManager {
             result += "\n";
         }
         return result;
-    }
-
-    static private void initializeDataSource(Context context) {
-        ProductDataSource mAddedProductsDataSource = new ProductDataSource(context);
-        mAddedProductsDataSource.open();
-        mValues = mAddedProductsDataSource.getAllAddedProducts();
-        mAddedProductsDataSource.close();
     }
 }

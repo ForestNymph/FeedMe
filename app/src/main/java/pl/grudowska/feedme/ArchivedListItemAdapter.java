@@ -90,7 +90,7 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
         viewHolder.resend_btn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                new EmailManager(mContext, mValues.get(position).getDate(), mValues.get(position).getContentFull());
+                new EmailManager(mContext, mValues.get(position).getDate(), mValues.get(position).getContentMail());
                 Toast.makeText(mContext, R.string.sent_message, Toast.LENGTH_LONG).show();
             }
         });

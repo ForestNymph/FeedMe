@@ -10,7 +10,7 @@ public class ArchivedProductDB_SQL extends SQLiteOpenHelper {
     public static final String TABLE_ARCHIVED = "archived";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_DATE = "archived_date";
-    public static final String COLUMN_CONTENT_FULL = "content_full";
+    public static final String COLUMN_CONTENT_MAIL = "content_mail";
     public static final String COLUMN_CONTENT_NAME = "content_name";
     public static final String COLUMN_CONTENT_AMOUNT = "content_amount";
     public static final String COLUMN_KCAL = "kcal";
@@ -22,7 +22,7 @@ public class ArchivedProductDB_SQL extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE = "create table "
             + TABLE_ARCHIVED + "(" + COLUMN_ID
             + " integer primary key autoincrement, " + COLUMN_DATE
-            + " text not null, " + COLUMN_CONTENT_FULL + " text not null, "
+            + " text not null, " + COLUMN_CONTENT_MAIL + " text not null, "
             + COLUMN_CONTENT_NAME + " text not null, " + COLUMN_CONTENT_AMOUNT
             + " text not null, " + COLUMN_KCAL + " integer);";
 

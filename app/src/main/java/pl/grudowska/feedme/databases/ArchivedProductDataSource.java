@@ -16,7 +16,7 @@ public class ArchivedProductDataSource {
     private SQLiteDatabase database;
     private ArchivedProductDB_SQL dbHelper;
     private String[] allColumns = {ArchivedProductDB_SQL.COLUMN_ID,
-            ArchivedProductDB_SQL.COLUMN_DATE, ArchivedProductDB_SQL.COLUMN_CONTENT_FULL,
+            ArchivedProductDB_SQL.COLUMN_DATE, ArchivedProductDB_SQL.COLUMN_CONTENT_MAIL,
             ArchivedProductDB_SQL.COLUMN_CONTENT_NAME,
             ArchivedProductDB_SQL.COLUMN_CONTENT_AMOUNT, ArchivedProductDB_SQL.COLUMN_KCAL};
 
@@ -32,10 +32,10 @@ public class ArchivedProductDataSource {
         dbHelper.close();
     }
 
-    public ArchivedProduct createArchivedItem(String date, String contentFull, String contentName, String contentAmount, int kcal) {
+    public ArchivedProduct createArchivedItem(String date, String contentMail, String contentName, String contentAmount, int kcal) {
         ContentValues values = new ContentValues();
         values.put(ArchivedProductDB_SQL.COLUMN_DATE, date);
-        values.put(ArchivedProductDB_SQL.COLUMN_CONTENT_FULL, contentFull);
+        values.put(ArchivedProductDB_SQL.COLUMN_CONTENT_MAIL, contentMail);
         values.put(ArchivedProductDB_SQL.COLUMN_CONTENT_NAME, contentName);
         values.put(ArchivedProductDB_SQL.COLUMN_CONTENT_AMOUNT, contentAmount);
         values.put(ArchivedProductDB_SQL.COLUMN_KCAL, kcal);
@@ -82,7 +82,7 @@ public class ArchivedProductDataSource {
         ArchivedProduct archive = new ArchivedProduct();
         archive.setId(cursor.getLong(0));
         archive.setDate(cursor.getString(1));
-        archive.setContentFull(cursor.getString(2));
+        archive.setContentMail(cursor.getString(2));
         archive.setContentName(cursor.getString(3));
         archive.setContentAmount(cursor.getString(4));
         archive.setKcal(cursor.getInt(5));

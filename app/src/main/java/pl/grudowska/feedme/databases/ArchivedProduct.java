@@ -4,7 +4,7 @@ public class ArchivedProduct {
 
     private long mId;
     private String mDate;
-    private String mFullContent;
+    private String mContentMail;
     private String mContentName;
     private String mContentAmount;
     private int mKcal;
@@ -41,12 +41,12 @@ public class ArchivedProduct {
         mContentAmount = amount;
     }
 
-    public String getContentFull() {
-        return mFullContent;
+    public String getContentMail() {
+        return mContentMail;
     }
 
-    public void setContentFull(String content) {
-        mFullContent = content;
+    public void setContentMail(String content) {
+        mContentMail = content;
     }
 
     public int getKcal() {
