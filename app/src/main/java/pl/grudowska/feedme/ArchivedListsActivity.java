@@ -40,23 +40,17 @@ public class ArchivedListsActivity extends AppCompatActivity implements DeleteDi
                 }
             }
         });
-
-
         AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mArchivedListItemAdapter);
         assert listView != null;
         alphaInAnimationAdapter.setAbsListView(listView);
-
         assert alphaInAnimationAdapter.getViewAnimator() != null;
         alphaInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
-
         listView.setAdapter(alphaInAnimationAdapter);
     }
 
     // Callback from DeleteDialogFragment
     @Override
-    public void onClearItemsCommand(Boolean remove) {
-        if (remove) {
-            mArchivedListItemAdapter.clear();
-        }
+    public void onClearItemsCommand() {
+        mArchivedListItemAdapter.clear();
     }
 }

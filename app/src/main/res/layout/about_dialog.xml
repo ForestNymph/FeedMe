@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_about"
                 android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/title_font_size" />
+                android:textSize="@dimen/text_font_size_20" />
         </LinearLayout>
 
     </LinearLayout>
@@ -50,13 +50,13 @@
             android:id="@+id/about_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="32sp"
+            android:layout_marginBottom="@dimen/text_margin_32"
             android:layout_marginEnd="@dimen/text_margin_32"
             android:layout_marginStart="@dimen/text_margin_32"
             android:layout_marginTop="0dp"
             android:text="@string/dialog_about_message"
             android:textColor="@color/colorDialogText"
-            android:textSize="16dp" />
+            android:textSize="@dimen/text_font_size_16" />
     </LinearLayout>
 </LinearLayout>
 

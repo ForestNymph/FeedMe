@@ -31,21 +31,18 @@ public class DeleteDialogFragment extends DialogFragment {
                         ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getActivity());
                         dataSource.open();
                         if (dataSource.getAllArchivedLists().size() == 0) {
-                            mListener.onClearItemsCommand(false);
                             // do nothing
                         } else {
                             dataSource.deleteAllArchivedItems();
-                            mListener.onClearItemsCommand(true);
+                            mListener.onClearItemsCommand();
                         }
                         dataSource.close();
-                        //mBundle.putBoolean("remove", true);
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 DeleteDialogFragment.this.getDialog().cancel();
             }
         });
-
         mDialog = builder.create();
 
         mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -57,7 +54,6 @@ public class DeleteDialogFragment extends DialogFragment {
                         .setTextColor(getResources().getColor(R.color.colorTextGray));
             }
         });
-        //setArguments(mBundle);
         return mDialog;
     }
 
@@ -73,6 +69,6 @@ public class DeleteDialogFragment extends DialogFragment {
 
     // Callback to communicate with activity
     public interface OnClearItemsCommandListener {
-        void onClearItemsCommand(Boolean remove);
+        void onClearItemsCommand();
     }
 }

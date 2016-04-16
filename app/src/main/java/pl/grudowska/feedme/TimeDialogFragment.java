@@ -20,9 +20,8 @@ import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class TimeDialogFragment extends DialogFragment {
 
-    private String mHourStr, mMinuteStr;
-    private int mHourInt, mMinuteInt;
     private AlertDialog mDialog;
+    private TimePicker mPicker;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -35,35 +34,27 @@ public class TimeDialogFragment extends DialogFragment {
         View timeDialogView = inflater.inflate(R.layout.time_dialog, null);
 
         TextView time = (TextView) timeDialogView.findViewById(R.id.time_current);
-        String timeText = SharedPreferencesManager.loadDataString(getActivity(), "time_hour_str", "00") + ":"
-                + (SharedPreferencesManager.loadDataString(getActivity(), "time_minute_str", "00"));
+        String timeText = SharedPreferencesManager.loadDataString(getActivity(), "time_hour_str", "23") + ":"
+                + (SharedPreferencesManager.loadDataString(getActivity(), "time_minute_str", "59"));
         time.append(timeText);
 
-        TimePicker picker = (TimePicker) timeDialogView.findViewById(R.id.picker_time_view);
-        picker.setIs24HourView(true);
-
-        picker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                mHourStr = hourOfDay + "";
-                mMinuteStr = (minute < 10) ? "0" + minute : minute + "";
-                mHourInt = hourOfDay;
-                mMinuteInt = minute;
-            }
-        });
+        mPicker = (TimePicker) timeDialogView.findViewById(R.id.picker_time_view);
+        mPicker.setIs24HourView(true);
 
         builder.setView(timeDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                SharedPreferencesManager.saveDataString(getActivity(), "time_hour_str", mHourStr);
-                                SharedPreferencesManager.saveDataString(getActivity(), "time_minute_str", mMinuteStr);
-                                SharedPreferencesManager.saveDataInt(getActivity(), "time_hour_int", mHourInt);
-                                SharedPreferencesManager.saveDataInt(getActivity(), "time_minute_int", mMinuteInt);
+                                int minute = mPicker.getCurrentMinute();
+                                int hour = mPicker.getCurrentHour();
+
+                                SharedPreferencesManager.saveDataString(getActivity(), "time_hour_str", hour + "");
+                                SharedPreferencesManager.saveDataString(getActivity(), "time_minute_str", (minute < 10) ? "0" + minute : minute + "");
+                                SharedPreferencesManager.saveDataInt(getActivity(), "time_hour_int", hour);
+                                SharedPreferencesManager.saveDataInt(getActivity(), "time_minute_int", minute);
 
                                 startDailySummaryEmailService();
                             }
                         }
-
                 ).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // do nothing
@@ -92,8 +83,8 @@ public class TimeDialogFragment extends DialogFragment {
         Intent alarmIntent = new Intent(getActivity(), DailySummaryEmailIntentService.class);
         PendingIntent pending = PendingIntent.getService(getActivity(), 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        int hour = SharedPreferencesManager.loadDataInt(getActivity(), "time_hour_int", 24);
-        int minute = SharedPreferencesManager.loadDataInt(getActivity(), "time_minute_int", 00);
+        int hour = SharedPreferencesManager.loadDataInt(getActivity(), "time_hour_int", 23);
+        int minute = SharedPreferencesManager.loadDataInt(getActivity(), "time_minute_int", 59);
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hour);

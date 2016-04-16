@@ -5,9 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
@@ -51,7 +49,6 @@ public class LimitDialogFragment extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
                         SharedPreferencesManager.saveDataInt(getActivity(), "limit", picker.getValue());
-                        Log.e("New value", "" + picker.getValue());
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -71,7 +68,6 @@ public class LimitDialogFragment extends DialogFragment {
                         .setTextColor(getResources().getColor(R.color.colorTextGray));
             }
         });
-
         return mDialog;
     }
 
@@ -84,8 +80,6 @@ public class LimitDialogFragment extends DialogFragment {
                 try {
                     pf.set(picker, getResources().getDrawable(R.color.colorBrokeWhite));
                 } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (Resources.NotFoundException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();

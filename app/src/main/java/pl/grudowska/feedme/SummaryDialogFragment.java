@@ -67,17 +67,29 @@ public class SummaryDialogFragment extends DialogFragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) mContext
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.summary_dialog_card, parent, false);
-            TextView product_textView = (TextView) rowView.findViewById(R.id.summary_product);
-            TextView amount_textView = (TextView) rowView.findViewById(R.id.summary_amount);
+            final ViewHolder viewHolder;
 
-            product_textView.setText(mResults.get(position).getResultType());
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.summary_dialog_row, parent, false);
+                viewHolder = new ViewHolder();
+
+                viewHolder.product_textView = (TextView) convertView.findViewById(R.id.summary_product);
+                viewHolder.amount_textView = (TextView) convertView.findViewById(R.id.summary_amount);
+
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+            viewHolder.product_textView.setText(mResults.get(position).getResultType());
             String amount = mResults.get(position).getAmount() + mResults.get(position).getUnit();
-            amount_textView.setText(amount);
+            viewHolder.amount_textView.setText(amount);
 
-            return rowView;
+            return convertView;
+        }
+
+        private class ViewHolder {
+            TextView product_textView;
+            TextView amount_textView;
         }
     }
 }

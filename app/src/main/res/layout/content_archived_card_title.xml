@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="start|center_vertical"
-        android:textSize="@dimen/title_font_size" />
+        android:textSize="@dimen/text_font_size_20" />
 
     <TextView
         android:id="@+id/card_title_kcal_tv"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
-        android:textSize="@dimen/title_font_size" />
+        android:textSize="@dimen/text_font_size_20" />
 </LinearLayout>
 
 

@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_warning"
                 android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/title_font_size" />
+                android:textSize="@dimen/text_font_size_20" />
 
         </LinearLayout>
 
@@ -54,7 +54,7 @@
             android:layout_marginTop="0dp"
             android:text="@string/limit_exceed"
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_small_font_size" />
+            android:textSize="@dimen/text_font_size_16" />
 
         <TextView
             android:id="@+id/exceeded_by"

@@ -63,7 +63,6 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
 
         assert alphaInAnimationAdapter.getViewAnimator() != null;
         alphaInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
-
         listView.setAdapter(alphaInAnimationAdapter);
     }
 }

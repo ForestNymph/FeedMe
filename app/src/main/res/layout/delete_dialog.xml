@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_remove"
                 android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/title_font_size" />
+                android:textSize="@dimen/text_font_size_20" />
         </LinearLayout>
 
     </LinearLayout>
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="@string/warning_delete_inf"
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_small_font_size" />
+            android:textSize="@dimen/text_font_size_16" />
     </LinearLayout>
 
 </LinearLayout>

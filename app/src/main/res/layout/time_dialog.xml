@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_time"
                 android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/title_font_size" />
+                android:textSize="@dimen/text_font_size_20" />
 
             <TextView
                 android:id="@+id/time_current"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="Current: "
                 android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/text_small_font_size" />
+                android:textSize="@dimen/text_font_size_16" />
         </LinearLayout>
 
     </LinearLayout>
@@ -58,13 +58,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/text_margin_32"
+            android:layout_marginBottom="@dimen/text_margin_16"
             android:layout_marginLeft="@dimen/text_margin_32"
             android:layout_marginRight="@dimen/text_margin_32"
             android:layout_marginTop="0dp"
-            android:text="@string/lorem_ipsum"
+            android:text="@string/time_message"
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_small_font_size" />
+            android:textSize="@dimen/text_font_size_16" />
 
     </LinearLayout>
 

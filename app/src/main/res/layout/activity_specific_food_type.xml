@@ -51,6 +51,6 @@
         android:gravity="center"
         android:text="DONE"
         android:textColor="@color/colorBrokeWhite"
-        android:textSize="@dimen/text_font_size" />
+        android:textSize="@dimen/text_font_size_18" />
 
 </android.support.design.widget.CoordinatorLayout>

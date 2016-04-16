@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLightOrange"
+    android:background="@color/colorGreen"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,7 +21,7 @@
             android:layout_marginEnd="@dimen/text_margin_32"
             android:layout_weight="1"
             android:contentDescription="@string/cd_image"
-            android:src="@drawable/summary" />
+            android:src="@drawable/about" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SUMMARY"
+                android:text="DETAILS"
                 android:textColor="@color/colorDialogText"
                 android:textSize="@dimen/text_font_size_20" />
         </LinearLayout>
@@ -48,17 +48,27 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/list_summmary"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <TextView
-            android:id="@+id/text_no_summmary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/colorBrokeWhite"
-            android:textSize="@dimen/text_font_size_18" />
+            android:text="Contains per 100g of product:"
+            android:textColor="@color/colorDialogText"
+            android:textSize="@dimen/text_font_size_20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/text_margin_32"
+        android:layout_marginEnd="@dimen/text_margin_32"
+        android:layout_marginStart="@dimen/text_margin_32"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/list_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 </LinearLayout>
 

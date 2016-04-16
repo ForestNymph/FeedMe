@@ -71,6 +71,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
             viewHolder.buttonView_3 = (Button) convertView.findViewById(R.id.button_default_three);
             viewHolder.buttonView_add = (Button) convertView.findViewById(R.id.button_add_custom_amount);
             viewHolder.editView = (EditText) convertView.findViewById(R.id.edittext_custom_amount);
+            viewHolder.buttonDetails = (Button) convertView.findViewById(R.id.button_details);
 
             convertView.setTag(viewHolder);
         } else {
@@ -120,6 +121,14 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
                 }
             }
         });
+        viewHolder.buttonDetails.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DetailsDialogFragment details = new DetailsDialogFragment();
+                FragmentActivity activity = (FragmentActivity) (mContext);
+                FragmentManager fm = activity.getSupportFragmentManager();
+                details.show(fm, mProduct.get(getItem(position)).getId() + "");
+            }
+        });
     }
 
     private void addProductToDB(int position, int amount) {
@@ -127,7 +136,6 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
         dataSource.open();
         Product product = dataSource.getProduct(mProduct.get(getItem(position)).getId());
         product.setAmount(amount);
-        assert product != null;
         dataSource.createSimpleAddedProduct(product);
         dataSource.close();
     }
@@ -143,7 +151,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
             FragmentActivity activity = (FragmentActivity) (mContext);
             FragmentManager fm = activity.getSupportFragmentManager();
             WarningLimitDialogFragment dialog = new WarningLimitDialogFragment();
-            dialog.show(fm, "fragment_alert");
+            dialog.show(fm, "");
         }
     }
 
@@ -154,5 +162,6 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
         Button buttonView_3;
         Button buttonView_add;
         EditText editView;
+        Button buttonDetails;
     }
 }

@@ -14,13 +14,14 @@
     <!-- Default margin/padding size -->
     <dimen name="text_margin_32">32sp</dimen>
     <dimen name="text_margin_16">16sp</dimen>
-    <dimen name="text_padding">16sp</dimen>
+    <dimen name="text_margin_4">4sp</dimen>
+    <dimen name="text_padding_16">16sp</dimen>
 
     <dimen name="icon_image_dialog">70sp</dimen>
 
     <!-- Default font size -->
-    <dimen name="text_font_size">18sp</dimen>
-    <dimen name="text_small_font_size">16sp</dimen>
-    <dimen name="title_font_size">20sp</dimen>
-    <dimen name="button_font_size">18sp</dimen>
+    <dimen name="text_font_size_16">16sp</dimen>
+    <dimen name="text_font_size_18">18sp</dimen>
+    <dimen name="text_font_size_20">20sp</dimen>
+    <dimen name="text_font_size_22">22sp</dimen>
 </resources>

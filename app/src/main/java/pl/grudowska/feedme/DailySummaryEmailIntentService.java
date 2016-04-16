@@ -33,16 +33,15 @@ public class DailySummaryEmailIntentService extends IntentService {
         mSentDataSource = new ArchivedProductDataSource(getApplicationContext());
         mSentDataSource.open();
 
-        String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
-        String contentMail = ArchivedListFormatterManager.createMailContent(getApplicationContext());
-        String contentName = ArchivedListFormatterManager.createContentNames(getApplicationContext());
-        String contentAmount = ArchivedListFormatterManager.createContentAmounts(getApplicationContext());
-        int totalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
-
         // If recently added product list is empty do nothing
         if (mAddedProductDataSource.getAllAddedProducts().size() == 0) {
             // do nothing
         } else {
+            String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
+            String contentMail = ArchivedListFormatterManager.createMailContent(getApplicationContext());
+            String contentName = ArchivedListFormatterManager.createContentNames(getApplicationContext());
+            String contentAmount = ArchivedListFormatterManager.createContentAmounts(getApplicationContext());
+            int totalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
             Log.d(getClass().getSimpleName(), "Preparing and sending email");
             sendDailySummaryEmail(date, contentMail);
             archiveRecentlyAddedList(date, contentMail, contentName, contentAmount, totalKcal);
