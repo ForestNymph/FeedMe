@@ -43,15 +43,19 @@ public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.content_recentlyadded_card, parent, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.textView_name = (TextView) convertView.findViewById(R.id.activity_card_summary_left_textview);
-            viewHolder.textView_amount = (TextView) convertView.findViewById(R.id.activity_card_summary_right_imageview);
+            viewHolder.textView_name = (TextView) convertView.findViewById(R.id.card_recently_name_textview);
+            viewHolder.textView_amount = (TextView) convertView.findViewById(R.id.card_recently_amount_textview);
+            viewHolder.textView_kcal = (TextView) convertView.findViewById(R.id.card_recently_kcal_textview);
             convertView.setTag(viewHolder);
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.textView_name.setText(mValues.get(getItem(position)).getName());
-        String amount = mValues.get(getItem(position)).getAmount() + " gramm";
+        Product prod = mValues.get(getItem(position));
+        viewHolder.textView_name.setText(prod.getName());
+        String kcal = prod.getKcalRelatedWithAmount() + " kcal";
+        viewHolder.textView_kcal.setText(kcal);
+        String amount = prod.getAmount() + " g";
         viewHolder.textView_amount.setText(amount);
 
         return convertView;
@@ -60,6 +64,7 @@ public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
     private static class ViewHolder {
         TextView textView_name;
+        TextView textView_kcal;
         TextView textView_amount;
     }
 }

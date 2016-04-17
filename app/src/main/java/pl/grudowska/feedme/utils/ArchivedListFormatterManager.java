@@ -39,7 +39,7 @@ public class ArchivedListFormatterManager {
         String allAmounts = "";
         for (int i = 0; i < mValues.size(); ++i) {
             allAmounts += mValues.get(i).getAmount();
-            allAmounts += " gramm\n";
+            allAmounts += " g\n";
         }
         return allAmounts;
     }
@@ -48,13 +48,17 @@ public class ArchivedListFormatterManager {
 
         initializeDataSource(context);
 
-        // get only needed data (product name and amount)
+        Product prod;
+        // get only needed data (product name, kcal and amount)
         String contentMail = "\nProducts:\n";
         for (int i = 0; i < mValues.size(); ++i) {
-            contentMail += mValues.get(i).getName();
-            contentMail += " ";
-            contentMail += mValues.get(i).getAmount();
-            contentMail += " gramm\n";
+            prod = mValues.get(i);
+            contentMail += prod.getName();
+            contentMail += "\n  ";
+            contentMail += prod.getKcalRelatedWithAmount();
+            contentMail += " kcal\n  ";
+            contentMail += prod.getAmount();
+            contentMail += " g\n";
         }
         contentMail += addSummary(context);
         return contentMail;
@@ -63,8 +67,9 @@ public class ArchivedListFormatterManager {
     static private String addSummary(Context context) {
         List<SummaryResult> summary = CalculateSummary.calculate(context);
         String result = "\nSummary:\n";
+        SummaryResult res;
         for (int i = 0; i < summary.size(); ++i) {
-            SummaryResult res = summary.get(i);
+            res = summary.get(i);
             result += res.getResultType();
             result += " ";
             result += res.getAmount();

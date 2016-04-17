@@ -7,11 +7,14 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
+    android:paddingEnd="4sp"
+    android:paddingStart="4sp"
+
     tools:showIn="@layout/content_archived_card_content">
 
     <TextView
         android:id="@+id/card_title_date_tv"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="start|center_vertical"
@@ -19,7 +22,7 @@
 
     <TextView
         android:id="@+id/card_title_kcal_tv"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end|center_vertical"

@@ -6,7 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorFiche"
     android:orientation="vertical"
-    android:padding="@dimen/text_padding_16"
+    android:paddingBottom="@dimen/text_padding_16"
+    android:paddingEnd="@dimen/text_padding_8"
+    android:paddingStart="@dimen/text_padding_8"
+    android:paddingTop="@dimen/text_padding_16"
     tools:ignore="overdraw">
 
     <include layout="@layout/content_archived_card_title" />
@@ -25,21 +28,19 @@
 
             <TextView
                 android:id="@+id/card_product_list_tv"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="Roboto"
-                android:gravity="start|center_horizontal"
-                android:textSize="@dimen/text_font_size_20" />
+                android:gravity="start|center_vertical"
+                android:textSize="@dimen/text_font_size_18" />
 
             <TextView
                 android:id="@+id/card_amount_list_tv"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="Roboto"
-                android:gravity="end|center_horizontal"
-                android:textSize="@dimen/text_font_size_20" />
+                android:gravity="end|center_vertical"
+                android:textSize="@dimen/text_font_size_18" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,16 +50,16 @@
             android:orientation="horizontal">
 
             <Space
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <Button
                 android:id="@+id/resend_btn"
-                style="@style/CustomGreenButtonTheme"
-                android:layout_width="match_parent"
+                style="@style/CustomGreenButtonResendTheme"
+                android:layout_width="0sp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:stateListAnimator="@null"
                 android:text="RESEND" />
 

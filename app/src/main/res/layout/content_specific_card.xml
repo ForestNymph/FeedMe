@@ -6,7 +6,10 @@
     android:layout_height="wrap_content"
     android:background="@color/colorFiche"
     android:orientation="vertical"
-    android:padding="@dimen/text_padding_16"
+    android:paddingBottom="@dimen/text_padding_16"
+    android:paddingEnd="@dimen/text_padding_8"
+    android:paddingStart="@dimen/text_padding_8"
+    android:paddingTop="@dimen/text_padding_16"
     tools:ignore="overdraw">
 
     <FrameLayout
@@ -35,7 +38,7 @@
             <Button
                 android:id="@+id/button_default_one"
                 style="@style/CustomYellowButtonTheme"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:stateListAnimator="@null"
@@ -44,7 +47,7 @@
             <Button
                 android:id="@+id/button_default_two"
                 style="@style/CustomYellowButtonTheme"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:stateListAnimator="@null"
@@ -53,7 +56,7 @@
             <Button
                 android:id="@+id/button_default_three"
                 style="@style/CustomYellowButtonTheme"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:stateListAnimator="@null"
@@ -64,22 +67,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/standard_margin"
             android:orientation="horizontal">
 
             <Space
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="4sp"
+                android:layout_marginStart="4sp"
                 android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/edittext_custom_amount"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="4sp"
+                android:layout_marginStart="4sp"
                 android:layout_weight="1"
                 android:hint="grammes"
                 android:inputType="number"
-                android:paddingBottom="@dimen/text_padding_16"
+
                 android:paddingEnd="@dimen/text_padding_16"
                 android:paddingStart="@dimen/text_padding_16"
                 android:singleLine="true"
@@ -89,7 +97,7 @@
             <Button
                 android:id="@+id/button_add_custom_amount"
                 style="@style/CustomRedButtonTheme"
-                android:layout_width="match_parent"
+                android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:stateListAnimator="@null"
@@ -106,14 +114,11 @@
             <Button
                 android:id="@+id/button_details"
                 style="@style/CustomGreenButtonTheme"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:stateListAnimator="@null"
                 android:text="@string/dialog_details" />
 
         </LinearLayout>
-
-
     </LinearLayout>
 </LinearLayout>

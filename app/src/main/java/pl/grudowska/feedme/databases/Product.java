@@ -147,6 +147,10 @@ public class Product {
         mAmount = amount;
     }
 
+    public int getKcalRelatedWithAmount() {
+        return (int) (mAmount / 100 * mKcal);
+    }
+
     // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {

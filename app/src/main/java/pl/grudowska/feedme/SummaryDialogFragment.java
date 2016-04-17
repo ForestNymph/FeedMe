@@ -75,6 +75,7 @@ public class SummaryDialogFragment extends DialogFragment {
 
                 viewHolder.product_textView = (TextView) convertView.findViewById(R.id.summary_product);
                 viewHolder.amount_textView = (TextView) convertView.findViewById(R.id.summary_amount);
+                viewHolder.percentage_textView = (TextView) convertView.findViewById(R.id.summary_percentage);
 
                 convertView.setTag(viewHolder);
             } else {
@@ -83,6 +84,7 @@ public class SummaryDialogFragment extends DialogFragment {
             viewHolder.product_textView.setText(mResults.get(position).getResultType());
             String amount = mResults.get(position).getAmount() + mResults.get(position).getUnit();
             viewHolder.amount_textView.setText(amount);
+            viewHolder.percentage_textView.setText("[0%]");
 
             return convertView;
         }
@@ -90,6 +92,7 @@ public class SummaryDialogFragment extends DialogFragment {
         private class ViewHolder {
             TextView product_textView;
             TextView amount_textView;
+            TextView percentage_textView;
         }
     }
 }

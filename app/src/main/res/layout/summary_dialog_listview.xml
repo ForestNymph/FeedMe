@@ -19,24 +19,17 @@
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_marginEnd="@dimen/text_margin_32"
-            android:layout_weight="1"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/summary" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="SUMMARY"
+            android:textColor="@color/colorDialogText"
+            android:textSize="@dimen/text_font_size_20" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SUMMARY"
-                android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/text_font_size_20" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

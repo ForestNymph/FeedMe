@@ -16,8 +16,9 @@
     <dimen name="text_margin_16">16sp</dimen>
     <dimen name="text_margin_4">4sp</dimen>
     <dimen name="text_padding_16">16sp</dimen>
+    <dimen name="text_padding_8">8sp</dimen>
 
-    <dimen name="icon_image_dialog">70sp</dimen>
+    <dimen name="icon_image_dialog">50sp</dimen>
 
     <!-- Default font size -->
     <dimen name="text_font_size_16">16sp</dimen>

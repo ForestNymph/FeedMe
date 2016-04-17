@@ -19,14 +19,12 @@
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_marginEnd="@dimen/text_margin_32"
-            android:layout_weight="1"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/time" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
@@ -64,7 +62,7 @@
             android:layout_marginTop="0dp"
             android:text="@string/time_message"
             android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_16" />
+            android:textSize="@dimen/text_font_size_18" />
 
     </LinearLayout>
 

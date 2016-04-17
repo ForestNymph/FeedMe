@@ -13,10 +13,11 @@
 
     <TextView
         android:id="@+id/summary_product"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:fontFamily="Roboto"
+        android:layout_marginEnd="@dimen/text_margin_4"
+        android:layout_marginStart="@dimen/text_margin_16"
+        android:layout_weight="2"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorBrokeWhite"
         android:textSize="@dimen/text_font_size_18"
@@ -24,10 +25,23 @@
 
     <TextView
         android:id="@+id/summary_amount"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/text_margin_4"
+        android:layout_marginStart="@dimen/text_margin_4"
         android:layout_weight="1"
-        android:fontFamily="Roboto"
+        android:gravity="end|center_vertical"
+        android:paddingRight="@dimen/text_padding_16"
+        android:textColor="@color/colorBrokeWhite"
+        android:textSize="@dimen/text_font_size_18" />
+
+    <TextView
+        android:id="@+id/summary_percentage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/text_margin_16"
+        android:layout_marginStart="@dimen/text_margin_4"
+        android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:paddingRight="@dimen/text_padding_16"
         android:textColor="@color/colorBrokeWhite"
