@@ -8,7 +8,7 @@ public class ProductHelperDB_SQL extends SQLiteOpenHelper {
 
     public static final String TABLE_PRODUCT = "products";
     public static final String TABLE_TYPE = "types";
-    public static final String TABLE_PRODUCT_TYPE = "products_type";
+    // public static final String TABLE_PRODUCT_TYPE = "products_type";
     public static final String TABLE_PRODUCT_ADDED = "products_added";
 
     // Columns in TABLE_PRODUCTS
@@ -54,9 +54,11 @@ public class ProductHelperDB_SQL extends SQLiteOpenHelper {
             + COLUMN_FATS_MONOUNSATURATED + " double, " + COLUMN_FATS_OMEGA3 + " double, "
             + COLUMN_FATS_OMEGA6 + " double, " + COLUMN_AMOUNT + " double);";
 
+    /*
     private static final String CREATE_TABLE_PRODUCT_TYPE = "create table "
             + TABLE_PRODUCT_TYPE + "(" + COLUMN_ID_PRODUCT_TYPE + " integer primary key autoincrement, "
             + COLUMN_ID_PROD + " integer, " + COLUMN_ID_TYPE + " integer);";
+    */
 
     private static final String CREATE_TABLE_PRODUCT_ADDED = "create table "
             + TABLE_PRODUCT_ADDED + "(" + COLUMN_ID_PROD
@@ -76,15 +78,15 @@ public class ProductHelperDB_SQL extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_TYPE);
         db.execSQL(CREATE_TABLE_PRODUCT);
-        db.execSQL(CREATE_TABLE_PRODUCT_TYPE);
         db.execSQL(CREATE_TABLE_PRODUCT_ADDED);
+        // db.execSQL(CREATE_TABLE_PRODUCT_TYPE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TYPE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT_TYPE);
+        // db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT_TYPE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT_ADDED);
         // create new tables
         onCreate(db);

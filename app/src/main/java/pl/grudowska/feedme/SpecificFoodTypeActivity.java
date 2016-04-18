@@ -14,7 +14,7 @@ import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter
 
 public class SpecificFoodTypeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_DELAY_MILLIS = 400;
+    private static final int INITIAL_DELAY_MILLIS = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +56,14 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        SpecificFoodTypeListItemAdapter mSpecificFoodTypeListItemAdapter = new SpecificFoodTypeListItemAdapter(this, value);
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mSpecificFoodTypeListItemAdapter);
+        SpecificFoodTypeListItemAdapter specificFoodTypeListItemAdapter = new SpecificFoodTypeListItemAdapter(this, value);
+        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(specificFoodTypeListItemAdapter);
         assert listView != null;
         alphaInAnimationAdapter.setAbsListView(listView);
 
         assert alphaInAnimationAdapter.getViewAnimator() != null;
         alphaInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
         listView.setAdapter(alphaInAnimationAdapter);
+        listView.setAdapter(specificFoodTypeListItemAdapter);
     }
 }

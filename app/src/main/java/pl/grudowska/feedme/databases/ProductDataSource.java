@@ -152,12 +152,14 @@ public class ProductDataSource {
         return newType;
     }
 
+    /*
     private long createProductType(long productID, long typeID) {
         ContentValues values = new ContentValues();
         values.put(ProductHelperDB_SQL.COLUMN_ID_PROD, productID);
         values.put(ProductHelperDB_SQL.COLUMN_ID_TYPE, typeID);
         return database.insert(ProductHelperDB_SQL.TABLE_PRODUCT_TYPE, null, values);
     }
+    */
 
     public List<Product> getProductsByType(String typeName) {
         List<Product> products = new ArrayList<>();
@@ -245,8 +247,7 @@ public class ProductDataSource {
     public void deleteAll() {
         database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_PRODUCT);
         database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_TYPE);
-        database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_PRODUCT_TYPE);
-        database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_PRODUCT_ADDED);
+        // database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_PRODUCT_TYPE);
     }
 
     public void deleteAllAddedProducts() {

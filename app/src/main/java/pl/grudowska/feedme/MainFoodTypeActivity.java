@@ -56,7 +56,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
             public void onClick(View view) {
                 ProductsDataLoader.inflateProductType(getApplicationContext());
                 // ExampleDataLoader.inflateProductType(getApplicationContext());
-                mFoodCardsAdapter.refreshDataSource();
+                mFoodCardsAdapter.updateDataSet();
             }
         });
 
@@ -95,11 +95,11 @@ public class MainFoodTypeActivity extends AppCompatActivity
         swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
 
         listView.setAdapter(swingBottomInAnimationAdapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> l, View v, int position,
-                                    long id) {
+            public void onItemClick(AdapterView<?> l, View v, int position, long id) {
                 List<String> titles = ProductsDataLoader.getTypeTitles(getApplicationContext());
                 Intent intent = new Intent(getApplicationContext(), SpecificFoodTypeActivity.class);
                 intent.putExtra("FoodType", titles.get(position));

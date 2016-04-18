@@ -82,7 +82,8 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         return mMemoryCache.get(key);
     }
 
-    public void refreshDataSource() {
+    // after database update, view also needs to be refreshed
+    public void updateDataSet() {
         ProductDataSource dataSource = new ProductDataSource(mContext);
         dataSource.open();
         mProductType = dataSource.getAllTypes();
