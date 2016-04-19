@@ -8,6 +8,7 @@ import java.util.List;
 import pl.grudowska.feedme.SummaryResult;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.databases.SummaryRange;
 
 public class CalculateSummary {
 
@@ -62,16 +63,16 @@ public class CalculateSummary {
                                                          double omega3, double omega6, double amount) {
 
         List<SummaryResult> results = new ArrayList<>();
-        results.add(new SummaryResult("Total Energy: ", (int) kcal, " kcal"));
-        results.add(new SummaryResult("Total Weight: ", (int) amount, " g"));
-        results.add(new SummaryResult("Total Protein (B): ", (int) protein, " g"));
-        results.add(new SummaryResult("Total Carbohydrate (W): ", (int) carbohydrates, " g"));
-        results.add(new SummaryResult("Total Fat (T): ", (int) fats, " g"));
-        results.add(new SummaryResult("Total Saturated fat: ", (int) saturated, " g"));
-        results.add(new SummaryResult("Total Monosaturated: ", (int) monosaturated, " g"));
-        results.add(new SummaryResult("Total Omega3: ", (int) omega3, " g"));
-        results.add(new SummaryResult("Total Omega6: ", (int) omega6, " g"));
-        results.add(new SummaryResult("Total Fiber (N): ", (int) fiber, " g"));
+        results.add(new SummaryResult("Energy: ", "energy", (int) kcal, " kcal"));
+        results.add(new SummaryResult("Weight: ", "weight", (int) amount, " g"));
+        results.add(new SummaryResult("Protein (B): ", "protein", (int) protein, " g"));
+        results.add(new SummaryResult("Carbohydrate (W): ", "carbohydrates", (int) carbohydrates, " g"));
+        results.add(new SummaryResult("Fat (T): ", "fat", (int) fats, " g"));
+        results.add(new SummaryResult("Saturated fat: ", "saturated", (int) saturated, " g"));
+        results.add(new SummaryResult("Monosaturated: ", "monosaturated", (int) monosaturated, " g"));
+        results.add(new SummaryResult("Omega3: ", "omega3", (int) omega3, " g"));
+        results.add(new SummaryResult("Omega6: ", "omega6", (int) omega6, " g"));
+        results.add(new SummaryResult("Fiber (N): ", "fiber", (int) fiber, " g"));
 
         return results;
     }
@@ -92,5 +93,14 @@ public class CalculateSummary {
             kcal += addedProducts.get(i).getKcal() * factor;
         }
         return (int) kcal;
+    }
+
+    static public List<SummaryRange> getSummaryRange(Context context) {
+        ProductDataSource dataSource = new ProductDataSource(context);
+        dataSource.open();
+        List<SummaryRange> summaries = dataSource.getAllSummaries();
+        dataSource.close();
+
+        return summaries;
     }
 }

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
+import pl.grudowska.feedme.databases.SummaryRange;
 
 public class SummaryDialogFragment extends DialogFragment {
 
+    List<SummaryRange> mSummary;
     private AlertDialog mDialog;
 
     @Override
@@ -28,6 +31,9 @@ public class SummaryDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View summaryDialogView = inflater.inflate(R.layout.summary_dialog_listview, null);
+
+        mSummary = CalculateSummary.getSummaryRange(getActivity());
+
         ListView summaryListView;
         TextView summaryTextView;
 
@@ -81,12 +87,37 @@ public class SummaryDialogFragment extends DialogFragment {
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            viewHolder.product_textView.setText(mResults.get(position).getResultType());
-            String amount = mResults.get(position).getAmount() + mResults.get(position).getUnit();
+
+            SummaryResult result = mResults.get(position);
+
+            String name = "Total " + result.getResultType();
+            String amount = result.getAmount() + result.getUnit();
+
+            viewHolder.product_textView.setText(name);
             viewHolder.amount_textView.setText(amount);
             viewHolder.percentage_textView.setText("[0%]");
 
+            if (checkIfEnough(result.getSimpleName(), result.getAmount())) {
+                // default font color
+            } else {
+                viewHolder.amount_textView.setTextColor(Color.RED);
+                viewHolder.percentage_textView.setTextColor(Color.RED);
+                viewHolder.product_textView.setTextColor(Color.RED);
+            }
             return convertView;
+        }
+
+        private boolean checkIfEnough(String resName, int resAmount) {
+            for (int i = 0; i < mSummary.size(); ++i) {
+                if (mSummary.get(i).getTypeName().equals(resName)) {
+                    if (mSummary.get(i).getMinRange() >= resAmount) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            }
+            return true;
         }
 
         private class ViewHolder {

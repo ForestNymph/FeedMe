@@ -25,6 +25,9 @@ public class ProductDataSource {
     private String[] typeColumns = {ProductHelperDB_SQL.COLUMN_ID_TYPE,
             ProductHelperDB_SQL.COLUMN_NAME_TYPE, ProductHelperDB_SQL.COLUMN_IMAGE_TYPE};
 
+    private String[] summaryColumns = {ProductHelperDB_SQL.COLUMN_ID_SUMMARY, ProductHelperDB_SQL.COLUMN_NAME_SUMMARY,
+            ProductHelperDB_SQL.COLUMN_MAX_SUMMARY, ProductHelperDB_SQL.COLUMN_MIN_SUMMARY};
+
     public ProductDataSource(Context context) {
         dbHelper = new ProductHelperDB_SQL(context);
     }
@@ -55,6 +58,23 @@ public class ProductDataSource {
                 product.getOmega6(),
                 product.getAmount());
         return copy;
+    }
+
+    public SummaryRange createSummaryRange(String name, int max, int min) {
+        ContentValues values = new ContentValues();
+        values.put(ProductHelperDB_SQL.COLUMN_NAME_SUMMARY, name);
+        values.put(ProductHelperDB_SQL.COLUMN_MAX_SUMMARY, max);
+        values.put(ProductHelperDB_SQL.COLUMN_MIN_SUMMARY, min);
+
+        long productId = database.insert(ProductHelperDB_SQL.TABLE_SUMMARY, null, values);
+        Cursor cursor = database.query(ProductHelperDB_SQL.TABLE_SUMMARY,
+                summaryColumns, ProductHelperDB_SQL.COLUMN_ID_SUMMARY + " = " + productId, null,
+                null, null, null);
+        cursor.moveToFirst();
+        SummaryRange newSummary = cursorToSummary(cursor);
+        cursor.close();
+
+        return newSummary;
     }
 
     public Product createAddedProduct(String type, String name, int def1, int def2, int def3, double kcal, double protein,
@@ -228,6 +248,22 @@ public class ProductDataSource {
         return products;
     }
 
+    public List<SummaryRange> getAllSummaries() {
+        List<SummaryRange> summaries = new ArrayList<>();
+
+        Cursor cursor = database.query(ProductHelperDB_SQL.TABLE_SUMMARY,
+                summaryColumns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            SummaryRange summary = cursorToSummary(cursor);
+            summaries.add(summary);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return summaries;
+    }
+
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
 
@@ -247,6 +283,7 @@ public class ProductDataSource {
     public void deleteAll() {
         database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_PRODUCT);
         database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_TYPE);
+        database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_SUMMARY);
         // database.execSQL("delete from " + ProductHelperDB_SQL.TABLE_PRODUCT_TYPE);
     }
 
@@ -260,25 +297,35 @@ public class ProductDataSource {
     }
 
     private Product cursorToProduct(Cursor cursor) {
-        Product type = new Product();
-        type.setId(cursor.getLong(0));
-        type.setType(cursor.getString(1));
-        type.setName(cursor.getString(2));
-        type.setDef1(cursor.getInt(3));
-        type.setDef2(cursor.getInt(4));
-        type.setDef3(cursor.getInt(5));
-        type.setKcal(cursor.getDouble(6));
-        type.setProtein(cursor.getDouble(7));
-        type.setCarbohydrates(cursor.getDouble(8));
-        type.setFiber(cursor.getDouble(9));
-        type.setFats(cursor.getDouble(10));
-        type.setFatsSaturated(cursor.getDouble(11));
-        type.setFatsMonounsaturated(cursor.getDouble(12));
-        type.setOmega3(cursor.getDouble(13));
-        type.setOmega6(cursor.getDouble(14));
-        type.setAmount(cursor.getDouble(15));
+        Product product = new Product();
+        product.setId(cursor.getLong(0));
+        product.setType(cursor.getString(1));
+        product.setName(cursor.getString(2));
+        product.setDef1(cursor.getInt(3));
+        product.setDef2(cursor.getInt(4));
+        product.setDef3(cursor.getInt(5));
+        product.setKcal(cursor.getDouble(6));
+        product.setProtein(cursor.getDouble(7));
+        product.setCarbohydrates(cursor.getDouble(8));
+        product.setFiber(cursor.getDouble(9));
+        product.setFats(cursor.getDouble(10));
+        product.setFatsSaturated(cursor.getDouble(11));
+        product.setFatsMonounsaturated(cursor.getDouble(12));
+        product.setOmega3(cursor.getDouble(13));
+        product.setOmega6(cursor.getDouble(14));
+        product.setAmount(cursor.getDouble(15));
 
-        return type;
+        return product;
+    }
+
+    private SummaryRange cursorToSummary(Cursor cursor) {
+        SummaryRange summary = new SummaryRange();
+        summary.setId(cursor.getLong(0));
+        summary.setTypeName(cursor.getString(1));
+        summary.setMaxRange(cursor.getInt(2));
+        summary.setMinRange(cursor.getInt(3));
+
+        return summary;
     }
 
     private ProductType cursorToType(Cursor cursor) {
