@@ -19,8 +19,8 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:background="@color/colorLightOrange">
+            android:background="@color/colorLightOrange"
+            android:fitsSystemWindows="true">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -47,10 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:layout_gravity="bottom"
-        android:background="#1AB244"
+        android:background="@color/colorGreen"
         android:gravity="center"
         android:text="DONE"
         android:textColor="@color/colorBrokeWhite"
         android:textSize="@dimen/text_font_size_18" />
-
 </android.support.design.widget.CoordinatorLayout>

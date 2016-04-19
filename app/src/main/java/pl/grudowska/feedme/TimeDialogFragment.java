@@ -8,7 +8,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,12 +92,12 @@ public class TimeDialogFragment extends DialogFragment {
         calendar.set(Calendar.SECOND, 00);
 
         // https://lab.getbase.com/androids-new-doze-and-app-standby/
-        if (Build.VERSION.SDK_INT <= 22) {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                    calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pending);
-        } else {
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    calendar.getTimeInMillis(), pending);
-        }
+        // if (Build.VERSION.SDK_INT <= 22) {
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pending);
+        // } else {
+        //    alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+        //            calendar.getTimeInMillis(), pending);
+        // }
     }
 }

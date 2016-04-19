@@ -28,15 +28,7 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         mContext = context;
         mMemoryCache = new BitmapCache();
 
-        // get size of database
-        ProductDataSource dataSource = new ProductDataSource(context);
-        dataSource.open();
-        mProductType = dataSource.getAllTypes();
-        dataSource.close();
-
-        for (int i = 0; i < mProductType.size(); i++) {
-            add(i);
-        }
+        updateDataSet();
     }
 
     @Override
@@ -89,6 +81,9 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         mProductType = dataSource.getAllTypes();
         dataSource.close();
 
+        for (int i = 0; i < mProductType.size(); i++) {
+            add(i);
+        }
         notifyDataSetChanged();
     }
 

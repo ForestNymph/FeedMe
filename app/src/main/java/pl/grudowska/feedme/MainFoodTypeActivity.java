@@ -86,6 +86,13 @@ public class MainFoodTypeActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.activity_main_listview);
         mFoodCardsAdapter = new MainFoodTypeListItemAdapter(this);
 
+        // when app is starting first time load all data from db
+        if (mFoodCardsAdapter.getCount() == 0) {
+            ProductsDataLoader.inflateProductType(getApplicationContext());
+            // ExampleDataLoader.inflateProductType(getApplicationContext());
+            mFoodCardsAdapter.updateDataSet();
+        }
+
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
                 new SwingBottomInAnimationAdapter(mFoodCardsAdapter);
         assert listView != null;
