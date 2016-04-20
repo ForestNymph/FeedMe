@@ -18,6 +18,7 @@ import java.util.List;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.SummaryRange;
+import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class SummaryDialogFragment extends DialogFragment {
 
@@ -32,7 +33,7 @@ public class SummaryDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View summaryDialogView = inflater.inflate(R.layout.summary_dialog_listview, null);
 
-        mSummary = CalculateSummary.getSummaryRange(getActivity());
+        mSummary = DatabaseManager.getSummariesProductDB(getActivity());
 
         ListView summaryListView;
         TextView summaryTextView;
@@ -98,11 +99,11 @@ public class SummaryDialogFragment extends DialogFragment {
             viewHolder.percentage_textView.setText("[0%]");
 
             if (checkIfEnough(result.getSimpleName(), result.getAmount())) {
-                // default font color
+
             } else {
-                viewHolder.amount_textView.setTextColor(Color.RED);
-                viewHolder.percentage_textView.setTextColor(Color.RED);
-                viewHolder.product_textView.setTextColor(Color.RED);
+                viewHolder.amount_textView.setTextColor(Color.rgb(180, 0, 0));
+                viewHolder.percentage_textView.setTextColor(Color.rgb(180, 0, 0));
+                viewHolder.product_textView.setTextColor(Color.rgb(180, 0, 0));
             }
             return convertView;
         }

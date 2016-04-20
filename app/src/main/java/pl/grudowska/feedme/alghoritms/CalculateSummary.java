@@ -7,16 +7,13 @@ import java.util.List;
 
 import pl.grudowska.feedme.SummaryResult;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataSource;
-import pl.grudowska.feedme.databases.SummaryRange;
+import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class CalculateSummary {
 
     public static List<SummaryResult> calculate(Context context) {
-        ProductDataSource dataSource = new ProductDataSource(context);
-        dataSource.open();
-        List<Product> addedProducts = dataSource.getAllAddedProducts();
-        dataSource.close();
+
+        List<Product> addedProducts = DatabaseManager.getAddedProductsDB(context);
 
         if (addedProducts.size() == 0) {
             return null;
@@ -79,10 +76,7 @@ public class CalculateSummary {
 
     static public int getTotalKcal(Context context) {
 
-        ProductDataSource dataSource = new ProductDataSource(context);
-        dataSource.open();
-        List<Product> addedProducts = dataSource.getAllAddedProducts();
-        dataSource.close();
+        List<Product> addedProducts = DatabaseManager.getAddedProductsDB(context);
 
         double constant = 100;
         double factor = 0;
@@ -93,14 +87,5 @@ public class CalculateSummary {
             kcal += addedProducts.get(i).getKcal() * factor;
         }
         return (int) kcal;
-    }
-
-    static public List<SummaryRange> getSummaryRange(Context context) {
-        ProductDataSource dataSource = new ProductDataSource(context);
-        dataSource.open();
-        List<SummaryRange> summaries = dataSource.getAllSummaries();
-        dataSource.close();
-
-        return summaries;
     }
 }

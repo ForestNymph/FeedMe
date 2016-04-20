@@ -14,7 +14,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 import java.util.List;
 
 import pl.grudowska.feedme.databases.ArchivedProduct;
-import pl.grudowska.feedme.databases.ArchivedProductDataSource;
+import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> {
@@ -26,11 +26,7 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
         super(context, R.layout.content_archived_card_content, R.id.card_title, R.id.card_content);
         mContext = context;
 
-        // Get all data from SQL DB
-        ArchivedProductDataSource sentDataSource = new ArchivedProductDataSource(context);
-        sentDataSource.open();
-        mValues = sentDataSource.getAllArchivedLists();
-        sentDataSource.close();
+        mValues = DatabaseManager.getArchivedProductsDB(context);
 
         for (int i = 0; i < mValues.size(); ++i) {
             add(i);

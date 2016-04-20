@@ -11,7 +11,7 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 import java.util.List;
 
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
 
@@ -21,17 +21,11 @@ public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
     RecentlyAddedFoodListItemAdapter(final Context context) {
         mContext = context;
 
-        // Open DB's
-        ProductDataSource dataSource = new ProductDataSource(mContext);
-        dataSource.open();
-
-        mValues = dataSource.getAllAddedProducts();
+        mValues = DatabaseManager.getAddedProductsDB(mContext);
 
         for (int i = 0; i < mValues.size(); ++i) {
             add(i);
         }
-        // Close DB's
-        dataSource.close();
     }
 
     @Override

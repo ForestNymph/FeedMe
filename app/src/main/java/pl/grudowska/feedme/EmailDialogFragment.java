@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
@@ -46,6 +47,7 @@ public class EmailDialogFragment extends DialogFragment {
                         } else {
                             SharedPreferencesManager.saveDataString(getActivity(), "password", password_value);
                         }
+                        Toast.makeText(getActivity(), "Email settings updated", Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

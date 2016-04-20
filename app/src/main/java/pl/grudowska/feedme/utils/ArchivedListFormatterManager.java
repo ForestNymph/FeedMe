@@ -7,22 +7,14 @@ import java.util.List;
 import pl.grudowska.feedme.SummaryResult;
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataSource;
 
 public class ArchivedListFormatterManager {
 
     static private List<Product> mValues;
 
-    static private void initializeDataSource(Context context) {
-        ProductDataSource mAddedProductsDataSource = new ProductDataSource(context);
-        mAddedProductsDataSource.open();
-        mValues = mAddedProductsDataSource.getAllAddedProducts();
-        mAddedProductsDataSource.close();
-    }
-
     static public String createContentNames(Context context) {
 
-        initializeDataSource(context);
+        mValues = DatabaseManager.getAddedProductsDB(context);
 
         String allNames = "";
         for (int i = 0; i < mValues.size(); ++i) {
@@ -34,7 +26,7 @@ public class ArchivedListFormatterManager {
 
     static public String createContentAmounts(Context context) {
 
-        initializeDataSource(context);
+        mValues = DatabaseManager.getAddedProductsDB(context);
 
         String allAmounts = "";
         for (int i = 0; i < mValues.size(); ++i) {
@@ -46,7 +38,7 @@ public class ArchivedListFormatterManager {
 
     static public String createMailContent(Context context) {
 
-        initializeDataSource(context);
+        mValues = DatabaseManager.getAddedProductsDB(context);
 
         Product prod;
         // get only needed data (product name, kcal and amount)

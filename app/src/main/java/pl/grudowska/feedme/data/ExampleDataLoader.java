@@ -8,15 +8,13 @@ import java.util.List;
 import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.databases.ProductType;
+import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class ExampleDataLoader {
 
     public static List<String> getTypeTitles(Context context) {
-        ProductDataSource dataSource = new ProductDataSource(context);
-        dataSource.open();
         List<String> titles = new ArrayList<>();
-        List<ProductType> type = dataSource.getAllTypes();
-        dataSource.close();
+        List<ProductType> type = DatabaseManager.getTypesProductDB(context);
 
         for (int i = 0; i < type.size(); ++i) {
             titles.add(type.get(i).getTypeName());

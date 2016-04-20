@@ -13,9 +13,9 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
-import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.utils.BitmapCache;
+import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
 
@@ -76,10 +76,8 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
 
     // after database update, view also needs to be refreshed
     public void updateDataSet() {
-        ProductDataSource dataSource = new ProductDataSource(mContext);
-        dataSource.open();
-        mProductType = dataSource.getAllTypes();
-        dataSource.close();
+
+        mProductType = DatabaseManager.getTypesProductDB(mContext);
 
         for (int i = 0; i < mProductType.size(); i++) {
             add(i);
