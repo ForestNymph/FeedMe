@@ -30,6 +30,7 @@ public class ExampleDataLoader {
             dataSource.deleteAll();
         }
 
+        // Type objects db: set type name and path to the image
         dataSource.createType("BREAD", R.drawable.bread);
         dataSource.createType("VEGETABLES", R.drawable.vegetables);
         dataSource.createType("MEAT", R.drawable.meat);
@@ -46,8 +47,19 @@ public class ExampleDataLoader {
         dataSource.createType("OILS", R.drawable.oils);
         dataSource.createType("MACARONI", R.drawable.macaroni);
 
-        // Example data
+        // Summary objects db: set name, max, min for element range
+        dataSource.createSummaryRange("energy", 2300, 1000);
+        dataSource.createSummaryRange("protein", 20, 10);
+        dataSource.createSummaryRange("carbohydrates", 20, 10);
+        dataSource.createSummaryRange("fat", 20, 10);
+        dataSource.createSummaryRange("saturated", 20, 10);
+        dataSource.createSummaryRange("monosaturated", 20, 10);
+        dataSource.createSummaryRange("omega3", 20, 10);
+        dataSource.createSummaryRange("omega6", 20, 10);
+        dataSource.createSummaryRange("fiber", 20, 10);
 
+        // Product object db: set type, name, default value for: button 1, 2, 3, kcal, protein, carbohydrates,
+        // fiber, fats, saturated, monounsaturated, omega3, omega6, amount
         dataSource.createProduct("DIARY", "smietana", 100, 200, 300, 134.000000, 2.700000, 3.900000, 0.000000, 12.000000, -1.000000, 0.000000, 0.000000, 0.000000, 0.000000);
         dataSource.createProduct("GRAINS", "ryz dziki", 100, 200, 300, 357.000000, 14.700000, 74.000000, 6.200000, 1.100000, -1.000000, 0.000000, 0.000000, 0.000000, 0.000000);
         dataSource.createProduct("FRUITS", "awokado", 100, 200, 300, 160.000000, 2.000000, 8.530000, 6.700000, 14.660000, 2.100000, 9.799000, 0.111000, 1.705000, 0.000000);
