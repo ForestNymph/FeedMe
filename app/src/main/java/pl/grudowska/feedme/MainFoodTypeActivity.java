@@ -49,7 +49,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
             }
         });
 
-        FloatingActionButton refresh_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
+                FloatingActionButton refresh_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
         assert refresh_fab != null;
         refresh_fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -53,6 +54,8 @@ public class TimeDialogFragment extends DialogFragment {
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_minute_int", minute);
 
                                 startDailySummaryEmailService();
+
+                                Toast.makeText(getActivity(), "Mail time updated", Toast.LENGTH_LONG).show();
                             }
                         }
                 ).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

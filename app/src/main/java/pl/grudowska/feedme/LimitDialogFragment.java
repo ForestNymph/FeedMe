@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
@@ -49,6 +50,8 @@ public class LimitDialogFragment extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
                         SharedPreferencesManager.saveDataInt(getActivity(), "limit", picker.getValue());
+
+                        Toast.makeText(getActivity(), "Calories limit updated", Toast.LENGTH_LONG).show();
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

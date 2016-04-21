@@ -27,6 +27,7 @@ public class ArchivedProductDB_SQL extends SQLiteOpenHelper {
             + " text not null, " + COLUMN_KCAL + " integer);";
 
     public ArchivedProductDB_SQL(Context context) {
+        //super(new DatabasePathCreator(context), DATABASE_NAME, null, DATABASE_VERSION);
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

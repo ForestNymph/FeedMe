@@ -43,8 +43,10 @@ public class ProductHelperDB_SQL extends SQLiteOpenHelper {
 
     // Column in TABLE_PRODUCT_TYPE
     // public static final String COLUMN_ID_PRODUCT_TYPE = "_id_product_type";
+
     private static final String DATABASE_NAME = "products.db";
     private static final int DATABASE_VERSION = 1;
+    private static final String FILE_DIR = "FeedMe/databases/";
 
     // Database creation sql statement
     private static final String CREATE_TABLE_TYPE = "create table "
@@ -85,6 +87,7 @@ public class ProductHelperDB_SQL extends SQLiteOpenHelper {
 
     public ProductHelperDB_SQL(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        // super(new DatabasePathCreator(context), DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
