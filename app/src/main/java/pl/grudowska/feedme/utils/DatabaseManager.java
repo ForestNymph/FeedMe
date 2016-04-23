@@ -7,7 +7,7 @@ import java.util.List;
 import pl.grudowska.feedme.databases.ArchivedProduct;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.databases.SummaryRange;
 
@@ -23,7 +23,7 @@ public class DatabaseManager {
     }
 
     public static List<Product> getAddedProductsDB(Context context) {
-        ProductDataSource dataSource = new ProductDataSource(context);
+        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
         dataSource.open();
         List<Product> values = dataSource.getAllAddedProducts();
         dataSource.close();
@@ -32,7 +32,7 @@ public class DatabaseManager {
     }
 
     public static List<ProductType> getTypesProductDB(Context context) {
-        ProductDataSource dataSource = new ProductDataSource(context);
+        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
         dataSource.open();
         List<ProductType> values = dataSource.getAllTypes();
         dataSource.close();
@@ -41,7 +41,7 @@ public class DatabaseManager {
     }
 
     public static List<SummaryRange> getSummariesProductDB(Context context) {
-        ProductDataSource dataSource = new ProductDataSource(context);
+        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
         dataSource.open();
         List<SummaryRange> values = dataSource.getAllSummaries();
         dataSource.close();

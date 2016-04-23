@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.ArchivedListFormatterManager;
 import pl.grudowska.feedme.utils.EmailManager;
 
@@ -29,7 +29,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     private static final int INITIAL_DELAY_MILLIS = 300;
     private int mSavedRowData;
     private RecentlyAddedFoodListItemAdapter mFoodSummaryAdapter;
-    private ProductDataSource mAddedProductsDataSource;
+    private SupplementaryInfoDataSource mAddedProductsDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
             @Override
             public void onClick(View view) {
                 // Open DB's
-                mAddedProductsDataSource = new ProductDataSource(getApplicationContext());
+                mAddedProductsDataSource = new SupplementaryInfoDataSource(getApplicationContext());
                 mAddedProductsDataSource.open();
 
                 // If recently added product list is empty do nothing
@@ -127,7 +127,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     }
 
     private void removeProductFromDB(int position) {
-        mAddedProductsDataSource = new ProductDataSource(this);
+        mAddedProductsDataSource = new SupplementaryInfoDataSource(this);
         mAddedProductsDataSource.open();
         List<Product> values = mAddedProductsDataSource.getAllAddedProducts();
         mAddedProductsDataSource.deleteAddedProduct(values.get(position));

@@ -6,7 +6,6 @@
 .DS_Store
 /build
 /captures
-app/src/main/java/pl/grudowska/feedme/data/ProductsDataLoader.java
 .idea
 .navigation*
 

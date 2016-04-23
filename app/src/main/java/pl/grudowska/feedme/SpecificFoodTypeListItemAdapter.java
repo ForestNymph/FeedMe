@@ -18,7 +18,8 @@ import java.util.List;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.databases.ProductDataBase;
+import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 
@@ -33,13 +34,18 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
 
         mContext = context;
 
-        ProductDataSource dataSource = new ProductDataSource(mContext);
-        dataSource.open();
-        mProduct = dataSource.getProductsByType(typeName);
-        dataSource.close();
+        ProductDataBase dataSource = new ProductDataBase(mContext);
+        try {
+            dataSource.openDataBase();
+            mProduct = dataSource.getProductsByType(typeName);
+            dataSource.close();
 
-        for (int i = 0; i < mProduct.size(); ++i) {
-            add(i);
+            for (int i = 0; i < mProduct.size(); ++i) {
+                add(i);
+            }
+        } catch (ProductDataBase.DatabaseNotExistException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, "The database must be updated", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -132,12 +138,19 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
     }
 
     private void addProductToDB(int position, int amount) {
-        ProductDataSource dataSource = new ProductDataSource(mContext);
-        dataSource.open();
-        Product product = dataSource.getProduct(mProduct.get(getItem(position)).getId());
+        ProductDataBase dataSourceProduct = new ProductDataBase(mContext);
+        SupplementaryInfoDataSource dataSourceDescription = new SupplementaryInfoDataSource(mContext);
+        try {
+            dataSourceProduct.openDataBase();
+        } catch (ProductDataBase.DatabaseNotExistException e) {
+            e.printStackTrace();
+        }
+        dataSourceDescription.open();
+        Product product = dataSourceProduct.getProduct(mProduct.get(getItem(position)).getId());
         product.setAmount(amount);
-        dataSource.createSimpleAddedProduct(product);
-        dataSource.close();
+        dataSourceDescription.createSimpleAddedProduct(product);
+        dataSourceProduct.close();
+        dataSourceDescription.close();
     }
 
     private void afterAddedProductAction(int position) {

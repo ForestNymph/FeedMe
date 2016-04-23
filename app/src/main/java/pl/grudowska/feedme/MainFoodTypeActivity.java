@@ -1,7 +1,9 @@
 package pl.grudowska.feedme;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,9 +20,18 @@ import android.widget.TextView;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
-import pl.grudowska.feedme.data.ProductsDataLoader;
+import pl.grudowska.feedme.data.AdditionalsDataLoader;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
@@ -54,9 +65,10 @@ public class MainFoodTypeActivity extends AppCompatActivity
         refresh_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductsDataLoader.inflateProductType(getApplicationContext());
-                // ExampleDataLoader.inflateProductType(getApplicationContext());
+                //AdditionalsDataLoader.inflateProductType(getApplicationContext());
                 mFoodCardsAdapter.updateDataSet();
+
+                //new DownloadDatabaseTask().execute("http://grudowska.pl");
             }
         });
 
@@ -88,8 +100,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
         // when app is starting first time load all data from db
         if (mFoodCardsAdapter.getCount() == 0) {
-            ProductsDataLoader.inflateProductType(getApplicationContext());
-            // ExampleDataLoader.inflateProductType(getApplicationContext());
+            AdditionalsDataLoader.inflateProductType(getApplicationContext());
             mFoodCardsAdapter.updateDataSet();
         }
 
@@ -107,7 +118,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
             @Override
             public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-                List<String> titles = ProductsDataLoader.getTypeTitles(getApplicationContext());
+                List<String> titles = AdditionalsDataLoader.getTypeTitles(getApplicationContext());
                 Intent intent = new Intent(getApplicationContext(), SpecificFoodTypeActivity.class);
                 intent.putExtra("FoodType", titles.get(position));
                 startActivity(intent);
@@ -178,4 +189,61 @@ public class MainFoodTypeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private class DownloadDatabaseTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(String... urls) {
+            URL url = null;
+            try {
+                url = new URL(urls[0]);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            URLConnection connection = null;
+            InputStream stream;
+            int lenghtOfFile = 0;
+            try {
+                connection = url.openConnection();
+                connection.connect();
+                stream = new BufferedInputStream(url.openStream(), 8080);
+                //lenghtOfFile = connection.getContentLength();
+                lenghtOfFile = 10;
+                File sdcard = Environment.getExternalStorageDirectory();
+                String dbfile = sdcard.getAbsolutePath() + File.separator + "databases" + File.separator;
+                OutputStream output = new FileOutputStream(dbfile);
+                byte data[] = new byte[lenghtOfFile];
+                long total = 0;
+                int count = 0;
+                while ((count = stream.read(data)) != -1) {
+                    total += count;
+
+                    // writing data to file
+                    output.write(data, 0, count);
+                }
+                // flushing output
+                output.flush();
+
+                // closing streams
+                output.close();
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void d) {
+            super.onPostExecute(d);
+            mFoodCardsAdapter.updateDataSet();
+        }
+    }
 }
+
+
+

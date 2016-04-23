@@ -12,12 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.databases.ProductDataBase;
 
 public class DetailsDialogFragment extends DialogFragment {
 
@@ -55,12 +56,17 @@ public class DetailsDialogFragment extends DialogFragment {
     }
 
     private List<Details> createDetailsList(String id) {
-        ProductDataSource dataSource = new ProductDataSource(getActivity());
-        dataSource.open();
+        ProductDataBase dataSource = new ProductDataBase(getActivity());
+        List<Details> details = new ArrayList<>();
+        try {
+            dataSource.openDataBase();
+        } catch (ProductDataBase.DatabaseNotExistException e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "The database must be updated", Toast.LENGTH_LONG).show();
+        }
         Product product = dataSource.getProduct(Long.parseLong(id));
         dataSource.close();
 
-        List<Details> details = new ArrayList<>();
         details.add(new Details("Energy: ", product.getKcal() + " kcal"));
         details.add(new Details("Protein: ", product.getProtein() + " g"));
         details.add(new Details("Carbohydrates: ", product.getCarbohydrates() + " g"));

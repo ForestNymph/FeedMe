@@ -9,13 +9,13 @@ import java.util.Date;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
-import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.ArchivedListFormatterManager;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class DailySummaryEmailIntentService extends IntentService {
 
-    private ProductDataSource mAddedProductDataSource;
+    private SupplementaryInfoDataSource mAddedProductDataSource;
     private ArchivedProductDataSource mSentDataSource;
 
     public DailySummaryEmailIntentService() {
@@ -28,7 +28,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         // String dataString = workIntent.getDataString();
 
         // Open DB's
-        mAddedProductDataSource = new ProductDataSource(getApplicationContext());
+        mAddedProductDataSource = new SupplementaryInfoDataSource(getApplicationContext());
         mAddedProductDataSource.open();
         mSentDataSource = new ArchivedProductDataSource(getApplicationContext());
         mSentDataSource.open();
