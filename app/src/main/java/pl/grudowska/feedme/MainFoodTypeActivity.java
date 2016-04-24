@@ -3,7 +3,6 @@ package pl.grudowska.feedme;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,21 +16,24 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 
 import java.io.BufferedInputStream;
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
 import pl.grudowska.feedme.data.AdditionalsDataLoader;
+import pl.grudowska.feedme.databases.ProductDataBase;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
@@ -65,10 +67,14 @@ public class MainFoodTypeActivity extends AppCompatActivity
         refresh_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //AdditionalsDataLoader.inflateProductType(getApplicationContext());
-                mFoodCardsAdapter.updateDataSet();
-
-                //new DownloadDatabaseTask().execute("http://grudowska.pl");
+                AdditionalsDataLoader.inflateProductType(getApplicationContext());
+                // Update dataset with types
+                if (mFoodCardsAdapter != null) {
+                    mFoodCardsAdapter.clear();
+                    mFoodCardsAdapter.updateDataSet();
+                }
+                // Update products database
+                new DownloadDatabaseTask().execute(ProductDataBase.DATABASE_ADDRESS + ProductDataBase.DATABASE_NAME);
             }
         });
 
@@ -181,8 +187,6 @@ public class MainFoodTypeActivity extends AppCompatActivity
         } else if (id == R.id.nav_time) {
             TimeDialogFragment dialog = new TimeDialogFragment();
             dialog.show(getFragmentManager(), "");
-        } else if (id == R.id.custom_meals) {
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
@@ -190,57 +194,80 @@ public class MainFoodTypeActivity extends AppCompatActivity
         return true;
     }
 
-    private class DownloadDatabaseTask extends AsyncTask<String, Void, Void> {
+    public enum StatusCode {
+        SUCCESS, FILE_NOT_FOUND, SERVER_DOWN, FAIL
+    }
+
+    private class DownloadDatabaseTask extends AsyncTask<String, Void, StatusCode> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            getApplicationContext().deleteDatabase(ProductDataBase.DATABASE_NAME);
         }
 
         @Override
-        protected Void doInBackground(String... urls) {
+        protected StatusCode doInBackground(String... urls) {
             URL url = null;
             try {
                 url = new URL(urls[0]);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-            URLConnection connection = null;
-            InputStream stream;
-            int lenghtOfFile = 0;
+            URLConnection connection;
+            InputStream input;
             try {
+                assert url != null;
                 connection = url.openConnection();
                 connection.connect();
-                stream = new BufferedInputStream(url.openStream(), 8080);
-                //lenghtOfFile = connection.getContentLength();
-                lenghtOfFile = 10;
-                File sdcard = Environment.getExternalStorageDirectory();
-                String dbfile = sdcard.getAbsolutePath() + File.separator + "databases" + File.separator;
-                OutputStream output = new FileOutputStream(dbfile);
-                byte data[] = new byte[lenghtOfFile];
-                long total = 0;
-                int count = 0;
-                while ((count = stream.read(data)) != -1) {
-                    total += count;
+                input = new BufferedInputStream(url.openStream(), ProductDataBase.DATABASE_ADDRESS_PORT);
 
-                    // writing data to file
+                String databasePath = getApplicationContext().getDatabasePath(ProductDataBase.DATABASE_NAME).toString();
+
+                OutputStream output = new FileOutputStream(databasePath);
+                byte data[] = new byte[1024];
+                int count;
+                while ((count = input.read(data)) != -1) {
                     output.write(data, 0, count);
                 }
-                // flushing output
                 output.flush();
-
-                // closing streams
                 output.close();
-                stream.close();
+                input.close();
+
+            } catch (ConnectException e) {
+                e.printStackTrace();
+                return StatusCode.SERVER_DOWN;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return StatusCode.FILE_NOT_FOUND;
             } catch (IOException e) {
                 e.printStackTrace();
+                return StatusCode.FAIL;
             }
-            return null;
+            return StatusCode.SUCCESS;
         }
 
         @Override
-        protected void onPostExecute(Void d) {
-            super.onPostExecute(d);
-            mFoodCardsAdapter.updateDataSet();
+        protected void onPostExecute(StatusCode status) {
+            super.onPostExecute(status);
+
+            switch (status) {
+                case SUCCESS: {
+                    Toast.makeText(getApplicationContext(), "Database has been successfully updated", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                case FILE_NOT_FOUND: {
+                    Toast.makeText(getApplicationContext(), "Missing file on the server", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                case SERVER_DOWN: {
+                    Toast.makeText(getApplicationContext(), "Server is down", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                case FAIL: {
+                    Toast.makeText(getApplicationContext(), "While update an error occurred", Toast.LENGTH_LONG).show();
+                    break;
+                }
+            }
         }
     }
 }

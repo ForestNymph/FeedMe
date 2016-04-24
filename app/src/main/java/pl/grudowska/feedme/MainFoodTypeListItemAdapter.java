@@ -76,10 +76,9 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
 
     // after database update, view also needs to be refreshed
     public void updateDataSet() {
-
         mProductType = DatabaseManager.getTypesProductDB(mContext);
 
-        for (int i = 0; i < mProductType.size(); i++) {
+        for (int i = 0; i < mProductType.size(); ++i) {
             add(i);
         }
         notifyDataSetChanged();

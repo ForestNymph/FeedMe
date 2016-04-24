@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +30,10 @@ public class ProductDataBase extends SQLiteOpenHelper {
     public static final String COLUMN_FATS_OMEGA6 = "COLUMN_FATS_OMEGA6";
     public static final String COLUMN_AMOUNT = "COLUMN_AMOUNT";
 
-    private static final String DATABASE_NAME = "products.db";
+    public static final String DATABASE_NAME = "products.db";
+    public static final String DATABASE_ADDRESS = "http://192.168.1.144:8090/files/";
+    public static final int DATABASE_ADDRESS_PORT = 8090;
+
     private static final int DATABASE_VERSION = 1;
     private static String DATABASE_PATH;
 
@@ -42,16 +44,14 @@ public class ProductDataBase extends SQLiteOpenHelper {
             COLUMN_FATS, COLUMN_FATS_SATURATED, COLUMN_FATS_MONOUNSATURATED,
             COLUMN_FATS_OMEGA3, COLUMN_FATS_OMEGA6, COLUMN_AMOUNT};
     private SQLiteDatabase mDataBase;
-    private Context mContext;
 
     public ProductDataBase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        DATABASE_PATH = Environment.getExternalStorageDirectory() + File.separator + "databases" + File.separator;
-        mContext = context;
+        DATABASE_PATH = context.getDatabasePath(DATABASE_NAME).toString();
     }
 
     private boolean checkDBifExists() {
-        File dbFile = new File("data/data/pl.grudowska.feedme/databases/" + DATABASE_NAME);
+        File dbFile = new File(DATABASE_PATH);
         return dbFile.exists();
     }
 
@@ -60,10 +60,7 @@ public class ProductDataBase extends SQLiteOpenHelper {
         if (!checkDBifExists()) {
             throw new DatabaseNotExistException("Database products.db don't exists");
         }
-        //String databasePath = DATABASE_PATH + DATABASE_NAME;
-        //TODO remove this line
-        String databasePath = "data/data/pl.grudowska.feedme/databases/" + DATABASE_NAME;
-        mDataBase = SQLiteDatabase.openDatabase(databasePath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        mDataBase = SQLiteDatabase.openDatabase(DATABASE_PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
 
         return mDataBase != null;
     }
