@@ -37,6 +37,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         if (mAddedProductDataSource.getAllAddedProducts().size() == 0) {
             // do nothing
         } else {
+
             String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
             String contentMail = ArchivedListFormatterManager.createMailContent(getApplicationContext());
             String contentName = ArchivedListFormatterManager.createContentNames(getApplicationContext());

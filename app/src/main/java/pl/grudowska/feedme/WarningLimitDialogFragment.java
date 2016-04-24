@@ -1,5 +1,6 @@
 package pl.grudowska.feedme;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -23,6 +24,7 @@ public class WarningLimitDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = (LayoutInflater) getActivity().getApplicationContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.warning_dialog, null);
 
         builder.setView(view);

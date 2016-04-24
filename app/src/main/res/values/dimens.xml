@@ -24,5 +24,4 @@
     <dimen name="text_font_size_16">16sp</dimen>
     <dimen name="text_font_size_18">18sp</dimen>
     <dimen name="text_font_size_20">20sp</dimen>
-    <dimen name="text_font_size_22">22sp</dimen>
 </resources>

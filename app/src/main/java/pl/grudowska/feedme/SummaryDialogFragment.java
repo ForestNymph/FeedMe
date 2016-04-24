@@ -1,5 +1,6 @@
 package pl.grudowska.feedme;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -31,6 +32,7 @@ public class SummaryDialogFragment extends DialogFragment {
         List<SummaryResult> results = CalculateSummary.calculate(getActivity());
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+        @SuppressLint("InflateParams")
         View summaryDialogView = inflater.inflate(R.layout.summary_dialog_listview, null);
 
         mSummary = DatabaseManager.getSummariesProductDB(getActivity());

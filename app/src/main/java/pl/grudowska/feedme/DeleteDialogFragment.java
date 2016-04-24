@@ -1,5 +1,6 @@
 package pl.grudowska.feedme;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -24,6 +25,7 @@ public class DeleteDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
+        @SuppressLint("InflateParams")
         View deleteDialogView = inflater.inflate(R.layout.delete_dialog, null);
         builder.setView(deleteDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {

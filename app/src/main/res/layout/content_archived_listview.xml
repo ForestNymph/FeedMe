@@ -10,7 +10,7 @@
     tools:context=".ArchivedListsActivity"
     tools:showIn="@layout/activity_archived">
 
-    <ListView xmlns:tools="http://schemas.android.com/tools"
+    <ListView
         android:id="@+id/showall_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

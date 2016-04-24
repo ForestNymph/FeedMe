@@ -1,5 +1,6 @@
 package pl.grudowska.feedme;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -27,6 +28,7 @@ public class LimitDialogFragment extends DialogFragment {
         LayoutInflater inflater = (LayoutInflater) getActivity().getApplicationContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         // inflate limit_dialog layout for the dialog to a View
+        @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.limit_dialog, null);
 
         builder.setView(view);

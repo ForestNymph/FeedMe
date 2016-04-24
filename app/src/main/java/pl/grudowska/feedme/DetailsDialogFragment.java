@@ -1,5 +1,6 @@
 package pl.grudowska.feedme;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -32,6 +33,7 @@ public class DetailsDialogFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+        @SuppressLint("InflateParams")
         View details = inflater.inflate(R.layout.details_dialog_listview, null);
 
         ListView details_listview = (ListView) details.findViewById(R.id.list_details);

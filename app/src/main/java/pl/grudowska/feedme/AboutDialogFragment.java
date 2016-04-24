@@ -1,5 +1,6 @@
 package pl.grudowska.feedme;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -23,6 +24,7 @@ public class AboutDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
+        @SuppressLint("InflateParams")
         View aboutDialogView = inflater.inflate(R.layout.about_dialog, null);
         builder.setView(aboutDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {

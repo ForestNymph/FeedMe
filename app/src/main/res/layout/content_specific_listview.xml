@@ -13,7 +13,7 @@
     tools:context=".SpecificFoodTypeActivity"
     tools:showIn="@layout/activity_specific_food_type">
 
-    <ListView xmlns:tools="http://schemas.android.com/tools"
+    <ListView
         android:id="@+id/specific_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

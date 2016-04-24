@@ -48,15 +48,15 @@ public class AdditionalsDataLoader {
         dataSource.createType("MACARONI", R.drawable.macaroni);
 
         // Summary objects db
-        dataSource.createSummaryRange("energy", 2300, 1000);
-        dataSource.createSummaryRange("protein", 20, 10);
+        dataSource.createSummaryRange("energy", 2300, 2100);
+        dataSource.createSummaryRange("protein", 2000, 160);
         dataSource.createSummaryRange("carbohydrates", 20, 10);
         dataSource.createSummaryRange("fat", 20, 10);
         dataSource.createSummaryRange("saturated", 20, 10);
         dataSource.createSummaryRange("monosaturated", 20, 10);
         dataSource.createSummaryRange("omega3", 20, 10);
         dataSource.createSummaryRange("omega6", 20, 10);
-        dataSource.createSummaryRange("fiber", 20, 10);
+        dataSource.createSummaryRange("fiber", 40, 25);
 
         dataSource.close();
     }
