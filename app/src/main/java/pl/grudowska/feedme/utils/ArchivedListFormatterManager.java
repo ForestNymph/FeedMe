@@ -18,7 +18,7 @@ public class ArchivedListFormatterManager {
 
         String allNames = "";
         for (int i = 0; i < mValues.size(); ++i) {
-            allNames += mValues.get(i).getName();
+            allNames += mValues.get(i).name;
             allNames += "\n";
         }
         return allNames;
@@ -30,7 +30,7 @@ public class ArchivedListFormatterManager {
 
         String allAmounts = "";
         for (int i = 0; i < mValues.size(); ++i) {
-            allAmounts += mValues.get(i).getAmount();
+            allAmounts += mValues.get(i).amount;
             allAmounts += " g\n";
         }
         return allAmounts;
@@ -45,11 +45,11 @@ public class ArchivedListFormatterManager {
         String contentMail = "\nProducts:\n";
         for (int i = 0; i < mValues.size(); ++i) {
             prod = mValues.get(i);
-            contentMail += prod.getName();
+            contentMail += prod.name;
             contentMail += "\n  ";
             contentMail += prod.getKcalRelatedWithAmount();
             contentMail += " kcal\n  ";
-            contentMail += prod.getAmount();
+            contentMail += prod.amount;
             contentMail += " g\n";
         }
         contentMail += addSummary(context);

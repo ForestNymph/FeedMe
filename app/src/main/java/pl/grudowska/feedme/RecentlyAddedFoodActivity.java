@@ -18,6 +18,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismis
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
@@ -64,7 +65,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                     Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_SHORT).show();
                     // do nothing
                 } else {
-                    String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
+                    String date = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
                     String content = ArchivedListFormatterManager.createMailContent(getApplicationContext());
                     sendDailySummaryEmail(date, content);
                     Toast.makeText(getApplicationContext(), R.string.sent_message, Toast.LENGTH_SHORT).show();
@@ -137,4 +138,6 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     private void sendDailySummaryEmail(String date, String content) {
         new EmailManager(getApplicationContext(), date, content);
     }
+
+
 }

@@ -42,21 +42,21 @@ public class SupplementaryInfoDataSource {
 
     public Product createSimpleAddedProduct(Product product) {
         Product copy = createAddedProduct(
-                product.getType(),
-                product.getName(),
-                product.getDef1(),
-                product.getDef2(),
-                product.getDef3(),
-                product.getKcal(),
-                product.getProtein(),
-                product.getCarbohydrates(),
-                product.getFiber(),
-                product.getFats(),
-                product.getFatsSaturated(),
-                product.getFatsMonounsaturated(),
-                product.getOmega3(),
-                product.getOmega6(),
-                product.getAmount());
+                product.type,
+                product.name,
+                product.def1,
+                product.def2,
+                product.def3,
+                product.kcal,
+                product.protein,
+                product.carbohydrates,
+                product.fiber,
+                product.fats,
+                product.fatsSaturated,
+                product.fatsMonounsaturated,
+                product.omega3,
+                product.omega6,
+                product.amount);
         return copy;
     }
 
@@ -172,8 +172,11 @@ public class SupplementaryInfoDataSource {
         return summaries;
     }
 
-    public void deleteAll() {
+    public void deleteAllTypes() {
         mDatabase.execSQL("delete from " + SupplementaryInfoHelperDB_SQL.TABLE_TYPE);
+    }
+
+    public void deleteAllSummaries() {
         mDatabase.execSQL("delete from " + SupplementaryInfoHelperDB_SQL.TABLE_SUMMARY);
     }
 
@@ -183,46 +186,46 @@ public class SupplementaryInfoDataSource {
 
     public void deleteAddedProduct(Product product) {
         mDatabase.delete(SupplementaryInfoHelperDB_SQL.TABLE_PRODUCT_ADDED, SupplementaryInfoHelperDB_SQL.COLUMN_ID_PROD
-                + " = " + product.getId(), null);
+                + " = " + product.id, null);
     }
 
     private Product cursorToProduct(Cursor cursor) {
         Product product = new Product();
-        product.setId(cursor.getLong(0));
-        product.setType(cursor.getString(1));
-        product.setName(cursor.getString(2));
-        product.setDef1(cursor.getInt(3));
-        product.setDef2(cursor.getInt(4));
-        product.setDef3(cursor.getInt(5));
-        product.setKcal(cursor.getDouble(6));
-        product.setProtein(cursor.getDouble(7));
-        product.setCarbohydrates(cursor.getDouble(8));
-        product.setFiber(cursor.getDouble(9));
-        product.setFats(cursor.getDouble(10));
-        product.setFatsSaturated(cursor.getDouble(11));
-        product.setFatsMonounsaturated(cursor.getDouble(12));
-        product.setOmega3(cursor.getDouble(13));
-        product.setOmega6(cursor.getDouble(14));
-        product.setAmount(cursor.getDouble(15));
+        product.id = cursor.getLong(0);
+        product.type = cursor.getString(1);
+        product.name = cursor.getString(2);
+        product.def1 = cursor.getInt(3);
+        product.def2 = cursor.getInt(4);
+        product.def3 = cursor.getInt(5);
+        product.kcal = cursor.getDouble(6);
+        product.protein = cursor.getDouble(7);
+        product.carbohydrates = cursor.getDouble(8);
+        product.fiber = cursor.getDouble(9);
+        product.fats = cursor.getDouble(10);
+        product.fatsSaturated = cursor.getDouble(11);
+        product.fatsMonounsaturated = cursor.getDouble(12);
+        product.omega3 = cursor.getDouble(13);
+        product.omega6 = cursor.getDouble(14);
+        product.amount = cursor.getDouble(15);
 
         return product;
     }
 
     private SummaryRange cursorToSummary(Cursor cursor) {
         SummaryRange summary = new SummaryRange();
-        summary.setId(cursor.getLong(0));
-        summary.setTypeName(cursor.getString(1));
-        summary.setMaxRange(cursor.getInt(2));
-        summary.setMinRange(cursor.getInt(3));
+        summary.id = cursor.getLong(0);
+        summary.typeName = cursor.getString(1);
+        summary.maxRange = cursor.getInt(2);
+        summary.minRange = cursor.getInt(3);
 
         return summary;
     }
 
     private ProductType cursorToType(Cursor cursor) {
         ProductType type = new ProductType();
-        type.setId(cursor.getLong(0));
-        type.setTypeName(cursor.getString(1));
-        type.setImage(cursor.getInt(2));
+        type.id = cursor.getLong(0);
+        type.typeName = cursor.getString(1);
+        type.resImage = cursor.getInt(2);
 
         return type;
     }

@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
@@ -38,7 +39,7 @@ public class DailySummaryEmailIntentService extends IntentService {
             // do nothing
         } else {
 
-            String date = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date());
+            String date = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
             String contentMail = ArchivedListFormatterManager.createMailContent(getApplicationContext());
             String contentName = ArchivedListFormatterManager.createContentNames(getApplicationContext());
             String contentAmount = ArchivedListFormatterManager.createContentAmounts(getApplicationContext());

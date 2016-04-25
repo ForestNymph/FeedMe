@@ -47,14 +47,14 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.textView.setText(mProductType.get(getItem(position)).getTypeName());
+        viewHolder.textView.setText(mProductType.get(getItem(position)).typeName);
         setImageView(viewHolder, position);
 
         return convertView;
     }
 
     private void setImageView(final ViewHolder viewHolder, final int position) {
-        int imageResId = mProductType.get(getItem(position)).getResImage();
+        int imageResId = mProductType.get(getItem(position)).resImage;
 
         Bitmap bitmap = getBitmapFromMemCache(imageResId);
         if (bitmap == null) {

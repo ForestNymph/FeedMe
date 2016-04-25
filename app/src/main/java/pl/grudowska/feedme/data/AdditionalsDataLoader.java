@@ -9,6 +9,7 @@ import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.DatabaseManager;
+import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class AdditionalsDataLoader {
 
@@ -17,7 +18,7 @@ public class AdditionalsDataLoader {
         List<ProductType> type = DatabaseManager.getTypesProductDB(context);
 
         for (int i = 0; i < type.size(); ++i) {
-            titles.add(type.get(i).getTypeName());
+            titles.add(type.get(i).typeName);
         }
         return titles;
     }
@@ -27,7 +28,7 @@ public class AdditionalsDataLoader {
         dataSource.open();
 
         if (dataSource.getAllTypes().size() != 0) {
-            dataSource.deleteAll();
+            dataSource.deleteAllTypes();
         }
 
         // Type objects db
@@ -46,9 +47,21 @@ public class AdditionalsDataLoader {
         dataSource.createType("CEREALS", R.drawable.cereals);
         dataSource.createType("EXTRAS", R.drawable.extras);
         dataSource.createType("MACARONI", R.drawable.macaroni);
+        dataSource.close();
 
+        inflateProductSummary(context);
+
+    }
+
+    public static void inflateProductSummary(Context context) {
+        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
+        dataSource.open();
+
+        if (dataSource.getAllSummaries().size() != 0) {
+            dataSource.deleteAllSummaries();
+        }
         // Summary objects db
-        dataSource.createSummaryRange("energy", 2300, 2100);
+        dataSource.createSummaryRange("energy", SharedPreferencesManager.loadDataInt(context, "limit", 2300), 2100);
         dataSource.createSummaryRange("protein", 2000, 160);
         dataSource.createSummaryRange("carbohydrates", 20, 10);
         dataSource.createSummaryRange("fat", 20, 10);

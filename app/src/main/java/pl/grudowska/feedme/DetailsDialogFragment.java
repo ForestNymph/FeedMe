@@ -69,21 +69,21 @@ public class DetailsDialogFragment extends DialogFragment {
         Product product = dataSource.getProduct(Long.parseLong(id));
         dataSource.close();
 
-        details.add(new Details("Energy: ", product.getKcal() + " kcal"));
-        details.add(new Details("Protein: ", product.getProtein() + " g"));
-        details.add(new Details("Carbohydrates: ", product.getCarbohydrates() + " g"));
-        details.add(new Details("Fiber: ", product.getFiber() + " g"));
-        details.add(new Details("Fats: ", product.getFats() + " g"));
-        if (product.getFatsSaturated() == -1) {
+        details.add(new Details("Energy: ", product.kcal + " kcal"));
+        details.add(new Details("Protein: ", product.protein + " g"));
+        details.add(new Details("Carbohydrates: ", product.carbohydrates + " g"));
+        details.add(new Details("Fiber: ", product.fiber + " g"));
+        details.add(new Details("Fats: ", product.fats + " g"));
+        if (product.fatsSaturated == -1) {
             details.add(new Details("Saturated: ", "None"));
             details.add(new Details("Monosaturated: ", "None"));
             details.add(new Details("Omega3: ", "None"));
             details.add(new Details("Omega6: ", "None"));
         } else {
-            details.add(new Details("Saturated: ", product.getFatsSaturated() + " g"));
-            details.add(new Details("Monosaturated: ", product.getFatsMonounsaturated() + " g"));
-            details.add(new Details("Omega3: ", product.getOmega3() + " g"));
-            details.add(new Details("Omega6: ", product.getOmega6() + " g"));
+            details.add(new Details("Saturated: ", product.fatsSaturated + " g"));
+            details.add(new Details("Monosaturated: ", product.fatsMonounsaturated + " g"));
+            details.add(new Details("Omega3: ", product.omega3 + " g"));
+            details.add(new Details("Omega6: ", product.omega6 + " g"));
         }
         return details;
     }

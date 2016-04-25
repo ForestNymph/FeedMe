@@ -41,8 +41,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:stateListAnimator="@null"
-                android:text="ONE" />
+                android:stateListAnimator="@null" />
 
             <Button
                 android:id="@+id/button_default_two"
@@ -50,8 +49,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:stateListAnimator="@null"
-                android:text="TWO" />
+                android:stateListAnimator="@null" />
 
             <Button
                 android:id="@+id/button_default_three"
@@ -59,8 +57,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:stateListAnimator="@null"
-                android:text="THREE" />
+                android:stateListAnimator="@null" />
 
         </LinearLayout>
 

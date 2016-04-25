@@ -51,7 +51,7 @@ public class ArchivedProductDataSource {
     }
 
     public void deleteArchivedItem(ArchivedProduct archived) {
-        long id = archived.getId();
+        long id = archived.id;
         System.out.println("Product deleted with id: " + id);
         database.delete(ArchivedProductDB_SQL.TABLE_ARCHIVED, ArchivedProductDB_SQL.COLUMN_ID
                 + " = " + id, null);
@@ -80,12 +80,12 @@ public class ArchivedProductDataSource {
 
     private ArchivedProduct cursorToArchived(Cursor cursor) {
         ArchivedProduct archive = new ArchivedProduct();
-        archive.setId(cursor.getLong(0));
-        archive.setDate(cursor.getString(1));
-        archive.setContentMail(cursor.getString(2));
-        archive.setContentName(cursor.getString(3));
-        archive.setContentAmount(cursor.getString(4));
-        archive.setKcal(cursor.getInt(5));
+        archive.id = cursor.getLong(0);
+        archive.date = cursor.getString(1);
+        archive.contentMail = cursor.getString(2);
+        archive.contentName = cursor.getString(3);
+        archive.contentAmount = cursor.getString(4);
+        archive.kcal = cursor.getInt(5);
         return archive;
     }
 }

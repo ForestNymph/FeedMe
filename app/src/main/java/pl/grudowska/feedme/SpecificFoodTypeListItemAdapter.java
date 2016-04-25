@@ -57,7 +57,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
         if (tv == null) {
             tv = new TextView(mContext);
         }
-        tv.setText(mProduct.get(getItem(position)).getName());
+        tv.setText(mProduct.get(getItem(position)).name);
         tv.setTextSize(20);
         return tv;
     }
@@ -85,9 +85,9 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
         }
         setListeners(viewHolder, position);
 
-        viewHolder.buttonView_1.setText(mProduct.get(getItem(position)).getDef1() + "");
-        viewHolder.buttonView_2.setText(mProduct.get(getItem(position)).getDef2() + "");
-        viewHolder.buttonView_3.setText(mProduct.get(getItem(position)).getDef3() + "");
+        viewHolder.buttonView_1.setText(String.valueOf(mProduct.get(getItem(position)).def1));
+        viewHolder.buttonView_2.setText(String.valueOf(mProduct.get(getItem(position)).def2));
+        viewHolder.buttonView_3.setText(String.valueOf(mProduct.get(getItem(position)).def3));
 
         return convertView;
     }
@@ -96,19 +96,19 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
 
         viewHolder.buttonView_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProduct.get(getItem(position)).getDef1());
+                addProductToDB(position, mProduct.get(getItem(position)).def1);
                 afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProduct.get(getItem(position)).getDef2());
+                addProductToDB(position, mProduct.get(getItem(position)).def2);
                 afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProduct.get(getItem(position)).getDef3());
+                addProductToDB(position, mProduct.get(getItem(position)).def3);
                 afterAddedProductAction(position);
             }
         });
@@ -132,7 +132,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
                 DetailsDialogFragment details = new DetailsDialogFragment();
                 FragmentActivity activity = (FragmentActivity) (mContext);
                 FragmentManager fm = activity.getSupportFragmentManager();
-                details.show(fm, mProduct.get(getItem(position)).getId() + "");
+                details.show(fm, String.valueOf(mProduct.get(getItem(position)).id));
             }
         });
     }
@@ -146,8 +146,8 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
             e.printStackTrace();
         }
         dataSourceDescription.open();
-        Product product = dataSourceProduct.getProduct(mProduct.get(getItem(position)).getId());
-        product.setAmount(amount);
+        Product product = dataSourceProduct.getProduct(mProduct.get(getItem(position)).id);
+        product.amount = amount;
         dataSourceDescription.createSimpleAddedProduct(product);
         dataSourceProduct.close();
         dataSourceDescription.close();
@@ -156,7 +156,7 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
     private void afterAddedProductAction(int position) {
         collapse(position);
         ifCalorieLimitExceeded();
-        Toast.makeText(mContext, mProduct.get(getItem(position)).getName() + " added", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, mProduct.get(getItem(position)).name + " added", Toast.LENGTH_SHORT).show();
     }
 
     private void ifCalorieLimitExceeded() {

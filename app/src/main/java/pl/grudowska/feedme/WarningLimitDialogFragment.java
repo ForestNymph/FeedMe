@@ -33,7 +33,7 @@ public class WarningLimitDialogFragment extends DialogFragment {
                 SharedPreferencesManager.loadDataInt(getActivity(), "limit", 2300);
 
         TextView limitCurrent = (TextView) view.findViewById(R.id.exceeded_by);
-        limitCurrent.setText(limit + "");
+        limitCurrent.setText(String.valueOf(limit));
 
         builder.setPositiveButton(R.string.consequences,
                 new DialogInterface.OnClickListener() {

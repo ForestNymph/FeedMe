@@ -46,10 +46,10 @@ public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Product prod = mValues.get(getItem(position));
-        viewHolder.textView_name.setText(prod.getName());
+        viewHolder.textView_name.setText(prod.name);
         String kcal = prod.getKcalRelatedWithAmount() + " kcal";
         viewHolder.textView_kcal.setText(kcal);
-        String amount = prod.getAmount() + " g";
+        String amount = prod.amount + " g";
         viewHolder.textView_amount.setText(amount);
 
         return convertView;

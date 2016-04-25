@@ -50,8 +50,8 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.date_tv.setText(mValues.get(position).getDate());
-        String totalKcal = "Total kcal: " + mValues.get(position).getKcal();
+        viewHolder.date_tv.setText(mValues.get(position).date);
+        String totalKcal = "Total kcal: " + mValues.get(position).kcal;
         viewHolder.kcal_summary_tv.setText(totalKcal);
 
         return convertView;
@@ -75,8 +75,8 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.product_list_tv.setText(mValues.get(position).getContentName());
-        viewHolder.amount_list_tv.setText(mValues.get(position).getContentAmount());
+        viewHolder.product_list_tv.setText(mValues.get(position).contentName);
+        viewHolder.amount_list_tv.setText(mValues.get(position).contentAmount);
         setListeners(viewHolder, position);
 
         return convertView;
@@ -86,7 +86,7 @@ public class ArchivedListItemAdapter extends ExpandableListItemAdapter<Integer> 
         viewHolder.resend_btn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                new EmailManager(mContext, mValues.get(position).getDate(), mValues.get(position).getContentMail());
+                new EmailManager(mContext, mValues.get(position).date, mValues.get(position).contentMail);
                 Toast.makeText(mContext, R.string.sent_message, Toast.LENGTH_LONG).show();
             }
         });

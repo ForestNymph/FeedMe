@@ -28,7 +28,7 @@
         android:layout_weight="1"
         android:fontFamily="Roboto"
         android:gravity="end|center_vertical"
-        android:paddingRight="@dimen/text_padding_16"
+        android:paddingEnd="@dimen/text_padding_16"
         android:textColor="@color/colorTextGray"
         android:textSize="@dimen/text_font_size_18"
         tools:ignore="UnusedAttribute" />
@@ -40,7 +40,7 @@
         android:layout_weight="1"
         android:fontFamily="Roboto"
         android:gravity="end|center_vertical"
-        android:paddingRight="@dimen/text_padding_16"
+        android:paddingEnd="@dimen/text_padding_16"
         android:textColor="@color/colorTextGray"
         android:textSize="@dimen/text_font_size_18"
         tools:ignore="UnusedAttribute" />

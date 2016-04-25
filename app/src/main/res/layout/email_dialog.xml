@@ -36,7 +36,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/text_margin_32"
         android:layout_marginRight="@dimen/text_margin_32"
         android:orientation="vertical">
@@ -49,15 +49,16 @@
             android:textSize="@dimen/text_font_size_16" />
 
         <TextView
+            android:layout_marginTop="@dimen/text_margin_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin_32"
+            android:labelFor="@+id/mailfrom_mail"
             android:text="Gmail address:"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_16" />
 
         <EditText
-            android:id="@+id/mailfrom_mail"
+            android:id="@id/mailfrom_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -72,9 +73,10 @@
             android:textSize="@dimen/text_font_size_18" />
 
         <TextView
+            android:layout_marginTop="@dimen/text_margin_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin_32"
+            android:labelFor="@+id/mailfrom_password"
             android:text="Gmail password:"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_16" />
@@ -95,9 +97,10 @@
             android:textSize="@dimen/text_font_size_18" />
 
         <TextView
+            android:layout_marginTop="@dimen/text_margin_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin_32"
+            android:labelFor="@+id/mailto_mail"
             android:text="Destination address:"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_16" />

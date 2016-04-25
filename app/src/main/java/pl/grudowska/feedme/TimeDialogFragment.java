@@ -50,8 +50,10 @@ public class TimeDialogFragment extends DialogFragment {
                                 int minute = mPicker.getCurrentMinute();
                                 int hour = mPicker.getCurrentHour();
 
-                                SharedPreferencesManager.saveDataString(getActivity(), "time_hour_str", hour + "");
-                                SharedPreferencesManager.saveDataString(getActivity(), "time_minute_str", (minute < 10) ? "0" + minute : minute + "");
+                                SharedPreferencesManager.saveDataString(getActivity(),
+                                        "time_hour_str", String.valueOf(hour));
+                                SharedPreferencesManager.saveDataString(getActivity(),
+                                        "time_minute_str", (minute < 10) ? "0" + minute : String.valueOf(minute));
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_hour_int", hour);
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_minute_int", minute);
 

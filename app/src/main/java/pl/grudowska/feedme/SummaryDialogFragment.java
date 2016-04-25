@@ -112,8 +112,8 @@ public class SummaryDialogFragment extends DialogFragment {
 
         private boolean checkIfEnough(String resName, int resAmount) {
             for (int i = 0; i < mSummary.size(); ++i) {
-                if (mSummary.get(i).getTypeName().equals(resName)) {
-                    if (mSummary.get(i).getMinRange() >= resAmount) {
+                if (mSummary.get(i).typeName.equals(resName)) {
+                    if (mSummary.get(i).minRange >= resAmount) {
                         return false;
                     } else {
                         return true;

@@ -87,7 +87,7 @@ public class ProductDataBase extends SQLiteOpenHelper {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Product product = cursorToProduct(cursor);
-            if (product.getType().equals(typeName)) {
+            if (product.type.equals(typeName)) {
                 products.add(product);
             }
             cursor.moveToNext();
@@ -98,22 +98,23 @@ public class ProductDataBase extends SQLiteOpenHelper {
 
     private Product cursorToProduct(Cursor cursor) {
         Product product = new Product();
-        product.setId(cursor.getLong(0));
-        product.setType(cursor.getString(1));
-        product.setName(cursor.getString(2));
-        product.setDef1(cursor.getInt(3));
-        product.setDef2(cursor.getInt(4));
-        product.setDef3(cursor.getInt(5));
-        product.setKcal(cursor.getDouble(6));
-        product.setProtein(cursor.getDouble(7));
-        product.setCarbohydrates(cursor.getDouble(8));
-        product.setFiber(cursor.getDouble(9));
-        product.setFats(cursor.getDouble(10));
-        product.setFatsSaturated(cursor.getDouble(11));
-        product.setFatsMonounsaturated(cursor.getDouble(12));
-        product.setOmega3(cursor.getDouble(13));
-        product.setOmega6(cursor.getDouble(14));
-        product.setAmount(cursor.getDouble(15));
+
+        product.id = cursor.getLong(0);
+        product.type = cursor.getString(1);
+        product.name = cursor.getString(2);
+        product.def1 = cursor.getInt(3);
+        product.def2 = cursor.getInt(4);
+        product.def3 = cursor.getInt(5);
+        product.kcal = cursor.getDouble(6);
+        product.protein = cursor.getDouble(7);
+        product.carbohydrates = cursor.getDouble(8);
+        product.fiber = cursor.getDouble(9);
+        product.fats = cursor.getDouble(10);
+        product.fatsSaturated = cursor.getDouble(11);
+        product.fatsMonounsaturated = cursor.getDouble(12);
+        product.omega3 = cursor.getDouble(13);
+        product.omega6 = cursor.getDouble(14);
+        product.amount = cursor.getDouble(15);
 
         return product;
     }
@@ -126,7 +127,7 @@ public class ProductDataBase extends SQLiteOpenHelper {
         Product product;
         while (!cursor.isAfterLast()) {
             product = cursorToProduct(cursor);
-            if (product.getId() == productID) {
+            if (product.id == productID) {
                 cursor.close();
                 return product;
             }
