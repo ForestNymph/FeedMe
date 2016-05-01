@@ -18,23 +18,23 @@ import java.util.List;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataBase;
+import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 
-public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<Integer> {
+public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Integer> {
 
     private final Context mContext;
 
     private List<Product> mProduct;
 
-    public SpecificFoodTypeListItemAdapter(final Context context, String typeName) {
+    public SpecificFoodTypeArrayAdapter(final Context context, String typeName) {
         super(context, R.layout.content_specific_card, R.id.card_title, R.id.card_content);
 
         mContext = context;
 
-        ProductDataBase dataSource = new ProductDataBase(mContext);
+        ProductDataSource dataSource = new ProductDataSource(mContext);
         try {
             dataSource.openDataBase();
             mProduct = dataSource.getProductsByType(typeName);
@@ -43,9 +43,9 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
             for (int i = 0; i < mProduct.size(); ++i) {
                 add(i);
             }
-        } catch (ProductDataBase.DatabaseNotExistException e) {
+        } catch (ProductDataSource.DatabaseNotExistException e) {
             e.printStackTrace();
-            Toast.makeText(mContext, "The database must be updated", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Database must be updated", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -138,11 +138,11 @@ public class SpecificFoodTypeListItemAdapter extends ExpandableListItemAdapter<I
     }
 
     private void addProductToDB(int position, int amount) {
-        ProductDataBase dataSourceProduct = new ProductDataBase(mContext);
+        ProductDataSource dataSourceProduct = new ProductDataSource(mContext);
         SupplementaryInfoDataSource dataSourceDescription = new SupplementaryInfoDataSource(mContext);
         try {
             dataSourceProduct.openDataBase();
-        } catch (ProductDataBase.DatabaseNotExistException e) {
+        } catch (ProductDataSource.DatabaseNotExistException e) {
             e.printStackTrace();
         }
         dataSourceDescription.open();

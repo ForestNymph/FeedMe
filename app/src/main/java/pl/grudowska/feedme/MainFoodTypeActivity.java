@@ -33,7 +33,7 @@ import java.net.URLConnection;
 import java.util.List;
 
 import pl.grudowska.feedme.data.AdditionalsDataLoader;
-import pl.grudowska.feedme.databases.ProductDataBase;
+import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
@@ -41,7 +41,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
     private static final int INITIAL_DELAY_MILLIS = 300;
 
-    private MainFoodTypeListItemAdapter mFoodCardsAdapter;
+    private MainFoodTypeArrayAdapter mFoodCardsAdapter;
     private NavigationView mNavigationView;
 
     @Override
@@ -68,13 +68,14 @@ public class MainFoodTypeActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 AdditionalsDataLoader.inflateProductType(getApplicationContext());
+                AdditionalsDataLoader.inflateProductSummary(getApplicationContext());
                 // Update dataset with types
                 if (mFoodCardsAdapter != null) {
                     mFoodCardsAdapter.clear();
                     mFoodCardsAdapter.updateDataSet();
                 }
                 // Update products database
-                new DownloadDatabaseTask().execute(ProductDataBase.DATABASE_ADDRESS + ProductDataBase.DATABASE_NAME);
+                new DownloadDatabaseTask().execute(ProductDataSource.DATABASE_ADDRESS + ProductDataSource.DATABASE_NAME);
             }
         });
 
@@ -102,11 +103,12 @@ public class MainFoodTypeActivity extends AppCompatActivity
         mNavigationView.setNavigationItemSelectedListener(this);
 
         ListView listView = (ListView) findViewById(R.id.activity_main_listview);
-        mFoodCardsAdapter = new MainFoodTypeListItemAdapter(this);
+        mFoodCardsAdapter = new MainFoodTypeArrayAdapter(this);
 
         // when app is starting first time load all data from db
         if (mFoodCardsAdapter.getCount() == 0) {
             AdditionalsDataLoader.inflateProductType(getApplicationContext());
+            AdditionalsDataLoader.inflateProductSummary(getApplicationContext());
             mFoodCardsAdapter.updateDataSet();
         }
 
@@ -172,10 +174,10 @@ public class MainFoodTypeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_summary) {
+        if (id == R.id.nav_recently) {
             Intent intent = new Intent(this, RecentlyAddedFoodActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_showall) {
+        } else if (id == R.id.nav_archived) {
             Intent intent = new Intent(this, ArchivedListsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_email) {
@@ -202,7 +204,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            getApplicationContext().deleteDatabase(ProductDataBase.DATABASE_NAME);
+            Toast.makeText(getApplicationContext(), "Attempting to connect to server...wait", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -219,10 +221,13 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 assert url != null;
                 connection = url.openConnection();
                 connection.connect();
-                input = new BufferedInputStream(url.openStream(), ProductDataBase.DATABASE_ADDRESS_PORT);
 
-                String databasePath = getApplicationContext().getDatabasePath(ProductDataBase.DATABASE_NAME).toString();
+                // if connection successful clean old database before download new
+                // getApplicationContext().deleteDatabase(ProductDataSource.DATABASE_NAME);
 
+                input = new BufferedInputStream(url.openStream(), ProductDataSource.DATABASE_ADDRESS_PORT);
+
+                String databasePath = getApplicationContext().getDatabasePath(ProductDataSource.DATABASE_NAME).toString();
                 OutputStream output = new FileOutputStream(databasePath);
                 byte data[] = new byte[1024];
                 int count;

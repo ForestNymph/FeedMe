@@ -32,7 +32,7 @@ public class DeleteDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getActivity());
                         dataSource.open();
-                        if (dataSource.getAllArchivedLists().size() == 0) {
+                        if (dataSource.getAllArchivedDailyRecaps().size() == 0) {
                             // do nothing
                         } else {
                             dataSource.deleteAllArchivedItems();

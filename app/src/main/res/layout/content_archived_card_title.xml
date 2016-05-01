@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
+    android:background="@color/colorFiche"
     android:orientation="horizontal"
-    android:paddingEnd="4sp"
-    android:paddingStart="4sp"
-
-    tools:showIn="@layout/content_archived_card_content">
+    android:paddingBottom="8sp"
+    android:paddingEnd="16sp"
+    android:paddingStart="16sp"
+    android:paddingTop="8sp"
+    tools:ignore="overdraw">
 
     <TextView
-        android:id="@+id/card_title_date_tv"
+        android:id="@+id/archived_date_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="start|center_vertical"
-        android:textSize="@dimen/text_font_size_20" />
+        android:textColor="@color/colorTextGray"
+        android:textSize="@dimen/text_font_size_18" />
 
     <TextView
-        android:id="@+id/card_title_kcal_tv"
+        android:id="@+id/archived_totalkcal_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
-        android:textSize="@dimen/text_font_size_20" />
+        android:textColor="@color/colorTextGray"
+        android:textSize="@dimen/text_font_size_18" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/archived_details_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorLightRed"
+        android:text="DETAILS"
+        android:textColor="@color/colorBrokeWhite"
+        android:textSize="@dimen/text_font_size_18" />
 </LinearLayout>
-
-

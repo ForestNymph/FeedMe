@@ -29,7 +29,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
 
     private static final int INITIAL_DELAY_MILLIS = 300;
     private int mSavedRowData;
-    private RecentlyAddedFoodListItemAdapter mFoodSummaryAdapter;
+    private RecentlyAddedFoodArrayAdapter mFoodSummaryAdapter;
     private SupplementaryInfoDataSource mAddedProductsDataSource;
 
     @Override
@@ -76,7 +76,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         });
 
         ListView listView = (ListView) findViewById(R.id.activity_summary_listview);
-        mFoodSummaryAdapter = new RecentlyAddedFoodListItemAdapter(this);
+        mFoodSummaryAdapter = new RecentlyAddedFoodArrayAdapter(this);
         assert listView != null;
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
                 new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodSummaryAdapter, this));

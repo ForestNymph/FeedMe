@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDataBase extends SQLiteOpenHelper {
+public class ProductDataSource extends SQLiteOpenHelper {
 
     public static final String TABLE_PRODUCT = "TABLE_PRODUCT";
 
@@ -45,7 +45,7 @@ public class ProductDataBase extends SQLiteOpenHelper {
             COLUMN_FATS_OMEGA3, COLUMN_FATS_OMEGA6, COLUMN_AMOUNT};
     private SQLiteDatabase mDataBase;
 
-    public ProductDataBase(Context context) {
+    public ProductDataSource(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         DATABASE_PATH = context.getDatabasePath(DATABASE_NAME).toString();
     }

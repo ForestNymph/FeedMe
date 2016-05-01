@@ -13,12 +13,12 @@ import java.util.List;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
-public class RecentlyAddedFoodListItemAdapter extends ArrayAdapter<Integer> {
+public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
     private List<Product> mValues;
 
-    RecentlyAddedFoodListItemAdapter(final Context context) {
+    RecentlyAddedFoodArrayAdapter(final Context context) {
         mContext = context;
 
         mValues = DatabaseManager.getAddedProductsDB(mContext);

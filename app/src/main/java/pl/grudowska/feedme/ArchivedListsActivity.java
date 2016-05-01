@@ -13,26 +13,26 @@ import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter
 public class ArchivedListsActivity extends AppCompatActivity implements DeleteDialogFragment.OnClearItemsCommandListener {
 
     private static final int INITIAL_DELAY_MILLIS = 400;
-    private ArchivedListItemAdapter mArchivedListItemAdapter;
+    private ArchivedArrayAdapter mArchivedArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_archived);
-        ListView listView = (ListView) findViewById(R.id.showall_listview);
+        ListView listView = (ListView) findViewById(R.id.archived_listview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mArchivedListItemAdapter = new ArchivedListItemAdapter(this);
+        mArchivedArrayAdapter = new ArchivedArrayAdapter(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mArchivedListItemAdapter.getCount() == 0) {
+                if (mArchivedArrayAdapter.getCount() == 0) {
                     Toast.makeText(getApplicationContext(), R.string.delete_nothing, Toast.LENGTH_LONG).show();
                 } else {
                     DeleteDialogFragment delete = new DeleteDialogFragment();
@@ -40,7 +40,7 @@ public class ArchivedListsActivity extends AppCompatActivity implements DeleteDi
                 }
             }
         });
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mArchivedListItemAdapter);
+        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mArchivedArrayAdapter);
         assert listView != null;
         alphaInAnimationAdapter.setAbsListView(listView);
         assert alphaInAnimationAdapter.getViewAnimator() != null;
@@ -51,6 +51,6 @@ public class ArchivedListsActivity extends AppCompatActivity implements DeleteDi
     // Callback from DeleteDialogFragment
     @Override
     public void onClearItemsCommand() {
-        mArchivedListItemAdapter.clear();
+        mArchivedArrayAdapter.clear();
     }
 }

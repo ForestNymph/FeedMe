@@ -4,23 +4,15 @@ import android.content.Context;
 
 import java.util.List;
 
+import pl.grudowska.feedme.databases.DailyRecap;
 import pl.grudowska.feedme.databases.ArchivedProduct;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.databases.SummaryRange;
+import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 
 public class DatabaseManager {
-
-    public static List<ArchivedProduct> getArchivedProductsDB(Context context) {
-        ArchivedProductDataSource dataSource = new ArchivedProductDataSource(context);
-        dataSource.open();
-        List<ArchivedProduct> values = dataSource.getAllArchivedLists();
-        dataSource.close();
-
-        return values;
-    }
 
     public static List<Product> getAddedProductsDB(Context context) {
         SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
@@ -31,21 +23,48 @@ public class DatabaseManager {
         return values;
     }
 
-    public static List<ProductType> getTypesProductDB(Context context) {
+    public static List<ProductType> getTypesAllProductsDB(Context context) {
         SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
         dataSource.open();
-        List<ProductType> values = dataSource.getAllTypes();
+        List<ProductType> values = dataSource.getTypesAllProducts();
         dataSource.close();
 
         return values;
     }
 
-    public static List<SummaryRange> getSummariesProductDB(Context context) {
+    public static List<SummaryRange> getAllSummariesDB(Context context) {
         SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
         dataSource.open();
         List<SummaryRange> values = dataSource.getAllSummaries();
         dataSource.close();
 
         return values;
+    }
+
+    public static List<DailyRecap> getAllArchivedDatesWithCaloriesSummaryDB(Context context) {
+        ArchivedProductDataSource dataSource = new ArchivedProductDataSource(context);
+        dataSource.open();
+        List<DailyRecap> values = dataSource.getAllArchivedDailyRecaps();
+        dataSource.close();
+
+        return values;
+    }
+
+    public static List<ArchivedProduct> getArchivedProductsByDateDB(Context context, String date) {
+        ArchivedProductDataSource dataSource = new ArchivedProductDataSource(context);
+        dataSource.open();
+        List<ArchivedProduct> values = dataSource.getArchivedProductsByDate(date);
+        dataSource.close();
+
+        return values;
+    }
+
+    public static String getContentMailByDateDB(Context context, String date) {
+        ArchivedProductDataSource dataSource = new ArchivedProductDataSource(context);
+        dataSource.open();
+        String value = dataSource.getContentMailByDate(date);
+        dataSource.close();
+
+        return value;
     }
 }

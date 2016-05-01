@@ -3,11 +3,11 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_summary"
+            android:id="@+id/nav_recently"
             android:icon="@mipmap/ic_list"
             android:title="Recently added" />
         <item
-            android:id="@+id/nav_showall"
+            android:id="@+id/nav_archived"
             android:icon="@mipmap/ic_showall"
             android:title="Archived lists" />
     </group>

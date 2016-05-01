@@ -40,6 +40,26 @@ public class SupplementaryInfoDataSource {
         dbHelper.close();
     }
 
+    public Product createSimpleAddedProduct(ArchivedProduct product) {
+        Product copy = createAddedProduct(
+                product.type,
+                product.name,
+                product.def1,
+                product.def2,
+                product.def3,
+                product.kcal,
+                product.protein,
+                product.carbohydrates,
+                product.fiber,
+                product.fats,
+                product.fatsSaturated,
+                product.fatsMonounsaturated,
+                product.omega3,
+                product.omega6,
+                product.amount);
+        return copy;
+    }
+
     public Product createSimpleAddedProduct(Product product) {
         Product copy = createAddedProduct(
                 product.type,
@@ -124,7 +144,7 @@ public class SupplementaryInfoDataSource {
         return newType;
     }
 
-    public List<ProductType> getAllTypes() {
+    public List<ProductType> getTypesAllProducts() {
         List<ProductType> types = new ArrayList<>();
 
         Cursor cursor = mDatabase.query(SupplementaryInfoHelperDB_SQL.TABLE_TYPE,

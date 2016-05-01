@@ -35,7 +35,7 @@ public class SummaryDialogFragment extends DialogFragment {
         @SuppressLint("InflateParams")
         View summaryDialogView = inflater.inflate(R.layout.summary_dialog_listview, null);
 
-        mSummary = DatabaseManager.getSummariesProductDB(getActivity());
+        mSummary = DatabaseManager.getAllSummariesDB(getActivity());
 
         ListView summaryListView;
         TextView summaryTextView;

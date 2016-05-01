@@ -5,6 +5,8 @@
     <color name="colorLightOrange">#CC7C08</color>
     <color name="colorPrimary">#D84C00</color>
     <color name="colorPrimaryDark">#BF1E0A</color>
+    <color name="colorLightRed">#D4160C</color>
+    <color name="colorLightGray">#424242</color>
     <color name="colorAccent">#FFBA5B</color>
     <color name="colorYellow">#FFAF41</color>
     <color name="colorTextGray">#717171</color>

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataBase;
+import pl.grudowska.feedme.databases.ProductDataSource;
 
 public class DetailsDialogFragment extends DialogFragment {
 
@@ -28,7 +28,6 @@ public class DetailsDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        // TODO change getting data from activity
         List<Details> mDetails = createDetailsList(getTag());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -58,11 +57,11 @@ public class DetailsDialogFragment extends DialogFragment {
     }
 
     private List<Details> createDetailsList(String id) {
-        ProductDataBase dataSource = new ProductDataBase(getActivity());
+        ProductDataSource dataSource = new ProductDataSource(getActivity());
         List<Details> details = new ArrayList<>();
         try {
             dataSource.openDataBase();
-        } catch (ProductDataBase.DatabaseNotExistException e) {
+        } catch (ProductDataSource.DatabaseNotExistException e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "The database must be updated", Toast.LENGTH_LONG).show();
         }
@@ -90,28 +89,12 @@ public class DetailsDialogFragment extends DialogFragment {
 
     private class Details {
 
-        private String mName;
-        private String mAmount;
+        public String name;
+        public String amount;
 
         public Details(String name, String amount) {
-            mName = name;
-            mAmount = amount;
-        }
-
-        public String getAmount() {
-            return mAmount;
-        }
-
-        public void setAmount(String amount) {
-            mAmount = amount;
-        }
-
-        public String getName() {
-            return mName;
-        }
-
-        public void setName(String name) {
-            mName = name;
+            this.name = name;
+            this.amount = amount;
         }
     }
 
@@ -140,8 +123,8 @@ public class DetailsDialogFragment extends DialogFragment {
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            viewHolder.detail_textView.setText(mDetails.get(position).getName());
-            viewHolder.amount_textView.setText(mDetails.get(position).getAmount());
+            viewHolder.detail_textView.setText(mDetails.get(position).name);
+            viewHolder.amount_textView.setText(mDetails.get(position).amount);
             return convertView;
         }
 

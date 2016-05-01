@@ -17,13 +17,13 @@ import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.utils.BitmapCache;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
-public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
+public class MainFoodTypeArrayAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
     private List<ProductType> mProductType;
 
-    MainFoodTypeListItemAdapter(final Context context) {
+    MainFoodTypeArrayAdapter(final Context context) {
 
         mContext = context;
         mMemoryCache = new BitmapCache();
@@ -76,7 +76,7 @@ public class MainFoodTypeListItemAdapter extends ArrayAdapter<Integer> {
 
     // after database update, view also needs to be refreshed
     public void updateDataSet() {
-        mProductType = DatabaseManager.getTypesProductDB(mContext);
+        mProductType = DatabaseManager.getTypesAllProductsDB(mContext);
 
         for (int i = 0; i < mProductType.size(); ++i) {
             add(i);

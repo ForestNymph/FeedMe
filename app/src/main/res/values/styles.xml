@@ -42,10 +42,17 @@
         <item name="android:textColor">@color/colorBrokeWhite</item>
     </style>
 
-    <style name="CustomGreenButtonResendTheme" parent="android:Widget">
+    <style name="CustomGreenButtonArchivedTheme" parent="android:Widget">
         <item name="android:background">@color/colorGreen</item>
         <item name="android:textSize">@dimen/text_font_size_18</item>
         <item name="android:textColor">@color/colorBrokeWhite</item>
+    </style>
+
+    <style name="CustomRedButtonArchivedTheme" parent="android:Widget">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/text_font_size_18</item>
+        <item name="android:textColor">@color/colorBrokeWhite</item>
+        <item name="android:layout_marginStart">4sp</item>
     </style>
 
     <style name="CustomRedButtonTheme" parent="android:Widget">

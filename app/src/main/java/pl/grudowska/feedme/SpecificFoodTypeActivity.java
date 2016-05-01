@@ -54,16 +54,17 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RecentlyAddedFoodActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-        SpecificFoodTypeListItemAdapter specificFoodTypeListItemAdapter = new SpecificFoodTypeListItemAdapter(this, value);
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(specificFoodTypeListItemAdapter);
+        SpecificFoodTypeArrayAdapter specificFoodTypeArrayAdapter = new SpecificFoodTypeArrayAdapter(this, value);
+        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(specificFoodTypeArrayAdapter);
         assert listView != null;
         alphaInAnimationAdapter.setAbsListView(listView);
 
         assert alphaInAnimationAdapter.getViewAnimator() != null;
         alphaInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
         listView.setAdapter(alphaInAnimationAdapter);
-        listView.setAdapter(specificFoodTypeListItemAdapter);
+        listView.setAdapter(specificFoodTypeArrayAdapter);
     }
 }

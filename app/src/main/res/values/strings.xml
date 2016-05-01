@@ -3,6 +3,7 @@
     <string name="summary">Recently added</string>
     <string name="show_all_lists">Archived lists</string>
     <string name="sent_message">Message was sent</string>
+    <string name="reuse_list">List copy to recently added</string>
     <string name="sent_nothing">Nothing to sent</string>
     <string name="delete_nothing">Nothing to delete</string>
     <string name="no_products">No added products</string>
@@ -16,6 +17,8 @@
     <string name="apply">APPLY</string>
     <string name="ok">@android:string/ok</string>
     <string name="consequences">I UNDERSTAND THE CONSEQUENCES</string>
+    <string name="resend">RESEND</string>
+    <string name="reuse">RE-USE</string>
 
     <string name="dialog_remove">REMOVE ALL</string>
     <string name="dialog_warning">WARNING!</string>

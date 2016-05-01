@@ -15,7 +15,7 @@ public class AdditionalsDataLoader {
 
     public static List<String> getTypeTitles(Context context) {
         List<String> titles = new ArrayList<>();
-        List<ProductType> type = DatabaseManager.getTypesProductDB(context);
+        List<ProductType> type = DatabaseManager.getTypesAllProductsDB(context);
 
         for (int i = 0; i < type.size(); ++i) {
             titles.add(type.get(i).typeName);
@@ -27,7 +27,7 @@ public class AdditionalsDataLoader {
         SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
         dataSource.open();
 
-        if (dataSource.getAllTypes().size() != 0) {
+        if (dataSource.getTypesAllProducts().size() != 0) {
             dataSource.deleteAllTypes();
         }
 
@@ -36,21 +36,18 @@ public class AdditionalsDataLoader {
         dataSource.createType("MEAT", R.drawable.meat);
         dataSource.createType("PREPARED FOOD", R.drawable.prepared);
         dataSource.createType("GRAINS", R.drawable.grains);
-        dataSource.createType("VEGETABLES", R.drawable.vegetables);
-        dataSource.createType("SWEETENED PRODUCTS", R.drawable.sweetened);
+        dataSource.createType("FRUITS", R.drawable.fruits);
         dataSource.createType("BREAD", R.drawable.bread);
+        dataSource.createType("VEGETABLES", R.drawable.vegetables);
+        dataSource.createType("FISH", R.drawable.fish);
+        dataSource.createType("SWEETENED PRODUCTS", R.drawable.sweetened);
         dataSource.createType("SWEETS", R.drawable.sweets);
         dataSource.createType("OILS", R.drawable.oils);
         dataSource.createType("BEVERAGES", R.drawable.beverages);
-        dataSource.createType("FRUITS", R.drawable.fruits);
-        dataSource.createType("FISH", R.drawable.fish);
-        dataSource.createType("CEREALS", R.drawable.cereals);
         dataSource.createType("EXTRAS", R.drawable.extras);
+        dataSource.createType("CEREALS", R.drawable.cereals);
         dataSource.createType("MACARONI", R.drawable.macaroni);
         dataSource.close();
-
-        inflateProductSummary(context);
-
     }
 
     public static void inflateProductSummary(Context context) {
