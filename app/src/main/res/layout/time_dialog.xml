@@ -44,27 +44,18 @@
                 android:textColor="@color/colorDialogText"
                 android:textSize="@dimen/text_font_size_16" />
         </LinearLayout>
-
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/text_margin_16"
-            android:layout_marginLeft="@dimen/text_margin_32"
-            android:layout_marginRight="@dimen/text_margin_32"
-            android:layout_marginTop="0dp"
-            android:text="@string/time_message"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_18" />
-
-    </LinearLayout>
+        android:layout_marginBottom="@dimen/text_margin_16"
+        android:layout_marginLeft="@dimen/text_margin_32"
+        android:layout_marginRight="@dimen/text_margin_32"
+        android:layout_marginTop="0dp"
+        android:text="@string/time_message"
+        android:textColor="@color/colorDialogText"
+        android:textSize="@dimen/text_font_size_18" />
 
     <TimePicker
         android:id="@+id/picker_time_view"
@@ -73,6 +64,5 @@
         android:layout_marginBottom="@dimen/text_margin_32"
         android:layout_marginEnd="@dimen/text_margin_32"
         android:layout_marginStart="@dimen/text_margin_32" />
-
 </LinearLayout>
 

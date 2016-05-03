@@ -44,25 +44,17 @@
                 android:textColor="@color/colorDialogText"
                 android:textSize="@dimen/text_font_size_16" />
         </LinearLayout>
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <NumberPicker
+        android:id="@+id/picker_number_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/text_margin_32"
-        android:layout_marginEnd="@dimen/text_margin_32"
-        android:layout_marginStart="@dimen/text_margin_32"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <NumberPicker
-            android:id="@+id/picker_number_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:descendantFocusability="blocksDescendants" />
-    </LinearLayout>
-
+        android:descendantFocusability="blocksDescendants"
+        android:theme="@style/NumberPickerTextColorStyle" />
 </LinearLayout>
+
+
 

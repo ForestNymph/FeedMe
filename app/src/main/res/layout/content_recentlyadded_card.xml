@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorFiche"
     android:orientation="horizontal"
-    android:padding="16sp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:gravity="center_vertical"
+    android:padding="8sp"
     tools:ignore="overdraw">
 
     <TextView
-        android:id="@+id/card_recently_name_textview"
-        android:layout_width="0sp"
+        android:id="@+id/recently_name_tv"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/text_margin_4"
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:fontFamily="Roboto"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorTextGray"
         android:textSize="@dimen/text_font_size_18"
+        android:singleLine="false"
         tools:ignore="UnusedAttribute" />
 
     <TextView
-        android:id="@+id/card_recently_kcal_textview"
+        android:id="@+id/recently_kcal_tv"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -33,15 +34,43 @@
         android:textSize="@dimen/text_font_size_18"
         tools:ignore="UnusedAttribute" />
 
-    <TextView
-        android:id="@+id/card_recently_amount_textview"
-        android:layout_width="0sp"
+    <ViewSwitcher
+        android:id="@+id/amount_swchr"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginEnd="@dimen/text_margin_32"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/recently_amount_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:textColor="@color/colorTextGray"
+            android:textSize="@dimen/text_font_size_18"
+            tools:ignore="UnusedAttribute" />
+
+        <EditText
+            android:id="@+id/hidden_amount_ev"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:hint="set amount"
+            android:inputType="number"
+            android:textColor="@color/colorTextGray"
+            android:textSize="@dimen/text_font_size_18" />
+    </ViewSwitcher>
+
+    <Button
+        android:id="@+id/card_recently_edit_btn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@color/colorGreen"
         android:fontFamily="Roboto"
-        android:gravity="end|center_vertical"
-        android:paddingEnd="@dimen/text_padding_16"
-        android:textColor="@color/colorTextGray"
+        android:text="EDIT"
+        android:textColor="@color/colorBrokeWhite"
         android:textSize="@dimen/text_font_size_18"
         tools:ignore="UnusedAttribute" />
 

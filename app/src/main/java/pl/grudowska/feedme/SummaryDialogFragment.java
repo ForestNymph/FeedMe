@@ -33,7 +33,7 @@ public class SummaryDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         @SuppressLint("InflateParams")
-        View summaryDialogView = inflater.inflate(R.layout.summary_dialog_listview, null);
+        View summaryDialogView = inflater.inflate(R.layout.summary_dialog, null);
 
         mSummary = DatabaseManager.getAllSummariesDB(getActivity());
 

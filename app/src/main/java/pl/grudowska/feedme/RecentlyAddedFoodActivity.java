@@ -75,7 +75,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
             }
         });
 
-        ListView listView = (ListView) findViewById(R.id.activity_summary_listview);
+        ListView listView = (ListView) findViewById(R.id.activity_recently_listview);
         mFoodSummaryAdapter = new RecentlyAddedFoodArrayAdapter(this);
         assert listView != null;
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =

@@ -17,12 +17,35 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/orange_gradient"
+            android:background="@color/colorLightOrange"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main_listview" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_recently"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="90dp"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:src="@mipmap/ic_list"
+        android:tint="@color/colorBrokeWhite"
+        app:backgroundTint="#56a547" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:tint="@color/colorBrokeWhite"
+        app:backgroundTint="@color/colorLightOrange"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/ic_alghoritm" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_refresh"
@@ -31,16 +54,10 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginEnd="90dp"
+        android:tint="@color/colorBrokeWhite"
+        app:backgroundTint="#a54756"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
         android:src="@mipmap/ic_refresh" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_summary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@mipmap/ic_alghoritm" />
 
 </android.support.design.widget.CoordinatorLayout>

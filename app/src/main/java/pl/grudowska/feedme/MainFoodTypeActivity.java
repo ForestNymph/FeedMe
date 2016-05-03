@@ -62,6 +62,16 @@ public class MainFoodTypeActivity extends AppCompatActivity
             }
         });
 
+        FloatingActionButton recently_fab = (FloatingActionButton) findViewById(R.id.fab_recently);
+        assert recently_fab != null;
+        recently_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RecentlyAddedFoodActivity.class);
+                startActivity(intent);
+            }
+        });
+
         FloatingActionButton refresh_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
         assert refresh_fab != null;
         refresh_fab.setOnClickListener(new View.OnClickListener() {

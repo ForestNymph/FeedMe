@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorWarningRed"
     android:orientation="vertical">
 
     <LinearLayout
@@ -32,31 +32,25 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/text_margin_32"
         android:layout_marginStart="@dimen/text_margin_32"
-        android:orientation="vertical">
+        android:text="@string/limit_exceed"
+        android:textColor="@color/colorDialogText"
+        android:textSize="@dimen/text_font_size_18" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/limit_exceed"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_18" />
-
-        <TextView
-            android:id="@+id/exceeded_by"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="64sp"
-            android:layout_marginTop="@dimen/text_margin_32"
-            android:gravity="center_horizontal"
-            android:textColor="@color/colorDialogText"
-            android:textSize="64sp" />
-
-    </LinearLayout>
-
+    <TextView
+        android:id="@+id/exceeded_by"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64sp"
+        android:layout_marginEnd="@dimen/text_margin_32"
+        android:layout_marginStart="@dimen/text_margin_32"
+        android:layout_marginTop="@dimen/text_margin_32"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorDialogText"
+        android:textSize="64sp" />
 </LinearLayout>
 

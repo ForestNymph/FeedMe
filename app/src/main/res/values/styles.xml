@@ -42,19 +42,6 @@
         <item name="android:textColor">@color/colorBrokeWhite</item>
     </style>
 
-    <style name="CustomGreenButtonArchivedTheme" parent="android:Widget">
-        <item name="android:background">@color/colorGreen</item>
-        <item name="android:textSize">@dimen/text_font_size_18</item>
-        <item name="android:textColor">@color/colorBrokeWhite</item>
-    </style>
-
-    <style name="CustomRedButtonArchivedTheme" parent="android:Widget">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textSize">@dimen/text_font_size_18</item>
-        <item name="android:textColor">@color/colorBrokeWhite</item>
-        <item name="android:layout_marginStart">4sp</item>
-    </style>
-
     <style name="CustomRedButtonTheme" parent="android:Widget">
         <item name="android:background">@color/colorRed</item>
         <item name="android:textSize">@dimen/text_font_size_18</item>
@@ -70,5 +57,10 @@
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Color for numbers on picker -->
+    <style name="NumberPickerTextColorStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColorPrimary">@color/colorBrokeWhite</item>
+    </style>
 
 </resources>

@@ -128,6 +128,14 @@ public class SupplementaryInfoDataSource {
         return newProduct;
     }
 
+    public int modifyAmountOfAddedProduct(Product product, double amount1) {
+        ContentValues content = new ContentValues();
+        content.put(SupplementaryInfoHelperDB_SQL.COLUMN_AMOUNT, amount1);
+        int tmp = mDatabase.update(SupplementaryInfoHelperDB_SQL.TABLE_PRODUCT_ADDED, content, "_id_prod" + "=?",
+                new String []{String.valueOf(product.id)});
+        return tmp;
+    }
+
     public ProductType createType(String name, int image) {
         ContentValues values = new ContentValues();
         values.put(SupplementaryInfoHelperDB_SQL.COLUMN_NAME_TYPE, name);

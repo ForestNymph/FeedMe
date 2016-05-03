@@ -14,7 +14,7 @@
     tools:showIn="@layout/activity_recentlyadded_food">
 
     <ListView
-        android:id="@+id/activity_summary_listview"
+        android:id="@+id/activity_recently_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
