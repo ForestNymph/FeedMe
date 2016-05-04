@@ -35,7 +35,7 @@
         android:layout_marginTop="@dimen/fab_margin"
         android:src="@mipmap/ic_list"
         android:tint="@color/colorBrokeWhite"
-        app:backgroundTint="#56a547" />
+        app:backgroundTint="@color/colorGreen" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_summary"
@@ -55,7 +55,7 @@
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginEnd="90dp"
         android:tint="@color/colorBrokeWhite"
-        app:backgroundTint="#a54756"
+        app:backgroundTint="@color/colorPurple"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
         android:src="@mipmap/ic_refresh" />

@@ -22,7 +22,6 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Integer> {
 
     private final Context mContext;
     private List<Product> mValues;
-    private View mConvertView;
 
     RecentlyAddedFoodArrayAdapter(final Context context) {
         mContext = context;
@@ -38,7 +37,6 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Integer> {
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
         ViewHolder viewHolder;
-        View v = convertView;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.content_recentlyadded_card, parent, false);

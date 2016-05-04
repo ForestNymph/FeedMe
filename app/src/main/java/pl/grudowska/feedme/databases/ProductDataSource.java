@@ -9,6 +9,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.grudowska.feedme.utils.SharedPreferencesManager;
+
 public class ProductDataSource extends SQLiteOpenHelper {
 
     public static final String TABLE_PRODUCT = "TABLE_PRODUCT";
@@ -30,9 +32,9 @@ public class ProductDataSource extends SQLiteOpenHelper {
     public static final String COLUMN_FATS_OMEGA6 = "COLUMN_FATS_OMEGA6";
     public static final String COLUMN_AMOUNT = "COLUMN_AMOUNT";
 
-    public static final String DATABASE_NAME = "products.db";
-    public static final String DATABASE_ADDRESS = "http://192.168.1.144:8090/files/";
-    public static final int DATABASE_ADDRESS_PORT = 8090;
+    // public static String DATABASE_NAME = "products.db";
+    // public static final String DATABASE_ADDRESS = "http://192.168.1.144:8090/files/";
+    // public static final int DATABASE_PORT_NUMBER = 8090;
 
     private static final int DATABASE_VERSION = 1;
     private static String DATABASE_PATH;
@@ -46,8 +48,21 @@ public class ProductDataSource extends SQLiteOpenHelper {
     private SQLiteDatabase mDataBase;
 
     public ProductDataSource(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        DATABASE_PATH = context.getDatabasePath(DATABASE_NAME).toString();
+        super(context, getDatabaseName(context), null, DATABASE_VERSION);
+
+        DATABASE_PATH = context.getDatabasePath(getDatabaseName(context)).toString();
+    }
+
+    public static String getDatabaseAdress(Context context) {
+        return SharedPreferencesManager.loadDataString(context, "serverAddress", "http://192.168.1.144:8090/files/");
+    }
+
+    public static int getPortNumber(Context context) {
+        return SharedPreferencesManager.loadDataInt(context, "serverPort", 8090);
+    }
+
+    public static String getDatabaseName(Context context) {
+        return SharedPreferencesManager.loadDataString(context, "databaseName", "products.db");
     }
 
     private boolean checkDBifExists() {

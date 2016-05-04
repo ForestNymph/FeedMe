@@ -85,7 +85,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
                     mFoodCardsAdapter.updateDataSet();
                 }
                 // Update products database
-                new DownloadDatabaseTask().execute(ProductDataSource.DATABASE_ADDRESS + ProductDataSource.DATABASE_NAME);
+                new DownloadDatabaseTask().execute(ProductDataSource.getDatabaseAdress(getApplicationContext())
+                        + ProductDataSource.getDatabaseName(getApplicationContext()));
             }
         });
 
@@ -199,6 +200,9 @@ public class MainFoodTypeActivity extends AppCompatActivity
         } else if (id == R.id.nav_time) {
             TimeDialogFragment dialog = new TimeDialogFragment();
             dialog.show(getFragmentManager(), "");
+        } else if (id == R.id.nav_server) {
+            ServerDialogFragment dialog = new ServerDialogFragment();
+            dialog.show(getFragmentManager(), "");
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
@@ -214,7 +218,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "Attempting to connect to server...wait", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Connecting to the server...wait", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -235,9 +239,10 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 // if connection successful clean old database before download new
                 // getApplicationContext().deleteDatabase(ProductDataSource.DATABASE_NAME);
 
-                input = new BufferedInputStream(url.openStream(), ProductDataSource.DATABASE_ADDRESS_PORT);
+                input = new BufferedInputStream(url.openStream());
 
-                String databasePath = getApplicationContext().getDatabasePath(ProductDataSource.DATABASE_NAME).toString();
+                String databasePath = getApplicationContext()
+                        .getDatabasePath(ProductDataSource.getDatabaseName(getApplicationContext())).toString();
                 OutputStream output = new FileOutputStream(databasePath);
                 byte data[] = new byte[1024];
                 int count;

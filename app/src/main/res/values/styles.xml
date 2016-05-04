@@ -21,9 +21,9 @@
 
     <style name="customTimePickerTheme" parent="android:style/Widget.Material.Light.TimePicker">
         <item name="android:numbersTextColor">#fff</item>
-        <item name="android:numbersBackgroundColor">@color/colorAccent</item>
-        <item name="android:numbersSelectorColor">#5d5444</item>
-        <item name="android:headerBackground">#d9a256</item>
+        <item name="android:numbersBackgroundColor">@color/colorBlueTint</item>
+        <item name="android:numbersSelectorColor">#23211d</item>
+        <item name="android:headerBackground">@color/colorBlueTint</item>
     </style>
 
     <style name="CustomYellowButtonTheme" parent="android:Widget.Button">

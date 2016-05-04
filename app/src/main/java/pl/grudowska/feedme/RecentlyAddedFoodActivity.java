@@ -1,5 +1,6 @@
 package pl.grudowska.feedme;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -20,12 +21,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import pl.grudowska.feedme.alghoritms.CalculateSummary;
+import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.ArchivedListFormatterManager;
+import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.EmailManager;
 
-public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDismissCallback {
+public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDismissCallback, DeleteDialogFragment.OnClearItemsCommandListener {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
     private int mSavedRowData;
@@ -45,9 +49,22 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         fab_summary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 SummaryDialogFragment summary = new SummaryDialogFragment();
                 summary.show(getFragmentManager(), "");
+            }
+        });
+
+        FloatingActionButton fab_delete = (FloatingActionButton) findViewById(R.id.fab_delete);
+        assert fab_delete != null;
+        fab_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mFoodSummaryAdapter.getCount() == 0) {
+                    Toast.makeText(getApplicationContext(), R.string.delete_nothing, Toast.LENGTH_LONG).show();
+                } else {
+                    DeleteDialogFragment delete = new DeleteDialogFragment();
+                    delete.show(getFragmentManager(), "");
+                }
             }
         });
 
@@ -56,22 +73,13 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         fab_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Open DB's
-                mAddedProductsDataSource = new SupplementaryInfoDataSource(getApplicationContext());
-                mAddedProductsDataSource.open();
-
                 // If recently added product list is empty do nothing
-                if (mAddedProductsDataSource.getAllAddedProducts().size() == 0) {
+                if (mFoodSummaryAdapter.getCount() == 0) {
                     Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_SHORT).show();
                     // do nothing
                 } else {
-                    String date = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
-                    String content = ArchivedListFormatterManager.createMailContent(getApplicationContext());
-                    sendDailySummaryEmail(date, content);
-                    Toast.makeText(getApplicationContext(), R.string.sent_message, Toast.LENGTH_SHORT).show();
+                    new AfterSendAction().execute();
                 }
-                // Close DB's
-                mAddedProductsDataSource.close();
             }
         });
 
@@ -135,9 +143,50 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         mAddedProductsDataSource.close();
     }
 
-    private void sendDailySummaryEmail(String date, String content) {
-        new EmailManager(getApplicationContext(), date, content);
+    @Override
+    public void onClearItemsCommand() {
+        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(getApplicationContext());
+        dataSource.open();
+        if (dataSource.getAllAddedProducts().size() == 0) {
+            // do nothing
+        } else {
+            dataSource.deleteAllAddedProducts();
+            mFoodSummaryAdapter.clear();
+        }
+        dataSource.close();
     }
 
+    private class AfterSendAction extends AsyncTask<Void, Void, Void> {
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(getApplicationContext(), R.string.prepare_message, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            String date = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
+            String contentMail = ArchivedListFormatterManager.createMailContent(getApplicationContext());
+            int totalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
+
+            new EmailManager(getApplicationContext(), date, contentMail);
+
+            ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getApplicationContext());
+            dataSource.open();
+            List<Product> products = DatabaseManager.getAddedProductsDB(getApplicationContext());
+            for (int i = 0; i < products.size(); ++i) {
+                dataSource.createArchivedProduct(date, products.get(i));
+            }
+            dataSource.createDailyRecap(date, totalKcal, contentMail);
+            dataSource.close();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(getApplicationContext(), R.string.sent_message, Toast.LENGTH_SHORT).show();
+        }
+    }
 }

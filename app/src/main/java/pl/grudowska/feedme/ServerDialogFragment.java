@@ -11,9 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
-public class EmailDialogFragment extends DialogFragment {
+public class ServerDialogFragment extends DialogFragment {
 
     private AlertDialog mDialog;
 
@@ -21,50 +22,55 @@ public class EmailDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
+
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
         @SuppressLint("InflateParams")
-        View dialogView = inflater.inflate(R.layout.email_dialog, null);
+        View dialogView = inflater.inflate(R.layout.server_dialog, null);
 
         // set previous or default configuration in editview
-        ((EditText) dialogView.findViewById(R.id.mailfrom_mail))
-                .setText(SharedPreferencesManager.loadDataString(getActivity(), "mailFrom", "test@test.pl"));
-        ((EditText) dialogView.findViewById(R.id.mailfrom_password))
-                .setText("*******");
-        ((EditText) dialogView.findViewById(R.id.mailto_mail))
-                .setText(SharedPreferencesManager.loadDataString(getActivity(), "mailTo", "test@test.pl"));
+        ((EditText) dialogView.findViewById(R.id.server_address))
+                .setText(ProductDataSource.getDatabaseAdress(getActivity()));
+        ((EditText) dialogView.findViewById(R.id.port_address))
+                .setText(String.valueOf(ProductDataSource.getPortNumber(getActivity())));
+        ((EditText) dialogView.findViewById(R.id.db_name))
+                .setText(ProductDataSource.getDatabaseName(getActivity()));
 
         builder.setView(dialogView)
                 .setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
                         Dialog dialog = (Dialog) dialogInterface;
-                        String mailTo_value = ((EditText) dialog.findViewById(R.id.mailto_mail)).getText().toString();
-                        if (mailTo_value.isEmpty()) {
+                        String server = ((EditText) dialog.findViewById(R.id.server_address)).getText().toString();
+                        if (server.isEmpty()) {
                             // do nothing
                         } else {
-                            SharedPreferencesManager.saveDataString(getActivity(), "mailTo", mailTo_value);
+                            SharedPreferencesManager.saveDataString(getActivity(), "serverAddress", server);
                         }
-                        String mailFrom_value = ((EditText) dialog.findViewById(R.id.mailfrom_mail)).getText().toString();
-                        if (mailFrom_value.isEmpty()) {
+                        String port = ((EditText) dialog.findViewById(R.id.port_address)).getText().toString();
+                        int portNr = 0;
+                        if (port.isEmpty()) {
                             // do nothing
                         } else {
-                            SharedPreferencesManager.saveDataString(getActivity(), "mailFrom", mailFrom_value);
+                            try {
+                                portNr = Integer.valueOf(port);
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                                portNr = 8090;
+                            }
                         }
-                        String password_value = ((EditText) dialog.findViewById(R.id.mailfrom_password)).getText().toString();
-                        if (password_value.isEmpty()) {
+                        SharedPreferencesManager.saveDataInt(getActivity(), "serverPort", portNr);
+                        String database = ((EditText) dialog.findViewById(R.id.db_name)).getText().toString();
+                        if (port.isEmpty()) {
                             // do nothing
                         } else {
-                            SharedPreferencesManager.saveDataString(getActivity(), "password", password_value);
+                            SharedPreferencesManager.saveDataString(getActivity(), "databaseName", database);
                         }
-                        Toast.makeText(getActivity(), "Email settings updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Database configuration updated", Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // do nothing
-                        EmailDialogFragment.this.getDialog().cancel();
+                        ServerDialogFragment.this.getDialog().cancel();
                     }
                 });
         mDialog = builder.create();
@@ -81,4 +87,5 @@ public class EmailDialogFragment extends DialogFragment {
 
         return mDialog;
     }
+
 }

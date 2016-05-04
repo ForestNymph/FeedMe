@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 
+import pl.grudowska.feedme.databases.ArchivedProductDataSource;
+
 public class ArchivedListsActivity extends AppCompatActivity implements DeleteDialogFragment.OnClearItemsCommandListener {
 
     private static final int INITIAL_DELAY_MILLIS = 400;
@@ -51,6 +53,14 @@ public class ArchivedListsActivity extends AppCompatActivity implements DeleteDi
     // Callback from DeleteDialogFragment
     @Override
     public void onClearItemsCommand() {
-        mArchivedArrayAdapter.clear();
+        ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getApplicationContext());
+        dataSource.open();
+        if (dataSource.getAllArchivedDailyRecaps().size() == 0) {
+            // do nothing
+        } else {
+            dataSource.deleteAllArchivedItems();
+            mArchivedArrayAdapter.clear();
+        }
+        dataSource.close();
     }
 }

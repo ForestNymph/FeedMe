@@ -15,17 +15,21 @@
     <item android:title="Configuration">
         <menu>
             <item
+                android:id="@+id/nav_server"
+                android:icon="@mipmap/ic_server"
+                android:title="Set database host address" />
+            <item
                 android:id="@+id/nav_email"
                 android:icon="@mipmap/ic_email"
-                android:title="Change email" />
-            <item
-                android:id="@+id/nav_limit"
-                android:icon="@mipmap/ic_limit"
-                android:title="Set calories limit" />
+                android:title="Set email" />
             <item
                 android:id="@+id/nav_time"
                 android:icon="@mipmap/ic_time"
                 android:title="Set email time" />
+            <item
+                android:id="@+id/nav_limit"
+                android:icon="@mipmap/ic_limit"
+                android:title="Set calories limit" />
         </menu>
     </item>
 

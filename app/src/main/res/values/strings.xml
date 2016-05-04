@@ -3,6 +3,7 @@
     <string name="summary">RECENTLY ADDED</string>
     <string name="show_all_lists">ARCHIVED LISTS</string>
     <string name="sent_message">Message was sent</string>
+    <string name="prepare_message">Preparing message</string>
     <string name="reuse_list">List copy to recently added</string>
     <string name="sent_nothing">Nothing to sent</string>
     <string name="delete_nothing">Nothing to delete</string>
@@ -27,6 +28,7 @@
     <string name="dialog_time">SET EMAIL TIME</string>
     <string name="dialog_about">ABOUT</string>
     <string name="dialog_details">DETAILS</string>
+    <string name="dialog_server">CONFIG SERVER</string>
     <string name="dialog_about_message">
         " Programmer: Sylwia Grudowska\n"
         "Designer: Sylwia Grudowska\n\n"
@@ -38,8 +40,9 @@
     <string name="cd_image">image</string>
 
     <string name="limit_exceed">Calorie limit has been exceeded by: </string>
-    <string name="warning_delete_inf">Do you want to delete all archived data?</string>
+    <string name="warning_delete_inf">Do you want to delete all data?</string>
     <string name="mail_message">Configure mail for sending daily summaries.
      To receive summaries, connect the gmail inbox and set the destination address.</string>
     <string name="time_message">Configure the time for sending daily summaries.</string>
+    <string name="server_message">Configure server port and address which hosts the application database</string>
 </resources>

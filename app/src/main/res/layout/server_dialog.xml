@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBlue"
+    android:background="@color/colorPurple"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,19 +16,19 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/email_image"
+            android:id="@+id/server_image"
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_marginEnd="@dimen/text_margin_32"
             android:contentDescription="@string/cd_image"
-            android:src="@drawable/email" />
+            android:src="@drawable/server" />
 
         <TextView
-            android:id="@+id/email_change"
+            android:id="@+id/server_set"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/dialog_email"
+            android:text="@string/dialog_server"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_20" />
 
@@ -44,26 +44,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/mail_message"
+            android:text="@string/server_message"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_16" />
 
         <TextView
-            android:layout_marginTop="@dimen/text_margin_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/mailfrom_mail"
-            android:text="Gmail address:"
+            android:layout_marginTop="@dimen/text_margin_24"
+            android:text="Server address:"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_16" />
 
         <EditText
-            android:id="@id/mailfrom_mail"
+            android:id="@+id/server_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/colorBrokeWhite"
-            android:inputType="textEmailAddress"
+            android:inputType="textUri"
             android:paddingBottom="8sp"
             android:paddingEnd="@dimen/text_padding_16"
             android:paddingStart="@dimen/text_padding_16"
@@ -73,21 +72,20 @@
             android:textSize="@dimen/text_font_size_18" />
 
         <TextView
-            android:layout_marginTop="@dimen/text_margin_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/mailfrom_password"
-            android:text="Gmail password:"
+            android:layout_marginTop="@dimen/text_margin_24"
+            android:text="Server port:"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_16" />
 
         <EditText
-            android:id="@+id/mailfrom_password"
+            android:id="@+id/port_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/colorBrokeWhite"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:paddingBottom="8sp"
             android:paddingEnd="@dimen/text_padding_16"
             android:paddingStart="@dimen/text_padding_16"
@@ -97,22 +95,21 @@
             android:textSize="@dimen/text_font_size_18" />
 
         <TextView
-            android:layout_marginTop="@dimen/text_margin_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/mailto_mail"
-            android:text="Destination address:"
+            android:layout_marginTop="@dimen/text_margin_24"
+            android:text="Database name:"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_16" />
 
         <EditText
-            android:id="@+id/mailto_mail"
+            android:id="@+id/db_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="32sp"
             android:background="@color/colorBrokeWhite"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:paddingBottom="8sp"
             android:paddingEnd="@dimen/text_padding_16"
             android:paddingStart="@dimen/text_padding_16"

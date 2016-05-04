@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import pl.grudowska.feedme.databases.ArchivedProductDataSource;
-
 public class DeleteDialogFragment extends DialogFragment {
 
     private OnClearItemsCommandListener mListener;
@@ -30,15 +28,7 @@ public class DeleteDialogFragment extends DialogFragment {
         builder.setView(deleteDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getActivity());
-                        dataSource.open();
-                        if (dataSource.getAllArchivedDailyRecaps().size() == 0) {
-                            // do nothing
-                        } else {
-                            dataSource.deleteAllArchivedItems();
-                            mListener.onClearItemsCommand();
-                        }
-                        dataSource.close();
+                        mListener.onClearItemsCommand();
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
