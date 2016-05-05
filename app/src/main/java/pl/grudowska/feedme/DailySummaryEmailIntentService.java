@@ -57,6 +57,7 @@ public class DailySummaryEmailIntentService extends IntentService {
             sendDailySummaryEmail();
             archiveRecentlyAddedList();
             clearRecentlyAddedDB();
+            sendClearAdapterBroadcast();
         }
         // Close DB's
         mAddedProductDataSource.close();
@@ -77,5 +78,9 @@ public class DailySummaryEmailIntentService extends IntentService {
 
     private void clearRecentlyAddedDB() {
         mAddedProductDataSource.deleteAllAddedProducts();
+    }
+
+    private void sendClearAdapterBroadcast() {
+        sendBroadcast(new Intent("RecentlyAddedFoodActivity.clearAdapter"));
     }
 }

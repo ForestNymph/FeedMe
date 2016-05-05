@@ -1,5 +1,9 @@
 package pl.grudowska.feedme;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -34,7 +38,9 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     private static final int INITIAL_DELAY_MILLIS = 300;
     private int mSavedRowData;
     private RecentlyAddedFoodArrayAdapter mFoodSummaryAdapter;
-    private SupplementaryInfoDataSource mAddedProductsDataSource;
+
+    private ClearAdapterBroadcastReceiver mClearAdapterReceiver = null;
+    private boolean isReceiverRegistered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +84,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                     Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_SHORT).show();
                     // do nothing
                 } else {
-                    new AfterSendAction().execute();
+                    new SendAction().execute();
                 }
             }
         });
@@ -94,6 +100,28 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
 
         listView.setAdapter(swingBottomInAnimationAdapter);
+
+        mClearAdapterReceiver = new ClearAdapterBroadcastReceiver();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isReceiverRegistered) {
+            // do nothing
+        } else {
+            registerReceiver(mClearAdapterReceiver, new IntentFilter("RecentlyAddedFoodActivity.clearAdapter"));
+            isReceiverRegistered = true;
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (isReceiverRegistered) {
+            unregisterReceiver(mClearAdapterReceiver);
+            isReceiverRegistered = false;
+        }
     }
 
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
@@ -136,11 +164,11 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     }
 
     private void removeProductFromDB(int position) {
-        mAddedProductsDataSource = new SupplementaryInfoDataSource(this);
-        mAddedProductsDataSource.open();
-        List<Product> values = mAddedProductsDataSource.getAllAddedProducts();
-        mAddedProductsDataSource.deleteAddedProduct(values.get(position));
-        mAddedProductsDataSource.close();
+        SupplementaryInfoDataSource addedProductsDataSource = new SupplementaryInfoDataSource(this);
+        addedProductsDataSource.open();
+        List<Product> values = addedProductsDataSource.getAllAddedProducts();
+        addedProductsDataSource.deleteAddedProduct(values.get(position));
+        addedProductsDataSource.close();
     }
 
     @Override
@@ -156,7 +184,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         dataSource.close();
     }
 
-    private class AfterSendAction extends AsyncTask<Void, Void, Void> {
+    private class SendAction extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -187,6 +215,15 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Toast.makeText(getApplicationContext(), R.string.sent_message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public class ClearAdapterBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mFoodSummaryAdapter.clear();
+            mFoodSummaryAdapter.notifyDataSetChanged();
         }
     }
 }

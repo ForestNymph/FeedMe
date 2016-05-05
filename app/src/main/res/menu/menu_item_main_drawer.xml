@@ -21,7 +21,7 @@
             <item
                 android:id="@+id/nav_email"
                 android:icon="@mipmap/ic_email"
-                android:title="Set email" />
+                android:title="Set email address" />
             <item
                 android:id="@+id/nav_time"
                 android:icon="@mipmap/ic_time"
