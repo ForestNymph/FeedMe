@@ -67,12 +67,14 @@ public class ArchivedProductDataSource {
 
     public List<ArchivedProduct> getArchivedProductsByDate(String date) {
         List<ArchivedProduct> archived = new ArrayList<>();
+        ArchivedProduct product;
+
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            ArchivedProduct product = cursorToArchivedProduct(cursor);
+            product = cursorToArchivedProduct(cursor);
             if (product.date.equals(date)) {
                 archived.add(product);
             }

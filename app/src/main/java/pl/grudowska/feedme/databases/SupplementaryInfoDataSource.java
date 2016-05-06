@@ -154,13 +154,14 @@ public class SupplementaryInfoDataSource {
 
     public List<ProductType> getTypesAllProducts() {
         List<ProductType> types = new ArrayList<>();
+        ProductType type;
 
         Cursor cursor = mDatabase.query(SupplementaryInfoHelperDB_SQL.TABLE_TYPE,
                 typeColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            ProductType type = cursorToType(cursor);
+            type = cursorToType(cursor);
             types.add(type);
             cursor.moveToNext();
         }
@@ -170,13 +171,14 @@ public class SupplementaryInfoDataSource {
 
     public List<Product> getAllAddedProducts() {
         List<Product> products = new ArrayList<>();
+        Product product;
 
         Cursor cursor = mDatabase.query(SupplementaryInfoHelperDB_SQL.TABLE_PRODUCT_ADDED,
                 productColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Product product = cursorToProduct(cursor);
+            product = cursorToProduct(cursor);
             products.add(product);
             cursor.moveToNext();
         }
@@ -186,13 +188,14 @@ public class SupplementaryInfoDataSource {
 
     public List<SummaryRange> getAllSummaries() {
         List<SummaryRange> summaries = new ArrayList<>();
+        SummaryRange summary;
 
         Cursor cursor = mDatabase.query(SupplementaryInfoHelperDB_SQL.TABLE_SUMMARY,
                 summaryColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            SummaryRange summary = cursorToSummary(cursor);
+            summary = cursorToSummary(cursor);
             summaries.add(summary);
             cursor.moveToNext();
         }

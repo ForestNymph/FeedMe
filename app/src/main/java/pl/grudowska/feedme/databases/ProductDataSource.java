@@ -97,11 +97,13 @@ public class ProductDataSource extends SQLiteOpenHelper {
 
     public List<Product> getProductsByType(String typeName) {
         List<Product> products = new ArrayList<>();
+        Product product;
+
         Cursor cursor = mDataBase.query(TABLE_PRODUCT, productColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Product product = cursorToProduct(cursor);
+            product = cursorToProduct(cursor);
             if (product.type.equals(typeName)) {
                 products.add(product);
             }
@@ -154,13 +156,14 @@ public class ProductDataSource extends SQLiteOpenHelper {
 
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
+        Product product;
 
         Cursor cursor = mDataBase.query(TABLE_PRODUCT,
                 productColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Product product = cursorToProduct(cursor);
+            product = cursorToProduct(cursor);
             products.add(product);
             cursor.moveToNext();
         }

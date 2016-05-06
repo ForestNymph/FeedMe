@@ -16,7 +16,7 @@ import java.util.List;
 import pl.grudowska.feedme.databases.DailyRecap;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
-public class ArchivedArrayAdapter extends ArrayAdapter<Integer> {
+public class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> {
 
     private final Context mContext;
     private List<DailyRecap> mTitleBar;
@@ -26,7 +26,7 @@ public class ArchivedArrayAdapter extends ArrayAdapter<Integer> {
         mTitleBar = DatabaseManager.getAllArchivedDatesWithCaloriesSummaryDB(mContext);
 
         for (int i = 0; i < mTitleBar.size(); ++i) {
-            add(i);
+            add(mTitleBar.get(i));
         }
     }
 
@@ -48,8 +48,8 @@ public class ArchivedArrayAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.date_tv.setText(mTitleBar.get(getItem(position)).date);
-        String kcalValue = String.valueOf(mTitleBar.get(getItem(position)).totalKcal + " kcal");
+        viewHolder.date_tv.setText(mTitleBar.get(position).date);
+        String kcalValue = String.valueOf(mTitleBar.get(position).totalKcal + " kcal");
         viewHolder.totalkcal_tv.setText(kcalValue);
         viewHolder.details_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,10 +57,24 @@ public class ArchivedArrayAdapter extends ArrayAdapter<Integer> {
                 ArchivedListDialogFragment list = new ArchivedListDialogFragment();
                 FragmentActivity activity = (FragmentActivity) (mContext);
                 FragmentManager fm = activity.getSupportFragmentManager();
-                list.show(fm, mTitleBar.get(getItem(position)).date);
+                list.show(fm, mTitleBar.get(position).date);
             }
         });
         return convertView;
+    }
+
+    @Override
+    public int getCount() {
+        if (mTitleBar == null) {
+            return 0;
+        }
+        return mTitleBar.size();
+    }
+
+    @Override
+    public void clear() {
+        mTitleBar.removeAll(mTitleBar);
+        notifyDataSetChanged();
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})

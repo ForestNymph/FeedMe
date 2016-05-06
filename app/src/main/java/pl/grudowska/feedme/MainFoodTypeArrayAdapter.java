@@ -17,7 +17,7 @@ import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.utils.BitmapCache;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
-public class MainFoodTypeArrayAdapter extends ArrayAdapter<Integer> {
+public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
@@ -47,14 +47,14 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.textView.setText(mProductType.get(getItem(position)).typeName);
+        viewHolder.textView.setText(mProductType.get(position).typeName);
         setImageView(viewHolder, position);
 
         return convertView;
     }
 
     private void setImageView(final ViewHolder viewHolder, final int position) {
-        int imageResId = mProductType.get(getItem(position)).resImage;
+        int imageResId = mProductType.get(position).resImage;
 
         Bitmap bitmap = getBitmapFromMemCache(imageResId);
         if (bitmap == null) {
@@ -79,8 +79,22 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<Integer> {
         mProductType = DatabaseManager.getTypesAllProductsDB(mContext);
 
         for (int i = 0; i < mProductType.size(); ++i) {
-            add(i);
+            add(mProductType.get(i));
         }
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+        if (mProductType == null) {
+            return 0;
+        }
+        return mProductType.size();
+    }
+
+    @Override
+    public void clear() {
+        mProductType.removeAll(mProductType);
         notifyDataSetChanged();
     }
 

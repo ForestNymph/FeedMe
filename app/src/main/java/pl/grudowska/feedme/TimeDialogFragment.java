@@ -98,13 +98,7 @@ public class TimeDialogFragment extends DialogFragment {
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 00);
 
-        // https://lab.getbase.com/androids-new-doze-and-app-standby/
-        // if (Build.VERSION.SDK_INT <= 22) {
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pending);
-        // } else {
-        //    alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-        //            calendar.getTimeInMillis(), pending);
-        // }
     }
 }

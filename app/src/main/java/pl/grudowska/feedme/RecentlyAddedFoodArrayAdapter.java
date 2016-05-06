@@ -18,18 +18,20 @@ import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
-public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Integer> {
+public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
     private List<Product> mValues;
 
     RecentlyAddedFoodArrayAdapter(final Context context) {
         mContext = context;
+        dataLoader();
+    }
 
+    public void dataLoader() {
         mValues = DatabaseManager.getAddedProductsDB(mContext);
-
         for (int i = 0; i < mValues.size(); ++i) {
-            add(i);
+            add(mValues.get(i));
         }
     }
 
@@ -46,6 +48,8 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Integer> {
             viewHolder.textView_kcal = (TextView) convertView.findViewById(R.id.recently_kcal_tv);
 
             final ViewSwitcher switcher = (ViewSwitcher) convertView.findViewById(R.id.amount_swchr);
+            switcher.getChildAt(0);
+
             viewHolder.textView_amount = (TextView) switcher.findViewById(R.id.recently_amount_tv);
             viewHolder.editView_newamount = (EditText) switcher.findViewById(R.id.hidden_amount_ev);
 
@@ -55,7 +59,7 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Integer> {
                 public void onClick(View view) {
                     double amount = getNewProductAmount(switcher);
                     if (amount != 0) {
-                        Product prod = mValues.get(getItem(position));
+                        Product prod = mValues.get(position);
                         SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(mContext);
                         dataSource.open();
                         dataSource.modifyAmountOfAddedProduct(prod, amount);
@@ -71,7 +75,7 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Integer> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        Product prod = mValues.get(getItem(position));
+        Product prod = mValues.get(position);
         viewHolder.textView_name.setText(prod.name);
         String kcal = prod.getKcalRelatedWithAmount() + " kcal";
         viewHolder.textView_kcal.setText(kcal);
@@ -79,6 +83,21 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Integer> {
         viewHolder.textView_amount.setText(amount);
 
         return convertView;
+    }
+
+    //http://stackoverflow.com/questions/15194835/filtering-custom-adapter-indexoutofboundsexception
+    @Override
+    public int getCount() {
+        if (mValues == null) {
+            return 0;
+        }
+        return mValues.size();
+    }
+
+    @Override
+    public void clear() {
+        mValues.removeAll(mValues);
+        notifyDataSetChanged();
     }
 
     private double getNewProductAmount(ViewSwitcher switcher) {

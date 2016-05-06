@@ -36,7 +36,6 @@ import pl.grudowska.feedme.utils.EmailManager;
 public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDismissCallback, DeleteDialogFragment.OnClearItemsCommandListener {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
-    private int mSavedRowData;
     private RecentlyAddedFoodArrayAdapter mFoodSummaryAdapter;
 
     private ClearAdapterBroadcastReceiver mClearAdapterReceiver = null;
@@ -81,7 +80,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
             public void onClick(View view) {
                 // If recently added product list is empty do nothing
                 if (mFoodSummaryAdapter.getCount() == 0) {
-                    Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_LONG).show();
                     // do nothing
                 } else {
                     new SendAction().execute();
@@ -127,11 +126,12 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
         for (final int position : reverseSortedPositions) {
 
-            // in case of undo save row before remove product from adapter
-            mSavedRowData = mFoodSummaryAdapter.getItem(position);
-            mFoodSummaryAdapter.remove(mFoodSummaryAdapter.getItem(position));
+            final List<Product> temporary = DatabaseManager.getAddedProductsDB(getApplicationContext());
 
-            Snackbar.make(listView, "Product removed", Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback() {
+            removeProductFromDB(position);
+            mFoodSummaryAdapter.dataLoader();
+
+            Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).setCallback(new Snackbar.Callback() {
 
                 @Override
                 public void onDismissed(Snackbar snackbar, int event) {
@@ -139,19 +139,14 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                     switch (event) {
                         case Snackbar.Callback.DISMISS_EVENT_ACTION:
                             // Action UNDO clicked, product restored
-                            mFoodSummaryAdapter.add(position, mSavedRowData);
-                            break;
-                        case Snackbar.Callback.DISMISS_EVENT_TIMEOUT:
-                            // Action UNDO timeout, product removed
-                            removeProductFromDB(position);
-                            break;
-                        case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE:
-                            // Indicates that the Snackbar was dismissed from a new Snackbar being shown, product removed
-                            removeProductFromDB(position);
-                            break;
-                        case Snackbar.Callback.DISMISS_EVENT_SWIPE:
-                            // Indicates that the Snackbar was dismissed via a swipe, product removed
-                            removeProductFromDB(position);
+                            SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(getApplicationContext());
+                            dataSource.open();
+                            dataSource.deleteAllAddedProducts();
+                            for (int i = 0; i < temporary.size(); ++i) {
+                                dataSource.createSimpleAddedProduct(temporary.get(i));
+                            }
+                            dataSource.close();
+                            mFoodSummaryAdapter.dataLoader();
                             break;
                     }
                 }
@@ -223,7 +218,6 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         @Override
         public void onReceive(Context context, Intent intent) {
             mFoodSummaryAdapter.clear();
-            mFoodSummaryAdapter.notifyDataSetChanged();
         }
     }
 }

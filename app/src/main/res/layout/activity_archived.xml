@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorMainBackground"
     android:fitsSystemWindows="true"
-    tools:context=".ArchivedListsActivity"
+    tools:context=".ArchivedActivity"
     tools:ignore="Overdraw">
 
     <android.support.design.widget.AppBarLayout

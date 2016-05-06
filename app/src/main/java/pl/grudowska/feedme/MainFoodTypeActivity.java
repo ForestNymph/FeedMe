@@ -189,7 +189,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
             Intent intent = new Intent(this, RecentlyAddedFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_archived) {
-            Intent intent = new Intent(this, ArchivedListsActivity.class);
+            Intent intent = new Intent(this, ArchivedActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_email) {
             EmailDialogFragment dialog = new EmailDialogFragment();
