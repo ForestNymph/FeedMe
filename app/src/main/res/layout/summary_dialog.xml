@@ -50,7 +50,7 @@
             android:id="@+id/text_no_summmary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/colorBrokeWhite"
+            android:textColor="@color/colorBrokenWhite"
             android:textSize="@dimen/text_font_size_18" />
     </LinearLayout>
 </LinearLayout>

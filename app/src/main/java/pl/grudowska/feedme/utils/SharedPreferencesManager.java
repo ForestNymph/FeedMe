@@ -41,4 +41,17 @@ public class SharedPreferencesManager {
 
         return data;
     }
+
+    public static void saveDataBoolean(Context context, String preference, boolean value) {
+        SharedPreferences settings = context.getSharedPreferences(preference, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(preference, value);
+        editor.apply();
+    }
+
+    public static boolean loadDataBoolean(Context context, String preference, boolean defaultValue) {
+        SharedPreferences settings = context.getSharedPreferences(preference, 0);
+        boolean data = settings.getBoolean(preference, defaultValue);
+        return data;
+    }
 }

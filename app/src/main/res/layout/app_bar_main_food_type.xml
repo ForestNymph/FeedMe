@@ -34,7 +34,7 @@
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
         android:src="@mipmap/ic_list"
-        android:tint="@color/colorBrokeWhite"
+        android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorGreen" />
 
     <android.support.design.widget.FloatingActionButton
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:tint="@color/colorBrokeWhite"
+        android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorLightOrange"
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/ic_alghoritm" />
@@ -54,7 +54,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginEnd="90dp"
-        android:tint="@color/colorBrokeWhite"
+        android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorPurple"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"

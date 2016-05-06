@@ -31,7 +31,7 @@
         <item name="android:textSize">@dimen/text_font_size_18</item>
         <item name="android:layout_marginStart">4sp</item>
         <item name="android:layout_marginEnd">4sp</item>
-        <item name="android:textColor">@color/colorBrokeWhite</item>
+        <item name="android:textColor">@color/colorBrokenWhite</item>
     </style>
 
     <style name="CustomGreenButtonTheme" parent="android:Widget">
@@ -39,7 +39,7 @@
         <item name="android:textSize">@dimen/text_font_size_18</item>
         <item name="android:layout_marginStart">4sp</item>
         <item name="android:layout_marginEnd">4sp</item>
-        <item name="android:textColor">@color/colorBrokeWhite</item>
+        <item name="android:textColor">@color/colorBrokenWhite</item>
     </style>
 
     <style name="CustomRedButtonTheme" parent="android:Widget">
@@ -47,7 +47,7 @@
         <item name="android:textSize">@dimen/text_font_size_18</item>
         <item name="android:layout_marginStart">4sp</item>
         <item name="android:layout_marginEnd">4sp</item>
-        <item name="android:textColor">@color/colorBrokeWhite</item>
+        <item name="android:textColor">@color/colorBrokenWhite</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
@@ -60,7 +60,6 @@
 
     <!-- Color for numbers on picker -->
     <style name="NumberPickerTextColorStyle" parent="Theme.AppCompat.Light.Dialog">
-        <item name="android:textColorPrimary">@color/colorBrokeWhite</item>
+        <item name="android:textColorPrimary">@color/colorBrokenWhite</item>
     </style>
-
 </resources>

@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:tint="@color/colorBrokeWhite"
+        android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorRed"
         android:src="@mipmap/ic_trash"
         app:layout_anchor="@id/app_bar"

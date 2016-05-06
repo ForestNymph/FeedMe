@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:tint="@color/colorBrokeWhite"
+        android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorLightOrange"
         android:src="@mipmap/ic_alghoritm"
         app:layout_anchor="@id/app_bar"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="90dp"
         android:src="@mipmap/ic_send"
-        android:tint="@color/colorBrokeWhite"
+        android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorBlue"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="165dp"
         android:src="@mipmap/ic_trash"
-        android:tint="@color/colorBrokeWhite"
+        android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorRed"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
@@ -75,7 +75,7 @@
         android:background="@color/colorDarkGray"
         android:gravity="center"
         android:text="Swipe to dissmis"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="14sp" />
 
 </android.support.design.widget.CoordinatorLayout>

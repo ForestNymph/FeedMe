@@ -41,6 +41,6 @@
         android:layout_weight="1"
         android:background="@color/colorGreen"
         android:text="DETAILS"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/text_font_size_18" />
 </LinearLayout>

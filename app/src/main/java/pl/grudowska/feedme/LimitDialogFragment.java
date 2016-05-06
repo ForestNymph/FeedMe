@@ -84,7 +84,7 @@ public class LimitDialogFragment extends DialogFragment {
             if (pf.getName().equals("mSelectionDivider")) {
                 pf.setAccessible(true);
                 try {
-                    pf.set(picker, getResources().getDrawable(R.color.colorBrokeWhite));
+                    pf.set(picker, getResources().getDrawable(R.color.colorBrokenWhite));
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {

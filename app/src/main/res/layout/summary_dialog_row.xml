@@ -19,7 +19,7 @@
         android:layout_marginStart="@dimen/text_margin_16"
         android:layout_weight="2"
         android:gravity="start|center_vertical"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/text_font_size_18"
         tools:ignore="UnusedAttribute" />
 
@@ -32,7 +32,7 @@
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:paddingEnd="@dimen/text_padding_16"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/text_font_size_18" />
 
     <TextView
@@ -44,6 +44,6 @@
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:paddingEnd="@dimen/text_padding_16"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/text_font_size_18" />
 </LinearLayout>

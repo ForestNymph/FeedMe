@@ -26,13 +26,13 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Feed Me"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/drawer_email_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/text_font_size_16" />
 </LinearLayout>

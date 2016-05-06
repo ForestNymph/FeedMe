@@ -10,11 +10,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -44,6 +45,23 @@ public class TimeDialogFragment extends DialogFragment {
         mPicker = (TimePicker) timeDialogView.findViewById(R.id.picker_time_view);
         mPicker.setIs24HourView(true);
 
+        final CheckBox checkbox = (CheckBox) timeDialogView.findViewById(R.id.checkbox_view);
+        checkbox.setChecked(SharedPreferencesManager.loadDataBoolean(getActivity(), "checkbox_state", false));
+        checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkbox.isChecked()) {
+                    startDailySummaryEmailService();
+                    SharedPreferencesManager.saveDataBoolean(getActivity(), "checkbox_state", true);
+                    Log.d("start", "start");
+                } else {
+                    stopDailySummaryEmailService();
+                    SharedPreferencesManager.saveDataBoolean(getActivity(), "checkbox_state", false);
+                    Log.d("stop", "stop");
+                }
+            }
+        });
+
         builder.setView(timeDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -56,10 +74,6 @@ public class TimeDialogFragment extends DialogFragment {
                                         "time_minute_str", (minute < 10) ? "0" + minute : String.valueOf(minute));
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_hour_int", hour);
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_minute_int", minute);
-
-                                startDailySummaryEmailService();
-
-                                Toast.makeText(getActivity(), "Mail time updated", Toast.LENGTH_LONG).show();
                             }
                         }
                 ).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -82,6 +96,11 @@ public class TimeDialogFragment extends DialogFragment {
         });
 
         return mDialog;
+    }
+
+    private void stopDailySummaryEmailService() {
+        Intent alarmIntent = new Intent(getActivity(), DailySummaryEmailIntentService.class);
+        PendingIntent.getService(getActivity(), 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     private void startDailySummaryEmailService() {

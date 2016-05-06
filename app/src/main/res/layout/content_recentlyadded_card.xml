@@ -70,7 +70,7 @@
         android:background="@color/colorGreen"
         android:fontFamily="Roboto"
         android:text="EDIT"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/text_font_size_18"
         tools:ignore="UnusedAttribute" />
 

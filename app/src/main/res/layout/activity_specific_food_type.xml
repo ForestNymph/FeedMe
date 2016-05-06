@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/ic_list"
-        android:tint="@color/colorBrokeWhite"
+        android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorGreen"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
@@ -53,6 +53,6 @@
         android:background="@color/colorGreen"
         android:gravity="center"
         android:text="DONE"
-        android:textColor="@color/colorBrokeWhite"
+        android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/text_font_size_18" />
 </android.support.design.widget.CoordinatorLayout>
