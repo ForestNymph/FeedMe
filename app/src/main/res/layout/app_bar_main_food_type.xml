@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorLightOrange"
+            android:background="@color/colorDarkGray"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -25,12 +25,38 @@
     <include layout="@layout/content_main_listview" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginEnd="225dp"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:src="@mipmap/ic_refresh"
+        android:tint="@color/colorBrokenWhite"
+        app:backgroundTint="@color/colorPurple"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginEnd="155dp"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:src="@mipmap/ic_action_search"
+        android:tint="@color/colorBrokenWhite"
+        app:backgroundTint="@color/colorOrange" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_recently"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="90dp"
-        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_gravity="top|end"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginEnd="85dp"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
         android:src="@mipmap/ic_list"
@@ -41,23 +67,10 @@
         android:id="@+id/fab_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="top|end"
         android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorLightOrange"
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/ic_alghoritm" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_marginEnd="90dp"
-        android:tint="@color/colorBrokenWhite"
-        app:backgroundTint="@color/colorPurple"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:src="@mipmap/ic_refresh" />
 
 </android.support.design.widget.CoordinatorLayout>

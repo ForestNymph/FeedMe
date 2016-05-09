@@ -33,6 +33,15 @@
             android:name=".ArchivedActivity"
             android:label="@string/show_all_lists" />
 
+        <activity
+            android:name=".SearchViewActivity"
+            android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".DailySummaryEmailIntentService"
             android:enabled="true"

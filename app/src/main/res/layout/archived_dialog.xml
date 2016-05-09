@@ -20,18 +20,19 @@
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_marginEnd="@dimen/text_margin_32"
             android:contentDescription="@string/cd_image"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/check" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:text="ARCHIVED LIST"
                 android:textColor="@color/colorDialogText"
                 android:textSize="@dimen/text_font_size_20" />

@@ -4,15 +4,29 @@ import android.content.Context;
 
 import java.util.List;
 
-import pl.grudowska.feedme.databases.DailyRecap;
 import pl.grudowska.feedme.databases.ArchivedProduct;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
+import pl.grudowska.feedme.databases.DailyRecap;
 import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.databases.SummaryRange;
 import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 
 public class DatabaseManager {
+
+    public static List<Product> getAllProductsDB(Context context) {
+        ProductDataSource dataSource = new ProductDataSource(context);
+        try {
+            dataSource.openDataBase();
+        } catch (ProductDataSource.DatabaseNotExistException e) {
+            e.printStackTrace();
+        }
+        List<Product> values = dataSource.getAllProducts();
+        dataSource.close();
+
+        return values;
+    }
 
     public static List<Product> getAddedProductsDB(Context context) {
         SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);

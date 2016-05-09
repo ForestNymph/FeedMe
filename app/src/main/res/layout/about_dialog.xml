@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGreen"
+    android:background="@color/colorDarkGray"
     android:orientation="vertical"
     tools:ignore="Overdraw">
 
@@ -21,12 +21,14 @@
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_marginEnd="@dimen/text_margin_32"
             android:contentDescription="@string/cd_image"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/about" />
 
         <TextView
             android:id="@+id/limit_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
             android:text="@string/dialog_about"
             android:textColor="@color/colorDialogText"

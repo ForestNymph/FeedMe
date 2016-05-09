@@ -28,7 +28,7 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
         mContext = context;
         mMemoryCache = new BitmapCache();
 
-        updateDataSet();
+        createDatabase();
     }
 
     @Override
@@ -75,7 +75,7 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
     }
 
     // after database update, view also needs to be refreshed
-    public void updateDataSet() {
+    public void createDatabase() {
         mProductType = DatabaseManager.getTypesAllProductsDB(mContext);
 
         for (int i = 0; i < mProductType.size(); ++i) {

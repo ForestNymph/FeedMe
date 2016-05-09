@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMainBackground"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/text_padding_16"
+    android:paddingStart="@dimen/text_padding_16"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".SearchViewActivity">
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/text_margin_16"
+        android:layout_marginTop="@dimen/text_margin_16"
+        android:iconifiedByDefault="false"
+        android:inputType="text"
+        android:queryHint="Search product by name" />
+
+    <ListView
+        android:id="@+id/search_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:drawSelectorOnTop="true"
+        android:fadingEdge="none"
+        android:scrollbarStyle="outsideOverlay" />
+</LinearLayout>

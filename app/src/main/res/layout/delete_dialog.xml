@@ -18,6 +18,7 @@
             android:id="@+id/trash_image"
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/text_margin_32"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/trash" />
@@ -26,6 +27,7 @@
             android:id="@+id/limit_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
             android:text="@string/dialog_remove"
             android:textColor="@color/colorDialogText"

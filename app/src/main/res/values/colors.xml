@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorGreen">#56a547</color>
+    <color name="colorGreen">#579540</color>
     <color name="colorBlue">#0096c8</color>
     <color name="colorBlueTint">#00749b</color>
     <color name="colorPurple">#a54756</color>
-    <color name="colorRed">#f65844</color>
+    <color name="colorLightPurple">#ae8a8a</color>
+    <color name="colorRed">#d13b28</color>
     <color name="colorLightOrange">#e29200</color>
+    <color name="colorYellowYellow">#AF9A4B</color>
+    <color name="colorOrange">#Fb5728</color>
     <color name="colorPrimary">#D84C00</color>
     <color name="colorPrimaryDark">#dc3c27</color>
     <color name="colorWarningRed">#BF1E0A</color>

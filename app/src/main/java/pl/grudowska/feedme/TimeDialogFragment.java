@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -53,11 +52,9 @@ public class TimeDialogFragment extends DialogFragment {
                 if (checkbox.isChecked()) {
                     startDailySummaryEmailService();
                     SharedPreferencesManager.saveDataBoolean(getActivity(), "checkbox_state", true);
-                    Log.d("start", "start");
                 } else {
                     stopDailySummaryEmailService();
                     SharedPreferencesManager.saveDataBoolean(getActivity(), "checkbox_state", false);
-                    Log.d("stop", "stop");
                 }
             }
         });
@@ -94,7 +91,6 @@ public class TimeDialogFragment extends DialogFragment {
                         .setTextColor(getResources().getColor(R.color.colorTextGray));
             }
         });
-
         return mDialog;
     }
 

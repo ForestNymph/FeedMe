@@ -4,12 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/colorMainBackground"
-    android:paddingBottom="@dimen/text_padding_16"
-    android:paddingEnd="@dimen/text_padding_16"
-    android:paddingStart="@dimen/text_padding_16"
-    android:paddingTop="0dp"
+    android:padding="@dimen/text_padding_16"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainFoodTypeActivity"
     tools:showIn="@layout/app_bar_main_food_type">
@@ -21,10 +18,8 @@
         android:background="@color/colorMainBackground"
         android:clipToPadding="false"
         android:divider="@null"
-        android:dividerHeight="10dp"
+        android:dividerHeight="8dp"
         android:drawSelectorOnTop="true"
         android:fadingEdge="none"
-        android:fitsSystemWindows="true"
-        android:scrollbarStyle="outsideOverlay"
         tools:ignore="overdraw" />
 </RelativeLayout>

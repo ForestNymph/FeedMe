@@ -2,7 +2,6 @@ package pl.grudowska.feedme;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,7 +51,7 @@ public class DailySummaryEmailIntentService extends IntentService {
 
             mTotalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
 
-            Log.d(getClass().getSimpleName(), "Preparing and sending email");
+            // Log.d(getClass().getSimpleName(), "Preparing and sending email");
 
             sendDailySummaryEmail();
             archiveRecentlyAddedList();

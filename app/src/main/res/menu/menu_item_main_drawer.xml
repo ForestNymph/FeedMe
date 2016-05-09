@@ -12,12 +12,16 @@
             android:title="Archived lists" />
     </group>
 
-    <item android:title="Configuration">
+    <item android:title="Database configuration">
         <menu>
             <item
                 android:id="@+id/nav_server"
                 android:icon="@mipmap/ic_server"
                 android:title="Set database host address" />
+        </menu>
+    </item>
+    <item android:title="Email configuration">
+        <menu>
             <item
                 android:id="@+id/nav_email"
                 android:icon="@mipmap/ic_email"
@@ -26,11 +30,14 @@
                 android:id="@+id/nav_time"
                 android:icon="@mipmap/ic_time"
                 android:title="Set email time" />
+        </menu>
+    </item>
+    <item android:title="Limit configuration">
+        <menu>
             <item
                 android:id="@+id/nav_limit"
                 android:icon="@mipmap/ic_limit"
                 android:title="Set calories limit" />
         </menu>
     </item>
-
 </menu>

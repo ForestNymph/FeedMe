@@ -1,7 +1,6 @@
 package pl.grudowska.feedme;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -10,30 +9,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 
-import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.ConnectException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 import pl.grudowska.feedme.data.AdditionalsDataLoader;
-import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class MainFoodTypeActivity extends AppCompatActivity
@@ -72,6 +59,16 @@ public class MainFoodTypeActivity extends AppCompatActivity
             }
         });
 
+        FloatingActionButton search_fab = (FloatingActionButton) findViewById(R.id.fab_search);
+        assert search_fab != null;
+        search_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
         FloatingActionButton refresh_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
         assert refresh_fab != null;
         refresh_fab.setOnClickListener(new View.OnClickListener() {
@@ -82,11 +79,9 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 // Update dataset with types
                 if (mFoodCardsAdapter != null) {
                     mFoodCardsAdapter.clear();
-                    mFoodCardsAdapter.updateDataSet();
+                    mFoodCardsAdapter.createDatabase();
+                    // TODO: refresh mainscreen after changing data
                 }
-                // Update products database
-                new DownloadDatabaseTask().execute(ProductDataSource.getDatabaseAdress(getApplicationContext())
-                        + ProductDataSource.getDatabaseName(getApplicationContext()));
             }
         });
 
@@ -120,7 +115,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         if (mFoodCardsAdapter.getCount() == 0) {
             AdditionalsDataLoader.inflateProductType(getApplicationContext());
             AdditionalsDataLoader.inflateProductSummary(getApplicationContext());
-            mFoodCardsAdapter.updateDataSet();
+            mFoodCardsAdapter.createDatabase();
         }
 
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
@@ -143,6 +138,19 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        Button about = (Button) findViewById(R.id.footer_about_btn);
+        assert about != null;
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AboutDialogFragment about = new AboutDialogFragment();
+                about.show(getFragmentManager(), "");
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                assert drawer != null;
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
     }
 
     @Override
@@ -153,29 +161,6 @@ public class MainFoodTypeActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_right_dots, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            AboutDialogFragment about = new AboutDialogFragment();
-            about.show(getFragmentManager(), "");
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -208,87 +193,6 @@ public class MainFoodTypeActivity extends AppCompatActivity
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public enum StatusCode {
-        SUCCESS, FILE_NOT_FOUND, SERVER_DOWN, FAIL
-    }
-
-    private class DownloadDatabaseTask extends AsyncTask<String, Void, StatusCode> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "Connecting to the server...wait", Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        protected StatusCode doInBackground(String... urls) {
-            URL url = null;
-            try {
-                url = new URL(urls[0]);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            URLConnection connection;
-            InputStream input;
-            try {
-                assert url != null;
-                connection = url.openConnection();
-                connection.connect();
-
-                // if connection successful clean old database before download new
-                // getApplicationContext().deleteDatabase(ProductDataSource.DATABASE_NAME);
-
-                input = new BufferedInputStream(url.openStream());
-
-                String databasePath = getApplicationContext()
-                        .getDatabasePath(ProductDataSource.getDatabaseName(getApplicationContext())).toString();
-                OutputStream output = new FileOutputStream(databasePath);
-                byte data[] = new byte[1024];
-                int count;
-                while ((count = input.read(data)) != -1) {
-                    output.write(data, 0, count);
-                }
-                output.flush();
-                output.close();
-                input.close();
-
-            } catch (ConnectException e) {
-                e.printStackTrace();
-                return StatusCode.SERVER_DOWN;
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return StatusCode.FILE_NOT_FOUND;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return StatusCode.FAIL;
-            }
-            return StatusCode.SUCCESS;
-        }
-
-        @Override
-        protected void onPostExecute(StatusCode status) {
-            super.onPostExecute(status);
-
-            switch (status) {
-                case SUCCESS: {
-                    Toast.makeText(getApplicationContext(), "Database has been successfully updated", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                case FILE_NOT_FOUND: {
-                    Toast.makeText(getApplicationContext(), "Missing file on the server", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                case SERVER_DOWN: {
-                    Toast.makeText(getApplicationContext(), "Server is down", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                case FAIL: {
-                    Toast.makeText(getApplicationContext(), "While update an error occurred", Toast.LENGTH_LONG).show();
-                    break;
-                }
-            }
-        }
     }
 }
 

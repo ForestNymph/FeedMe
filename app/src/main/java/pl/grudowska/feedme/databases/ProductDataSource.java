@@ -70,7 +70,6 @@ public class ProductDataSource extends SQLiteOpenHelper {
         return dbFile.exists();
     }
 
-
     public boolean openDataBase() throws DatabaseNotExistException {
         if (!checkDBifExists()) {
             throw new DatabaseNotExistException("Database products.db don't exists");

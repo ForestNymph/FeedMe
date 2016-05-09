@@ -45,4 +45,5 @@
      To receive summaries, connect the gmail inbox and set the destination address.</string>
     <string name="time_message">Configure the time for sending daily summaries.</string>
     <string name="server_message">Configure server port and address which hosts the application database</string>
+    <string name="title_activity_search">Search for products</string>
 </resources>

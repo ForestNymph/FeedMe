@@ -14,7 +14,8 @@ import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 
 public class ArchivedActivity extends AppCompatActivity implements DeleteDialogFragment.OnClearItemsCommandListener {
 
-    private static final int INITIAL_DELAY_MILLIS = 400;
+    private static final int INITIAL_DELAY_MILLIS = 300;
+
     private ArchivedArrayAdapter mArchivedArrayAdapter;
 
     @Override

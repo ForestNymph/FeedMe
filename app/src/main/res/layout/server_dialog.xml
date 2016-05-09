@@ -19,6 +19,7 @@
             android:id="@+id/server_image"
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/text_margin_32"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/server" />
@@ -26,8 +27,9 @@
         <TextView
             android:id="@+id/server_set"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
             android:text="@string/dialog_server"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_20" />
@@ -118,8 +120,19 @@
             android:textColor="@color/colorTextGray"
             android:textSize="@dimen/text_font_size_18" />
 
+        <Button
+            android:id="@+id/db_sync_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32sp"
+            android:background="@color/colorLightPurple"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingEnd="@dimen/text_padding_16"
+            android:paddingStart="@dimen/text_padding_16"
+            android:text="Sync now"
+            android:textColor="@color/colorBrokenWhite"
+            android:textSize="@dimen/text_font_size_18" />
+
     </LinearLayout>
-
-
 </LinearLayout>
 

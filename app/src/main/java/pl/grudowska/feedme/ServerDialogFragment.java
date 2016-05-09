@@ -5,11 +5,24 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ConnectException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
@@ -35,35 +48,21 @@ public class ServerDialogFragment extends DialogFragment {
         ((EditText) dialogView.findViewById(R.id.db_name))
                 .setText(ProductDataSource.getDatabaseName(getActivity()));
 
+        Button sync = (Button) dialogView.findViewById(R.id.db_sync_btn);
+        sync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveConfigurationData(mDialog);
+                // Update products database
+                new DownloadDatabaseTask().execute(ProductDataSource.getDatabaseAdress(getActivity())
+                        + ProductDataSource.getDatabaseName(getActivity()));
+            }
+        });
+
         builder.setView(dialogView)
                 .setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
-                        Dialog dialog = (Dialog) dialogInterface;
-                        String server = ((EditText) dialog.findViewById(R.id.server_address)).getText().toString();
-                        if (server.isEmpty()) {
-                            // do nothing
-                        } else {
-                            SharedPreferencesManager.saveDataString(getActivity(), "serverAddress", server);
-                        }
-                        String port = ((EditText) dialog.findViewById(R.id.port_address)).getText().toString();
-                        int portNr = 0;
-                        if (port.isEmpty()) {
-                            // do nothing
-                        } else {
-                            try {
-                                portNr = Integer.valueOf(port);
-                            } catch (NumberFormatException e) {
-                                e.printStackTrace();
-                                portNr = 8090;
-                            }
-                        }
-                        SharedPreferencesManager.saveDataInt(getActivity(), "serverPort", portNr);
-                        String database = ((EditText) dialog.findViewById(R.id.db_name)).getText().toString();
-                        if (port.isEmpty()) {
-                            // do nothing
-                        } else {
-                            SharedPreferencesManager.saveDataString(getActivity(), "databaseName", database);
-                        }
+                        saveConfigurationData(dialogInterface);
                         Toast.makeText(getActivity(), "Database configuration updated", Toast.LENGTH_LONG).show();
                     }
                 })
@@ -88,4 +87,113 @@ public class ServerDialogFragment extends DialogFragment {
         return mDialog;
     }
 
+    private void saveConfigurationData(DialogInterface dialogInterface) {
+        Dialog dialog = (Dialog) dialogInterface;
+        String server = ((EditText) dialog.findViewById(R.id.server_address)).getText().toString();
+        if (server.isEmpty()) {
+            // do nothing
+        } else {
+            SharedPreferencesManager.saveDataString(getActivity(), "serverAddress", server);
+        }
+        String port = ((EditText) dialog.findViewById(R.id.port_address)).getText().toString();
+        int portNr = 0;
+        if (port.isEmpty()) {
+            // do nothing
+        } else {
+            try {
+                portNr = Integer.valueOf(port);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                portNr = 8090;
+            }
+        }
+        SharedPreferencesManager.saveDataInt(getActivity(), "serverPort", portNr);
+        String database = ((EditText) dialog.findViewById(R.id.db_name)).getText().toString();
+        if (port.isEmpty()) {
+            // do nothing
+        } else {
+            SharedPreferencesManager.saveDataString(getActivity(), "databaseName", database);
+        }
+    }
+
+    public enum StatusCode {
+        SUCCESS, FILE_NOT_FOUND, SERVER_DOWN, FAIL
+    }
+
+    private class DownloadDatabaseTask extends AsyncTask<String, Void, StatusCode> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(getActivity(), "Connecting to the server...wait", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected StatusCode doInBackground(String... urls) {
+            URL url = null;
+            try {
+                url = new URL(urls[0]);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            URLConnection connection;
+            InputStream input;
+            try {
+                assert url != null;
+                connection = url.openConnection();
+                connection.connect();
+
+                // if connection successful clean old database before download new
+                // getApplicationContext().deleteDatabase(ProductDataSource.DATABASE_NAME);
+
+                input = new BufferedInputStream(url.openStream());
+
+                String databasePath = getActivity()
+                        .getDatabasePath(ProductDataSource.getDatabaseName(getActivity())).toString();
+                OutputStream output = new FileOutputStream(databasePath);
+                byte data[] = new byte[1024];
+                int count;
+                while ((count = input.read(data)) != -1) {
+                    output.write(data, 0, count);
+                }
+                output.flush();
+                output.close();
+                input.close();
+
+            } catch (ConnectException e) {
+                e.printStackTrace();
+                return StatusCode.SERVER_DOWN;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return StatusCode.FILE_NOT_FOUND;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return StatusCode.FAIL;
+            }
+            return StatusCode.SUCCESS;
+        }
+
+        @Override
+        protected void onPostExecute(StatusCode status) {
+            super.onPostExecute(status);
+
+            switch (status) {
+                case SUCCESS: {
+                    Toast.makeText(getActivity(), "Database has been successfully updated", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                case FILE_NOT_FOUND: {
+                    Toast.makeText(getActivity(), "Missing file on the server", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                case SERVER_DOWN: {
+                    Toast.makeText(getActivity(), "Server is down", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                case FAIL: {
+                    Toast.makeText(getActivity(), "While update an error occurred", Toast.LENGTH_LONG).show();
+                    break;
+                }
+            }
+        }
+    }
 }

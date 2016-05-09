@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorFiche"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="8sp"
+    tools:ignore="overdraw">
+
+    <TextView
+        android:id="@+id/search_name_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin_4"
+        android:layout_weight="2"
+        android:fontFamily="Roboto"
+        android:gravity="start|center_vertical"
+        android:singleLine="false"
+        android:textColor="@color/colorTextGray"
+        android:textSize="@dimen/text_font_size_18"
+        tools:ignore="UnusedAttribute" />
+
+    <ViewSwitcher
+        android:id="@+id/amount_search_swchr"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/text_margin_16"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/search_amount_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:textColor="@color/colorTextGray"
+            android:textSize="@dimen/text_font_size_18"
+            tools:ignore="UnusedAttribute" />
+
+        <EditText
+            android:id="@+id/hidden_search_amount_ev"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:hint="set amount"
+            android:inputType="number"
+            android:textColor="@color/colorTextGray"
+            android:textSize="@dimen/text_font_size_18" />
+    </ViewSwitcher>
+
+    <Button
+        android:id="@+id/card_search_edit_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorGreen"
+        android:text="EDIT"
+        android:textColor="@color/colorBrokenWhite"
+        android:textSize="@dimen/text_font_size_18"
+        tools:ignore="UnusedAttribute" />
+
+    <Button
+        android:id="@+id/card_search_add_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_weight="1"
+        android:background="@color/colorOrange"
+        android:text="ADD"
+        android:textColor="@color/colorBrokenWhite"
+        android:textSize="@dimen/text_font_size_18"
+        tools:ignore="UnusedAttribute" />
+</LinearLayout>
