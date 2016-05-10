@@ -28,6 +28,10 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
         mValues = values;
     }
 
+    public void updateProductsList(List<Product> products) {
+        mValues = products;
+    }
+
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
@@ -66,6 +70,8 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
                         dataSource.open();
                         dataSource.createSimpleAddedProduct(prod);
                         dataSource.close();
+                        // reset amount value
+                        mValues.get(position).amount = 0;
                         Toast.makeText(mContext, mValues.get(position).name + " added", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(mContext, "No amount added", Toast.LENGTH_SHORT).show();
@@ -81,6 +87,7 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
         String amount = prod.amount + " g";
         viewHolder.textView_amount.setText(amount);
 
+        // set focus for all edit fields in list
         viewHolder.editView_newamount.requestFocus();
 
         return convertView;

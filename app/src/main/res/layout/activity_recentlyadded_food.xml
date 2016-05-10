@@ -60,7 +60,7 @@
         android:id="@+id/fab_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="155dp"
+        android:layout_marginEnd="154dp"
         android:src="@mipmap/ic_trash"
         android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorRed"

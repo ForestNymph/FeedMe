@@ -12,20 +12,16 @@ import android.widget.SearchView;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SearchEngine;
 
 public class SearchViewActivity extends AppCompatActivity
-        implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
+        implements SearchView.OnQueryTextListener {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
     private ListView mListView;
-    private ProductDataSource mProducts;
     private SearchViewArrayAdapter mSearchAdapter;
-    private List<Product> mProductsList;
     private SearchEngine mEngine;
 
     @Override
@@ -45,8 +41,9 @@ public class SearchViewActivity extends AppCompatActivity
                 finish();
             }
         });
-        mProductsList = new ArrayList<>();
-        mSearchAdapter = new SearchViewArrayAdapter(this, mProductsList);
+        // setup adapter
+        mSearchAdapter = new SearchViewArrayAdapter(this, new ArrayList<Product>());
+
         AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mSearchAdapter);
         mListView = (ListView) findViewById(R.id.search_list);
         assert mListView != null;
@@ -58,28 +55,9 @@ public class SearchViewActivity extends AppCompatActivity
         SearchView searchView = (SearchView) findViewById(R.id.search_view);
         assert null != searchView;
         searchView.setOnQueryTextListener(this);
-        searchView.setOnCloseListener(this);
 
-        mProducts = new ProductDataSource(getApplicationContext());
-        try {
-            mProducts.openDataBase();
-        } catch (ProductDataSource.DatabaseNotExistException e) {
-            e.printStackTrace();
-        }
+        // init search engine
         mEngine = new SearchEngine(getApplicationContext());
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mProducts != null) {
-            mProducts.close();
-        }
-    }
-
-    @Override
-    public boolean onClose() {
-        return false;
     }
 
     @Override
@@ -91,6 +69,8 @@ public class SearchViewActivity extends AppCompatActivity
     @Override
     public boolean onQueryTextChange(String newText) {
         if (newText.isEmpty()) {
+            // clear adapter when no search
+            mSearchAdapter.clear();
             mListView.setAdapter(mSearchAdapter);
         } else {
             displayProducts(newText);
@@ -99,8 +79,7 @@ public class SearchViewActivity extends AppCompatActivity
     }
 
     private void displayProducts(String input) {
-        mProductsList.clear();
-        mProductsList = mEngine.search(input);
-        mListView.setAdapter(new SearchViewArrayAdapter(this, mProductsList));
+        mSearchAdapter.updateProductsList(mEngine.search(input));
+        mListView.setAdapter(mSearchAdapter);
     }
 }

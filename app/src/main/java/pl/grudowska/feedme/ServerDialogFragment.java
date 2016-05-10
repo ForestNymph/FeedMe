@@ -193,6 +193,10 @@ public class ServerDialogFragment extends DialogFragment {
                     Toast.makeText(getActivity(), "While update an error occurred", Toast.LENGTH_LONG).show();
                     break;
                 }
+                default: {
+                    Toast.makeText(getActivity(), "Connection problem", Toast.LENGTH_LONG).show();
+                    break;
+                }
             }
         }
     }

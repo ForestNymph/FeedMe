@@ -9,8 +9,8 @@ import pl.grudowska.feedme.databases.Product;
 
 public class SearchEngine {
 
-    List<Product> mProducts;
-    List<Product> mResult;
+    private List<Product> mProducts;
+    private List<Product> mResult;
 
     public SearchEngine(Context context) {
         mProducts = DatabaseManager.getAllProductsDB(context);
@@ -20,6 +20,7 @@ public class SearchEngine {
     // TODO case sensitive
     public List<Product> search(String word) {
         Product product;
+        mResult.clear();
         for (int i = 0; i < mProducts.size(); ++i) {
             product = mProducts.get(i);
             if ((product.name).contains(word)) {
