@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Feed Me</string>
-    <string name="summary">RECENTLY ADDED</string>
+    <string name="recently_added">RECENTLY ADDED</string>
     <string name="show_all_lists">ARCHIVED LISTS</string>
     <string name="sent_message">Message was sent</string>
     <string name="prepare_message">Preparing message</string>

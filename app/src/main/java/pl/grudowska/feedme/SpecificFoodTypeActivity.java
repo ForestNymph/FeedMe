@@ -2,12 +2,10 @@ package pl.grudowska.feedme;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
@@ -24,32 +22,21 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.specific_listview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        Button done = (Button) findViewById(R.id.button_done);
-        assert done != null;
-        done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
 
         Bundle extras = getIntent().getExtras();
-        String value = getResources().getString(R.string.app_name);
+        String value = "";
         if (extras != null) {
             value = extras.getString("FoodType");
         }
+        assert toolbar != null;
+        toolbar.setTitle(value);
+        // toolbar.setSubtitle(value);
+        setSupportActionBar(toolbar);
 
-        CollapsingToolbarLayout toolbarView =
-                (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        assert toolbarView != null;
-        toolbarView.setTitle(value);
+        FloatingActionButton fab_recently = (FloatingActionButton) findViewById(R.id.fab_recently);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        assert fab != null;
-        fab.setOnClickListener(new View.OnClickListener() {
+        assert fab_recently != null;
+        fab_recently.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RecentlyAddedFoodActivity.class);
@@ -57,6 +44,15 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
                 finish();
             }
         });
+        FloatingActionButton fab_close = (FloatingActionButton) findViewById(R.id.fab_close);
+        assert fab_close != null;
+        fab_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         SpecificFoodTypeArrayAdapter specificFoodTypeArrayAdapter = new SpecificFoodTypeArrayAdapter(this, value);
         AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(specificFoodTypeArrayAdapter);
         assert listView != null;

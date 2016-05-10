@@ -84,7 +84,6 @@
                 android:layout_weight="1"
                 android:hint="grammes"
                 android:inputType="number"
-
                 android:paddingEnd="@dimen/text_padding_16"
                 android:paddingStart="@dimen/text_padding_16"
                 android:singleLine="true"

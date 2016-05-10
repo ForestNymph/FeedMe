@@ -96,7 +96,7 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
 
     @Override
     public void clear() {
-        mValues.removeAll(mValues);
+        mValues.clear();
         notifyDataSetChanged();
     }
 

@@ -30,7 +30,7 @@ public class ArchivedActivity extends AppCompatActivity implements DeleteDialogF
 
         mArchivedArrayAdapter = new ArchivedArrayAdapter(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_recently);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

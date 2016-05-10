@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="76sp"
     android:background="@color/colorMainBackground"
     android:paddingEnd="@dimen/text_padding_16"
     android:paddingStart="@dimen/text_padding_16"
@@ -22,7 +21,7 @@
         android:dividerHeight="10dp"
         android:drawSelectorOnTop="true"
         android:fadingEdge="none"
-        android:fitsSystemWindows="true"
         android:scrollbarStyle="outsideOverlay"
+        android:layout_marginBottom="@dimen/text_margin_16"
         tools:ignore="overdraw" />
 </RelativeLayout>

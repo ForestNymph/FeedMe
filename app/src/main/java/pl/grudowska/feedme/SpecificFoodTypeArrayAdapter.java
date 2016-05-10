@@ -23,11 +23,10 @@ import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 
-public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Integer> {
+public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
 
     private final Context mContext;
-
-    private List<Product> mProduct;
+    private List<Product> mProducts;
 
     public SpecificFoodTypeArrayAdapter(final Context context, String typeName) {
         super(context, R.layout.content_specific_card, R.id.card_title, R.id.card_content);
@@ -37,11 +36,11 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Inte
         ProductDataSource dataSource = new ProductDataSource(mContext);
         try {
             dataSource.openDataBase();
-            mProduct = dataSource.getProductsByType(typeName);
+            mProducts = dataSource.getProductsByType(typeName);
             dataSource.close();
 
-            for (int i = 0; i < mProduct.size(); ++i) {
-                add(i);
+            for (int i = 0; i < mProducts.size(); ++i) {
+                add(mProducts.get(i));
             }
         } catch (ProductDataSource.DatabaseNotExistException e) {
             e.printStackTrace();
@@ -57,7 +56,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Inte
         if (tv == null) {
             tv = new TextView(mContext);
         }
-        tv.setText(mProduct.get(getItem(position)).name);
+        tv.setText(mProducts.get(position).name);
         tv.setTextSize(20);
         return tv;
     }
@@ -78,16 +77,18 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Inte
             viewHolder.buttonView_add = (Button) convertView.findViewById(R.id.button_add_custom_amount);
             viewHolder.editView = (EditText) convertView.findViewById(R.id.edittext_custom_amount);
             viewHolder.buttonDetails = (Button) convertView.findViewById(R.id.button_details);
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         setListeners(viewHolder, position);
 
-        viewHolder.buttonView_1.setText(String.valueOf(mProduct.get(getItem(position)).def1));
-        viewHolder.buttonView_2.setText(String.valueOf(mProduct.get(getItem(position)).def2));
-        viewHolder.buttonView_3.setText(String.valueOf(mProduct.get(getItem(position)).def3));
+        viewHolder.buttonView_1.setText(String.valueOf(mProducts.get(position).def1));
+        viewHolder.buttonView_2.setText(String.valueOf(mProducts.get(position).def2));
+        viewHolder.buttonView_3.setText(String.valueOf(mProducts.get(position).def3));
+
+        viewHolder.editView.setFocusable(true);
+        viewHolder.editView.requestFocus();
 
         return convertView;
     }
@@ -96,19 +97,19 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Inte
 
         viewHolder.buttonView_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProduct.get(getItem(position)).def1);
+                addProductToDB(position, mProducts.get(position).def1);
                 afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProduct.get(getItem(position)).def2);
+                addProductToDB(position, mProducts.get(position).def2);
                 afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProduct.get(getItem(position)).def3);
+                addProductToDB(position, mProducts.get(position).def3);
                 afterAddedProductAction(position);
             }
         });
@@ -132,7 +133,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Inte
                 DetailsDialogFragment details = new DetailsDialogFragment();
                 FragmentActivity activity = (FragmentActivity) (mContext);
                 FragmentManager fm = activity.getSupportFragmentManager();
-                details.show(fm, String.valueOf(mProduct.get(getItem(position)).id));
+                details.show(fm, String.valueOf(mProducts.get(position).id));
             }
         });
     }
@@ -146,7 +147,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Inte
             e.printStackTrace();
         }
         dataSourceDescription.open();
-        Product product = dataSourceProduct.getProduct(mProduct.get(getItem(position)).id);
+        Product product = dataSourceProduct.getProduct(mProducts.get(position).id);
         product.amount = amount;
         dataSourceDescription.createSimpleAddedProduct(product);
         dataSourceProduct.close();
@@ -156,7 +157,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Inte
     private void afterAddedProductAction(int position) {
         collapse(position);
         ifCalorieLimitExceeded();
-        Toast.makeText(mContext, mProduct.get(getItem(position)).name + " added", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, mProducts.get(position).name + " added", Toast.LENGTH_SHORT).show();
     }
 
     private void ifCalorieLimitExceeded() {
@@ -166,6 +167,20 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Inte
             WarningLimitDialogFragment dialog = new WarningLimitDialogFragment();
             dialog.show(fm, "");
         }
+    }
+
+    @Override
+    public int getCount() {
+        if (mProducts == null) {
+            return 0;
+        }
+        return mProducts.size();
+    }
+
+    @Override
+    public void clear() {
+        mProducts.clear();
+        notifyDataSetChanged();
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})

@@ -4,55 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMainBackground"
     android:fitsSystemWindows="true"
-    tools:context=".SpecificFoodTypeActivity"
-    tools:ignore="Overdraw">
+    tools:context=".SpecificFoodTypeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
+        android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorLightOrange"
-            android:fitsSystemWindows="true">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_specific_listview" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_recently"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/ic_list"
         android:tint="@color/colorBrokenWhite"
-        app:backgroundTint="@color/colorGreen"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:backgroundTint="@color/colorGreen" />
 
-    <Button
-        android:id="@+id/button_done"
-        android:layout_width="match_parent"
-        android:layout_height="60sp"
-        android:layout_gravity="bottom"
-        android:background="@color/colorGreen"
-        android:gravity="center"
-        android:text="DONE"
-        android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_18" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/ic_action_back"
+        android:tint="@color/colorBrokenWhite"
+        app:backgroundTint="@color/colorLightGray" />
+
 </android.support.design.widget.CoordinatorLayout>

@@ -30,6 +30,7 @@
         android:divider="@null"
         android:dividerHeight="10dp"
         android:drawSelectorOnTop="true"
+        android:layout_marginBottom="@dimen/text_margin_16"
         android:fadingEdge="none"
         android:scrollbarStyle="outsideOverlay" />
 </LinearLayout>
