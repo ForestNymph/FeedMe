@@ -12,8 +12,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">About</string>
-
     <string name="cancel">@android:string/cancel</string>
     <string name="apply">APPLY</string>
     <string name="ok">@android:string/ok</string>

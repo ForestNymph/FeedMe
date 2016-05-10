@@ -28,103 +28,109 @@
             android:id="@+id/email_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
             android:text="@string/dialog_email"
             android:textColor="@color/colorDialogText"
             android:textSize="@dimen/text_font_size_20" />
 
     </LinearLayout>
 
-    <LinearLayout
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/text_margin_32"
         android:layout_marginRight="@dimen/text_margin_32"
-        android:orientation="vertical">
+        android:text="@string/mail_message"
+        android:textColor="@color/colorDialogText"
+        android:textSize="@dimen/text_font_size_16" />
 
-        <TextView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/mail_message"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_16" />
+            android:layout_marginLeft="@dimen/text_margin_32"
+            android:layout_marginRight="@dimen/text_margin_32"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin_24"
-            android:labelFor="@+id/mailfrom_mail"
-            android:text="Gmail address:"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_16" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_margin_24"
+                android:labelFor="@+id/mailfrom_mail"
+                android:text="Gmail address:"
+                android:textColor="@color/colorDialogText"
+                android:textSize="@dimen/text_font_size_16" />
 
-        <EditText
-            android:id="@id/mailfrom_mail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/colorBrokenWhite"
-            android:inputType="textEmailAddress"
-            android:paddingBottom="8sp"
-            android:paddingEnd="@dimen/text_padding_16"
-            android:paddingStart="@dimen/text_padding_16"
-            android:paddingTop="8sp"
-            android:singleLine="true"
-            android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_18" />
+            <EditText
+                android:id="@id/mailfrom_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorBrokenWhite"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="8sp"
+                android:paddingEnd="@dimen/text_padding_16"
+                android:paddingStart="@dimen/text_padding_16"
+                android:paddingTop="8sp"
+                android:singleLine="true"
+                android:textColor="@color/colorTextGray"
+                android:textSize="@dimen/text_font_size_18" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin_24"
-            android:labelFor="@+id/mailfrom_password"
-            android:text="Gmail password:"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_16" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_margin_24"
+                android:labelFor="@+id/mailfrom_password"
+                android:text="Gmail password:"
+                android:textColor="@color/colorDialogText"
+                android:textSize="@dimen/text_font_size_16" />
 
-        <EditText
-            android:id="@+id/mailfrom_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/colorBrokenWhite"
-            android:inputType="textPassword"
-            android:paddingBottom="8sp"
-            android:paddingEnd="@dimen/text_padding_16"
-            android:paddingStart="@dimen/text_padding_16"
-            android:paddingTop="8sp"
-            android:singleLine="true"
-            android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_18" />
+            <EditText
+                android:id="@+id/mailfrom_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorBrokenWhite"
+                android:inputType="textPassword"
+                android:paddingBottom="8sp"
+                android:paddingEnd="@dimen/text_padding_16"
+                android:paddingStart="@dimen/text_padding_16"
+                android:paddingTop="8sp"
+                android:singleLine="true"
+                android:textColor="@color/colorTextGray"
+                android:textSize="@dimen/text_font_size_18" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin_24"
-            android:labelFor="@+id/mailto_mail"
-            android:text="Destination address:"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_16" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_margin_24"
+                android:labelFor="@+id/mailto_mail"
+                android:text="Destination address:"
+                android:textColor="@color/colorDialogText"
+                android:textSize="@dimen/text_font_size_16" />
 
-        <EditText
-            android:id="@+id/mailto_mail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="32sp"
-            android:background="@color/colorBrokenWhite"
-            android:inputType="textEmailAddress"
-            android:paddingBottom="8sp"
-            android:paddingEnd="@dimen/text_padding_16"
-            android:paddingStart="@dimen/text_padding_16"
-            android:paddingTop="8sp"
-            android:singleLine="true"
-            android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_18" />
+            <EditText
+                android:id="@+id/mailto_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="32sp"
+                android:background="@color/colorBrokenWhite"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="8sp"
+                android:paddingEnd="@dimen/text_padding_16"
+                android:paddingStart="@dimen/text_padding_16"
+                android:paddingTop="8sp"
+                android:singleLine="true"
+                android:textColor="@color/colorTextGray"
+                android:textSize="@dimen/text_font_size_18" />
 
-    </LinearLayout>
-
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
 

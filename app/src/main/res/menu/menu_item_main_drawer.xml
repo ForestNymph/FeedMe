@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_recently"
-            android:icon="@mipmap/ic_list"
-            android:title="Recently added" />
-        <item
-            android:id="@+id/nav_archived"
-            android:icon="@mipmap/ic_showall"
-            android:title="Archived lists" />
-    </group>
+    <item android:title="Lists">
+        <menu>
+            <item
+                android:id="@+id/nav_recently"
+                android:icon="@mipmap/ic_list"
+                android:title="Recently added" />
+            <item
+                android:id="@+id/nav_archived"
+                android:icon="@mipmap/ic_showall"
+                android:title="Archived lists" />
+        </menu>
+    </item>
 
     <item android:title="Database configuration">
         <menu>
@@ -20,24 +22,35 @@
                 android:title="Set database host address" />
         </menu>
     </item>
+
     <item android:title="Email configuration">
         <menu>
             <item
                 android:id="@+id/nav_email"
                 android:icon="@mipmap/ic_email"
                 android:title="Set email address" />
+
             <item
                 android:id="@+id/nav_time"
                 android:icon="@mipmap/ic_time"
                 android:title="Set email time" />
         </menu>
     </item>
+
     <item android:title="Limit configuration">
         <menu>
             <item
                 android:id="@+id/nav_limit"
                 android:icon="@mipmap/ic_limit"
                 android:title="Set calories limit" />
+        </menu>
+    </item>
+    <item android:title="Information">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@mipmap/ic_action_about"
+                android:title="About" />
         </menu>
     </item>
 </menu>

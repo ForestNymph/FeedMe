@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -138,19 +137,6 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-        Button about = (Button) findViewById(R.id.footer_about_btn);
-        assert about != null;
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AboutDialogFragment about = new AboutDialogFragment();
-                about.show(getFragmentManager(), "");
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                assert drawer != null;
-                drawer.closeDrawer(GravityCompat.START);
-            }
-        });
     }
 
     @Override
@@ -187,6 +173,9 @@ public class MainFoodTypeActivity extends AppCompatActivity
             dialog.show(getFragmentManager(), "");
         } else if (id == R.id.nav_server) {
             ServerDialogFragment dialog = new ServerDialogFragment();
+            dialog.show(getFragmentManager(), "");
+        } else if (id == R.id.nav_about) {
+            AboutDialogFragment dialog = new AboutDialogFragment();
             dialog.show(getFragmentManager(), "");
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
