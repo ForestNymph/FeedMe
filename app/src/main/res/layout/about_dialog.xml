@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorYellow"
+    android:background="@color/colorNavAbout"
     android:orientation="vertical"
     tools:ignore="Overdraw">
 
@@ -31,7 +31,7 @@
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
             android:text="@string/dialog_about"
-            android:textColor="@color/colorDialogText"
+            android:textColor="@color/colorNavText"
             android:textSize="@dimen/text_font_size_20" />
     </LinearLayout>
 
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/dialog_about_message"
-            android:textColor="@color/colorDialogText"
+            android:textColor="@color/colorNavText"
             android:textSize="@dimen/text_font_size_18" />
     </LinearLayout>
 </LinearLayout>

@@ -44,7 +44,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
             }
         } catch (ProductDataSource.DatabaseNotExistException e) {
             e.printStackTrace();
-            Toast.makeText(mContext, "Database must be updated", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Database needs to be upadated", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -87,11 +87,16 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
         viewHolder.buttonView_2.setText(String.valueOf(mProducts.get(position).def2));
         viewHolder.buttonView_3.setText(String.valueOf(mProducts.get(position).def3));
 
-        viewHolder.editView.setFocusable(true);
-        viewHolder.editView.requestFocus();
-
         return convertView;
     }
+
+    /*public void showSoftKeyboard(View view) {
+        if (view.requestFocus()) {
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        }
+    }*/
 
     private void setListeners(final ViewHolder viewHolder, final int position) {
 

@@ -1,7 +1,9 @@
 package pl.grudowska.feedme.utils;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pl.grudowska.feedme.databases.ArchivedProduct;
@@ -17,12 +19,14 @@ public class DatabaseManager {
 
     public static List<Product> getAllProductsDB(Context context) {
         ProductDataSource dataSource = new ProductDataSource(context);
+        List<Product> values = new ArrayList<>();
         try {
             dataSource.openDataBase();
+            values = dataSource.getAllProducts();
         } catch (ProductDataSource.DatabaseNotExistException e) {
             e.printStackTrace();
+            Toast.makeText(context, "Database needs to be upadated", Toast.LENGTH_SHORT).show();
         }
-        List<Product> values = dataSource.getAllProducts();
         dataSource.close();
 
         return values;

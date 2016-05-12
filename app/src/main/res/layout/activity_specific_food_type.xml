@@ -8,18 +8,19 @@
     tools:context=".SpecificFoodTypeActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorDarkGray"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_width="match_parent"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_specific_listview" />
@@ -42,6 +43,5 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/ic_action_back"
         android:tint="@color/colorBrokenWhite"
-        app:backgroundTint="@color/colorLightGray" />
-
+        app:backgroundTint="@color/colorDarkGray" />
 </android.support.design.widget.CoordinatorLayout>

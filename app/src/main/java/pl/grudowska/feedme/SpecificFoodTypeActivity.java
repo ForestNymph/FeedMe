@@ -29,6 +29,7 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
             value = extras.getString("FoodType");
         }
         assert toolbar != null;
+        toolbar.setCollapsible(false);
         toolbar.setTitle(value);
         // toolbar.setSubtitle(value);
         setSupportActionBar(toolbar);
