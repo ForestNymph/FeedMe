@@ -41,8 +41,8 @@ public class ArchivedProductDataSource {
         }
     }
 
-    private ArchivedProduct cursorToArchivedProduct(Cursor cursor) {
-        ArchivedProduct product = new ArchivedProduct();
+    private Product cursorToArchivedProduct(Cursor cursor) {
+        Product product = new Product();
 
         product.id = cursor.getLong(0);
         product.date = cursor.getString(1);
@@ -65,9 +65,9 @@ public class ArchivedProductDataSource {
         return product;
     }
 
-    public List<ArchivedProduct> getArchivedProductsByDate(String date) {
-        List<ArchivedProduct> archived = new ArrayList<>();
-        ArchivedProduct product;
+    public List<Product> getArchivedProductsByDate(String date) {
+        List<Product> archived = new ArrayList<>();
+        Product product;
 
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED,
                 allColumns, null, null, null, null, null);
@@ -84,11 +84,11 @@ public class ArchivedProductDataSource {
         return archived;
     }
 
-    private ArchivedProduct createArchivedProduct(String date, String type, String name,
-                                                  int def1, int def2, int def3, double kcal, double protein,
-                                                  double carbohydrates, double fiber, double fats,
-                                                  double saturated, double monounsaturated,
-                                                  double omega3, double omega6, double amount) {
+    private Product createArchivedProduct(String date, String type, String name,
+                                          int def1, int def2, int def3, double kcal, double protein,
+                                          double carbohydrates, double fiber, double fats,
+                                          double saturated, double monounsaturated,
+                                          double omega3, double omega6, double amount) {
         ContentValues values = new ContentValues();
         values.put(ArchivedProductDB_SQL.COLUMN_DATE, date);
         values.put(ArchivedProductDB_SQL.COLUMN_TYPE, type);
@@ -112,14 +112,14 @@ public class ArchivedProductDataSource {
                 allColumns, ArchivedProductDB_SQL.COLUMN_ID_PROD + " = " + productId, null,
                 null, null, null);
         cursor.moveToFirst();
-        ArchivedProduct archived = cursorToArchivedProduct(cursor);
+        Product archived = cursorToArchivedProduct(cursor);
         cursor.close();
 
         return archived;
     }
 
-    public ArchivedProduct createArchivedProduct(String date, Product product) {
-        ArchivedProduct copy = createArchivedProduct(
+    public Product createArchivedProduct(String date, Product product) {
+        Product copy = createArchivedProduct(
                 date,
                 product.type,
                 product.name,
@@ -144,9 +144,9 @@ public class ArchivedProductDataSource {
         mDatabase.execSQL("delete from " + ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL);
     }
 
-    public List<ArchivedProduct> getAllArchivedProducts() {
-        List<ArchivedProduct> archived = new ArrayList<>();
-        ArchivedProduct archive;
+    public List<Product> getAllArchivedProducts() {
+        List<Product> archived = new ArrayList<>();
+        Product archive;
 
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED,
                 allColumns, null, null, null, null, null);

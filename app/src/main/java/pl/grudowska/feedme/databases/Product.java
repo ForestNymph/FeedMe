@@ -3,6 +3,7 @@ package pl.grudowska.feedme.databases;
 public class Product {
 
     public long id;
+    public String date;
     public String type;
     public String name;
     public int def1;

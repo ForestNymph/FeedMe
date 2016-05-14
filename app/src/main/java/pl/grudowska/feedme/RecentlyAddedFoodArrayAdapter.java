@@ -14,8 +14,8 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
+import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
@@ -60,7 +60,7 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
                     double amount = getNewProductAmount(switcher);
                     if (amount != 0) {
                         Product prod = mValues.get(position);
-                        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(mContext);
+                        AddedProductDataSource dataSource = new AddedProductDataSource(mContext);
                         dataSource.open();
                         dataSource.modifyAmountOfAddedProduct(prod, amount);
                         dataSource.close();

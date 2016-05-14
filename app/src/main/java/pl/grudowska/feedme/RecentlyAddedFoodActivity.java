@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Locale;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
+import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.ArchivedListFormatterManager;
 import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.EmailManager;
@@ -139,7 +139,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                     switch (event) {
                         case Snackbar.Callback.DISMISS_EVENT_ACTION:
                             // Action UNDO clicked, product restored
-                            SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(getApplicationContext());
+                            AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
                             dataSource.open();
                             dataSource.deleteAllAddedProducts();
                             for (int i = 0; i < temporary.size(); ++i) {
@@ -159,7 +159,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     }
 
     private void removeProductFromDB(int position) {
-        SupplementaryInfoDataSource addedProductsDataSource = new SupplementaryInfoDataSource(this);
+        AddedProductDataSource addedProductsDataSource = new AddedProductDataSource(this);
         addedProductsDataSource.open();
         List<Product> values = addedProductsDataSource.getAllAddedProducts();
         addedProductsDataSource.deleteAddedProduct(values.get(position));
@@ -168,7 +168,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
 
     @Override
     public void onClearItemsCommand() {
-        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(getApplicationContext());
+        AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
         dataSource.open();
         if (dataSource.getAllAddedProducts().size() == 0) {
             // do nothing

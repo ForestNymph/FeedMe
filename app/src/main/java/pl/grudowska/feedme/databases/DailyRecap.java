@@ -1,6 +1,7 @@
 package pl.grudowska.feedme.databases;
 
-public class DailyRecap {
+public class
+DailyRecap {
 
     public long id;
     public String date;

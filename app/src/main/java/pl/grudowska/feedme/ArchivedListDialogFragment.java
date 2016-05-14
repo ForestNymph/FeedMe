@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import pl.grudowska.feedme.databases.ArchivedProduct;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
+import pl.grudowska.feedme.databases.AddedProductDataSource;
+import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.EmailManager;
 
@@ -32,7 +32,7 @@ public class ArchivedListDialogFragment extends DialogFragment {
 
         mDate = getTag();
 
-        final List<ArchivedProduct> productList = DatabaseManager.getArchivedProductsByDateDB(getActivity(), mDate);
+        final List<Product> productList = DatabaseManager.getArchivedProductsByDateDB(getActivity(), mDate);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -50,7 +50,7 @@ public class ArchivedListDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.reuse, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(getActivity());
+                        AddedProductDataSource dataSource = new AddedProductDataSource(getActivity());
                         dataSource.open();
                         for (int i = 0; i < productList.size(); ++i) {
                             dataSource.createSimpleAddedProduct(productList.get(i));
@@ -87,12 +87,12 @@ public class ArchivedListDialogFragment extends DialogFragment {
         return mDialog;
     }
 
-    private class ArchivedListAdapter extends ArrayAdapter<ArchivedProduct> {
+    private class ArchivedListAdapter extends ArrayAdapter<Product> {
 
         private Context mContext;
-        private List<ArchivedProduct> mProducts;
+        private List<Product> mProducts;
 
-        public ArchivedListAdapter(Context context, List<ArchivedProduct> products) {
+        public ArchivedListAdapter(Context context, List<Product> products) {
             super(context, -1, products);
             mContext = context;
             mProducts = products;
@@ -113,7 +113,7 @@ public class ArchivedListDialogFragment extends DialogFragment {
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            ArchivedProduct archived = mProducts.get(position);
+            Product archived = mProducts.get(position);
 
             String name = archived.name;
             String amount = String.valueOf(archived.amount) + " g";

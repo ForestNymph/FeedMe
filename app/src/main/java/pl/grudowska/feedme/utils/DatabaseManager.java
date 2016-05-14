@@ -6,14 +6,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.grudowska.feedme.databases.ArchivedProduct;
+import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.DailyRecap;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.databases.SummaryRange;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
+import pl.grudowska.feedme.databases.RecapInfoDataSource;
 
 public class DatabaseManager {
 
@@ -33,7 +33,7 @@ public class DatabaseManager {
     }
 
     public static List<Product> getAddedProductsDB(Context context) {
-        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
+        AddedProductDataSource dataSource = new AddedProductDataSource(context);
         dataSource.open();
         List<Product> values = dataSource.getAllAddedProducts();
         dataSource.close();
@@ -42,7 +42,7 @@ public class DatabaseManager {
     }
 
     public static List<ProductType> getTypesAllProductsDB(Context context) {
-        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
+        RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();
         List<ProductType> values = dataSource.getTypesAllProducts();
         dataSource.close();
@@ -51,7 +51,7 @@ public class DatabaseManager {
     }
 
     public static List<SummaryRange> getAllSummariesDB(Context context) {
-        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
+        RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();
         List<SummaryRange> values = dataSource.getAllSummaries();
         dataSource.close();
@@ -68,10 +68,10 @@ public class DatabaseManager {
         return values;
     }
 
-    public static List<ArchivedProduct> getArchivedProductsByDateDB(Context context, String date) {
+    public static List<Product> getArchivedProductsByDateDB(Context context, String date) {
         ArchivedProductDataSource dataSource = new ArchivedProductDataSource(context);
         dataSource.open();
-        List<ArchivedProduct> values = dataSource.getArchivedProductsByDate(date);
+        List<Product> values = dataSource.getArchivedProductsByDate(date);
         dataSource.close();
 
         return values;

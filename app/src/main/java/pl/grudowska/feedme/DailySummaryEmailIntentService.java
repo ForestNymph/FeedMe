@@ -9,16 +9,16 @@ import java.util.List;
 import java.util.Locale;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
+import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.ArchivedListFormatterManager;
 import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class DailySummaryEmailIntentService extends IntentService {
 
-    private SupplementaryInfoDataSource mAddedProductDataSource;
+    private AddedProductDataSource mAddedProductDataSource;
     private ArchivedProductDataSource mArchivedDataSource;
     private String mDate;
     private int mTotalKcal;
@@ -34,7 +34,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         // String dataString = workIntent.getDataString();
 
         // Open DB's
-        mAddedProductDataSource = new SupplementaryInfoDataSource(getApplicationContext());
+        mAddedProductDataSource = new AddedProductDataSource(getApplicationContext());
         mAddedProductDataSource.open();
         mArchivedDataSource = new ArchivedProductDataSource(getApplicationContext());
         mArchivedDataSource.open();

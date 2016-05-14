@@ -10,41 +10,15 @@ import pl.grudowska.feedme.databases.Product;
 
 public class ArchivedListFormatterManager {
 
-    static private List<Product> mValues;
-
-    static public String createContentNames(Context context) {
-
-        mValues = DatabaseManager.getAddedProductsDB(context);
-
-        String allNames = "";
-        for (int i = 0; i < mValues.size(); ++i) {
-            allNames += mValues.get(i).name;
-            allNames += "\n";
-        }
-        return allNames;
-    }
-
-    static public String createContentAmounts(Context context) {
-
-        mValues = DatabaseManager.getAddedProductsDB(context);
-
-        String allAmounts = "";
-        for (int i = 0; i < mValues.size(); ++i) {
-            allAmounts += mValues.get(i).amount;
-            allAmounts += " g\n";
-        }
-        return allAmounts;
-    }
-
     static public String createMailContent(Context context) {
 
-        mValues = DatabaseManager.getAddedProductsDB(context);
+        List<Product> values = DatabaseManager.getAddedProductsDB(context);
 
         Product prod;
         // get only needed data (product name, kcal and amount)
         String contentMail = "\nProducts:\n";
-        for (int i = 0; i < mValues.size(); ++i) {
-            prod = mValues.get(i);
+        for (int i = 0; i < values.size(); ++i) {
+            prod = values.get(i);
             contentMail += prod.name;
             contentMail += "\n  ";
             contentMail += prod.getKcalRelatedWithAmount();

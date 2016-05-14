@@ -16,6 +16,7 @@ public class ProductDataSource extends SQLiteOpenHelper {
     public static final String TABLE_PRODUCT = "TABLE_PRODUCT";
 
     public static final String COLUMN_ID_PROD = "COLUMN_ID_PROD";
+    public static final String COLUMN_DATE = "COLUMN_DATE";
     public static final String COLUMN_TYPE = "COLUMN_TYPE";
     public static final String COLUMN_NAME_PROD = "COLUMN_NAME_PROD";
     public static final String COLUMN_DEF1 = "COLUMN_DEF1";
@@ -32,14 +33,10 @@ public class ProductDataSource extends SQLiteOpenHelper {
     public static final String COLUMN_FATS_OMEGA6 = "COLUMN_FATS_OMEGA6";
     public static final String COLUMN_AMOUNT = "COLUMN_AMOUNT";
 
-    // public static String DATABASE_NAME = "products.db";
-    // public static final String DATABASE_ADDRESS = "http://192.168.1.144:8090/files/";
-    // public static final int DATABASE_PORT_NUMBER = 8090;
-
     private static final int DATABASE_VERSION = 1;
     private static String DATABASE_PATH;
 
-    private String[] productColumns = {COLUMN_ID_PROD,
+    private String[] productColumns = {COLUMN_ID_PROD, COLUMN_DATE,
             COLUMN_TYPE, COLUMN_NAME_PROD, COLUMN_DEF1,
             COLUMN_DEF2, COLUMN_DEF3, COLUMN_KCAL,
             COLUMN_PROTEIN, COLUMN_CARBOHYDRATES, COLUMN_FIBER,
@@ -116,21 +113,22 @@ public class ProductDataSource extends SQLiteOpenHelper {
         Product product = new Product();
 
         product.id = cursor.getLong(0);
-        product.type = cursor.getString(1);
-        product.name = cursor.getString(2);
-        product.def1 = cursor.getInt(3);
-        product.def2 = cursor.getInt(4);
-        product.def3 = cursor.getInt(5);
-        product.kcal = cursor.getDouble(6);
-        product.protein = cursor.getDouble(7);
-        product.carbohydrates = cursor.getDouble(8);
-        product.fiber = cursor.getDouble(9);
-        product.fats = cursor.getDouble(10);
-        product.fatsSaturated = cursor.getDouble(11);
-        product.fatsMonounsaturated = cursor.getDouble(12);
-        product.omega3 = cursor.getDouble(13);
-        product.omega6 = cursor.getDouble(14);
-        product.amount = cursor.getDouble(15);
+        product.date = cursor.getString(1);
+        product.type = cursor.getString(2);
+        product.name = cursor.getString(3);
+        product.def1 = cursor.getInt(4);
+        product.def2 = cursor.getInt(5);
+        product.def3 = cursor.getInt(6);
+        product.kcal = cursor.getDouble(7);
+        product.protein = cursor.getDouble(8);
+        product.carbohydrates = cursor.getDouble(9);
+        product.fiber = cursor.getDouble(10);
+        product.fats = cursor.getDouble(11);
+        product.fatsSaturated = cursor.getDouble(12);
+        product.fatsMonounsaturated = cursor.getDouble(13);
+        product.omega3 = cursor.getDouble(14);
+        product.omega6 = cursor.getDouble(15);
+        product.amount = cursor.getDouble(16);
 
         return product;
     }

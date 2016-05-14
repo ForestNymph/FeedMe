@@ -17,9 +17,9 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 import java.util.List;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
+import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 
@@ -90,14 +90,6 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
         return convertView;
     }
 
-    /*public void showSoftKeyboard(View view) {
-        if (view.requestFocus()) {
-            InputMethodManager imm = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
-        }
-    }*/
-
     private void setListeners(final ViewHolder viewHolder, final int position) {
 
         viewHolder.buttonView_1.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +137,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
 
     private void addProductToDB(int position, int amount) {
         ProductDataSource dataSourceProduct = new ProductDataSource(mContext);
-        SupplementaryInfoDataSource dataSourceDescription = new SupplementaryInfoDataSource(mContext);
+        AddedProductDataSource dataSourceDescription = new AddedProductDataSource(mContext);
         try {
             dataSourceProduct.openDataBase();
         } catch (ProductDataSource.DatabaseNotExistException e) {

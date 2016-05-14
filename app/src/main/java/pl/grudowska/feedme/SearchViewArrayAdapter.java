@@ -15,8 +15,8 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
+import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
 
 public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
 
@@ -66,7 +66,7 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
                 public void onClick(View v) {
                     Product prod = mValues.get(position);
                     if (prod.amount != 0) {
-                        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(mContext);
+                        AddedProductDataSource dataSource = new AddedProductDataSource(mContext);
                         dataSource.open();
                         dataSource.createSimpleAddedProduct(prod);
                         dataSource.close();

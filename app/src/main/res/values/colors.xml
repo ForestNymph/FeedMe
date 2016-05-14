@@ -6,6 +6,7 @@
     <color name="colorPurple">#a54756</color>
     <color name="colorLightSaturatePurple">#c17fbb</color>
     <color name="colorLightPurple">#ae8a8a</color>
+    <color name="colorAndroid">#4F3A2D</color>
     <color name="colorWarningRed">#BF1E0A</color>
     <color name="colorRed">#d13b28</color>
     <color name="colorPrimary">#D84C00</color>
@@ -21,9 +22,6 @@
     <color name="colorFiche">#ffffff</color>
     <color name="colorDialogText">#e2e2e2</color>
     <color name="colorMainBackground">#e2e2e2</color>
-    <color name="colorAndroid">#4F3A2D</color>
     <color name="colorTextGray">#717171</color>
     <color name="colorDarkGray">#323232</color>
-
-    <color name="colorNavAbout">#497549</color>
 </resources>

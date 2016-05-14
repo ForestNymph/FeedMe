@@ -7,7 +7,7 @@ import java.util.List;
 
 import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.databases.ProductType;
-import pl.grudowska.feedme.databases.SupplementaryInfoDataSource;
+import pl.grudowska.feedme.databases.RecapInfoDataSource;
 import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
@@ -24,7 +24,7 @@ public class AdditionalsDataLoader {
     }
 
     public static void inflateProductType(Context context) {
-        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
+        RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();
 
         if (dataSource.getTypesAllProducts().size() != 0) {
@@ -51,7 +51,7 @@ public class AdditionalsDataLoader {
     }
 
     public static void inflateProductSummary(Context context) {
-        SupplementaryInfoDataSource dataSource = new SupplementaryInfoDataSource(context);
+        RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();
 
         if (dataSource.getAllSummaries().size() != 0) {
