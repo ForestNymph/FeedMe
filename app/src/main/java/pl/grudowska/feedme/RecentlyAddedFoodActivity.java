@@ -144,6 +144,8 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                             dataSource.deleteAllAddedProducts();
                             for (int i = 0; i < temporary.size(); ++i) {
                                 dataSource.createSimpleAddedProduct(temporary.get(i));
+                                // TODO status NEW for all product after dismiss event \
+                                // should be status UPDATE
                             }
                             dataSource.close();
                             mFoodSummaryAdapter.dataLoader();

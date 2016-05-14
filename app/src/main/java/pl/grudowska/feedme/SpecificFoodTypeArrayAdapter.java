@@ -137,18 +137,18 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
 
     private void addProductToDB(int position, int amount) {
         ProductDataSource dataSourceProduct = new ProductDataSource(mContext);
-        AddedProductDataSource dataSourceDescription = new AddedProductDataSource(mContext);
+        AddedProductDataSource dataSourceAdded = new AddedProductDataSource(mContext);
         try {
             dataSourceProduct.openDataBase();
         } catch (ProductDataSource.DatabaseNotExistException e) {
             e.printStackTrace();
         }
-        dataSourceDescription.open();
+        dataSourceAdded.open();
         Product product = dataSourceProduct.getProduct(mProducts.get(position).id);
         product.amount = amount;
-        dataSourceDescription.createSimpleAddedProduct(product);
+        dataSourceAdded.createSimpleAddedProduct(product);
         dataSourceProduct.close();
-        dataSourceDescription.close();
+        dataSourceAdded.close();
     }
 
     private void afterAddedProductAction(int position) {

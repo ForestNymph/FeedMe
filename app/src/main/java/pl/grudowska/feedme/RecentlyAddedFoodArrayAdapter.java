@@ -62,7 +62,7 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
                         Product prod = mValues.get(position);
                         AddedProductDataSource dataSource = new AddedProductDataSource(mContext);
                         dataSource.open();
-                        dataSource.modifyAmountOfAddedProduct(prod, amount);
+                        dataSource.editAmountOfAddedProduct(prod, amount);
                         dataSource.close();
 
                         mValues.clear();

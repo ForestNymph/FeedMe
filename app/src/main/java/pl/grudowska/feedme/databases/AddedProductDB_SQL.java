@@ -10,7 +10,6 @@ public class AddedProductDB_SQL extends SQLiteOpenHelper {
     public static final String TABLE_PRODUCTS_ADDED = "added";
     public static final String TABLE_PRODUCTS_STATUS = "status";
 
-
     // Columns in TABLE_PRODUCTS_ADDED
     public static final String COLUMN_ID_PROD = "_id_prod";
     public static final String COLUMN_DATE = "date";
