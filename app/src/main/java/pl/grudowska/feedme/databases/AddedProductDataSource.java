@@ -30,6 +30,8 @@ public class AddedProductDataSource {
             AddedProductDB_SQL.COLUMN_DATE_STATUS, AddedProductDB_SQL.COLUMN_NAME_PROD_STATUS,
             AddedProductDB_SQL.COLUMN_STATUS};
 
+    public static String DATABASE_PATH = "added.db";
+
     public AddedProductDataSource(Context context) {
         dbHelper = new AddedProductDB_SQL(context);
     }

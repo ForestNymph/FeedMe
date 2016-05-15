@@ -1,6 +1,7 @@
 package pl.grudowska.feedme;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,13 +15,27 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ConnectException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 import pl.grudowska.feedme.data.AdditionalsDataLoader;
+import pl.grudowska.feedme.databases.AddedProductDataSource;
+import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
+import pl.grudowska.feedme.utils.StatusCode;
 
 public class MainFoodTypeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,6 +96,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
                     mFoodCardsAdapter.createDatabase();
                     // TODO: refresh mainscreen after changing data
                 }
+                new SyncServerAsyncTask().execute(ProductDataSource.getDatabaseAdress(getApplicationContext())
+                        + AddedProductDataSource.DATABASE_PATH);
             }
         });
 
@@ -182,6 +199,69 @@ public class MainFoodTypeActivity extends AppCompatActivity
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private class SyncServerAsyncTask extends AsyncTask<String, Void, StatusCode> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(getApplicationContext(), "Connecting to the server...wait", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected StatusCode doInBackground(String... urls) {
+            URL url = null;
+            try {
+                url = new URL(urls[0]);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            URLConnection connection;
+            InputStream input;
+            try {
+                assert url != null;
+                connection = url.openConnection();
+                connection.connect();
+
+                // if connection successful clean old database before download new
+                // getApplicationContext().deleteDatabase(ProductDataSource.DATABASE_NAME);
+
+                input = new BufferedInputStream(url.openStream());
+
+                String databasePath = getApplicationContext().getDatabasePath("tmp_" + AddedProductDataSource.DATABASE_PATH).toString();
+                OutputStream output = new FileOutputStream(databasePath);
+                byte data[] = new byte[1024];
+                int count;
+                while ((count = input.read(data)) != -1) {
+                    output.write(data, 0, count);
+                }
+                output.flush();
+                output.close();
+                input.close();
+
+            } catch (ConnectException e) {
+                e.printStackTrace();
+                return StatusCode.SERVER_DOWN;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return StatusCode.FILE_NOT_FOUND;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return StatusCode.FAIL;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return StatusCode.OTHER;
+            }
+            return StatusCode.SUCCESS;
+        }
+
+        @Override
+        protected void onPostExecute(StatusCode status) {
+            super.onPostExecute(status);
+
+            StatusCode.showStatus(getApplicationContext(), status);
+        }
     }
 }
 

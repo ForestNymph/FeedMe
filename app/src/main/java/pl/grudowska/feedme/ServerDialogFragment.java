@@ -26,6 +26,7 @@ import java.net.URLConnection;
 
 import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
+import pl.grudowska.feedme.utils.StatusCode;
 
 public class ServerDialogFragment extends DialogFragment {
 
@@ -54,7 +55,7 @@ public class ServerDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 saveConfigurationData(mDialog);
                 // Update products database
-                new DownloadDatabaseTask().execute(ProductDataSource.getDatabaseAdress(getActivity())
+                new DownloadMainDatabaseTask().execute(ProductDataSource.getDatabaseAdress(getActivity())
                         + ProductDataSource.getDatabaseName(getActivity()));
             }
         });
@@ -116,11 +117,7 @@ public class ServerDialogFragment extends DialogFragment {
         }
     }
 
-    public enum StatusCode {
-        SUCCESS, FILE_NOT_FOUND, SERVER_DOWN, FAIL
-    }
-
-    private class DownloadDatabaseTask extends AsyncTask<String, Void, StatusCode> {
+    private class DownloadMainDatabaseTask extends AsyncTask<String, Void, StatusCode> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -168,6 +165,9 @@ public class ServerDialogFragment extends DialogFragment {
             } catch (IOException e) {
                 e.printStackTrace();
                 return StatusCode.FAIL;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return StatusCode.OTHER;
             }
             return StatusCode.SUCCESS;
         }
@@ -176,28 +176,7 @@ public class ServerDialogFragment extends DialogFragment {
         protected void onPostExecute(StatusCode status) {
             super.onPostExecute(status);
 
-            switch (status) {
-                case SUCCESS: {
-                    Toast.makeText(getActivity(), "Database has been successfully updated", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                case FILE_NOT_FOUND: {
-                    Toast.makeText(getActivity(), "Missing file on the server", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                case SERVER_DOWN: {
-                    Toast.makeText(getActivity(), "Server is down", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                case FAIL: {
-                    Toast.makeText(getActivity(), "While update an error occurred", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                default: {
-                    Toast.makeText(getActivity(), "Connection problem", Toast.LENGTH_LONG).show();
-                    break;
-                }
-            }
+            StatusCode.showStatus(getActivity(), status);
         }
     }
 }

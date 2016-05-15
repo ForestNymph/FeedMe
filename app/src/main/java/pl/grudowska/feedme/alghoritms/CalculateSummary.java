@@ -19,13 +19,13 @@ public class CalculateSummary {
             return null;
         } else {
             double constant = 100;
-            double factor = 0;
+            double factor;
             double kcal = 0;
             double protein = 0;
             double carbohydrates = 0;
             double fiber = 0;
             double fats = 0;
-            double saturated = 0, checkFatsData = 0;
+            double saturated = 0, checkFatsData;
             double monosaturated = 0;
             double omega3 = 0;
             double omega6 = 0;
@@ -79,7 +79,7 @@ public class CalculateSummary {
         List<Product> addedProducts = DatabaseManager.getAddedProductsDB(context);
 
         double constant = 100;
-        double factor = 0;
+        double factor;
         double kcal = 0;
 
         for (int i = 0; i < addedProducts.size(); ++i) {

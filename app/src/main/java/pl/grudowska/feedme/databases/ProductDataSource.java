@@ -142,22 +142,6 @@ public class ProductDataSource extends SQLiteOpenHelper {
         cursor.close();
 
         return (product == null) ? null : product;
-
-        /*String selectQuery = "SELECT  * FROM " + TABLE_PRODUCT + " WHERE "
-                + COLUMN_ID_PROD + " = " + productID;
-        Cursor cursor = mDataBase.rawQuery(selectQuery, null);
-        cursor.moveToFirst();
-        Product product;
-        while (!cursor.isAfterLast()) {
-            product = cursorToProduct(cursor);
-            if (product.id == productID) {
-                cursor.close();
-                return product;
-            }
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return null;*/
     }
 
     public List<Product> getAllProducts() {
