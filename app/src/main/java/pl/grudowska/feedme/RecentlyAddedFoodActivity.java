@@ -126,7 +126,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
         for (final int position : reverseSortedPositions) {
 
-            final List<Product> temporary = DatabaseManager.getAddedProductsDB(getApplicationContext());
+            final List<Product> temporary_products = DatabaseManager.getAddedProductsDB(getApplicationContext());
 
             removeProductFromDB(position);
             mFoodSummaryAdapter.dataLoader();
@@ -137,15 +137,15 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                 public void onDismissed(Snackbar snackbar, int event) {
 
                     switch (event) {
+                        // not happy with that solution
                         case Snackbar.Callback.DISMISS_EVENT_ACTION:
                             // Action UNDO clicked, product restored
-                            AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
+                            AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext(), false);
                             dataSource.open();
-                            dataSource.deleteAllAddedProducts();
-                            for (int i = 0; i < temporary.size(); ++i) {
-                                dataSource.createSimpleAddedProduct(temporary.get(i));
-                                // TODO status NEW for all product after dismiss event \
-                                // should be status UPDATE
+                            // clear databases and add previous products with statuses
+                            dataSource.clearAll();
+                            for (int i = 0; i < temporary_products.size(); ++i) {
+                                dataSource.createSimpleAddedProduct(temporary_products.get(i));
                             }
                             dataSource.close();
                             mFoodSummaryAdapter.dataLoader();
@@ -161,21 +161,22 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     }
 
     private void removeProductFromDB(int position) {
-        AddedProductDataSource addedProductsDataSource = new AddedProductDataSource(this);
+        AddedProductDataSource addedProductsDataSource = new AddedProductDataSource(this, false);
         addedProductsDataSource.open();
         List<Product> values = addedProductsDataSource.getAllAddedProducts();
+        // status update to DELETE
         addedProductsDataSource.deleteAddedProduct(values.get(position));
         addedProductsDataSource.close();
     }
 
     @Override
     public void onClearItemsCommand() {
-        AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
+        AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext(), false);
         dataSource.open();
         if (dataSource.getAllAddedProducts().size() == 0) {
             // do nothing
         } else {
-            dataSource.deleteAllAddedProducts();
+            dataSource.clearAll();
             mFoodSummaryAdapter.clear();
         }
         dataSource.close();
@@ -191,7 +192,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
 
         @Override
         protected Void doInBackground(Void... params) {
-            String date = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
+            String date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
             String contentMail = ArchivedListFormatterManager.createMailContent(getApplicationContext());
             int totalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
 

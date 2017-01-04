@@ -5,7 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 public enum StatusCode {
-    SUCCESS, FILE_NOT_FOUND, SERVER_DOWN, FAIL, OTHER;
+    SUCCESS, SYNC_SUCCESS, FILE_NOT_FOUND, SEND_DATABASE, SERVER_DOWN, FAIL, OTHER;
 
     public static void showStatus(Context context, StatusCode status) {
         switch (status) {
@@ -13,8 +13,16 @@ public enum StatusCode {
                 Toast.makeText(context, "Database has been successfully updated", Toast.LENGTH_SHORT).show();
                 break;
             }
+            case SYNC_SUCCESS: {
+                Toast.makeText(context, "Database has been successfully synced", Toast.LENGTH_SHORT).show();
+                break;
+            }
             case FILE_NOT_FOUND: {
                 Toast.makeText(context, "Missing file on the server", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case SEND_DATABASE: {
+                Toast.makeText(context, "Missing database on the server, database was sent", Toast.LENGTH_SHORT).show();
                 break;
             }
             case SERVER_DOWN: {

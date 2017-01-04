@@ -66,7 +66,7 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
                 public void onClick(View v) {
                     Product prod = mValues.get(position);
                     if (prod.amount != 0) {
-                        AddedProductDataSource dataSource = new AddedProductDataSource(mContext);
+                        AddedProductDataSource dataSource = new AddedProductDataSource(mContext, false);
                         dataSource.open();
                         dataSource.createSimpleAddedProduct(prod);
                         dataSource.close();

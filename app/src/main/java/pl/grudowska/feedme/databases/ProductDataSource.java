@@ -97,13 +97,14 @@ public class ProductDataSource extends SQLiteOpenHelper {
 
         Cursor cursor = mDataBase.query(TABLE_PRODUCT, productColumns, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            product = cursorToProduct(cursor);
-            if (product.type.equals(typeName)) {
-                products.add(product);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                product = cursorToProduct(cursor);
+                if (product.type.equals(typeName)) {
+                    products.add(product);
+                }
+                cursor.moveToNext();
             }
-            cursor.moveToNext();
         }
         cursor.close();
         return products;
@@ -137,11 +138,12 @@ public class ProductDataSource extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PRODUCT + " WHERE "
                 + COLUMN_ID_PROD + " = " + productID;
         Cursor cursor = mDataBase.rawQuery(selectQuery, null);
+
         cursor.moveToFirst();
         Product product = cursorToProduct(cursor);
         cursor.close();
 
-        return (product == null) ? null : product;
+        return product;
     }
 
     public List<Product> getAllProducts() {
@@ -151,11 +153,12 @@ public class ProductDataSource extends SQLiteOpenHelper {
         Cursor cursor = mDataBase.query(TABLE_PRODUCT,
                 productColumns, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            product = cursorToProduct(cursor);
-            products.add(product);
-            cursor.moveToNext();
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                product = cursorToProduct(cursor);
+                products.add(product);
+                cursor.moveToNext();
+            }
         }
         cursor.close();
         return products;

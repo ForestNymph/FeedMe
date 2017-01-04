@@ -60,7 +60,6 @@ public class RecapInfoDataSource {
                 typeColumns, RecapInfoHelperDB_SQL.COLUMN_ID_TYPE + " = " + insertId, null,
                 null, null, null);
         cursor.moveToFirst();
-
         ProductType newType = cursorToType(cursor);
         cursor.close();
         return newType;
@@ -73,11 +72,12 @@ public class RecapInfoDataSource {
         Cursor cursor = mDatabase.query(RecapInfoHelperDB_SQL.TABLE_TYPE,
                 typeColumns, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            type = cursorToType(cursor);
-            types.add(type);
-            cursor.moveToNext();
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                type = cursorToType(cursor);
+                types.add(type);
+                cursor.moveToNext();
+            }
         }
         cursor.close();
         return types;
@@ -103,11 +103,12 @@ public class RecapInfoDataSource {
         Cursor cursor = mDatabase.query(RecapInfoHelperDB_SQL.TABLE_SUMMARY,
                 summaryColumns, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            summary = cursorToSummary(cursor);
-            summaries.add(summary);
-            cursor.moveToNext();
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                summary = cursorToSummary(cursor);
+                summaries.add(summary);
+                cursor.moveToNext();
+            }
         }
         cursor.close();
         return summaries;

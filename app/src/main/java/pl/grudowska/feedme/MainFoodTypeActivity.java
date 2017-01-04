@@ -224,12 +224,9 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 connection = url.openConnection();
                 connection.connect();
 
-                // if connection successful clean old database before download new
-                // getApplicationContext().deleteDatabase(ProductDataSource.DATABASE_NAME);
-
                 input = new BufferedInputStream(url.openStream());
 
-                String databasePath = getApplicationContext().getDatabasePath("tmp_" + AddedProductDataSource.DATABASE_PATH).toString();
+                String databasePath = getApplicationContext().getDatabasePath(AddedProductDataSource.DATABASE_PATH_TMP).toString();
                 OutputStream output = new FileOutputStream(databasePath);
                 byte data[] = new byte[1024];
                 int count;
@@ -240,12 +237,12 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 output.close();
                 input.close();
 
+            } catch (FileNotFoundException e) {
+                // TODO send database to the server
+                return StatusCode.SEND_DATABASE;
             } catch (ConnectException e) {
                 e.printStackTrace();
                 return StatusCode.SERVER_DOWN;
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return StatusCode.FILE_NOT_FOUND;
             } catch (IOException e) {
                 e.printStackTrace();
                 return StatusCode.FAIL;
@@ -253,7 +250,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
                 e.printStackTrace();
                 return StatusCode.OTHER;
             }
-            return StatusCode.SUCCESS;
+            return StatusCode.SYNC_SUCCESS;
         }
 
         @Override
@@ -264,6 +261,3 @@ public class MainFoodTypeActivity extends AppCompatActivity
         }
     }
 }
-
-
-

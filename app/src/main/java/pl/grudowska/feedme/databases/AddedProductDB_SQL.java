@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class AddedProductDB_SQL extends SQLiteOpenHelper {
 
     public static final String TABLE_PRODUCTS_ADDED = "added";
-    public static final String TABLE_PRODUCTS_STATUS = "status";
 
     // Columns in TABLE_PRODUCTS_ADDED
     public static final String COLUMN_ID_PROD = "_id_prod";
@@ -29,12 +28,6 @@ public class AddedProductDB_SQL extends SQLiteOpenHelper {
     public static final String COLUMN_FATS_OMEGA6 = "omega6";
     public static final String COLUMN_AMOUNT = "amount";
 
-    // Columns in TABLE_PRODUCTS_STATUS
-    public static final String COLUMN_ID_PROD_STATUS = "_id_prod_status";
-    public static final String COLUMN_DATE_STATUS = "date_status";
-    public static final String COLUMN_STATUS = "product_status";
-    public static final String COLUMN_NAME_PROD_STATUS = "product_name_status";
-
     private static final String DATABASE_NAME = "added.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -47,26 +40,20 @@ public class AddedProductDB_SQL extends SQLiteOpenHelper {
             + COLUMN_FATS + " double, " + COLUMN_FATS_SATURATED + " double, "
             + COLUMN_FATS_MONOUNSATURATED + " double, " + COLUMN_FATS_OMEGA3 + " double, "
             + COLUMN_FATS_OMEGA6 + " double, " + COLUMN_AMOUNT + " double);";
+    public static String DATABASE_NAME_TMP = "tmp_added.db";
 
-    private static final String CREATE_TABLE_STATUS = "create table "
-            + TABLE_PRODUCTS_STATUS + "(" + COLUMN_ID_PROD_STATUS + " integer primary key autoincrement, "
-            + COLUMN_DATE_STATUS + " text not null, " + COLUMN_STATUS + " integer, " + COLUMN_NAME_PROD_STATUS
-            + " text not null);";
-
-    public AddedProductDB_SQL(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public AddedProductDB_SQL(Context context, boolean dbFromServer) {
+        super(context, (!dbFromServer) ? DATABASE_NAME : DATABASE_NAME_TMP, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_ADDED);
-        db.execSQL(CREATE_TABLE_STATUS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS_ADDED);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS_STATUS);
         onCreate(db);
     }
 }

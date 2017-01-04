@@ -12,8 +12,8 @@ import pl.grudowska.feedme.databases.DailyRecap;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.databases.ProductType;
-import pl.grudowska.feedme.databases.SummaryRange;
 import pl.grudowska.feedme.databases.RecapInfoDataSource;
+import pl.grudowska.feedme.databases.SummaryRange;
 
 public class DatabaseManager {
 
@@ -33,7 +33,16 @@ public class DatabaseManager {
     }
 
     public static List<Product> getAddedProductsDB(Context context) {
-        AddedProductDataSource dataSource = new AddedProductDataSource(context);
+        AddedProductDataSource dataSource = new AddedProductDataSource(context, false);
+        dataSource.open();
+        List<Product> values = dataSource.getAllAddedProducts();
+        dataSource.close();
+
+        return values;
+    }
+
+    public static List<Product> getAddedProductsFromServerDB(Context context) {
+        AddedProductDataSource dataSource = new AddedProductDataSource(context, true);
         dataSource.open();
         List<Product> values = dataSource.getAllAddedProducts();
         dataSource.close();

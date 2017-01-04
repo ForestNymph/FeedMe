@@ -72,13 +72,14 @@ public class ArchivedProductDataSource {
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED,
                 allColumns, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            product = cursorToArchivedProduct(cursor);
-            if (product.date.equals(date)) {
-                archived.add(product);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                product = cursorToArchivedProduct(cursor);
+                if (product.date.equals(date)) {
+                    archived.add(product);
+                }
+                cursor.moveToNext();
             }
-            cursor.moveToNext();
         }
         cursor.close();
         return archived;
@@ -151,30 +152,32 @@ public class ArchivedProductDataSource {
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED,
                 allColumns, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            archive = cursorToArchivedProduct(cursor);
-            archived.add(archive);
-            cursor.moveToNext();
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                archive = cursorToArchivedProduct(cursor);
+                archived.add(archive);
+                cursor.moveToNext();
+            }
         }
         cursor.close();
         return archived;
     }
 
     public List<DailyRecap> getAllArchivedDailyRecaps() {
-        List<DailyRecap> allDates = new ArrayList<>();
+        List<DailyRecap> recaps = new ArrayList<>();
         DailyRecap recap;
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL,
                 dateKcalColumns, null, null, null, null, null);
 
-        cursor.moveToLast();
-        while (!cursor.isBeforeFirst()) {
-            recap = cursorToDailyRecapItem(cursor);
-            allDates.add(recap);
-            cursor.moveToPrevious();
+        if (cursor.moveToLast()) {
+            while (!cursor.isBeforeFirst()) {
+                recap = cursorToDailyRecapItem(cursor);
+                recaps.add(recap);
+                cursor.moveToPrevious();
+            }
         }
         cursor.close();
-        return allDates;
+        return recaps;
     }
 
     public void createDailyRecap(String date, int totalKcal, String contentMail) {
@@ -183,9 +186,9 @@ public class ArchivedProductDataSource {
         values.put(ArchivedProductDB_SQL.COLUMN_TOTAL_KCAL, totalKcal);
         values.put(ArchivedProductDB_SQL.COLUMN_CONTENT_MAIL, contentMail);
 
-        long productId = mDatabase.insert(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL, null, values);
+        long recapId = mDatabase.insert(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL, null, values);
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL,
-                dateKcalColumns, ArchivedProductDB_SQL.COLUMN_ID_DATA_KCAL + " = " + productId, null,
+                dateKcalColumns, ArchivedProductDB_SQL.COLUMN_ID_DATA_KCAL + " = " + recapId, null,
                 null, null, null);
         cursor.close();
     }
@@ -206,14 +209,15 @@ public class ArchivedProductDataSource {
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL,
                 dateKcalColumns, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            recap = cursorToDailyRecapItem(cursor);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                recap = cursorToDailyRecapItem(cursor);
 
-            if (recap.date.equals(date)) {
-                break;
+                if (recap.date.equals(date)) {
+                    break;
+                }
+                cursor.moveToNext();
             }
-            cursor.moveToNext();
         }
         cursor.close();
         return recap.contentMail;

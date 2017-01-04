@@ -137,7 +137,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
 
     private void addProductToDB(int position, int amount) {
         ProductDataSource dataSourceProduct = new ProductDataSource(mContext);
-        AddedProductDataSource dataSourceAdded = new AddedProductDataSource(mContext);
+        AddedProductDataSource dataSourceAdded = new AddedProductDataSource(mContext, false);
         try {
             dataSourceProduct.openDataBase();
         } catch (ProductDataSource.DatabaseNotExistException e) {

@@ -34,7 +34,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         // String dataString = workIntent.getDataString();
 
         // Open DB's
-        mAddedProductDataSource = new AddedProductDataSource(getApplicationContext());
+        mAddedProductDataSource = new AddedProductDataSource(getApplicationContext(), false);
         mAddedProductDataSource.open();
         mArchivedDataSource = new ArchivedProductDataSource(getApplicationContext());
         mArchivedDataSource.open();
@@ -43,7 +43,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         if (mAddedProductDataSource.getAllAddedProducts().size() == 0) {
             // do nothing
         } else {
-            mDate = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
+            mDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
 
             // To maintain application performance, save the e-mail text permanently in database
             // to re-send without the need to generate it again
@@ -76,7 +76,7 @@ public class DailySummaryEmailIntentService extends IntentService {
     }
 
     private void clearRecentlyAddedDB() {
-        mAddedProductDataSource.deleteAllAddedProducts();
+        mAddedProductDataSource.clearAll();
     }
 
     private void sendClearAdapterBroadcast() {
