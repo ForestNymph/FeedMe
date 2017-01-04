@@ -118,6 +118,7 @@ public class ServerDialogFragment extends DialogFragment {
     }
 
     private class DownloadMainDatabaseTask extends AsyncTask<String, Void, StatusCode> {
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -139,13 +140,11 @@ public class ServerDialogFragment extends DialogFragment {
                 connection = url.openConnection();
                 connection.connect();
 
-                // if connection successful clean old database before download new
-                // getApplicationContext().deleteDatabase(ProductDataSource.DATABASE_NAME);
-
                 input = new BufferedInputStream(url.openStream());
 
                 String databasePath = getActivity()
                         .getDatabasePath(ProductDataSource.getDatabaseName(getActivity())).toString();
+
                 OutputStream output = new FileOutputStream(databasePath);
                 byte data[] = new byte[1024];
                 int count;

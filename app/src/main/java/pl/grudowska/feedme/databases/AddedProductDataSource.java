@@ -12,7 +12,6 @@ import java.util.List;
 public class AddedProductDataSource {
 
     public static String DATABASE_PATH = "added.db";
-    public static String DATABASE_PATH_TMP = "tmp_added.db";
     private SQLiteDatabase mDatabase;
     private AddedProductDB_SQL dbHelper;
     private String[] productColumns = {AddedProductDB_SQL.COLUMN_ID_PROD,

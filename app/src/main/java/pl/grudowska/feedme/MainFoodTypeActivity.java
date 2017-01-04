@@ -20,15 +20,12 @@ import android.widget.Toast;
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ConnectException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.Socket;
 import java.util.List;
 
 import pl.grudowska.feedme.data.AdditionalsDataLoader;
@@ -83,19 +80,12 @@ public class MainFoodTypeActivity extends AppCompatActivity
             }
         });
 
-        FloatingActionButton refresh_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
-        assert refresh_fab != null;
-        refresh_fab.setOnClickListener(new View.OnClickListener() {
+        // Send to server database with added products
+        FloatingActionButton send_db_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
+        assert send_db_fab != null;
+        send_db_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdditionalsDataLoader.inflateProductType(getApplicationContext());
-                AdditionalsDataLoader.inflateProductSummary(getApplicationContext());
-                // Update dataset with types
-                if (mFoodCardsAdapter != null) {
-                    mFoodCardsAdapter.clear();
-                    mFoodCardsAdapter.createDatabase();
-                    // TODO: refresh mainscreen after changing data
-                }
                 new SyncServerAsyncTask().execute(ProductDataSource.getDatabaseAdress(getApplicationContext())
                         + AddedProductDataSource.DATABASE_PATH);
             }
@@ -206,39 +196,24 @@ public class MainFoodTypeActivity extends AppCompatActivity
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "Connecting to the server...wait", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Checking connection with server...wait", Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected StatusCode doInBackground(String... urls) {
-            URL url = null;
+            // TODO: prepare full file wrapper to send added database using httpUrlConnection class
+            final Socket socket;
             try {
-                url = new URL(urls[0]);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            URLConnection connection;
-            InputStream input;
-            try {
-                assert url != null;
-                connection = url.openConnection();
-                connection.connect();
-
-                input = new BufferedInputStream(url.openStream());
-
-                String databasePath = getApplicationContext().getDatabasePath(AddedProductDataSource.DATABASE_PATH_TMP).toString();
-                OutputStream output = new FileOutputStream(databasePath);
-                byte data[] = new byte[1024];
-                int count;
-                while ((count = input.read(data)) != -1) {
-                    output.write(data, 0, count);
-                }
-                output.flush();
-                output.close();
-                input.close();
-
+                socket = new Socket("http://192.168.1.144:8090/files/", 8090);
+                final BufferedOutputStream outStream = new BufferedOutputStream(socket.getOutputStream());
+                final BufferedInputStream inStream = new BufferedInputStream(new FileInputStream("added.db"));
+                final byte[] buffer = new byte[4096];
+                for (int read = inStream.read(buffer); read >= 0; read = inStream.read(buffer))
+                    outStream.write(buffer, 0, read);
+                inStream.close();
+                outStream.flush();
+                outStream.close();
             } catch (FileNotFoundException e) {
-                // TODO send database to the server
                 return StatusCode.SEND_DATABASE;
             } catch (ConnectException e) {
                 e.printStackTrace();

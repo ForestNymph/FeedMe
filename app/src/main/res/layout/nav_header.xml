@@ -27,12 +27,12 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Feed Me"
         android:textColor="@color/colorNavText"
-        android:textSize="20sp" />
+        android:textSize="@dimen/text_font_size_18" />
 
     <TextView
         android:id="@+id/drawer_email_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorNavText"
-        android:textSize="@dimen/text_font_size_16" />
+        android:textSize="@dimen/text_font_size_14" />
 </LinearLayout>
