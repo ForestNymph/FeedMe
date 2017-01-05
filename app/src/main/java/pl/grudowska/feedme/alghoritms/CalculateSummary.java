@@ -1,13 +1,17 @@
 package pl.grudowska.feedme.alghoritms;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pl.grudowska.feedme.SummaryResult;
+import pl.grudowska.feedme.WarningLimitDialogFragment;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.utils.DatabaseManager;
+import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class CalculateSummary {
 
@@ -87,5 +91,14 @@ public class CalculateSummary {
             kcal += addedProducts.get(i).kcal * factor;
         }
         return (int) kcal;
+    }
+
+    static public void warningIfCalorieLimitExceeded(Context context) {
+        if (CalculateSummary.getTotalKcal(context) > SharedPreferencesManager.loadDataInt(context, "limit", 2300)) {
+            FragmentActivity activity = (FragmentActivity) (context);
+            FragmentManager fm = activity.getSupportFragmentManager();
+            WarningLimitDialogFragment dialog = new WarningLimitDialogFragment();
+            dialog.show(fm, "");
+        }
     }
 }

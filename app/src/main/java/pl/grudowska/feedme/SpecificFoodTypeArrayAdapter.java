@@ -20,7 +20,6 @@ import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
-import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 
 public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
@@ -153,17 +152,8 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
 
     private void afterAddedProductAction(int position) {
         collapse(position);
-        ifCalorieLimitExceeded();
+        CalculateSummary.warningIfCalorieLimitExceeded(mContext);
         Toast.makeText(mContext, mProducts.get(position).name + " added", Toast.LENGTH_SHORT).show();
-    }
-
-    private void ifCalorieLimitExceeded() {
-        if (CalculateSummary.getTotalKcal(mContext) > SharedPreferencesManager.loadDataInt(mContext, "limit", 2300)) {
-            FragmentActivity activity = (FragmentActivity) (mContext);
-            FragmentManager fm = activity.getSupportFragmentManager();
-            WarningLimitDialogFragment dialog = new WarningLimitDialogFragment();
-            dialog.show(fm, "");
-        }
     }
 
     @Override

@@ -41,15 +41,6 @@ public class DatabaseManager {
         return values;
     }
 
-    public static List<Product> getAddedProductsFromServerDB(Context context) {
-        AddedProductDataSource dataSource = new AddedProductDataSource(context, true);
-        dataSource.open();
-        List<Product> values = dataSource.getAllAddedProducts();
-        dataSource.close();
-
-        return values;
-    }
-
     public static List<ProductType> getTypesAllProductsDB(Context context) {
         RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();

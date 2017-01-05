@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/summary_amount"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:textColor="@color/colorBrokenWhite"
@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/summary_percentage"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:layout_marginEnd="8sp"

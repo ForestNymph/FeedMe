@@ -15,6 +15,7 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
+import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 
@@ -73,6 +74,7 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
                         // reset amount value
                         mValues.get(position).amount = 0;
                         Toast.makeText(mContext, mValues.get(position).name + " added", Toast.LENGTH_SHORT).show();
+                        CalculateSummary.warningIfCalorieLimitExceeded(mContext);
                     } else {
                         Toast.makeText(mContext, "No amount added", Toast.LENGTH_SHORT).show();
                     }

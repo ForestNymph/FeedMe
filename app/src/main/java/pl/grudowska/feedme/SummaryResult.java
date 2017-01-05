@@ -41,8 +41,4 @@ public class SummaryResult {
     public String getUnit() {
         return mUnit;
     }
-
-    public void setUnit(String unit) {
-        mUnit = unit;
-    }
 }
