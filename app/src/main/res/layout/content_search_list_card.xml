@@ -6,27 +6,28 @@
     android:background="@color/colorFiche"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="8sp"
+    android:paddingBottom="8sp"
+    android:paddingTop="8sp"
     tools:ignore="overdraw">
 
     <TextView
         android:id="@+id/search_name_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_margin_4"
+        android:layout_marginEnd="2sp"
+        android:layout_marginStart="@dimen/text_margin_16"
         android:layout_weight="2"
         android:fontFamily="Roboto"
         android:gravity="start|center_vertical"
-        android:singleLine="false"
         android:textColor="@color/colorTextGray"
-        android:textSize="@dimen/text_font_size_18"
+        android:textSize="@dimen/text_font_size_16"
         tools:ignore="UnusedAttribute" />
 
     <ViewSwitcher
         android:id="@+id/amount_search_swchr"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/text_margin_16"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/text_margin_12"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -36,7 +37,7 @@
             android:layout_height="match_parent"
             android:gravity="end|center_vertical"
             android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_18"
+            android:textSize="@dimen/text_font_size_14"
             tools:ignore="UnusedAttribute" />
 
         <EditText
@@ -44,10 +45,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="end|center_vertical"
-            android:hint="set amount"
+            android:hint="amount"
             android:inputType="number"
             android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_18" />
+            android:textSize="@dimen/text_font_size_14" />
     </ViewSwitcher>
 
     <Button
@@ -58,18 +59,19 @@
         android:background="@color/colorGreen"
         android:text="EDIT"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_18"
+        android:textSize="@dimen/text_font_size_14"
         tools:ignore="UnusedAttribute" />
 
     <Button
         android:id="@+id/card_search_add_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="3sp"
+        android:layout_marginEnd="8sp"
         android:layout_weight="1"
         android:background="@color/colorOrange"
         android:text="ADD"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_18"
+        android:textSize="@dimen/text_font_size_14"
         tools:ignore="UnusedAttribute" />
 </LinearLayout>

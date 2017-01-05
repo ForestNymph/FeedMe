@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:textColor="@color/colorDialogText"
-        android:textSize="@dimen/text_font_size_20" />
+        android:textSize="@dimen/text_font_size_14" />
 
     <TextView
         android:id="@+id/details_amount_view"
@@ -30,6 +30,6 @@
         android:layout_weight="1"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorDialogText"
-        android:textSize="@dimen/text_font_size_20" />
+        android:textSize="@dimen/text_font_size_14" />
 </LinearLayout>
 

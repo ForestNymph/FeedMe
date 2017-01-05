@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="60sp"
     android:background="@color/colorFiche"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="8sp"
-    android:paddingEnd="8sp"
-    android:paddingStart="16sp"
     android:paddingTop="8sp"
     tools:ignore="overdraw">
 
@@ -15,6 +15,7 @@
         android:id="@+id/archived_date_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16sp"
         android:layout_weight="2"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorTextGray"
@@ -29,18 +30,15 @@
         android:textColor="@color/colorTextGray"
         android:textSize="@dimen/text_font_size_14" />
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.3" />
-
     <Button
         android:id="@+id/archived_details_btn"
         android:layout_width="0dp"
-        android:layout_height="40sp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="8sp"
+        android:layout_marginStart="8sp"
         android:layout_weight="1"
         android:background="@color/colorGreen"
-        android:text="DETAILS"
+        android:text="@string/dialog_details"
         android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/text_font_size_14" />
 </LinearLayout>
