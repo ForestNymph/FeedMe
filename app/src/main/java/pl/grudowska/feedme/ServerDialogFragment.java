@@ -155,9 +155,6 @@ public class ServerDialogFragment extends DialogFragment {
                 output.close();
                 input.close();
 
-                // refresh after downloading new database
-                new ProductDataSource(getActivity()).openDataBase();
-
             } catch (ConnectException e) {
                 e.printStackTrace();
                 return StatusCode.SERVER_DOWN;

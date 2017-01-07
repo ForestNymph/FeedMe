@@ -36,11 +36,19 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
+        // A ViewHolder keeps references to children views to avoid unnecessary calls
+        // to findViewById() on each row
         ViewHolder viewHolder;
 
+        // The adapters are built to reuse Views, when a View is scrolled so that is no longer visible,
+        // it can be used for one of the new Views appearing. This reused View is the convertView.
+        // When convertView is not null, we can reuse it directly, there is no need
+        // to reinflate it. Only inflate a new View when the convertView supplied
+        // by ListView is null
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_search_list_card, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_search_list_row, parent, false);
 
+            // Creates a ViewHolder and store references to the children views that will data bind to
             viewHolder = new ViewHolder();
             viewHolder.textView_name = (TextView) convertView.findViewById(R.id.search_name_tv);
 
@@ -51,40 +59,47 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
             viewHolder.editView_newamount = (EditText) switcher.findViewById(R.id.hidden_search_amount_ev);
 
             viewHolder.edit_btn = (Button) convertView.findViewById(R.id.card_search_edit_btn);
+
             viewHolder.edit_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     double amount = getNewProductAmount(switcher);
                     if (amount != -1) {
-                        mValues.get(position).amount = amount;
+                        mValues.get((Integer) view.getTag()).amount = amount;
                         notifyDataSetChanged();
                     }
                 }
             });
             viewHolder.add_btn = (Button) convertView.findViewById(R.id.card_search_add_btn);
-            viewHolder.add_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Product prod = mValues.get(position);
-                    if (prod.amount != 0) {
-                        AddedProductDataSource dataSource = new AddedProductDataSource(mContext, false);
-                        dataSource.open();
-                        dataSource.createSimpleAddedProduct(prod);
-                        dataSource.close();
-                        // reset amount value
-                        mValues.get(position).amount = 0;
-                        Toast.makeText(mContext, mValues.get(position).name + " added", Toast.LENGTH_SHORT).show();
-                        CalculateSummary.warningIfCalorieLimitExceeded(mContext);
-                    } else {
-                        Toast.makeText(mContext, "No amount added", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
             convertView.setTag(viewHolder);
         } else {
+            // Get the ViewHolder back to get fast access to the views
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        viewHolder.add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Product prod = mValues.get(position);
+                if (prod.amount != 0) {
+                    AddedProductDataSource dataSource = new AddedProductDataSource(mContext, false);
+                    dataSource.open();
+                    dataSource.createSimpleAddedProduct(prod);
+                    dataSource.close();
+                    // reset amount value
+                    mValues.get(position).amount = 0;
+                    Toast.makeText(mContext, mValues.get(position).name + " added", Toast.LENGTH_SHORT).show();
+                    CalculateSummary.warningIfCalorieLimitExceeded(mContext);
+                } else {
+                    Toast.makeText(mContext, "No amount added", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        viewHolder.edit_btn.setTag(position);
+
         Product prod = mValues.get(position);
+        // Bind the data efficiently with the holder
         viewHolder.textView_name.setText(prod.name);
         String amount = prod.amount + " g";
         viewHolder.textView_amount.setText(amount);
