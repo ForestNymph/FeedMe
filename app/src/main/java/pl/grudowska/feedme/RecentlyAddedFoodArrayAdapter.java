@@ -38,7 +38,8 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
+        final Product prod = mValues.get(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.content_recentlyadded_card, parent, false);
@@ -46,36 +47,52 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
             viewHolder = new ViewHolder();
             viewHolder.textView_name = (TextView) convertView.findViewById(R.id.recently_name_tv);
             viewHolder.textView_kcal = (TextView) convertView.findViewById(R.id.recently_kcal_tv);
-
-            final ViewSwitcher switcher = (ViewSwitcher) convertView.findViewById(R.id.amount_swchr);
-            switcher.getChildAt(0);
-
-            viewHolder.textView_amount = (TextView) switcher.findViewById(R.id.recently_amount_tv);
-            viewHolder.editView_newamount = (EditText) switcher.findViewById(R.id.hidden_amount_ev);
-
+            viewHolder.viewSwitcher = (ViewSwitcher) convertView.findViewById(R.id.amount_swchr);
+            viewHolder.textView_amount = (TextView) viewHolder.viewSwitcher.findViewById(R.id.recently_amount_tv);
+            viewHolder.editView_newamount = (EditText) viewHolder.viewSwitcher.findViewById(R.id.hidden_amount_ev);
             viewHolder.edit_btn = (Button) convertView.findViewById(R.id.card_recently_edit_btn);
-            viewHolder.edit_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    double amount = getNewProductAmount(switcher);
-                    if (amount != 0) {
-                        Product prod = mValues.get(position);
-                        AddedProductDataSource dataSource = new AddedProductDataSource(mContext, false);
-                        dataSource.open();
-                        dataSource.editAmountOfAddedProduct(prod, amount);
-                        dataSource.close();
 
-                        mValues.clear();
-                        mValues = DatabaseManager.getAddedProductsDB(mContext);
-                        notifyDataSetChanged();
-                    }
-                }
-            });
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        Product prod = mValues.get(position);
+
+        // When one or more elements of the list are edited, (ie. the SwitcherView of this items are
+        // in edit mode) and we scroll list, we causing that the view will be reused for other elements.
+        // Must provide that views along the list won't copy SwitcherView in edit mode.
+        // And when return to the edited element it will be on edit mode.
+        // Need to check each item status (isEdited - edit property saved in object Product) and is view is in
+        // edit mode or not (inEditorMode)
+        boolean inEditorMode = viewHolder.viewSwitcher.getCurrentView().onCheckIsTextEditor();
+        boolean isEdited = prod.isEdited();
+        // if view is in edit mode but item was not edited, show textview
+        if (inEditorMode && !isEdited) {
+            viewHolder.viewSwitcher.showPrevious();
+        }
+        // if item was edited but view is not in edit mode, show editview
+        if (isEdited && !inEditorMode) {
+            viewHolder.viewSwitcher.showNext();
+        }
+
+        viewHolder.edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                double amount = getNewProductAmount(viewHolder.viewSwitcher);
+                if (amount != -1) {
+                    AddedProductDataSource dataSource = new AddedProductDataSource(mContext, false);
+                    dataSource.open();
+                    dataSource.editAmountOfAddedProduct(prod, amount);
+                    dataSource.close();
+                    prod.setEdited(false);
+                    mValues.clear();
+                    mValues = DatabaseManager.getAddedProductsDB(mContext);
+                    notifyDataSetChanged();
+                } else {
+                    prod.setEdited(true);
+                }
+            }
+        });
+        // Bind the data efficiently with the holder
         viewHolder.textView_name.setText(prod.name);
         String kcal = prod.getKcalRelatedWithAmount() + " kcal";
         viewHolder.textView_kcal.setText(kcal);
@@ -117,17 +134,18 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
         } else {
             newAmount = viewHolder.editView_newamount.getText().toString();
             if (newAmount.isEmpty()) {
-                // do nothing
+                return -1;
             } else {
                 viewHolder.editView_newamount.getText().clear();
                 return Double.valueOf(newAmount);
             }
         }
-        return 0;
+        return -1;
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
     private static class ViewHolder {
+        ViewSwitcher viewSwitcher;
         TextView textView_name;
         TextView textView_kcal;
         TextView textView_amount;

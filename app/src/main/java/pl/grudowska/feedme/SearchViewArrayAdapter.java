@@ -117,7 +117,7 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
         String amount = prod.amount + " g";
         viewHolder.textView_amount.setText(amount);
 
-        // set focus for all edit fields in list
+        // set focus for all edit fields in list and show numeric keyboard
         viewHolder.editView_newamount.requestFocus();
 
         return convertView;
