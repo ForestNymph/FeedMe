@@ -20,6 +20,8 @@ public class Product {
     public double omega6;
     public double amount;
 
+    private boolean edited = false;
+
     public int getKcalRelatedWithAmount() {
         return (int) (amount / 100 * kcal);
     }
@@ -28,5 +30,13 @@ public class Product {
     @Override
     public String toString() {
         return name + " " + amount;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean val) {
+        edited = val;
     }
 }
