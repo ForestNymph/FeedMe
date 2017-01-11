@@ -40,10 +40,9 @@ public class AddedProductDB_SQL extends SQLiteOpenHelper {
             + COLUMN_FATS + " double, " + COLUMN_FATS_SATURATED + " double, "
             + COLUMN_FATS_MONOUNSATURATED + " double, " + COLUMN_FATS_OMEGA3 + " double, "
             + COLUMN_FATS_OMEGA6 + " double, " + COLUMN_AMOUNT + " double);";
-    public static String DATABASE_NAME_TMP = "tmp_added.db";
 
-    public AddedProductDB_SQL(Context context, boolean dbFromServer) {
-        super(context, (!dbFromServer) ? DATABASE_NAME : DATABASE_NAME_TMP, null, DATABASE_VERSION);
+    public AddedProductDB_SQL(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

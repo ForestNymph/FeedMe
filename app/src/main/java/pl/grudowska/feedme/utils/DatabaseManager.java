@@ -32,10 +32,10 @@ public class DatabaseManager {
         return values;
     }
 
-    public static List<Product> getAddedProductsDB(Context context) {
-        AddedProductDataSource dataSource = new AddedProductDataSource(context, false);
+    public static ArrayList<Product> getAllAddedProductsDB(Context context) {
+        AddedProductDataSource dataSource = new AddedProductDataSource(context);
         dataSource.open();
-        List<Product> values = dataSource.getAllAddedProducts();
+        ArrayList<Product> values = dataSource.getAllAddedProducts();
         dataSource.close();
 
         return values;
@@ -59,10 +59,10 @@ public class DatabaseManager {
         return values;
     }
 
-    public static List<DailyRecap> getAllArchivedDatesWithCaloriesSummaryDB(Context context) {
+    public static ArrayList<DailyRecap> getAllDailyRecapsDB(Context context) {
         ArchivedProductDataSource dataSource = new ArchivedProductDataSource(context);
         dataSource.open();
-        List<DailyRecap> values = dataSource.getAllArchivedDailyRecaps();
+        ArrayList<DailyRecap> values = dataSource.getAllArchivedDailyRecaps();
         dataSource.close();
 
         return values;

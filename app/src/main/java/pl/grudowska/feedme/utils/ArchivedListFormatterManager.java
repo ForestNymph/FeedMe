@@ -12,7 +12,7 @@ public class ArchivedListFormatterManager {
 
     static public String createMailContent(Context context) {
 
-        List<Product> values = DatabaseManager.getAddedProductsDB(context);
+        List<Product> values = DatabaseManager.getAllAddedProductsDB(context);
 
         Product prod;
         // get only needed data (product name, kcal and amount)

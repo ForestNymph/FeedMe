@@ -34,7 +34,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         // String dataString = workIntent.getDataString();
 
         // Open DB's
-        mAddedProductDataSource = new AddedProductDataSource(getApplicationContext(), false);
+        mAddedProductDataSource = new AddedProductDataSource(getApplicationContext());
         mAddedProductDataSource.open();
         mArchivedDataSource = new ArchivedProductDataSource(getApplicationContext());
         mArchivedDataSource.open();
@@ -68,7 +68,7 @@ public class DailySummaryEmailIntentService extends IntentService {
     }
 
     private void archiveRecentlyAddedList() {
-        List<Product> products = DatabaseManager.getAddedProductsDB(getApplicationContext());
+        List<Product> products = DatabaseManager.getAllAddedProductsDB(getApplicationContext());
         for (int i = 0; i < products.size(); ++i) {
             mArchivedDataSource.createArchivedProduct(mDate, products.get(i));
         }

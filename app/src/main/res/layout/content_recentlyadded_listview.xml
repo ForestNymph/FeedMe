@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="60sp"
+    android:layout_marginBottom="45dp"
     android:background="@color/colorMainBackground"
-    android:paddingEnd="@dimen/text_padding_16"
-    android:paddingStart="@dimen/text_padding_16"
-    android:paddingTop="@dimen/text_padding_16"
+    android:padding="@dimen/text_padding_16"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".RecentlyAddedFoodActivity"
     tools:showIn="@layout/activity_recentlyadded_food">

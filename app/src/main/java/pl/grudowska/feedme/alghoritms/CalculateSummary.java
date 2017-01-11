@@ -17,7 +17,7 @@ public class CalculateSummary {
 
     public static List<SummaryResult> calculate(Context context) {
 
-        List<Product> addedProducts = DatabaseManager.getAddedProductsDB(context);
+        List<Product> addedProducts = DatabaseManager.getAllAddedProductsDB(context);
 
         if (addedProducts.size() == 0) {
             return null;
@@ -80,7 +80,7 @@ public class CalculateSummary {
 
     static public int getTotalKcal(Context context) {
 
-        List<Product> addedProducts = DatabaseManager.getAddedProductsDB(context);
+        List<Product> addedProducts = DatabaseManager.getAllAddedProductsDB(context);
 
         double constant = 100;
         double factor;

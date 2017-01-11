@@ -145,6 +145,26 @@ public class ArchivedProductDataSource {
         mDatabase.execSQL("delete from " + ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL);
     }
 
+    // delete added products by date and connected daily recap from db
+    public void deleteArchivedProductsByDate(DailyRecap recap) {
+        List<Product> products = getArchivedProductsByDate(recap.date);
+        for (int i = 0; i < products.size(); ++i) {
+            mDatabase.delete(ArchivedProductDB_SQL.TABLE_ARCHIVED, ArchivedProductDB_SQL.COLUMN_ID_PROD
+                    + " = " + products.get(i).id, null);
+        }
+        mDatabase.delete(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL, ArchivedProductDB_SQL.COLUMN_ID_DATA_KCAL
+                + " = " + recap.id, null);
+    }
+
+    public void deleteDailyRecap(DailyRecap recap) {
+        mDatabase.delete(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL, ArchivedProductDB_SQL.COLUMN_ID_DATA_KCAL
+                + " = " + recap.id, null);
+    }
+
+    public void deleteAllDailyRecaps() {
+        mDatabase.execSQL("delete from " + ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL);
+    }
+
     public List<Product> getAllArchivedProducts() {
         List<Product> archived = new ArrayList<>();
         Product archive;
@@ -163,9 +183,10 @@ public class ArchivedProductDataSource {
         return archived;
     }
 
-    public List<DailyRecap> getAllArchivedDailyRecaps() {
-        List<DailyRecap> recaps = new ArrayList<>();
+    public ArrayList<DailyRecap> getAllArchivedDailyRecaps() {
+        ArrayList<DailyRecap> recaps = new ArrayList<>();
         DailyRecap recap;
+
         Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL,
                 dateKcalColumns, null, null, null, null, null);
 
@@ -178,6 +199,10 @@ public class ArchivedProductDataSource {
         }
         cursor.close();
         return recaps;
+    }
+
+    public void createSimpleDailyRecap(DailyRecap dailyRecap) {
+        createDailyRecap(dailyRecap.date, dailyRecap.totalKcal, dailyRecap.contentMail);
     }
 
     public void createDailyRecap(String date, int totalKcal, String contentMail) {

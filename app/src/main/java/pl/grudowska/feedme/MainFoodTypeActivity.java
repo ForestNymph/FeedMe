@@ -38,8 +38,6 @@ public class MainFoodTypeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
-
-    private MainFoodTypeArrayAdapter mFoodCardsAdapter;
     private NavigationView mNavigationView;
 
     @Override
@@ -115,12 +113,12 @@ public class MainFoodTypeActivity extends AppCompatActivity
         mNavigationView.setNavigationItemSelectedListener(this);
 
         ListView listView = (ListView) findViewById(R.id.activity_main_listview);
-        mFoodCardsAdapter = new MainFoodTypeArrayAdapter(this);
+        MainFoodTypeArrayAdapter mFoodCardsAdapter = new MainFoodTypeArrayAdapter(this);
 
         // when app is starting first time load all data from db
         if (mFoodCardsAdapter.getCount() == 0) {
-            AdditionalsDataLoader.inflateProductType(getApplicationContext());
-            AdditionalsDataLoader.inflateProductSummary(getApplicationContext());
+            AdditionalsDataLoader.inflateProductsType(getApplicationContext());
+            AdditionalsDataLoader.inflateProducsRanges(getApplicationContext());
             mFoodCardsAdapter.createDatabase();
         }
 

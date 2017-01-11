@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.ExpandableListItemAdapter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
@@ -25,26 +25,10 @@ import pl.grudowska.feedme.databases.ProductDataSource;
 public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
 
     private final Context mContext;
-    private List<Product> mProducts;
 
-    public SpecificFoodTypeArrayAdapter(final Context context, String typeName) {
-        super(context, R.layout.content_specific_card, R.id.card_title, R.id.card_content);
-
+    SpecificFoodTypeArrayAdapter(final Context context, ArrayList<Product> products) {
+        super(context, R.layout.content_specific_card, R.id.card_title, R.id.card_content, products);
         mContext = context;
-
-        ProductDataSource dataSource = new ProductDataSource(mContext);
-        try {
-            dataSource.openDataBase();
-            mProducts = dataSource.getProductsByType(typeName);
-            dataSource.close();
-
-            for (int i = 0; i < mProducts.size(); ++i) {
-                add(mProducts.get(i));
-            }
-        } catch (ProductDataSource.DatabaseNotExistException e) {
-            e.printStackTrace();
-            Toast.makeText(mContext, "Database needs to be upadated", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @NonNull
@@ -55,7 +39,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
         if (tv == null) {
             tv = new TextView(mContext);
         }
-        tv.setText(mProducts.get(position).name);
+        tv.setText(getItem(position).name);
         tv.setTextSize(20);
         return tv;
     }
@@ -82,9 +66,9 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
         }
         setListeners(viewHolder, position);
 
-        viewHolder.buttonView_1.setText(String.valueOf(mProducts.get(position).def1));
-        viewHolder.buttonView_2.setText(String.valueOf(mProducts.get(position).def2));
-        viewHolder.buttonView_3.setText(String.valueOf(mProducts.get(position).def3));
+        viewHolder.buttonView_1.setText(String.valueOf(getItem(position).def1));
+        viewHolder.buttonView_2.setText(String.valueOf(getItem(position).def2));
+        viewHolder.buttonView_3.setText(String.valueOf(getItem(position).def3));
 
         return convertView;
     }
@@ -93,19 +77,19 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
 
         viewHolder.buttonView_1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProducts.get(position).def1);
+                addProductToDB(position, getItem(position).def1);
                 afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProducts.get(position).def2);
+                addProductToDB(position, getItem(position).def2);
                 afterAddedProductAction(position);
             }
         });
         viewHolder.buttonView_3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addProductToDB(position, mProducts.get(position).def3);
+                addProductToDB(position, getItem(position).def3);
                 afterAddedProductAction(position);
             }
         });
@@ -129,21 +113,21 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
                 DetailsDialogFragment details = new DetailsDialogFragment();
                 FragmentActivity activity = (FragmentActivity) (mContext);
                 FragmentManager fm = activity.getSupportFragmentManager();
-                details.show(fm, String.valueOf(mProducts.get(position).id));
+                details.show(fm, String.valueOf(getItem(position).id));
             }
         });
     }
 
     private void addProductToDB(int position, int amount) {
         ProductDataSource dataSourceProduct = new ProductDataSource(mContext);
-        AddedProductDataSource dataSourceAdded = new AddedProductDataSource(mContext, false);
+        AddedProductDataSource dataSourceAdded = new AddedProductDataSource(mContext);
         try {
             dataSourceProduct.openDataBase();
         } catch (ProductDataSource.DatabaseNotExistException e) {
             e.printStackTrace();
         }
         dataSourceAdded.open();
-        Product product = dataSourceProduct.getProduct(mProducts.get(position).id);
+        Product product = dataSourceProduct.getProduct(getItem(position).id);
         product.amount = amount;
         dataSourceAdded.createSimpleAddedProduct(product);
         dataSourceProduct.close();
@@ -153,21 +137,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
     private void afterAddedProductAction(int position) {
         collapse(position);
         CalculateSummary.warningIfCalorieLimitExceeded(mContext);
-        Toast.makeText(mContext, mProducts.get(position).name + " added", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public int getCount() {
-        if (mProducts == null) {
-            return 0;
-        }
-        return mProducts.size();
-    }
-
-    @Override
-    public void clear() {
-        mProducts.clear();
-        notifyDataSetChanged();
+        Toast.makeText(mContext, getItem(position).name + " added", Toast.LENGTH_SHORT).show();
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})

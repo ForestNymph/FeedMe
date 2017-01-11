@@ -7,7 +7,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AddedProductDataSource {
 
@@ -24,8 +23,8 @@ public class AddedProductDataSource {
             AddedProductDB_SQL.COLUMN_FATS_MONOUNSATURATED, AddedProductDB_SQL.COLUMN_FATS_OMEGA3,
             AddedProductDB_SQL.COLUMN_FATS_OMEGA6, AddedProductDB_SQL.COLUMN_AMOUNT};
 
-    public AddedProductDataSource(Context context, boolean dbFromServer) {
-        dbHelper = new AddedProductDB_SQL(context, dbFromServer);
+    public AddedProductDataSource(Context context) {
+        dbHelper = new AddedProductDB_SQL(context);
     }
 
     public void open() throws SQLException {
@@ -38,8 +37,8 @@ public class AddedProductDataSource {
         }
     }
 
-    public List<Product> getAllAddedProducts() {
-        List<Product> products = new ArrayList<>();
+    public ArrayList<Product> getAllAddedProducts() {
+        ArrayList<Product> products = new ArrayList<>();
         Product product;
 
         Cursor cursor = mDatabase.query(AddedProductDB_SQL.TABLE_PRODUCTS_ADDED,

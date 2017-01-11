@@ -53,7 +53,7 @@ public class LimitDialogFragment extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
                         SharedPreferencesManager.saveDataInt(getActivity(), "limit", picker.getValue());
-                        AdditionalsDataLoader.inflateProductSummary(getActivity());
+                        AdditionalsDataLoader.inflateProducsRanges(getActivity());
                         Toast.makeText(getActivity(), "Calories limit updated", Toast.LENGTH_LONG).show();
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

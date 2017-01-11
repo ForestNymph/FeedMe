@@ -19,6 +19,8 @@
     <string name="resend">RESEND</string>
     <string name="reuse">RE-USE</string>
 
+    <string name="swipe_remove">Swipe to remove item</string>
+
     <string name="dialog_remove">REMOVE ALL</string>
     <string name="dialog_warning">WARNING!</string>
     <string name="dialog_email">CHANGE EMAIL</string>

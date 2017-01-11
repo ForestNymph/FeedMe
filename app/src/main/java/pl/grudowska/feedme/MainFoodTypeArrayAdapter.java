@@ -21,7 +21,6 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
-    private List<ProductType> mProductType;
 
     MainFoodTypeArrayAdapter(final Context context) {
 
@@ -29,6 +28,13 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
         mMemoryCache = new BitmapCache();
 
         createDatabase();
+    }
+
+    public void createDatabase() {
+        List<ProductType> mProductType = DatabaseManager.getTypesAllProductsDB(mContext);
+        for (int i = 0; i < mProductType.size(); ++i) {
+            add(mProductType.get(i));
+        }
     }
 
     @Override
@@ -41,20 +47,19 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
 
             viewHolder = new ViewHolder();
             viewHolder.textView = (TextView) convertView.findViewById(R.id.activity_card_food_textview);
-            convertView.setTag(viewHolder);
-
             viewHolder.imageView = (ImageView) convertView.findViewById(R.id.activity_card_food_imageview);
+            convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.textView.setText(mProductType.get(position).typeName);
+        viewHolder.textView.setText(getItem(position).typeName);
         setImageView(viewHolder, position);
 
         return convertView;
     }
 
     private void setImageView(final ViewHolder viewHolder, final int position) {
-        int imageResId = mProductType.get(position).resImage;
+        int imageResId = getItem(position).resImage;
 
         Bitmap bitmap = getBitmapFromMemCache(imageResId);
         if (bitmap == null) {
@@ -72,30 +77,6 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
 
     private Bitmap getBitmapFromMemCache(final int key) {
         return mMemoryCache.get(key);
-    }
-
-    // after database update, view also needs to be refreshed
-    public void createDatabase() {
-        mProductType = DatabaseManager.getTypesAllProductsDB(mContext);
-
-        for (int i = 0; i < mProductType.size(); ++i) {
-            add(mProductType.get(i));
-        }
-        notifyDataSetChanged();
-    }
-
-    @Override
-    public int getCount() {
-        if (mProductType == null) {
-            return 0;
-        }
-        return mProductType.size();
-    }
-
-    @Override
-    public void clear() {
-        mProductType.removeAll(mProductType);
-        notifyDataSetChanged();
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})

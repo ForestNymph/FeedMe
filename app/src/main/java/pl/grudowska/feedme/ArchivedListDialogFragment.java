@@ -50,7 +50,7 @@ public class ArchivedListDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.reuse, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        AddedProductDataSource dataSource = new AddedProductDataSource(getActivity(), false);
+                        AddedProductDataSource dataSource = new AddedProductDataSource(getActivity());
                         dataSource.open();
                         for (int i = 0; i < productList.size(); ++i) {
                             dataSource.createSimpleAddedProduct(productList.get(i));

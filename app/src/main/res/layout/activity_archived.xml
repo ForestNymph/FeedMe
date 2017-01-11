@@ -38,10 +38,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/ic_trash"
         android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorRed"
-        android:src="@mipmap/ic_trash"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
+
+    <TextView
+        android:id="@+id/button_done"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorDarkGray"
+        android:gravity="center"
+        android:text="@string/swipe_remove"
+        android:textColor="@color/colorBrokenWhite"
+        android:textSize="14sp" />
 
 </android.support.design.widget.CoordinatorLayout>

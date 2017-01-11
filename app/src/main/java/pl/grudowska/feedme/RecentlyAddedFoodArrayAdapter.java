@@ -12,7 +12,7 @@ import android.widget.ViewSwitcher;
 
 import com.nhaarman.listviewanimations.ArrayAdapter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
@@ -21,25 +21,17 @@ import pl.grudowska.feedme.utils.DatabaseManager;
 public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
-    private List<Product> mValues;
 
-    RecentlyAddedFoodArrayAdapter(final Context context) {
+    RecentlyAddedFoodArrayAdapter(final Context context, ArrayList<Product> added) {
+        super(added);
         mContext = context;
-        dataLoader();
-    }
-
-    public void dataLoader() {
-        mValues = DatabaseManager.getAddedProductsDB(mContext);
-        for (int i = 0; i < mValues.size(); ++i) {
-            add(mValues.get(i));
-        }
     }
 
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
         final ViewHolder viewHolder;
-        final Product prod = mValues.get(position);
+        final Product prod = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.content_recentlyadded_card, parent, false);
@@ -79,14 +71,13 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
             public void onClick(View view) {
                 double amount = getNewProductAmount(viewHolder.viewSwitcher);
                 if (amount != -1) {
-                    AddedProductDataSource dataSource = new AddedProductDataSource(mContext, false);
+                    AddedProductDataSource dataSource = new AddedProductDataSource(mContext);
                     dataSource.open();
                     dataSource.editAmountOfAddedProduct(prod, amount);
                     dataSource.close();
                     prod.setEdited(false);
-                    mValues.clear();
-                    mValues = DatabaseManager.getAddedProductsDB(mContext);
-                    notifyDataSetChanged();
+                    clear();
+                    addAll(DatabaseManager.getAllAddedProductsDB(mContext));
                 } else {
                     prod.setEdited(true);
                 }
@@ -100,21 +91,6 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
         viewHolder.textView_amount.setText(amount);
 
         return convertView;
-    }
-
-    //http://stackoverflow.com/questions/15194835/filtering-custom-adapter-indexoutofboundsexception
-    @Override
-    public int getCount() {
-        if (mValues == null) {
-            return 0;
-        }
-        return mValues.size();
-    }
-
-    @Override
-    public void clear() {
-        mValues.clear();
-        notifyDataSetChanged();
     }
 
     private double getNewProductAmount(ViewSwitcher switcher) {

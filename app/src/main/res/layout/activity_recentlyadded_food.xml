@@ -27,7 +27,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize" />
-
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -39,9 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/ic_alghoritm"
         android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorLightOrange"
-        android:src="@mipmap/ic_alghoritm"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
 
@@ -74,7 +73,7 @@
         android:layout_gravity="bottom"
         android:background="@color/colorDarkGray"
         android:gravity="center"
-        android:text="Swipe to dissmis"
+        android:text="@string/swipe_remove"
         android:textColor="@color/colorBrokenWhite"
         android:textSize="14sp" />
 

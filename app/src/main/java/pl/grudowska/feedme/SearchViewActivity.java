@@ -20,9 +20,10 @@ public class SearchViewActivity extends AppCompatActivity
         implements SearchView.OnQueryTextListener {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
-    private ListView mListView;
+
     private SearchViewArrayAdapter mSearchAdapter;
     private SearchEngine mEngine;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,19 +68,18 @@ public class SearchViewActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        if (newText.isEmpty()) {
+    public boolean onQueryTextChange(String query) {
+        if (query.isEmpty()) {
             // clear adapter when no search
             mSearchAdapter.clear();
-            mListView.setAdapter(mSearchAdapter);
         } else {
-            displayProducts(newText);
+            displayProducts(query);
         }
         return false;
     }
 
-    private void displayProducts(String input) {
-        mSearchAdapter.updateProductsList(mEngine.search(input));
+    private void displayProducts(String query) {
+        mSearchAdapter.updateProductsList(mEngine.search(query));
         mListView.setAdapter(mSearchAdapter);
     }
 }

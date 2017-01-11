@@ -1,5 +1,4 @@
 package pl.grudowska.feedme;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,7 +98,7 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
             public void onClick(View v) {
 
                 if (prod.amount != 0) {
-                    AddedProductDataSource dataSource = new AddedProductDataSource(mContext, false);
+                    AddedProductDataSource dataSource = new AddedProductDataSource(mContext);
                     dataSource.open();
                     dataSource.createSimpleAddedProduct(prod);
                     dataSource.close();

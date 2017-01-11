@@ -7,8 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
+
+import java.util.ArrayList;
+
+import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.databases.ProductDataSource;
 
 public class SpecificFoodTypeActivity extends AppCompatActivity {
 
@@ -24,14 +30,13 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         Bundle extras = getIntent().getExtras();
-        String value = "";
+        String type_value = "";
         if (extras != null) {
-            value = extras.getString("FoodType");
+            type_value = extras.getString("FoodType");
         }
         assert toolbar != null;
         toolbar.setCollapsible(false);
-        toolbar.setTitle(value);
-        // toolbar.setSubtitle(value);
+        toolbar.setTitle(type_value);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab_recently = (FloatingActionButton) findViewById(R.id.fab_recently);
@@ -54,7 +59,8 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
             }
         });
 
-        SpecificFoodTypeArrayAdapter specificFoodTypeArrayAdapter = new SpecificFoodTypeArrayAdapter(this, value);
+        SpecificFoodTypeArrayAdapter specificFoodTypeArrayAdapter
+                = new SpecificFoodTypeArrayAdapter(this, getDataByType(type_value));
         AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(specificFoodTypeArrayAdapter);
         assert listView != null;
         alphaInAnimationAdapter.setAbsListView(listView);
@@ -63,5 +69,20 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         alphaInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
         listView.setAdapter(alphaInAnimationAdapter);
         listView.setAdapter(specificFoodTypeArrayAdapter);
+    }
+
+    private ArrayList<Product> getDataByType(String type) {
+        ArrayList<Product> products = new ArrayList<>();
+        ProductDataSource dataSource = new ProductDataSource(this);
+        try {
+            dataSource.openDataBase();
+            products = dataSource.getProductsByType(type);
+            dataSource.close();
+
+        } catch (ProductDataSource.DatabaseNotExistException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Database needs to be upadated", Toast.LENGTH_SHORT).show();
+        }
+        return products;
     }
 }

@@ -21,6 +21,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCa
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -81,15 +82,15 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                 // If recently added product list is empty do nothing
                 if (mFoodSummaryAdapter.getCount() == 0) {
                     Toast.makeText(getApplicationContext(), R.string.sent_nothing, Toast.LENGTH_LONG).show();
-                    // do nothing
                 } else {
                     new SendAction().execute();
                 }
             }
         });
 
+        final ArrayList<Product> added = DatabaseManager.getAllAddedProductsDB(getApplicationContext());
         ListView listView = (ListView) findViewById(R.id.activity_recently_listview);
-        mFoodSummaryAdapter = new RecentlyAddedFoodArrayAdapter(this);
+        mFoodSummaryAdapter = new RecentlyAddedFoodArrayAdapter(this, added);
         assert listView != null;
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
                 new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mFoodSummaryAdapter, this));
@@ -106,9 +107,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
     @Override
     protected void onResume() {
         super.onResume();
-        if (isReceiverRegistered) {
-            // do nothing
-        } else {
+        if (!isReceiverRegistered) {
             registerReceiver(mClearAdapterReceiver, new IntentFilter("RecentlyAddedFoodActivity.clearAdapter"));
             isReceiverRegistered = true;
         }
@@ -123,13 +122,12 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         }
     }
 
+    @Override
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
         for (final int position : reverseSortedPositions) {
 
-            final List<Product> temporary_products = DatabaseManager.getAddedProductsDB(getApplicationContext());
-
-            removeProductFromDB(position);
-            mFoodSummaryAdapter.dataLoader();
+            final Product product_remove = DatabaseManager.getAllAddedProductsDB(getApplicationContext()).get(position);
+            mFoodSummaryAdapter.remove(position);
 
             Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).setCallback(new Snackbar.Callback() {
 
@@ -137,19 +135,22 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
                 public void onDismissed(Snackbar snackbar, int event) {
 
                     switch (event) {
-                        // not happy with that solution
-                        case Snackbar.Callback.DISMISS_EVENT_ACTION:
-                            // Action UNDO clicked, product restored
-                            AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext(), false);
-                            dataSource.open();
-                            // clear databases and add previous products with statuses
-                            dataSource.clearAll();
-                            for (int i = 0; i < temporary_products.size(); ++i) {
-                                dataSource.createSimpleAddedProduct(temporary_products.get(i));
-                            }
-                            dataSource.close();
-                            mFoodSummaryAdapter.dataLoader();
+                        // Action UNDO clicked, product restored
+                        case Snackbar.Callback.DISMISS_EVENT_ACTION: {
+                            mFoodSummaryAdapter.add(position, product_remove);
                             break;
+                        }
+                        // Non action taken or dismiss swiped or new snackbar shown
+                        // item with connected data removed
+                        case Snackbar.Callback.DISMISS_EVENT_TIMEOUT:
+                        case Snackbar.Callback.DISMISS_EVENT_SWIPE:
+                        case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE: {
+                            AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
+                            dataSource.open();
+                            dataSource.deleteAddedProduct(product_remove);
+                            dataSource.close();
+                            break;
+                        }
                     }
                 }
             }).setAction("UNDO", new View.OnClickListener() {
@@ -160,24 +161,13 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
         }
     }
 
-    private void removeProductFromDB(int position) {
-        AddedProductDataSource addedProductsDataSource = new AddedProductDataSource(this, false);
-        addedProductsDataSource.open();
-        List<Product> values = addedProductsDataSource.getAllAddedProducts();
-        // status update to DELETE
-        addedProductsDataSource.deleteAddedProduct(values.get(position));
-        addedProductsDataSource.close();
-    }
-
     @Override
     public void onClearItemsCommand() {
-        AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext(), false);
+        AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
         dataSource.open();
-        if (dataSource.getAllAddedProducts().size() == 0) {
-            // do nothing
-        } else {
-            dataSource.clearAll();
+        if (dataSource.getAllAddedProducts().size() != 0) {
             mFoodSummaryAdapter.clear();
+            dataSource.clearAll();
         }
         dataSource.close();
     }
@@ -200,7 +190,7 @@ public class RecentlyAddedFoodActivity extends AppCompatActivity implements OnDi
 
             ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getApplicationContext());
             dataSource.open();
-            List<Product> products = DatabaseManager.getAddedProductsDB(getApplicationContext());
+            List<Product> products = DatabaseManager.getAllAddedProductsDB(getApplicationContext());
             for (int i = 0; i < products.size(); ++i) {
                 dataSource.createArchivedProduct(date, products.get(i));
             }

@@ -91,8 +91,8 @@ public class ProductDataSource extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public List<Product> getProductsByType(String typeName) {
-        List<Product> products = new ArrayList<>();
+    public ArrayList<Product> getProductsByType(String typeName) {
+        ArrayList<Product> products = new ArrayList<>();
         Product product;
 
         Cursor cursor = mDataBase.query(TABLE_PRODUCT, productColumns, null, null, null, null, null);

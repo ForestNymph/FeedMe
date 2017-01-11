@@ -1,18 +1,27 @@
 package pl.grudowska.feedme;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
+import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
+
+import java.util.ArrayList;
 
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
+import pl.grudowska.feedme.databases.DailyRecap;
+import pl.grudowska.feedme.utils.DatabaseManager;
 
-public class ArchivedActivity extends AppCompatActivity implements DeleteDialogFragment.OnClearItemsCommandListener {
+public class ArchivedActivity extends AppCompatActivity implements OnDismissCallback, DeleteDialogFragment.OnClearItemsCommandListener {
 
     private static final int INITIAL_DELAY_MILLIS = 300;
 
@@ -23,12 +32,9 @@ public class ArchivedActivity extends AppCompatActivity implements DeleteDialogF
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_archived);
-        ListView listView = (ListView) findViewById(R.id.archived_listview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        mArchivedArrayAdapter = new ArchivedArrayAdapter(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_recently);
         assert fab != null;
@@ -43,12 +49,64 @@ public class ArchivedActivity extends AppCompatActivity implements DeleteDialogF
                 }
             }
         });
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mArchivedArrayAdapter);
+        final ArrayList<DailyRecap> dailyRecaps = DatabaseManager.getAllDailyRecapsDB(getApplicationContext());
+        mArchivedArrayAdapter = new ArchivedArrayAdapter(this, dailyRecaps);
+        ListView listView = (ListView) findViewById(R.id.archived_listview);
         assert listView != null;
-        alphaInAnimationAdapter.setAbsListView(listView);
-        assert alphaInAnimationAdapter.getViewAnimator() != null;
-        alphaInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
-        listView.setAdapter(alphaInAnimationAdapter);
+        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
+                new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mArchivedArrayAdapter, this));
+        swingBottomInAnimationAdapter.setAbsListView(listView);
+        assert swingBottomInAnimationAdapter.getViewAnimator() != null;
+        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+
+        listView.setAdapter(swingBottomInAnimationAdapter);
+    }
+
+    @Override
+    public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
+        for (final int position : reverseSortedPositions) {
+
+            final DailyRecap dailyRecap_remove = DatabaseManager.getAllDailyRecapsDB(getApplicationContext()).get(position);
+            mArchivedArrayAdapter.remove(position);
+
+            Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).setCallback(new Snackbar.Callback() {
+
+                @Override
+                public void onDismissed(Snackbar snackbar, int event) {
+
+                    switch (event) {
+                        // Action UNDO clicked, product restored
+                        case Snackbar.Callback.DISMISS_EVENT_ACTION: {
+                            mArchivedArrayAdapter.add(position, dailyRecap_remove);
+                            break;
+                        }
+                        // Non action taken or dismiss swiped or new snackbar shown
+                        // item with connected data removed
+                        case Snackbar.Callback.DISMISS_EVENT_TIMEOUT:
+                        case Snackbar.Callback.DISMISS_EVENT_SWIPE:
+                        case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE: {
+                            ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getApplicationContext());
+                            dataSource.open();
+                            removeOnlyDailyRecap(dailyRecap_remove);
+                            dataSource.deleteArchivedProductsByDate(dailyRecap_remove);
+                            dataSource.close();
+                            break;
+                        }
+                    }
+                }
+            }).setAction("UNDO", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            }).show();
+        }
+    }
+
+    private void removeOnlyDailyRecap(DailyRecap recap) {
+        ArchivedProductDataSource archivedProductsDataSource = new ArchivedProductDataSource(this);
+        archivedProductsDataSource.open();
+        archivedProductsDataSource.deleteDailyRecap(recap);
+        archivedProductsDataSource.close();
     }
 
     // Callback from DeleteDialogFragment

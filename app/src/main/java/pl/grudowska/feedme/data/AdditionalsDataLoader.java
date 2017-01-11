@@ -23,7 +23,7 @@ public class AdditionalsDataLoader {
         return titles;
     }
 
-    public static void inflateProductType(Context context) {
+    public static void inflateProductsType(Context context) {
         RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();
 
@@ -50,7 +50,7 @@ public class AdditionalsDataLoader {
         dataSource.close();
     }
 
-    public static void inflateProductSummary(Context context) {
+    public static void inflateProducsRanges(Context context) {
         RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();
 

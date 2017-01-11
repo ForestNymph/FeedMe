@@ -11,29 +11,24 @@ import android.widget.TextView;
 
 import com.nhaarman.listviewanimations.ArrayAdapter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import pl.grudowska.feedme.databases.DailyRecap;
-import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> {
 
-    private final Context mContext;
-    private List<DailyRecap> mTitleBar;
+    private Context mContext;
 
-    ArchivedArrayAdapter(final Context context) {
+    ArchivedArrayAdapter(Context context, ArrayList<DailyRecap> recaps) {
+        super(recaps);
         mContext = context;
-        mTitleBar = DatabaseManager.getAllArchivedDatesWithCaloriesSummaryDB(mContext);
-
-        for (int i = 0; i < mTitleBar.size(); ++i) {
-            add(mTitleBar.get(i));
-        }
     }
 
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
+        final DailyRecap recap = this.getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.content_archived_card_title, parent, false);
@@ -48,33 +43,20 @@ public class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.date_tv.setText(mTitleBar.get(position).date);
-        String kcalValue = String.valueOf(mTitleBar.get(position).totalKcal + " kcal");
-        viewHolder.totalkcal_tv.setText(kcalValue);
         viewHolder.details_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArchivedListDialogFragment list = new ArchivedListDialogFragment();
                 FragmentActivity activity = (FragmentActivity) (mContext);
                 FragmentManager fm = activity.getSupportFragmentManager();
-                list.show(fm, mTitleBar.get(position).date);
+                list.show(fm, recap.date);
             }
         });
+        viewHolder.date_tv.setText(recap.date);
+        String kcalValue = String.valueOf(recap.totalKcal + " kcal");
+        viewHolder.totalkcal_tv.setText(kcalValue);
+
         return convertView;
-    }
-
-    @Override
-    public int getCount() {
-        if (mTitleBar == null) {
-            return 0;
-        }
-        return mTitleBar.size();
-    }
-
-    @Override
-    public void clear() {
-        mTitleBar.removeAll(mTitleBar);
-        notifyDataSetChanged();
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
