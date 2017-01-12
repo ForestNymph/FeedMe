@@ -1,7 +1,6 @@
 package pl.grudowska.feedme;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -15,24 +14,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.Socket;
 import java.util.List;
 
 import pl.grudowska.feedme.data.AdditionalsDataLoader;
-import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.utils.DownloadDatabaseTask;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
-import pl.grudowska.feedme.utils.StatusCode;
 
 public class MainFoodTypeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -78,14 +68,14 @@ public class MainFoodTypeActivity extends AppCompatActivity
             }
         });
 
-        // Send to server database with added products
-        FloatingActionButton send_db_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
-        assert send_db_fab != null;
-        send_db_fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton refresh_db_fab = (FloatingActionButton) findViewById(R.id.fab_refresh);
+        assert refresh_db_fab != null;
+        refresh_db_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new SyncServerAsyncTask().execute(ProductDataSource.getDatabaseAdress(getApplicationContext())
-                        + AddedProductDataSource.DATABASE_PATH);
+                // Update products database
+                new DownloadDatabaseTask(getApplicationContext()).execute(ProductDataSource.getDatabaseAdress(getApplicationContext())
+                        + ProductDataSource.getDatabaseName(getApplicationContext()));
             }
         });
 
@@ -115,7 +105,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.activity_main_listview);
         MainFoodTypeArrayAdapter mFoodCardsAdapter = new MainFoodTypeArrayAdapter(this);
 
-        // when app is starting first time load all data from db
+        // when app is starting first time load all data to db
         if (mFoodCardsAdapter.getCount() == 0) {
             AdditionalsDataLoader.inflateProductsType(getApplicationContext());
             AdditionalsDataLoader.inflateProducsRanges(getApplicationContext());
@@ -187,50 +177,5 @@ public class MainFoodTypeActivity extends AppCompatActivity
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private class SyncServerAsyncTask extends AsyncTask<String, Void, StatusCode> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "Checking connection with server...wait", Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        protected StatusCode doInBackground(String... urls) {
-            // TODO: prepare full file wrapper to send added database using httpUrlConnection class
-            final Socket socket;
-            try {
-                socket = new Socket("http://192.168.1.144:8090/files/", 8090);
-                final BufferedOutputStream outStream = new BufferedOutputStream(socket.getOutputStream());
-                final BufferedInputStream inStream = new BufferedInputStream(new FileInputStream("added.db"));
-                final byte[] buffer = new byte[4096];
-                for (int read = inStream.read(buffer); read >= 0; read = inStream.read(buffer))
-                    outStream.write(buffer, 0, read);
-                inStream.close();
-                outStream.flush();
-                outStream.close();
-            } catch (FileNotFoundException e) {
-                return StatusCode.SEND_DATABASE;
-            } catch (ConnectException e) {
-                e.printStackTrace();
-                return StatusCode.SERVER_DOWN;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return StatusCode.FAIL;
-            } catch (Exception e) {
-                e.printStackTrace();
-                return StatusCode.OTHER;
-            }
-            return StatusCode.SYNC_SUCCESS;
-        }
-
-        @Override
-        protected void onPostExecute(StatusCode status) {
-            super.onPostExecute(status);
-
-            StatusCode.showStatus(getApplicationContext(), status);
-        }
     }
 }
