@@ -12,25 +12,25 @@
     tools:ignore="overdraw">
 
     <TextView
-        android:id="@+id/recently_name_tv"
+        android:id="@+id/added_name_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16sp"
         android:layout_weight="2"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorTextGray"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
-        android:id="@+id/recently_kcal_tv"
+        android:id="@+id/added_kcal_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8sp"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:textColor="@color/colorTextGray"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 
     <ViewSwitcher
@@ -42,12 +42,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/recently_amount_tv"
+            android:id="@+id/added_amount_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="end|center_vertical"
             android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_14"
+            android:textSize="@dimen/size_14_sp"
             tools:ignore="UnusedAttribute" />
 
         <EditText
@@ -58,20 +58,20 @@
             android:hint="amount"
             android:inputType="number"
             android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_14" />
+            android:textSize="@dimen/size_14_sp" />
     </ViewSwitcher>
 
     <Button
-        android:id="@+id/card_recently_edit_btn"
+        android:id="@+id/card_added_edit_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8sp"
-        android:layout_marginStart="8sp"
+        android:layout_marginEnd="@dimen/size_8_sp"
+        android:layout_marginStart="@dimen/size_12_sp"
         android:layout_weight="1"
         android:background="@color/colorGreen"
         android:text="EDIT"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 
 </LinearLayout>

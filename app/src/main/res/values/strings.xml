@@ -35,6 +35,7 @@
         "Date: 2017\n"
         "Version: "
     </string>
+    <string name="total_kcal">TOTAL KCAL:</string>
 
     <!-- Content description -->
     <string name="cd_image">image</string>

@@ -16,15 +16,16 @@ import java.util.ArrayList;
 
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
-import pl.grudowska.feedme.utils.DatabaseManager;
 
-public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
+public class AddedFoodArrayAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
+    private OnEditItemListener mListener;
 
-    RecentlyAddedFoodArrayAdapter(final Context context, ArrayList<Product> added) {
+    AddedFoodArrayAdapter(final Context context, ArrayList<Product> added) {
         super(added);
         mContext = context;
+        mListener = (OnEditItemListener) mContext;
     }
 
     @Override
@@ -34,15 +35,15 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
         final Product prod = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_recentlyadded_card, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_added_row, parent, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.textView_name = (TextView) convertView.findViewById(R.id.recently_name_tv);
-            viewHolder.textView_kcal = (TextView) convertView.findViewById(R.id.recently_kcal_tv);
+            viewHolder.textView_name = (TextView) convertView.findViewById(R.id.added_name_tv);
+            viewHolder.textView_kcal = (TextView) convertView.findViewById(R.id.added_kcal_tv);
             viewHolder.viewSwitcher = (ViewSwitcher) convertView.findViewById(R.id.amount_swchr);
-            viewHolder.textView_amount = (TextView) viewHolder.viewSwitcher.findViewById(R.id.recently_amount_tv);
+            viewHolder.textView_amount = (TextView) viewHolder.viewSwitcher.findViewById(R.id.added_amount_tv);
             viewHolder.editView_newamount = (EditText) viewHolder.viewSwitcher.findViewById(R.id.hidden_amount_ev);
-            viewHolder.edit_btn = (Button) convertView.findViewById(R.id.card_recently_edit_btn);
+            viewHolder.edit_btn = (Button) convertView.findViewById(R.id.card_added_edit_btn);
 
             convertView.setTag(viewHolder);
         } else {
@@ -73,11 +74,16 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
                 if (amount != -1) {
                     AddedProductDataSource dataSource = new AddedProductDataSource(mContext);
                     dataSource.open();
+                    // change value in database
                     dataSource.editAmountOfAddedProduct(prod, amount);
+                    // after edit amount update product in array adapter
+                    remove(position);
+                    add(position, dataSource.getProductByName(prod.name));
+                    // close database
                     dataSource.close();
                     prod.setEdited(false);
-                    clear();
-                    addAll(DatabaseManager.getAllAddedProductsDB(mContext));
+                    // update total kcal textview after editing product (callback to activity)
+                    mListener.onEditItem();
                 } else {
                     prod.setEdited(true);
                 }
@@ -117,6 +123,12 @@ public class RecentlyAddedFoodArrayAdapter extends ArrayAdapter<Product> {
             }
         }
         return -1;
+    }
+
+    // Callback to communicate with activity when product amount is edited
+    // and total kcal should be updated
+    public interface OnEditItemListener {
+        void onEditItem();
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})

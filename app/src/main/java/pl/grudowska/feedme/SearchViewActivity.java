@@ -37,7 +37,7 @@ public class SearchViewActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RecentlyAddedFoodActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddedFoodActivity.class);
                 startActivity(intent);
                 finish();
             }

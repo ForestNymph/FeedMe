@@ -103,7 +103,7 @@ public class ArchivedListDialogFragment extends DialogFragment {
             final ViewHolder viewHolder;
 
             if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.content_archived_card_listview_row, parent, false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.content_archived_product_row, parent, false);
                 viewHolder = new ViewHolder();
 
                 viewHolder.product_textView = (TextView) convertView.findViewById(R.id.archived_product_tv);

@@ -43,7 +43,7 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
         ViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_main_card, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_main_row, parent, false);
 
             viewHolder = new ViewHolder();
             viewHolder.textView = (TextView) convertView.findViewById(R.id.activity_card_food_textview);

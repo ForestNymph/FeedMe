@@ -53,7 +53,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         recently_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RecentlyAddedFoodActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddedFoodActivity.class);
                 startActivity(intent);
             }
         });
@@ -152,7 +152,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_recently) {
-            Intent intent = new Intent(this, RecentlyAddedFoodActivity.class);
+            Intent intent = new Intent(this, AddedFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_archived) {
             Intent intent = new Intent(this, ArchivedActivity.class);

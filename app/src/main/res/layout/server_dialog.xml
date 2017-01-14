@@ -9,10 +9,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/text_margin_16"
-        android:layout_marginEnd="@dimen/text_margin_32"
-        android:layout_marginStart="@dimen/text_margin_32"
-        android:layout_marginTop="@dimen/text_margin_16"
+        android:layout_marginBottom="@dimen/size_16_sp"
+        android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginStart="@dimen/size_32_sp"
+        android:layout_marginTop="@dimen/size_16_sp"
         android:orientation="horizontal">
 
         <ImageView
@@ -20,7 +20,7 @@
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/text_margin_32"
+            android:layout_marginEnd="@dimen/size_32_sp"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/server" />
 
@@ -31,19 +31,19 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:text="@string/dialog_server"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_20" />
+            android:textColor="@color/colorStandardWhite"
+            android:textSize="@dimen/size_20_sp" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/text_margin_32"
-        android:layout_marginRight="@dimen/text_margin_32"
-        android:paddingBottom="@dimen/text_padding_16"
+        android:layout_marginLeft="@dimen/size_32_sp"
+        android:layout_marginRight="@dimen/size_32_sp"
+        android:paddingBottom="@dimen/size_16_sp"
         android:text="@string/server_message"
-        android:textColor="@color/colorDialogText"
-        android:textSize="@dimen/text_font_size_16" />
+        android:textColor="@color/colorStandardWhite"
+        android:textSize="@dimen/size_16_sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,17 +52,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/text_margin_32"
-            android:layout_marginRight="@dimen/text_margin_32"
+            android:layout_marginLeft="@dimen/size_32_sp"
+            android:layout_marginRight="@dimen/size_32_sp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_margin_24"
+                android:layout_marginTop="@dimen/size_24_sp"
                 android:text="Server address:"
-                android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/text_font_size_16" />
+                android:textColor="@color/colorStandardWhite"
+                android:textSize="@dimen/size_16_sp" />
 
             <EditText
                 android:id="@+id/server_address"
@@ -72,20 +72,20 @@
                 android:background="@color/colorBrokenWhite"
                 android:inputType="textUri"
                 android:paddingBottom="8sp"
-                android:paddingEnd="@dimen/text_padding_16"
-                android:paddingStart="@dimen/text_padding_16"
+                android:paddingEnd="@dimen/size_16_sp"
+                android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
                 android:singleLine="true"
                 android:textColor="@color/colorTextGray"
-                android:textSize="@dimen/text_font_size_18" />
+                android:textSize="@dimen/size_18_sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_margin_24"
+                android:layout_marginTop="@dimen/size_24_sp"
                 android:text="Server port:"
-                android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/text_font_size_16" />
+                android:textColor="@color/colorStandardWhite"
+                android:textSize="@dimen/size_16_sp" />
 
             <EditText
                 android:id="@+id/port_address"
@@ -95,20 +95,20 @@
                 android:background="@color/colorBrokenWhite"
                 android:inputType="text"
                 android:paddingBottom="8sp"
-                android:paddingEnd="@dimen/text_padding_16"
-                android:paddingStart="@dimen/text_padding_16"
+                android:paddingEnd="@dimen/size_16_sp"
+                android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
                 android:singleLine="true"
                 android:textColor="@color/colorTextGray"
-                android:textSize="@dimen/text_font_size_18" />
+                android:textSize="@dimen/size_18_sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/text_margin_24"
+                android:layout_marginTop="@dimen/size_24_sp"
                 android:text="Database name:"
-                android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/text_font_size_16" />
+                android:textColor="@color/colorStandardWhite"
+                android:textSize="@dimen/size_16_sp" />
 
             <EditText
                 android:id="@+id/db_name"
@@ -118,28 +118,28 @@
                 android:background="@color/colorBrokenWhite"
                 android:inputType="text"
                 android:paddingBottom="8sp"
-                android:paddingEnd="@dimen/text_padding_16"
-                android:paddingStart="@dimen/text_padding_16"
+                android:paddingEnd="@dimen/size_16_sp"
+                android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
                 android:singleLine="true"
                 android:textColor="@color/colorTextGray"
-                android:textSize="@dimen/text_font_size_18" />
+                android:textSize="@dimen/size_18_sp" />
 
             <Button
                 android:id="@+id/db_sync_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/text_margin_24"
-                android:layout_marginTop="@dimen/text_margin_32"
+                android:layout_marginBottom="@dimen/size_24_sp"
+                android:layout_marginTop="@dimen/size_32_sp"
                 android:background="@color/colorLightPurple"
                 android:gravity="center_vertical|center_horizontal"
                 android:paddingBottom="8sp"
-                android:paddingEnd="@dimen/text_padding_16"
-                android:paddingStart="@dimen/text_padding_16"
+                android:paddingEnd="@dimen/size_16_sp"
+                android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
                 android:text="Sync now"
                 android:textColor="@color/colorBrokenWhite"
-                android:textSize="@dimen/text_font_size_16" />
+                android:textSize="@dimen/size_16_sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

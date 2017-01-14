@@ -15,19 +15,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2sp"
-        android:layout_marginStart="@dimen/text_margin_16"
+        android:layout_marginStart="@dimen/size_16_sp"
         android:layout_weight="2"
         android:fontFamily="Roboto"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorTextGray"
-        android:textSize="@dimen/text_font_size_16"
+        android:textSize="@dimen/size_16_sp"
         tools:ignore="UnusedAttribute" />
 
     <ViewSwitcher
         android:id="@+id/amount_search_swchr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/text_margin_12"
+        android:layout_marginEnd="@dimen/size_12_sp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:gravity="end|center_vertical"
             android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_14"
+            android:textSize="@dimen/size_14_sp"
             tools:ignore="UnusedAttribute" />
 
         <EditText
@@ -48,7 +48,7 @@
             android:hint="amount"
             android:inputType="number"
             android:textColor="@color/colorTextGray"
-            android:textSize="@dimen/text_font_size_14" />
+            android:textSize="@dimen/size_14_sp" />
     </ViewSwitcher>
 
     <Button
@@ -59,7 +59,7 @@
         android:background="@color/colorGreen"
         android:text="EDIT"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 
     <Button
@@ -72,6 +72,6 @@
         android:background="@color/colorOrange"
         android:text="ADD"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 </LinearLayout>

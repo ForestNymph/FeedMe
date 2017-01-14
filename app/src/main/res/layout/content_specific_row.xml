@@ -6,10 +6,10 @@
     android:layout_height="wrap_content"
     android:background="@color/colorFiche"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/text_padding_16"
-    android:paddingEnd="@dimen/text_padding_8"
-    android:paddingStart="@dimen/text_padding_8"
-    android:paddingTop="@dimen/text_padding_16"
+    android:paddingBottom="@dimen/size_16_sp"
+    android:paddingEnd="@dimen/size_8_sp"
+    android:paddingStart="@dimen/size_8_sp"
+    android:paddingTop="@dimen/size_16_sp"
     tools:ignore="overdraw">
 
     <FrameLayout
@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingEnd="@dimen/text_padding_16"
-        android:paddingStart="@dimen/text_padding_16" />
+        android:paddingEnd="@dimen/size_16_sp"
+        android:paddingStart="@dimen/size_16_sp" />
 
     <LinearLayout
         android:id="@+id/card_content"
@@ -84,8 +84,8 @@
                 android:layout_weight="1"
                 android:hint="gramm"
                 android:inputType="number"
-                android:paddingEnd="@dimen/text_padding_16"
-                android:paddingStart="@dimen/text_padding_16"
+                android:paddingEnd="@dimen/size_16_sp"
+                android:paddingStart="@dimen/size_16_sp"
                 android:textColor="@color/colorTextGray"
                 android:textSize="14sp" />
 

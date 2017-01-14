@@ -31,7 +31,7 @@ public class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> {
         final DailyRecap recap = this.getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_archived_card_title, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_archived_title_row, parent, false);
 
             viewHolder = new ViewHolder();
             viewHolder.date_tv = (TextView) convertView.findViewById(R.id.archived_date_tv);

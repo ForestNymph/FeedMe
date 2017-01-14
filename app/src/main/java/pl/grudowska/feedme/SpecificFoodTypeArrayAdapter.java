@@ -27,7 +27,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
     private final Context mContext;
 
     SpecificFoodTypeArrayAdapter(final Context context, ArrayList<Product> products) {
-        super(context, R.layout.content_specific_card, R.id.card_title, R.id.card_content, products);
+        super(context, R.layout.content_specific_row, R.id.card_title, R.id.card_content, products);
         mContext = context;
     }
 
@@ -50,7 +50,7 @@ public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Prod
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_specific_card, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.content_specific_row, parent, false);
 
             viewHolder = new ViewHolder();
 

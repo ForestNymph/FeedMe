@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMainBackground"
+    android:background="@color/colorStandardWhite"
     android:orientation="vertical"
-    android:paddingEnd="@dimen/text_padding_16"
-    android:paddingStart="@dimen/text_padding_16"
+    android:paddingEnd="@dimen/size_16_sp"
+    android:paddingStart="@dimen/size_16_sp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".SearchViewActivity">
 
@@ -15,8 +15,8 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/text_margin_16"
-        android:layout_marginTop="@dimen/text_margin_16"
+        android:layout_marginBottom="@dimen/size_16_sp"
+        android:layout_marginTop="@dimen/size_16_sp"
         android:iconifiedByDefault="false"
         android:inputType="text"
         android:queryHint="Search product by name" />
@@ -25,12 +25,12 @@
         android:id="@+id/search_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/size_16_sp"
         android:cacheColorHint="#00000000"
         android:clipToPadding="false"
         android:divider="@null"
         android:dividerHeight="10dp"
         android:drawSelectorOnTop="true"
-        android:layout_marginBottom="@dimen/text_margin_16"
         android:fadingEdge="none"
         android:scrollbarStyle="outsideOverlay" />
 </LinearLayout>

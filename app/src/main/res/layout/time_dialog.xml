@@ -8,10 +8,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/text_margin_16"
-        android:layout_marginEnd="@dimen/text_margin_32"
-        android:layout_marginStart="@dimen/text_margin_32"
-        android:layout_marginTop="@dimen/text_margin_16"
+        android:layout_marginBottom="@dimen/size_16_sp"
+        android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginStart="@dimen/size_32_sp"
+        android:layout_marginTop="@dimen/size_16_sp"
         android:orientation="horizontal">
 
         <ImageView
@@ -19,7 +19,7 @@
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/text_margin_32"
+            android:layout_marginEnd="@dimen/size_32_sp"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/time" />
 
@@ -35,29 +35,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_time"
-                android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/text_font_size_20" />
+                android:textColor="@color/colorStandardWhite"
+                android:textSize="@dimen/size_20_sp" />
 
             <TextView
                 android:id="@+id/time_current"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Current: "
-                android:textColor="@color/colorDialogText"
-                android:textSize="@dimen/text_font_size_16" />
+                android:textColor="@color/colorStandardWhite"
+                android:textSize="@dimen/size_16_sp" />
         </LinearLayout>
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/text_margin_16"
-        android:layout_marginLeft="@dimen/text_margin_32"
-        android:layout_marginRight="@dimen/text_margin_32"
+        android:layout_marginBottom="@dimen/size_16_sp"
+        android:layout_marginLeft="@dimen/size_32_sp"
+        android:layout_marginRight="@dimen/size_32_sp"
         android:layout_marginTop="0dp"
         android:text="@string/time_message"
-        android:textColor="@color/colorDialogText"
-        android:textSize="@dimen/text_font_size_18" />
+        android:textColor="@color/colorStandardWhite"
+        android:textSize="@dimen/size_18_sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -66,27 +66,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/text_margin_32"
-            android:layout_marginRight="@dimen/text_margin_32"
+            android:layout_marginLeft="@dimen/size_32_sp"
+            android:layout_marginRight="@dimen/size_32_sp"
             android:orientation="vertical">
 
             <TimePicker
                 android:id="@+id/picker_time_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/text_margin_32" />
+                android:layout_marginBottom="@dimen/size_32_sp" />
 
             <CheckBox
                 android:id="@+id/checkbox_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/text_margin_16"
+                android:layout_marginBottom="@dimen/size_16_sp"
                 android:buttonTint="@color/colorBrokenWhite"
                 android:clickable="true"
                 android:foregroundTint="@color/colorBrokenWhite"
                 android:text="TURN ON sending daily summaries"
                 android:textColor="@color/colorBrokenWhite"
-                android:textSize="@dimen/text_font_size_14" />
+                android:textSize="@dimen/size_14_sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

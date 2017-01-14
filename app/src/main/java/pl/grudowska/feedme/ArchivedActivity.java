@@ -66,8 +66,8 @@ public class ArchivedActivity extends AppCompatActivity implements OnDismissCall
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
         for (final int position : reverseSortedPositions) {
 
-            final DailyRecap dailyRecap_remove = DatabaseManager.getAllDailyRecapsDB(getApplicationContext()).get(position);
-            mArchivedArrayAdapter.remove(position);
+            // remove dailyRecap from arrayadapter only
+            final DailyRecap dailyRecap = mArchivedArrayAdapter.remove(position);
 
             Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).setCallback(new Snackbar.Callback() {
 
@@ -75,20 +75,21 @@ public class ArchivedActivity extends AppCompatActivity implements OnDismissCall
                 public void onDismissed(Snackbar snackbar, int event) {
 
                     switch (event) {
-                        // Action UNDO clicked, product restored
+                        // Action UNDO clicked, dailyRecap restored
                         case Snackbar.Callback.DISMISS_EVENT_ACTION: {
-                            mArchivedArrayAdapter.add(position, dailyRecap_remove);
+                            mArchivedArrayAdapter.add(position, dailyRecap);
                             break;
                         }
                         // Non action taken or dismiss swiped or new snackbar shown
-                        // item with connected data removed
+                        // dailyRecap with connected data removed from db
+                        case Snackbar.Callback.DISMISS_EVENT_MANUAL:
                         case Snackbar.Callback.DISMISS_EVENT_TIMEOUT:
                         case Snackbar.Callback.DISMISS_EVENT_SWIPE:
                         case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE: {
                             ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getApplicationContext());
                             dataSource.open();
-                            removeOnlyDailyRecap(dailyRecap_remove);
-                            dataSource.deleteArchivedProductsByDate(dailyRecap_remove);
+                            dataSource.deleteArchivedProductsByDate(dailyRecap);
+                            dataSource.deleteDailyRecap(dailyRecap);
                             dataSource.close();
                             break;
                         }
@@ -100,13 +101,6 @@ public class ArchivedActivity extends AppCompatActivity implements OnDismissCall
                 }
             }).show();
         }
-    }
-
-    private void removeOnlyDailyRecap(DailyRecap recap) {
-        ArchivedProductDataSource archivedProductsDataSource = new ArchivedProductDataSource(this);
-        archivedProductsDataSource.open();
-        archivedProductsDataSource.deleteDailyRecap(recap);
-        archivedProductsDataSource.close();
     }
 
     // Callback from DeleteDialogFragment

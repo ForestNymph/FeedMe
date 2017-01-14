@@ -80,6 +80,6 @@ public class DailySummaryEmailIntentService extends IntentService {
     }
 
     private void sendClearAdapterBroadcast() {
-        sendBroadcast(new Intent("RecentlyAddedFoodActivity.clearAdapter"));
+        sendBroadcast(new Intent("AddedFoodActivity.clearAdapter"));
     }
 }

@@ -19,7 +19,7 @@
         android:layout_weight="2"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -29,15 +29,15 @@
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_14" />
+        android:textSize="@dimen/size_14_sp" />
 
     <TextView
         android:id="@+id/summary_percentage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8sp"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
-        android:layout_marginEnd="8sp"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_14" />
+        android:textSize="@dimen/size_14_sp" />
 </LinearLayout>

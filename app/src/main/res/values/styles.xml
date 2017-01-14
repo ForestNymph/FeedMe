@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorNavText</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">Roboto</item>
@@ -28,7 +29,7 @@
 
     <style name="CustomYellowButtonTheme" parent="android:Widget.Button">
         <item name="android:background">@color/colorYellow</item>
-        <item name="android:textSize">@dimen/text_font_size_18</item>
+        <item name="android:textSize">@dimen/size_18_sp</item>
         <item name="android:layout_marginStart">4sp</item>
         <item name="android:layout_marginEnd">4sp</item>
         <item name="android:textColor">@color/colorBrokenWhite</item>
@@ -36,7 +37,7 @@
 
     <style name="CustomGreenButtonTheme" parent="android:Widget">
         <item name="android:background">@color/colorGreen</item>
-        <item name="android:textSize">@dimen/text_font_size_18</item>
+        <item name="android:textSize">@dimen/size_18_sp</item>
         <item name="android:layout_marginStart">4sp</item>
         <item name="android:layout_marginEnd">4sp</item>
         <item name="android:textColor">@color/colorBrokenWhite</item>
@@ -44,7 +45,7 @@
 
     <style name="CustomRedButtonTheme" parent="android:Widget">
         <item name="android:background">@color/colorRed</item>
-        <item name="android:textSize">@dimen/text_font_size_18</item>
+        <item name="android:textSize">@dimen/size_18_sp</item>
         <item name="android:layout_marginStart">4sp</item>
         <item name="android:layout_marginEnd">4sp</item>
         <item name="android:textColor">@color/colorBrokenWhite</item>

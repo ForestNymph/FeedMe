@@ -8,10 +8,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/text_margin_16"
-        android:layout_marginEnd="@dimen/text_margin_32"
-        android:layout_marginStart="@dimen/text_margin_32"
-        android:layout_marginTop="@dimen/text_margin_16"
+        android:layout_marginBottom="@dimen/size_16_sp"
+        android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginStart="@dimen/size_32_sp"
+        android:layout_marginTop="@dimen/size_16_sp"
         android:orientation="horizontal">
 
         <ImageView
@@ -19,7 +19,7 @@
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/text_margin_32"
+            android:layout_marginEnd="@dimen/size_32_sp"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/about" />
 
@@ -28,17 +28,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="DETAILS"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_20" />
+            android:textColor="@color/colorStandardWhite"
+            android:textSize="@dimen/size_20_sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/text_margin_32"
-        android:layout_marginEnd="@dimen/text_margin_32"
-        android:layout_marginStart="@dimen/text_margin_32"
+        android:layout_marginBottom="@dimen/size_32_sp"
+        android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginStart="@dimen/size_32_sp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -46,16 +46,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Contains per 100g of product:"
-            android:textColor="@color/colorDialogText"
-            android:textSize="@dimen/text_font_size_18" />
+            android:textColor="@color/colorStandardWhite"
+            android:textSize="@dimen/size_18_sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/text_margin_32"
-        android:layout_marginEnd="@dimen/text_margin_32"
-        android:layout_marginStart="@dimen/text_margin_32"
+        android:layout_marginBottom="@dimen/size_32_sp"
+        android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginStart="@dimen/size_32_sp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 

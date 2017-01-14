@@ -14,22 +14,22 @@
         android:id="@+id/details_name_view"
         android:layout_width="0sp"
         android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/text_margin_4"
-        android:layout_marginStart="@dimen/text_margin_16"
+        android:layout_marginEnd="@dimen/size_4_sp"
+        android:layout_marginStart="@dimen/size_16_sp"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
-        android:textColor="@color/colorDialogText"
-        android:textSize="@dimen/text_font_size_14" />
+        android:textColor="@color/colorStandardWhite"
+        android:textSize="@dimen/size_14_sp" />
 
     <TextView
         android:id="@+id/details_amount_view"
         android:layout_width="0sp"
         android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/text_margin_16"
-        android:layout_marginStart="@dimen/text_margin_4"
+        android:layout_marginEnd="@dimen/size_16_sp"
+        android:layout_marginStart="@dimen/size_4_sp"
         android:layout_weight="1"
         android:gravity="start|center_vertical"
-        android:textColor="@color/colorDialogText"
-        android:textSize="@dimen/text_font_size_14" />
+        android:textColor="@color/colorStandardWhite"
+        android:textSize="@dimen/size_14_sp" />
 </LinearLayout>
 

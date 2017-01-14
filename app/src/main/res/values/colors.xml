@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorGreen">#579540</color>
+    <color name="colorGreen">#5c9747</color>
+    <color name="colorGreenNav">#618754</color>
     <color name="colorBlue">#0096c8</color>
     <color name="colorBlueTint">#00749b</color>
     <color name="colorPurple">#a54756</color>
-    <color name="colorLightSaturatePurple">#c17fbb</color>
     <color name="colorLightPurple">#ae8a8a</color>
     <color name="colorAndroid">#4F3A2D</color>
     <color name="colorWarningRed">#BF1E0A</color>
     <color name="colorRed">#d13b28</color>
     <color name="colorPrimary">#D84C00</color>
-    <color name="colorOrangeFood">#cf6445</color>
     <color name="colorOrange">#Fb5728</color>
     <color name="colorPrimaryDark">#dc3c27</color>
     <color name="colorLightOrange">#e29200</color>
-    <color name="colorYellowTest">#daad59</color>
     <color name="colorYellow">#FFAF41</color>
     <color name="colorAccent">#FFBA5B</color>
     <color name="colorBrokenWhite">#fcf7ec</color>
     <color name="colorNavText">#dddddd</color>
     <color name="colorFiche">#ffffff</color>
-    <color name="colorDialogText">#e2e2e2</color>
-    <color name="colorMainBackground">#e2e2e2</color>
+    <color name="colorStandardWhite">#e2e2e2</color>
     <color name="colorTextGray">#717171</color>
     <color name="colorDarkGray">#323232</color>
 </resources>

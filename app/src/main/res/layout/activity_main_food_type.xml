@@ -18,8 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/colorGreenNav"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/menu_item_main_drawer">
-    </android.support.design.widget.NavigationView>
+        app:itemIconTint="@color/colorNavText"
+        app:itemTextColor="@color/colorNavText"
+        app:menu="@menu/menu_item_main_drawer" />
 </android.support.v4.widget.DrawerLayout>

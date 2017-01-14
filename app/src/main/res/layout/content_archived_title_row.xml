@@ -15,11 +15,11 @@
         android:id="@+id/archived_date_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16sp"
+        android:layout_marginStart="@dimen/size_16_sp"
         android:layout_weight="2"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorTextGray"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -29,19 +29,19 @@
         android:layout_weight="1"
         android:gravity="end|center_vertical"
         android:textColor="@color/colorTextGray"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 
     <Button
         android:id="@+id/archived_details_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8sp"
-        android:layout_marginStart="8sp"
+        android:layout_marginEnd="@dimen/size_8_sp"
+        android:layout_marginStart="@dimen/size_12_sp"
         android:layout_weight="1"
         android:background="@color/colorGreen"
         android:text="@string/dialog_details"
         android:textColor="@color/colorBrokenWhite"
-        android:textSize="@dimen/text_font_size_14"
+        android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />
 </LinearLayout>

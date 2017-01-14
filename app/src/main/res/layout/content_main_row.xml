@@ -17,7 +17,7 @@
         android:fontFamily="Roboto"
         android:paddingBottom="8dp"
         android:textColor="@color/colorTextGray"
-        android:textSize="@dimen/text_font_size_18"
+        android:textSize="@dimen/size_18_sp"
         tools:ignore="UnusedAttribute" />
 
     <ImageView

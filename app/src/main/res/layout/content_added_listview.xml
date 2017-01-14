@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="45dp"
+    android:background="@color/colorStandardWhite"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".AddedFoodActivity"
+    tools:showIn="@layout/activity_added_food">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="#777777"
+        android:orientation="horizontal"
+        android:padding="@dimen/size_10_sp"
+        android:textSize="@dimen/size_16_sp">
+
+        <TextView
+            android:id="@+id/total_kcal_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_4_sp"
+            android:layout_marginStart="@dimen/size_12_sp"
+            android:text="@string/total_kcal"
+            android:textColor="@color/colorStandardWhite" />
+
+        <TextView
+            android:id="@+id/total_amount_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorStandardWhite" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/activity_added_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:drawSelectorOnTop="true"
+        android:fadingEdge="none"
+        android:fitsSystemWindows="true"
+        android:padding="@dimen/size_16_sp"
+        android:scrollbarStyle="outsideOverlay"
+        tools:ignore="overdraw" />
+</LinearLayout>
