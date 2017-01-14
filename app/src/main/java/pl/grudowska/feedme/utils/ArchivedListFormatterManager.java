@@ -34,6 +34,7 @@ public class ArchivedListFormatterManager {
         List<SummaryResult> summary = CalculateSummary.calculate(context);
         String result = "\nSummary:\n";
         SummaryResult res;
+        assert summary != null;
         for (int i = 0; i < summary.size(); ++i) {
             res = summary.get(i);
             result += res.getResultType();

@@ -4,12 +4,13 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="android:textColorSecondary">@color/colorNavText</item>
+        <item name="android:textColorSecondary">@color/colorDarkGray</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">Roboto</item>
         <item name="android:timePickerStyle">@style/customTimePickerTheme</item>
     </style>
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -21,9 +22,9 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="customTimePickerTheme" parent="android:style/Widget.Material.Light.TimePicker">
-        <item name="android:numbersTextColor">#fff</item>
+        <item name="android:numbersTextColor">@color/colorWhite</item>
         <item name="android:numbersBackgroundColor">@color/colorBlueTint</item>
-        <item name="android:numbersSelectorColor">#23211d</item>
+        <item name="android:numbersSelectorColor">@color/colorNearBlack</item>
         <item name="android:headerBackground">@color/colorBlueTint</item>
     </style>
 

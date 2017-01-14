@@ -240,7 +240,6 @@ public class AddedFoodActivity extends AppCompatActivity
     }
 
     public class ClearAdapterBroadcastReceiver extends BroadcastReceiver {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             mAddedFoodAdapter.clear();

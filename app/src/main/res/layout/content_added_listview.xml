@@ -17,8 +17,7 @@
         android:layout_gravity="top"
         android:background="#777777"
         android:orientation="horizontal"
-        android:padding="@dimen/size_10_sp"
-        android:textSize="@dimen/size_16_sp">
+        android:padding="@dimen/size_8_sp">
 
         <TextView
             android:id="@+id/total_kcal_tv"
@@ -27,13 +26,15 @@
             android:layout_marginEnd="@dimen/size_4_sp"
             android:layout_marginStart="@dimen/size_12_sp"
             android:text="@string/total_kcal"
-            android:textColor="@color/colorStandardWhite" />
+            android:textColor="@color/colorStandardWhite"
+            android:textSize="@dimen/size_16_sp" />
 
         <TextView
             android:id="@+id/total_amount_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorStandardWhite" />
+            android:textColor="@color/colorStandardWhite"
+            android:textSize="@dimen/size_16_sp" />
     </LinearLayout>
 
     <ListView

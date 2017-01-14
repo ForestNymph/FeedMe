@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 
-public class AddedFoodArrayAdapter extends ArrayAdapter<Product> {
+class AddedFoodArrayAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
-    private OnEditItemListener mListener;
+    final private OnEditItemListener mListener;
 
     AddedFoodArrayAdapter(final Context context, ArrayList<Product> added) {
         super(added);
@@ -127,7 +127,7 @@ public class AddedFoodArrayAdapter extends ArrayAdapter<Product> {
 
     // Callback to communicate with activity when product amount is edited
     // and total kcal should be updated
-    public interface OnEditItemListener {
+    interface OnEditItemListener {
         void onEditItem();
     }
 

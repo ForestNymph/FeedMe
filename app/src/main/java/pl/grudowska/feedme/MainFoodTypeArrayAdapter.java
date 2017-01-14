@@ -17,7 +17,7 @@ import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.utils.BitmapCache;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
-public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
+class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
@@ -30,7 +30,7 @@ public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
         createDatabase();
     }
 
-    public void createDatabase() {
+    void createDatabase() {
         List<ProductType> mProductType = DatabaseManager.getTypesAllProductsDB(mContext);
         for (int i = 0; i < mProductType.size(); ++i) {
             add(mProductType.get(i));

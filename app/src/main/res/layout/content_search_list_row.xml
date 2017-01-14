@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorFiche"
+    android:background="@color/colorWhite"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="8sp"
@@ -70,7 +70,7 @@
         android:layout_marginStart="3sp"
         android:layout_weight="1"
         android:background="@color/colorOrange"
-        android:text="ADD"
+        android:text="@string/add_button"
         android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />

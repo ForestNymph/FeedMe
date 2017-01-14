@@ -108,9 +108,7 @@ public class ArchivedActivity extends AppCompatActivity implements OnDismissCall
     public void onClearItemsCommand() {
         ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getApplicationContext());
         dataSource.open();
-        if (dataSource.getAllArchivedDailyRecaps().size() == 0) {
-            // do nothing
-        } else {
+        if (dataSource.getAllArchivedDailyRecaps().size() != 0) {
             dataSource.deleteAllArchivedItems();
             mArchivedArrayAdapter.clear();
         }

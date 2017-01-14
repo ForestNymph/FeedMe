@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -67,9 +68,9 @@ public class ServerDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
                 mDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
             }
         });
         return mDialog;
@@ -78,28 +79,22 @@ public class ServerDialogFragment extends DialogFragment {
     private void saveConfigurationData(DialogInterface dialogInterface) {
         Dialog dialog = (Dialog) dialogInterface;
         String server = ((EditText) dialog.findViewById(R.id.server_address)).getText().toString();
-        if (server.isEmpty()) {
-            // do nothing
-        } else {
+        if (!server.isEmpty()) {
             SharedPreferencesManager.saveDataString(getActivity(), "serverAddress", server);
         }
         String port = ((EditText) dialog.findViewById(R.id.port_address)).getText().toString();
         int portNr = 0;
-        if (port.isEmpty()) {
-            // do nothing
-        } else {
+        if (!port.isEmpty()) {
             try {
                 portNr = Integer.valueOf(port);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
-                portNr = 8090;
+                portNr = 80;
             }
         }
         SharedPreferencesManager.saveDataInt(getActivity(), "serverPort", portNr);
         String database = ((EditText) dialog.findViewById(R.id.db_name)).getText().toString();
-        if (port.isEmpty()) {
-            // do nothing
-        } else {
+        if (!port.isEmpty()) {
             SharedPreferencesManager.saveDataString(getActivity(), "databaseName", database);
         }
     }

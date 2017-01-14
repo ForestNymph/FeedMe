@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ public class ArchivedListDialogFragment extends DialogFragment {
     private String mDate;
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         mDate = getTag();
@@ -77,11 +80,11 @@ public class ArchivedListDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
                 mDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
                 mDialog.getButton(AlertDialog.BUTTON_NEUTRAL)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
             }
         });
         return mDialog;
@@ -89,17 +92,18 @@ public class ArchivedListDialogFragment extends DialogFragment {
 
     private class ArchivedListAdapter extends ArrayAdapter<Product> {
 
-        private Context mContext;
-        private List<Product> mProducts;
+        final private Context mContext;
+        final private List<Product> mProducts;
 
-        public ArchivedListAdapter(Context context, List<Product> products) {
+        ArchivedListAdapter(Context context, List<Product> products) {
             super(context, -1, products);
             mContext = context;
             mProducts = products;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        @NonNull
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             final ViewHolder viewHolder;
 
             if (convertView == null) {

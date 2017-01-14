@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,8 @@ public class DetailsDialogFragment extends DialogFragment {
     private AlertDialog mDialog;
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    @NonNull
+    public Dialog onCreateDialog(@NonNull Bundle savedInstanceState) {
 
         List<Details> mDetails = createDetailsList(getTag());
 
@@ -50,7 +53,7 @@ public class DetailsDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
             }
         });
         return mDialog;
@@ -89,27 +92,28 @@ public class DetailsDialogFragment extends DialogFragment {
 
     private class Details {
 
-        public String name;
-        public String amount;
+        final public String name;
+        final public String amount;
 
-        public Details(String name, String amount) {
+        Details(String name, String amount) {
             this.name = name;
             this.amount = amount;
         }
     }
 
     private class DetailsDialogAdapter extends ArrayAdapter<Details> {
-        private Context mContext;
-        private List<Details> mDetails;
+        final private Context mContext;
+        final private List<Details> mDetails;
 
-        public DetailsDialogAdapter(Context context, List<Details> details) {
+        DetailsDialogAdapter(Context context, List<Details> details) {
             super(context, -1, details);
             mContext = context;
             mDetails = details;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        @NonNull
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             final ViewHolder viewHolder;
 
             if (convertView == null) {

@@ -4,7 +4,7 @@ package pl.grudowska.feedme.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-public enum StatusCode {
+enum StatusCode {
     SUCCESS, SYNC_SUCCESS, FILE_NOT_FOUND, SEND_DATABASE, SERVER_DOWN, FAIL, OTHER;
 
     public static void showStatus(Context context, StatusCode status) {

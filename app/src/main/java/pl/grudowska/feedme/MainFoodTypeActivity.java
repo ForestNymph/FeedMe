@@ -93,7 +93,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
             }
         };
         assert drawer != null;
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
         // open drawer on start
         // drawer.openDrawer(Gravity.LEFT);
@@ -137,6 +137,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {

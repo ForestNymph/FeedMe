@@ -19,7 +19,7 @@ import pl.grudowska.feedme.databases.ProductDataSource;
 
 public class DownloadDatabaseTask extends AsyncTask<String, Void, StatusCode> {
 
-    private Context mContext;
+    final private Context mContext;
 
     public DownloadDatabaseTask(Context context) {
         mContext = context;

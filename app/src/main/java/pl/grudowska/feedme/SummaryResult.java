@@ -2,10 +2,10 @@ package pl.grudowska.feedme;
 
 public class SummaryResult {
 
+    final private String mUnit;
     private String mResultType;
     private String mSimpleName;
     private int mAmount;
-    private String mUnit;
 
     public SummaryResult(String name, String simpleName, int amount, String unit) {
         mResultType = name;
@@ -18,16 +18,8 @@ public class SummaryResult {
         return mResultType;
     }
 
-    public void setResultType(String name) {
-        mResultType = name;
-    }
-
-    public String getSimpleName() {
+    String getSimpleName() {
         return mSimpleName;
-    }
-
-    public void setSimpleName(String name) {
-        mSimpleName = name;
     }
 
     public int getAmount() {

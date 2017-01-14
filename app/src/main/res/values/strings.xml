@@ -47,4 +47,11 @@
     <string name="time_message">Configure the time for sending daily summaries.</string>
     <string name="server_message">Configure server port and address which hosts the application database</string>
     <string name="title_activity_search">Search for products</string>
+
+    <string name="archived_list">ARCHIVED LIST</string>
+    <string name="edit">EDIT</string>
+    <string name="add_button">ADD</string>
+    <string name="details">DETAILS</string>
+    <string name="contains">Contains per 100g of product:</string>
+    <string name="summary">SUMMARY</string>
 </resources>

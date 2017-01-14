@@ -17,6 +17,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    // `return void` removes the lint error: `Not all execution paths return a value`.
+    return void
 }
 
 repositories {

@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 import pl.grudowska.feedme.databases.DailyRecap;
 
-public class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> {
+class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> {
 
-    private Context mContext;
+    final private Context mContext;
 
     ArchivedArrayAdapter(Context context, ArrayList<DailyRecap> recaps) {
         super(recaps);

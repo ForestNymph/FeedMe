@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -41,21 +42,15 @@ public class EmailDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialogInterface, int id) {
                         Dialog dialog = (Dialog) dialogInterface;
                         String mailTo_value = ((EditText) dialog.findViewById(R.id.mailto_mail)).getText().toString();
-                        if (mailTo_value.isEmpty()) {
-                            // do nothing
-                        } else {
+                        if (!mailTo_value.isEmpty()) {
                             SharedPreferencesManager.saveDataString(getActivity(), "mailTo", mailTo_value);
                         }
                         String mailFrom_value = ((EditText) dialog.findViewById(R.id.mailfrom_mail)).getText().toString();
-                        if (mailFrom_value.isEmpty()) {
-                            // do nothing
-                        } else {
+                        if (!mailFrom_value.isEmpty()) {
                             SharedPreferencesManager.saveDataString(getActivity(), "mailFrom", mailFrom_value);
                         }
                         String password_value = ((EditText) dialog.findViewById(R.id.mailfrom_password)).getText().toString();
-                        if (password_value.isEmpty()) {
-                            // do nothing
-                        } else {
+                        if (!password_value.isEmpty()) {
                             SharedPreferencesManager.saveDataString(getActivity(), "password", password_value);
                         }
                         Toast.makeText(getActivity(), "Email settings updated", Toast.LENGTH_LONG).show();
@@ -73,12 +68,11 @@ public class EmailDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
                 mDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
             }
         });
-
         return mDialog;
     }
 }

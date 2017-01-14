@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGreen"
+    android:background="@color/colorGreenNav"
     android:orientation="vertical"
     tools:ignore="Overdraw">
 
@@ -25,7 +25,7 @@
             android:src="@drawable/about" />
 
         <TextView
-            android:id="@+id/limit_change"
+            android:id="@+id/about_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -50,7 +50,7 @@
             android:layout_height="match_parent"
             android:text="@string/dialog_about_message"
             android:textColor="@color/colorNavText"
-            android:textSize="@dimen/size_18_sp" />
+            android:textSize="@dimen/size_16_sp" />
     </LinearLayout>
 </LinearLayout>
 

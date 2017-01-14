@@ -9,8 +9,8 @@ import pl.grudowska.feedme.databases.Product;
 
 public class SearchEngine {
 
-    private List<Product> mProducts;
-    private List<Product> mResult;
+    final private List<Product> mProducts;
+    final private List<Product> mResult;
 
     public SearchEngine(Context context) {
         mProducts = DatabaseManager.getAllProductsDB(context);

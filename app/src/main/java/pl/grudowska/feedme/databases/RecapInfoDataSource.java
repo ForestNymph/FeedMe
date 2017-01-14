@@ -11,15 +11,13 @@ import java.util.List;
 
 public class RecapInfoDataSource {
 
+    final private RecapInfoHelperDB_SQL dbHelper;
+    final private String[] typeColumns = {RecapInfoHelperDB_SQL.COLUMN_ID_TYPE,
+            RecapInfoHelperDB_SQL.COLUMN_NAME_TYPE, RecapInfoHelperDB_SQL.COLUMN_IMAGE_TYPE};
+    final private String[] summaryColumns = {RecapInfoHelperDB_SQL.COLUMN_ID_SUMMARY, RecapInfoHelperDB_SQL.COLUMN_NAME_SUMMARY,
+            RecapInfoHelperDB_SQL.COLUMN_MAX_SUMMARY, RecapInfoHelperDB_SQL.COLUMN_MIN_SUMMARY};
     // Database fields
     private SQLiteDatabase mDatabase;
-    private RecapInfoHelperDB_SQL dbHelper;
-
-    private String[] typeColumns = {RecapInfoHelperDB_SQL.COLUMN_ID_TYPE,
-            RecapInfoHelperDB_SQL.COLUMN_NAME_TYPE, RecapInfoHelperDB_SQL.COLUMN_IMAGE_TYPE};
-
-    private String[] summaryColumns = {RecapInfoHelperDB_SQL.COLUMN_ID_SUMMARY, RecapInfoHelperDB_SQL.COLUMN_NAME_SUMMARY,
-            RecapInfoHelperDB_SQL.COLUMN_MAX_SUMMARY, RecapInfoHelperDB_SQL.COLUMN_MIN_SUMMARY};
 
     public RecapInfoDataSource(Context context) {
         dbHelper = new RecapInfoHelperDB_SQL(context);

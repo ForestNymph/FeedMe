@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorFiche"
+    android:background="@color/colorWhite"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="8sp"
@@ -69,7 +69,7 @@
         android:layout_marginStart="@dimen/size_12_sp"
         android:layout_weight="1"
         android:background="@color/colorGreen"
-        android:text="EDIT"
+        android:text="@string/edit"
         android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />

@@ -13,30 +13,30 @@ import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class ProductDataSource extends SQLiteOpenHelper {
 
-    public static final String TABLE_PRODUCT = "TABLE_PRODUCT";
+    private static final String TABLE_PRODUCT = "TABLE_PRODUCT";
 
-    public static final String COLUMN_ID_PROD = "COLUMN_ID_PROD";
-    public static final String COLUMN_DATE = "COLUMN_DATE";
-    public static final String COLUMN_TYPE = "COLUMN_TYPE";
-    public static final String COLUMN_NAME_PROD = "COLUMN_NAME_PROD";
-    public static final String COLUMN_DEF1 = "COLUMN_DEF1";
-    public static final String COLUMN_DEF2 = "COLUMN_DEF2";
-    public static final String COLUMN_DEF3 = "COLUMN_DEF3";
-    public static final String COLUMN_KCAL = "COLUMN_KCAL";
-    public static final String COLUMN_PROTEIN = "COLUMN_PROTEIN";
-    public static final String COLUMN_CARBOHYDRATES = "COLUMN_CARBOHYDRATES";
-    public static final String COLUMN_FIBER = "COLUMN_FIBER";
-    public static final String COLUMN_FATS = "COLUMN_FATS";
-    public static final String COLUMN_FATS_SATURATED = "COLUMN_FATS_SATURATED";
-    public static final String COLUMN_FATS_MONOUNSATURATED = "COLUMN_FATS_MONOUNSATURATED";
-    public static final String COLUMN_FATS_OMEGA3 = "COLUMN_FATS_OMEGA3";
-    public static final String COLUMN_FATS_OMEGA6 = "COLUMN_FATS_OMEGA6";
-    public static final String COLUMN_AMOUNT = "COLUMN_AMOUNT";
+    private static final String COLUMN_ID_PROD = "COLUMN_ID_PROD";
+    private static final String COLUMN_DATE = "COLUMN_DATE";
+    private static final String COLUMN_TYPE = "COLUMN_TYPE";
+    private static final String COLUMN_NAME_PROD = "COLUMN_NAME_PROD";
+    private static final String COLUMN_DEF1 = "COLUMN_DEF1";
+    private static final String COLUMN_DEF2 = "COLUMN_DEF2";
+    private static final String COLUMN_DEF3 = "COLUMN_DEF3";
+    private static final String COLUMN_KCAL = "COLUMN_KCAL";
+    private static final String COLUMN_PROTEIN = "COLUMN_PROTEIN";
+    private static final String COLUMN_CARBOHYDRATES = "COLUMN_CARBOHYDRATES";
+    private static final String COLUMN_FIBER = "COLUMN_FIBER";
+    private static final String COLUMN_FATS = "COLUMN_FATS";
+    private static final String COLUMN_FATS_SATURATED = "COLUMN_FATS_SATURATED";
+    private static final String COLUMN_FATS_MONOUNSATURATED = "COLUMN_FATS_MONOUNSATURATED";
+    private static final String COLUMN_FATS_OMEGA3 = "COLUMN_FATS_OMEGA3";
+    private static final String COLUMN_FATS_OMEGA6 = "COLUMN_FATS_OMEGA6";
+    private static final String COLUMN_AMOUNT = "COLUMN_AMOUNT";
 
     private static final int DATABASE_VERSION = 1;
     private static String DATABASE_PATH;
 
-    private String[] productColumns = {COLUMN_ID_PROD, COLUMN_DATE,
+    final private String[] productColumns = {COLUMN_ID_PROD, COLUMN_DATE,
             COLUMN_TYPE, COLUMN_NAME_PROD, COLUMN_DEF1,
             COLUMN_DEF2, COLUMN_DEF3, COLUMN_KCAL,
             COLUMN_PROTEIN, COLUMN_CARBOHYDRATES, COLUMN_FIBER,
@@ -51,11 +51,11 @@ public class ProductDataSource extends SQLiteOpenHelper {
     }
 
     public static String getDatabaseAdress(Context context) {
-        return SharedPreferencesManager.loadDataString(context, "serverAddress", "http://192.168.0.213:8090/files/");
+        return SharedPreferencesManager.loadDataString(context, "serverAddress", "http://libflat.codessense.com/");
     }
 
     public static int getPortNumber(Context context) {
-        return SharedPreferencesManager.loadDataInt(context, "serverPort", 8090);
+        return SharedPreferencesManager.loadDataInt(context, "serverPort", 80);
     }
 
     public static String getDatabaseName(Context context) {
@@ -165,7 +165,7 @@ public class ProductDataSource extends SQLiteOpenHelper {
     }
 
     public class DatabaseNotExistException extends Exception {
-        public DatabaseNotExistException(String message) {
+        DatabaseNotExistException(String message) {
             super(message);
         }
     }

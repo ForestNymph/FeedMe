@@ -71,11 +71,11 @@
                 android:layout_gravity="center"
                 android:background="@color/colorBrokenWhite"
                 android:inputType="textUri"
+                android:maxLines="1"
                 android:paddingBottom="8sp"
                 android:paddingEnd="@dimen/size_16_sp"
                 android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
-                android:singleLine="true"
                 android:textColor="@color/colorTextGray"
                 android:textSize="@dimen/size_18_sp" />
 
@@ -94,11 +94,11 @@
                 android:layout_gravity="center"
                 android:background="@color/colorBrokenWhite"
                 android:inputType="text"
+                android:maxLines="1"
                 android:paddingBottom="8sp"
                 android:paddingEnd="@dimen/size_16_sp"
                 android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
-                android:singleLine="true"
                 android:textColor="@color/colorTextGray"
                 android:textSize="@dimen/size_18_sp" />
 
@@ -117,11 +117,11 @@
                 android:layout_gravity="center"
                 android:background="@color/colorBrokenWhite"
                 android:inputType="text"
+                android:maxLines="1"
                 android:paddingBottom="8sp"
                 android:paddingEnd="@dimen/size_16_sp"
                 android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
-                android:singleLine="true"
                 android:textColor="@color/colorTextGray"
                 android:textSize="@dimen/size_18_sp" />
 
@@ -137,6 +137,7 @@
                 android:paddingEnd="@dimen/size_16_sp"
                 android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
+                android:stateListAnimator="@null"
                 android:text="Sync now"
                 android:textColor="@color/colorBrokenWhite"
                 android:textSize="@dimen/size_16_sp" />

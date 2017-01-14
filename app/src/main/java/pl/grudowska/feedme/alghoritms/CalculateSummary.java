@@ -45,9 +45,7 @@ public class CalculateSummary {
                 fats += addedProducts.get(i).fats * factor;
                 amount += addedProducts.get(i).amount;
                 checkFatsData = addedProducts.get(i).fatsSaturated;
-                if (checkFatsData == -1) {
-                    // do not calculate fats, no data
-                } else {
+                if (checkFatsData != -1) {
                     saturated += addedProducts.get(i).fatsSaturated * factor;
                     monosaturated += addedProducts.get(i).fatsMonounsaturated * factor;
                     omega3 += addedProducts.get(i).omega3 * factor;

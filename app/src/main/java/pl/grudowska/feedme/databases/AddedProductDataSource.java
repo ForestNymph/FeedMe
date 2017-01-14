@@ -10,9 +10,8 @@ import java.util.ArrayList;
 
 public class AddedProductDataSource {
 
-    private SQLiteDatabase mDatabase;
-    private AddedProductDB_SQL dbHelper;
-    private String[] productColumns = {AddedProductDB_SQL.COLUMN_ID_PROD,
+    final private AddedProductDB_SQL dbHelper;
+    final private String[] productColumns = {AddedProductDB_SQL.COLUMN_ID_PROD,
             AddedProductDB_SQL.COLUMN_DATE, AddedProductDB_SQL.COLUMN_TYPE,
             AddedProductDB_SQL.COLUMN_NAME_PROD, AddedProductDB_SQL.COLUMN_DEF1,
             AddedProductDB_SQL.COLUMN_DEF2, AddedProductDB_SQL.COLUMN_DEF3,
@@ -21,6 +20,7 @@ public class AddedProductDataSource {
             AddedProductDB_SQL.COLUMN_FATS, AddedProductDB_SQL.COLUMN_FATS_SATURATED,
             AddedProductDB_SQL.COLUMN_FATS_MONOUNSATURATED, AddedProductDB_SQL.COLUMN_FATS_OMEGA3,
             AddedProductDB_SQL.COLUMN_FATS_OMEGA6, AddedProductDB_SQL.COLUMN_AMOUNT};
+    private SQLiteDatabase mDatabase;
 
     public AddedProductDataSource(Context context) {
         dbHelper = new AddedProductDB_SQL(context);

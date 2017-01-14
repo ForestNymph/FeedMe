@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -41,7 +42,7 @@ public class AboutDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
             }
         });
         return mDialog;

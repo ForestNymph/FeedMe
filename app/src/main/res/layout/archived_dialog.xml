@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGreen"
+    android:background="@color/colorGreenNav"
     android:orientation="vertical">
 
     <LinearLayout
@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ARCHIVED LIST"
+                android:text="@string/archived_list"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_20_sp" />
 
@@ -59,6 +59,7 @@
             android:id="@+id/list_archived"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:divider="@color/colorGreenNav"
             android:dividerHeight="@dimen/size_8_sp"
             android:drawSelectorOnTop="true"
             android:fadingEdge="vertical"

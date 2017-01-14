@@ -40,9 +40,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         mArchivedDataSource.open();
 
         // If recently added product list is empty do nothing
-        if (mAddedProductDataSource.getAllAddedProducts().size() == 0) {
-            // do nothing
-        } else {
+        if (mAddedProductDataSource.getAllAddedProducts().size() != 0) {
             mDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
 
             // To maintain application performance, save the e-mail text permanently in database

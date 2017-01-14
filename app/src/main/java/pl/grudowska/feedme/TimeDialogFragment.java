@@ -9,7 +9,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -62,9 +64,18 @@ public class TimeDialogFragment extends DialogFragment {
         builder.setView(timeDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                int minute = mPicker.getCurrentMinute();
-                                int hour = mPicker.getCurrentHour();
 
+                                int minute, hour;
+
+                                if (Build.VERSION.SDK_INT >= 23) {
+                                    hour = mPicker.getHour();
+                                    minute = mPicker.getMinute();
+                                } else {
+                                    //noinspection deprecation
+                                    hour = mPicker.getCurrentHour();
+                                    //noinspection deprecation
+                                    minute = mPicker.getCurrentMinute();
+                                }
                                 SharedPreferencesManager.saveDataString(getActivity(),
                                         "time_hour_str", String.valueOf(hour));
                                 SharedPreferencesManager.saveDataString(getActivity(),
@@ -86,9 +97,9 @@ public class TimeDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
                 mDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
             }
         });
         return mDialog;
@@ -111,7 +122,7 @@ public class TimeDialogFragment extends DialogFragment {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 00);
+        calendar.set(Calendar.SECOND, 0);
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pending);

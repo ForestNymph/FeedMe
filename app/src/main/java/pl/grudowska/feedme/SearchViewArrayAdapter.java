@@ -1,4 +1,5 @@
 package pl.grudowska.feedme;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 
-public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
+class SearchViewArrayAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
     private List<Product> mValues;
@@ -28,7 +29,7 @@ public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
         mValues = values;
     }
 
-    public void updateProductsList(List<Product> products) {
+    void updateProductsList(List<Product> products) {
         mValues = products;
     }
 

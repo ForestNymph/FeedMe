@@ -22,7 +22,7 @@ import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
 
 
-public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
+class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
 
     private final Context mContext;
 

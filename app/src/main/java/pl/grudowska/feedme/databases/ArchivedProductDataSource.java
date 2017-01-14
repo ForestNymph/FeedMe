@@ -11,9 +11,8 @@ import java.util.List;
 
 public class ArchivedProductDataSource {
 
-    private SQLiteDatabase mDatabase;
-    private ArchivedProductDB_SQL dbHelper;
-    private String[] allColumns = {ArchivedProductDB_SQL.COLUMN_ID_PROD,
+    final private ArchivedProductDB_SQL dbHelper;
+    final private String[] allColumns = {ArchivedProductDB_SQL.COLUMN_ID_PROD,
             ArchivedProductDB_SQL.COLUMN_DATE, ArchivedProductDB_SQL.COLUMN_TYPE,
             ArchivedProductDB_SQL.COLUMN_NAME_PROD, ArchivedProductDB_SQL.COLUMN_DEF1,
             ArchivedProductDB_SQL.COLUMN_DEF2, ArchivedProductDB_SQL.COLUMN_DEF3,
@@ -22,10 +21,10 @@ public class ArchivedProductDataSource {
             ArchivedProductDB_SQL.COLUMN_FATS, ArchivedProductDB_SQL.COLUMN_FATS_SATURATED,
             ArchivedProductDB_SQL.COLUMN_FATS_MONOUNSATURATED, ArchivedProductDB_SQL.COLUMN_FATS_OMEGA3,
             ArchivedProductDB_SQL.COLUMN_FATS_OMEGA6, ArchivedProductDB_SQL.COLUMN_AMOUNT};
-
-    private String[] dateKcalColumns = {ArchivedProductDB_SQL.COLUMN_ID_DATA_KCAL,
+    final private String[] dateKcalColumns = {ArchivedProductDB_SQL.COLUMN_ID_DATA_KCAL,
             ArchivedProductDB_SQL.COLUMN_DATE_KCAL, ArchivedProductDB_SQL.COLUMN_TOTAL_KCAL,
             ArchivedProductDB_SQL.COLUMN_CONTENT_MAIL};
+    private SQLiteDatabase mDatabase;
 
     public ArchivedProductDataSource(Context context) {
         dbHelper = new ArchivedProductDB_SQL(context);
@@ -120,7 +119,7 @@ public class ArchivedProductDataSource {
     }
 
     public Product createArchivedProduct(String date, Product product) {
-        Product copy = createArchivedProduct(
+        return createArchivedProduct(
                 date,
                 product.type,
                 product.name,
@@ -137,7 +136,6 @@ public class ArchivedProductDataSource {
                 product.omega3,
                 product.omega6,
                 product.amount);
-        return copy;
     }
 
     public void deleteAllArchivedItems() {
@@ -159,10 +157,6 @@ public class ArchivedProductDataSource {
     public void deleteDailyRecap(DailyRecap recap) {
         mDatabase.delete(ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL, ArchivedProductDB_SQL.COLUMN_ID_DATA_KCAL
                 + " = " + recap.id, null);
-    }
-
-    public void deleteAllDailyRecaps() {
-        mDatabase.execSQL("delete from " + ArchivedProductDB_SQL.TABLE_ARCHIVED_DATE_KCAL);
     }
 
     public List<Product> getAllArchivedProducts() {
@@ -199,10 +193,6 @@ public class ArchivedProductDataSource {
         }
         cursor.close();
         return recaps;
-    }
-
-    public void createSimpleDailyRecap(DailyRecap dailyRecap) {
-        createDailyRecap(dailyRecap.date, dailyRecap.totalKcal, dailyRecap.contentMail);
     }
 
     public void createDailyRecap(String date, int totalKcal, String contentMail) {

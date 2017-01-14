@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorFiche"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     android:paddingBottom="@dimen/size_16_sp"
     android:paddingEnd="@dimen/size_8_sp"
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:stateListAnimator="@null"
-                android:text="ADD"
+                android:text="@string/add_button"
                 android:textSize="14sp" />
 
         </LinearLayout>

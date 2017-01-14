@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +25,7 @@ import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class SummaryDialogFragment extends DialogFragment {
 
-    List<SummaryRange> mSummary;
+    private List<SummaryRange> mSummary;
     private AlertDialog mDialog;
 
     @Override
@@ -58,24 +60,25 @@ public class SummaryDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(getResources().getColor(R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
             }
         });
         return mDialog;
     }
 
     private class SummaryDialogAdapter extends ArrayAdapter<SummaryResult> {
-        private Context mContext;
-        private List<SummaryResult> mResults;
+        final private Context mContext;
+        final private List<SummaryResult> mResults;
 
-        public SummaryDialogAdapter(Context context, List<SummaryResult> result) {
+        SummaryDialogAdapter(Context context, List<SummaryResult> result) {
             super(context, -1, result);
             mContext = context;
             mResults = result;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        @NonNull
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             final ViewHolder viewHolder;
 
             if (convertView == null) {
@@ -100,9 +103,7 @@ public class SummaryDialogFragment extends DialogFragment {
             viewHolder.amount_textView.setText(amount);
             viewHolder.percentage_textView.setText("[0%]");
 
-            if (checkIfEnough(result.getSimpleName(), result.getAmount())) {
-
-            } else {
+            if (!checkIfEnough(result.getSimpleName(), result.getAmount())) {
                 viewHolder.amount_textView.setTextColor(Color.rgb(180, 0, 0));
                 viewHolder.percentage_textView.setTextColor(Color.rgb(180, 0, 0));
                 viewHolder.product_textView.setTextColor(Color.rgb(180, 0, 0));
@@ -113,11 +114,7 @@ public class SummaryDialogFragment extends DialogFragment {
         private boolean checkIfEnough(String resName, int resAmount) {
             for (int i = 0; i < mSummary.size(); ++i) {
                 if (mSummary.get(i).typeName.equals(resName)) {
-                    if (mSummary.get(i).minRange >= resAmount) {
-                        return false;
-                    } else {
-                        return true;
-                    }
+                    return mSummary.get(i).minRange < resAmount;
                 }
             }
             return true;

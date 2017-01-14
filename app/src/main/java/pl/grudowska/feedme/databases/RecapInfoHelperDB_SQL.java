@@ -4,21 +4,21 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class RecapInfoHelperDB_SQL extends SQLiteOpenHelper {
+class RecapInfoHelperDB_SQL extends SQLiteOpenHelper {
 
-    public static final String TABLE_TYPE = "types";
-    public static final String TABLE_SUMMARY = "summaries";
+    static final String TABLE_TYPE = "types";
+    static final String TABLE_SUMMARY = "summaries";
 
     // Columns in TABLE_TYPE
-    public static final String COLUMN_ID_TYPE = "_id_type";
-    public static final String COLUMN_NAME_TYPE = "type";
-    public static final String COLUMN_IMAGE_TYPE = "image";
+    static final String COLUMN_ID_TYPE = "_id_type";
+    static final String COLUMN_NAME_TYPE = "type";
+    static final String COLUMN_IMAGE_TYPE = "image";
 
     // Columns in TABLE_SUMMARY
-    public static final String COLUMN_ID_SUMMARY = "_id_summary";
-    public static final String COLUMN_NAME_SUMMARY = "summary_name";
-    public static final String COLUMN_MAX_SUMMARY = "summary_max";
-    public static final String COLUMN_MIN_SUMMARY = "summary_min";
+    static final String COLUMN_ID_SUMMARY = "_id_summary";
+    static final String COLUMN_NAME_SUMMARY = "summary_name";
+    static final String COLUMN_MAX_SUMMARY = "summary_max";
+    static final String COLUMN_MIN_SUMMARY = "summary_min";
 
     private static final String DATABASE_NAME = "description.db";
     private static final int DATABASE_VERSION = 1;
@@ -34,7 +34,7 @@ public class RecapInfoHelperDB_SQL extends SQLiteOpenHelper {
             + " integer primary key autoincrement, " + COLUMN_NAME_SUMMARY
             + " text not null, " + COLUMN_MAX_SUMMARY + " integer, " + COLUMN_MIN_SUMMARY + " integer);";
 
-    public RecapInfoHelperDB_SQL(Context context) {
+    RecapInfoHelperDB_SQL(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
