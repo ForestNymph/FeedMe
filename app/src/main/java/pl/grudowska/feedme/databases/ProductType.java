@@ -9,6 +9,6 @@ public class ProductType {
     // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
-        return typeName + " " + resImage;
+        return id + " " + typeName + " " + resImage;
     }
 }

@@ -69,7 +69,7 @@ public class ProductDataSource extends SQLiteOpenHelper {
 
     public boolean openDataBase() throws DatabaseNotExistException {
         if (!checkDBifExists()) {
-            throw new DatabaseNotExistException("Database products.db don't exists");
+            throw new DatabaseNotExistException();
         }
         mDataBase = SQLiteDatabase.openDatabase(DATABASE_PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
 
@@ -165,8 +165,8 @@ public class ProductDataSource extends SQLiteOpenHelper {
     }
 
     public class DatabaseNotExistException extends Exception {
-        DatabaseNotExistException(String message) {
-            super(message);
+        DatabaseNotExistException() {
+            super("Database products.db don't exists");
         }
     }
 }

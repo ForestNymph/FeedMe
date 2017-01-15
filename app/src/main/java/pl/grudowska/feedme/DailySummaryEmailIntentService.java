@@ -49,8 +49,6 @@ public class DailySummaryEmailIntentService extends IntentService {
 
             mTotalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
 
-            // Log.d(getClass().getSimpleName(), "Preparing and sending email");
-
             sendDailySummaryEmail();
             archiveRecentlyAddedList();
             clearRecentlyAddedDB();

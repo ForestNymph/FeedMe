@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorRed"
@@ -12,7 +13,8 @@
         android:layout_marginEnd="@dimen/size_32_sp"
         android:layout_marginStart="@dimen/size_32_sp"
         android:layout_marginTop="@dimen/size_16_sp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/trash_image"
@@ -34,22 +36,14 @@
             android:textSize="@dimen/size_20_sp" />
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/limit_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_32_sp"
         android:layout_marginEnd="@dimen/size_32_sp"
         android:layout_marginStart="@dimen/size_32_sp"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:id="@+id/limit_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/warning_delete_inf"
-            android:textColor="@color/colorStandardWhite"
-            android:textSize="@dimen/size_18_sp" />
-    </LinearLayout>
-
+        android:text="@string/warning_delete_inf"
+        android:textColor="@color/colorStandardWhite"
+        android:textSize="@dimen/size_18_sp" />
 </LinearLayout>
-

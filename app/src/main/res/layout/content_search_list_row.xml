@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/colorGreen"
-        android:text="EDIT"
+        android:text="@string/edit"
         android:textColor="@color/colorBrokenWhite"
         android:textSize="@dimen/size_14_sp"
         tools:ignore="UnusedAttribute" />

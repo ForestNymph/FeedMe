@@ -52,10 +52,8 @@ public class TimeDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 if (checkbox.isChecked()) {
-                    startDailySummaryEmailService();
                     SharedPreferencesManager.saveDataBoolean(getActivity(), "checkbox_state", true);
                 } else {
-                    stopDailySummaryEmailService();
                     SharedPreferencesManager.saveDataBoolean(getActivity(), "checkbox_state", false);
                 }
             }
@@ -82,11 +80,18 @@ public class TimeDialogFragment extends DialogFragment {
                                         "time_minute_str", (minute < 10) ? "0" + minute : String.valueOf(minute));
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_hour_int", hour);
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_minute_int", minute);
+
+                                // if sending daily summaries is ON - get the current time from the picker
+                                // and set it for sending daily summaries time
+                                if (checkbox.isChecked()) {
+                                    startDailySummaryEmailService();
+                                } else {
+                                    stopDailySummaryEmailService();
+                                }
                             }
                         }
                 ).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // do nothing
                 TimeDialogFragment.this.getDialog().cancel();
             }
         });

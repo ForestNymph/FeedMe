@@ -3,9 +3,9 @@ package pl.grudowska.feedme;
 public class SummaryResult {
 
     final private String mUnit;
-    private String mResultType;
-    private String mSimpleName;
-    private int mAmount;
+    final private String mResultType;
+    final private String mSimpleName;
+    final private int mAmount;
 
     public SummaryResult(String name, String simpleName, int amount, String unit) {
         mResultType = name;
@@ -24,10 +24,6 @@ public class SummaryResult {
 
     public int getAmount() {
         return mAmount;
-    }
-
-    public void setAmount(int amount) {
-        mAmount = amount;
     }
 
     public String getUnit() {

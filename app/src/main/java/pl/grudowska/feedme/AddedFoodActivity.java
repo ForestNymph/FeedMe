@@ -241,10 +241,11 @@ public class AddedFoodActivity extends AppCompatActivity
     }
 
     // If DailySummaryEmailIntentService is on - sends automatically daily summary email and clear database
-    // then BroadcastReceiver clears adapter when activity is active
+    // then BroadcastReceiver clears adapter when activity is active and update calories amount
     public class ClearAdapterBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            mTotalKcalTV.setText("0");
             mAddedFoodAdapter.clear();
         }
     }

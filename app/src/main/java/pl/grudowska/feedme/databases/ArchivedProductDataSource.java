@@ -159,24 +159,6 @@ public class ArchivedProductDataSource {
                 + " = " + recap.id, null);
     }
 
-    public List<Product> getAllArchivedProducts() {
-        List<Product> archived = new ArrayList<>();
-        Product archive;
-
-        Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED,
-                allColumns, null, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                archive = cursorToArchivedProduct(cursor);
-                archived.add(archive);
-                cursor.moveToNext();
-            }
-        }
-        cursor.close();
-        return archived;
-    }
-
     public ArrayList<DailyRecap> getAllArchivedDailyRecaps() {
         ArrayList<DailyRecap> recaps = new ArrayList<>();
         DailyRecap recap;
