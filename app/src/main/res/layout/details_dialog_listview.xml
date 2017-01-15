@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/details"
+            android:text="@string/dialog_details"
             android:textColor="@color/colorStandardWhite"
             android:textSize="@dimen/size_20_sp" />
 
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/contains"
+            android:text="@string/contains_message"
             android:textColor="@color/colorStandardWhite"
             android:textSize="@dimen/size_18_sp" />
     </LinearLayout>

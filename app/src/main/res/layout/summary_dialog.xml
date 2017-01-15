@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            android:text="@string/summary"
+            android:text="@string/dialog_summary"
             android:textColor="@color/colorStandardWhite"
             android:textSize="@dimen/size_20_sp" />
 

@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Lists">
+    <item android:title="@string/lists_nav_header">
         <menu>
             <item
                 android:id="@+id/nav_recently"
                 android:icon="@mipmap/ic_list"
-                android:title="Recently added" />
+                android:title="@string/added_nav_item" />
             <item
                 android:id="@+id/nav_archived"
                 android:icon="@mipmap/ic_showall"
-                android:title="Archived lists" />
+                android:title="@string/archived_nav_item" />
         </menu>
     </item>
 
-    <item android:title="Database configuration">
+    <item android:title="@string/database_nav_header">
         <menu>
             <item
                 android:id="@+id/nav_server"
                 android:icon="@mipmap/ic_server"
-                android:title="Set database host address" />
+                android:title="@string/database_nav_item" />
         </menu>
     </item>
 
-    <item android:title="Email configuration">
+    <item android:title="@string/email_nav_header">
         <menu>
             <item
                 android:id="@+id/nav_email"
                 android:icon="@mipmap/ic_email"
-                android:title="Set email address" />
+                android:title="@string/email_nav_item" />
 
             <item
                 android:id="@+id/nav_time"
                 android:icon="@mipmap/ic_time"
-                android:title="Set email time" />
+                android:title="@string/time_nav_item" />
         </menu>
     </item>
 
-    <item android:title="Limit configuration">
+    <item android:title="@string/limit_nav_header">
         <menu>
             <item
                 android:id="@+id/nav_limit"
                 android:icon="@mipmap/ic_limit"
-                android:title="Set calories limit" />
+                android:title="@string/calories_nav_item" />
         </menu>
     </item>
-    <item android:title="Information">
+    <item android:title="@string/info_nav_header">
         <menu>
             <item
                 android:id="@+id/nav_about"
                 android:icon="@mipmap/ic_action_about"
-                android:title="About" />
+                android:title="@string/about_nav_item" />
         </menu>
     </item>
 </menu>

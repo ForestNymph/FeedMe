@@ -142,7 +142,7 @@
                 android:paddingStart="@dimen/size_16_sp"
                 android:paddingTop="8sp"
                 android:stateListAnimator="@null"
-                android:text="Sync now"
+                android:text="@string/sync_dialog_button"
                 android:textColor="@color/colorBrokenWhite"
                 android:textSize="@dimen/size_16_sp" />
         </LinearLayout>

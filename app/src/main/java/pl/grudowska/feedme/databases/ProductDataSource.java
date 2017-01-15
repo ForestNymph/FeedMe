@@ -51,7 +51,7 @@ public class ProductDataSource extends SQLiteOpenHelper {
     }
 
     public static String getDatabaseAdress(Context context) {
-        return SharedPreferencesManager.loadDataString(context, "serverAddress", "http://libflat.codessense.com/");
+        return SharedPreferencesManager.loadDataString(context, "serverAddress", "http://forestnymph.github.io/FeedMe/");
     }
 
     public static int getPortNumber(Context context) {

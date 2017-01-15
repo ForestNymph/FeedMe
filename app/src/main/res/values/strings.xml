@@ -12,15 +12,18 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="cancel">@android:string/cancel</string>
-    <string name="apply">APPLY</string>
-    <string name="ok">@android:string/ok</string>
-    <string name="consequences">I UNDERSTAND THE CONSEQUENCES</string>
-    <string name="resend">RESEND</string>
-    <string name="reuse">RE-USE</string>
-
     <string name="swipe_remove">Swipe to remove item</string>
+    <string name="total_kcal">TOTAL KCAL:</string>
+    <string name="amount">amount</string>
 
+    <!-- Content description -->
+    <string name="cd_image">image</string>
+
+    <string name="title_activity_search">Search for products</string>
+    <string name="edit">EDIT</string>
+    <string name="add_button">ADD</string>
+
+    <!-- Dialogs titles -->
     <string name="dialog_remove">REMOVE ALL</string>
     <string name="dialog_warning">WARNING!</string>
     <string name="dialog_email">CHANGE EMAIL</string>
@@ -29,29 +32,46 @@
     <string name="dialog_about">ABOUT</string>
     <string name="dialog_details">DETAILS</string>
     <string name="dialog_server">CONFIG SERVER</string>
-    <string name="dialog_about_message">
-        " Programmer: Sylwia Grudowska\n"
-        "Designer: Sylwia Grudowska\n\n"
-        "Date: 2017\n"
-        "Version: "
-    </string>
-    <string name="total_kcal">TOTAL KCAL:</string>
+    <string name="dialog_summary">SUMMARY</string>
+    <string name="dialog_archived_list">ARCHIVED LIST</string>
 
-    <!-- Content description -->
-    <string name="cd_image">image</string>
+    <!-- Dialogs buttons -->
+    <string name="cancel">@android:string/cancel</string>
+    <string name="apply">APPLY</string>
+    <string name="ok">@android:string/ok</string>
+    <string name="consequences">I UNDERSTAND THE CONSEQUENCES</string>
+    <string name="resend">RESEND</string>
+    <string name="reuse">RE-USE</string>
+    <string name="sync_dialog_button">Sync now</string>
 
+    <!-- Dialogs content info -->
+    <string name="contains_message">Contains per 100g of product:</string>
     <string name="limit_exceed">Calorie limit has been exceeded by: </string>
     <string name="warning_delete_inf">Do you want to delete all data?</string>
     <string name="mail_message">Configure mail for sending daily summaries.
      To receive summaries, connect the gmail inbox and set the destination address.</string>
     <string name="time_message">Configure the time for sending daily summaries.</string>
     <string name="server_message">Configure server port and address which hosts the application database</string>
-    <string name="title_activity_search">Search for products</string>
+    <string name="dialog_about_message">
+        " Programmer: Sylwia Grudowska\n"
+        "Designer: Sylwia Grudowska\n\n"
+        "Date: 2017\n"
+        "Version: "
+    </string>
+    <string name="current_message">Current:</string>
 
-    <string name="archived_list">ARCHIVED LIST</string>
-    <string name="edit">EDIT</string>
-    <string name="add_button">ADD</string>
-    <string name="details">DETAILS</string>
-    <string name="contains">Contains per 100g of product:</string>
-    <string name="summary">SUMMARY</string>
+    <!-- Navigation View Panel -->
+    <string name="info_nav_header">Information</string>
+    <string name="limit_nav_header">Limit configuration</string>
+    <string name="email_nav_header">Email configuration</string>
+    <string name="database_nav_header">Database configuration</string>
+    <string name="lists_nav_header">Lists</string>
+    <string name="added_nav_item">Recently added</string>
+    <string name="archived_nav_item">Archived lists</string>
+    <string name="database_nav_item">Database and host address</string>
+    <string name="email_nav_item">Set email address</string>
+    <string name="time_nav_item">Set email time</string>
+    <string name="calories_nav_item">Set calories limit</string>
+    <string name="about_nav_item">About</string>
+    <string name="checkbox_daily_summaries">TURN ON sending daily summaries</string>
 </resources>

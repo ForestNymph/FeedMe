@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="end|center_vertical"
-            android:hint="amount"
+            android:hint="@string/amount"
             android:inputType="number"
             android:textColor="@color/colorTextGray"
             android:textSize="@dimen/size_14_sp" />

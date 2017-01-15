@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/archived_list"
+                android:text="@string/dialog_archived_list"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_20_sp" />
 

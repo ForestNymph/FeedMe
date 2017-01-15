@@ -39,7 +39,7 @@ public class TimeDialogFragment extends DialogFragment {
         View timeDialogView = inflater.inflate(R.layout.time_dialog, null);
 
         TextView time = (TextView) timeDialogView.findViewById(R.id.time_current);
-        String timeText = SharedPreferencesManager.loadDataString(getActivity(), "time_hour_str", "23") + ":"
+        String timeText = " " + SharedPreferencesManager.loadDataString(getActivity(), "time_hour_str", "23") + ":"
                 + (SharedPreferencesManager.loadDataString(getActivity(), "time_minute_str", "59"));
         time.append(timeText);
 

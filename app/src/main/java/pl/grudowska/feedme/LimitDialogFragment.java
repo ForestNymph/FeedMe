@@ -38,7 +38,7 @@ public class LimitDialogFragment extends DialogFragment {
         TextView limitCurrent = (TextView) view.findViewById(R.id.limit_current);
         int limitInt = SharedPreferencesManager.loadDataInt(getActivity(), "limit", 2300);
 
-        String limitText = limitInt + " kCal";
+        String limitText = " " + limitInt + " kCal";
         limitCurrent.append(limitText);
 
         final NumberPicker picker = (NumberPicker) view.findViewById(R.id.picker_number_view);
