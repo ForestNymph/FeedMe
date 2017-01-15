@@ -185,6 +185,7 @@ public class AddedFoodActivity extends AppCompatActivity
 
     @Override
     public void onClearItemsCommand() {
+        mTotalKcalTV.setText("0");
         AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
         dataSource.open();
         if (dataSource.getAllAddedProducts().size() != 0) {
@@ -239,6 +240,8 @@ public class AddedFoodActivity extends AppCompatActivity
         }
     }
 
+    // If DailySummaryEmailIntentService is on - sends automatically daily summary email and clear database
+    // then BroadcastReceiver clears adapter when activity is active
     public class ClearAdapterBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
