@@ -22,6 +22,8 @@ import java.util.Calendar;
 
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
+import static android.app.PendingIntent.getService;
+
 public class TimeDialogFragment extends DialogFragment {
 
     private AlertDialog mDialog;
@@ -110,16 +112,29 @@ public class TimeDialogFragment extends DialogFragment {
         return mDialog;
     }
 
+    // To check all setting alarms by app
+    // adb shell dumpsys alarm | grep pl.grudowska.feedme
+    // Logs reading:
+    // https://stackoverflow.com/questions/28742884/how-to-read-adb-shell-dumpsys-alarm-output
+
+    // ref. https://stackoverflow.com/questions/11681095/cancel-an-alarmmanager-pendingintent-in-another-pendingintent
+    // To stop service: cancel pending intent, cancel the alarm using alarm manager
     private void stopDailySummaryEmailService() {
         Intent alarmIntent = new Intent(getActivity(), DailySummaryEmailIntentService.class);
-        PendingIntent.getService(getActivity(), 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pending = PendingIntent.getService(getActivity(), 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(pending);
+        pending.cancel();
     }
 
+    // PendingIntent.FLAG_UPDATE_CURRENT will return a reference to the existing one already created,
+    // or create one if it doesn't currently exist
+    // ref. https://stackoverflow.com/questions/9823408/cancelling-a-pendingintent
     private void startDailySummaryEmailService() {
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 
         Intent alarmIntent = new Intent(getActivity(), DailySummaryEmailIntentService.class);
-        PendingIntent pending = PendingIntent.getService(getActivity(), 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pending = getService(getActivity(), 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         int hour = SharedPreferencesManager.loadDataInt(getActivity(), "time_hour_int", 23);
         int minute = SharedPreferencesManager.loadDataInt(getActivity(), "time_minute_int", 59);
@@ -129,6 +144,9 @@ public class TimeDialogFragment extends DialogFragment {
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
 
+        // setInexactRepeating(), Android synchronizes repeating alarms from multiple apps
+        // and fires them at the same time This reduces the total number of times
+        // the system must wake the device, thus reducing drain on the battery
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pending);
     }
