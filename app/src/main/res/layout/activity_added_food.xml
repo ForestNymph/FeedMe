@@ -4,31 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorStandardWhite"
-    android:fitsSystemWindows="true"
-    tools:context=".AddedFoodActivity"
-    tools:ignore="Overdraw">
+    tools:context=".AddedFoodActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
+        android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorDarkGray"
-            android:fitsSystemWindows="true">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorDarkGray" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -38,40 +26,48 @@
         android:id="@+id/fab_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="top|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
         android:src="@mipmap/ic_alghoritm"
         android:tint="@color/colorBrokenWhite"
-        app:backgroundTint="@color/colorLightOrange"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:backgroundTint="@color/colorYellow" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_send"
+        android:id="@+id/fab_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
         android:layout_marginEnd="80dp"
-        android:src="@mipmap/ic_send"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:src="@mipmap/ic_action_search"
         android:tint="@color/colorBrokenWhite"
-        app:backgroundTint="@color/colorBlue"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:backgroundTint="@color/colorOrange" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_gravity="top|end"
         android:layout_marginEnd="145dp"
-        android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
         android:src="@mipmap/ic_trash"
         android:tint="@color/colorBrokenWhite"
-        app:backgroundTint="@color/colorRed"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:backgroundTint="@color/colorRed" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginEnd="210dp"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:src="@mipmap/ic_send"
+        android:tint="@color/colorBrokenWhite"
+        app:backgroundTint="@color/colorBlueTint" />
 
     <TextView
-        android:id="@+id/button_done"
+        android:id="@+id/swipe_tv"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:layout_gravity="bottom"

@@ -26,7 +26,7 @@
             android:src="@drawable/trash" />
 
         <TextView
-            android:id="@+id/limit_change"
+            android:id="@+id/title_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/limit_tv"
+        android:id="@+id/delete_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_32_sp"

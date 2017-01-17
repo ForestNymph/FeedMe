@@ -4,21 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".SpecificFoodTypeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorDarkGray"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorDarkGray">
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
@@ -26,7 +24,7 @@
     <include layout="@layout/content_specific_listview" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_recently"
+        android:id="@+id/fab_added"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"

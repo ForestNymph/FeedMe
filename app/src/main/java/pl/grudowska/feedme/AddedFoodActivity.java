@@ -66,6 +66,17 @@ public class AddedFoodActivity extends AppCompatActivity
             }
         });
 
+        FloatingActionButton search_fab = (FloatingActionButton) findViewById(R.id.fab_search);
+        assert search_fab != null;
+        search_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchViewActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         FloatingActionButton fab_delete = (FloatingActionButton) findViewById(R.id.fab_delete);
         assert fab_delete != null;
         fab_delete.setOnClickListener(new View.OnClickListener() {

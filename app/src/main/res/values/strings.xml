@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Feed Me</string>
-    <string name="recently_added">RECENTLY ADDED</string>
-    <string name="show_all_lists">ARCHIVED LISTS</string>
+    <string name="recently_added">ADDED FOOD</string>
+    <string name="show_all_lists">ARCHIVED LIST</string>
     <string name="sent_message">Message was sent</string>
     <string name="prepare_message">Preparing message</string>
     <string name="reuse_list">List copy to recently added</string>

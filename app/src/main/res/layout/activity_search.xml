@@ -4,27 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".SearchViewActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorDarkGray"
-            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
+            android:background="@color/colorDarkGray" />
 
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_search_list" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_recently"
+        android:id="@+id/fab_added"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"

@@ -32,7 +32,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:text="@string/dialog_about"
-            android:textColor="@color/colorNavText"
+            android:textColor="@color/colorStandardWhite"
             android:textSize="@dimen/size_20_sp" />
     </LinearLayout>
 
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/dialog_about_message"
-            android:textColor="@color/colorNavText"
+            android:textColor="@color/colorStandardWhite"
             android:textSize="@dimen/size_16_sp" />
     </LinearLayout>
 </LinearLayout>

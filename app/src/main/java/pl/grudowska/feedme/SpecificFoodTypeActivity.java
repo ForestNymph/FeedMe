@@ -39,10 +39,10 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         toolbar.setTitle(type_value);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab_recently = (FloatingActionButton) findViewById(R.id.fab_recently);
+        FloatingActionButton fab_added = (FloatingActionButton) findViewById(R.id.fab_added);
 
-        assert fab_recently != null;
-        fab_recently.setOnClickListener(new View.OnClickListener() {
+        assert fab_added != null;
+        fab_added.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddedFoodActivity.class);

@@ -4,7 +4,7 @@
     <item android:title="@string/lists_nav_header">
         <menu>
             <item
-                android:id="@+id/nav_recently"
+                android:id="@+id/nav_added"
                 android:icon="@mipmap/ic_list"
                 android:title="@string/added_nav_item" />
             <item

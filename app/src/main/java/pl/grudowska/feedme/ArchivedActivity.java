@@ -36,7 +36,7 @@ public class ArchivedActivity extends AppCompatActivity implements OnDismissCall
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_recently);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_delete);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

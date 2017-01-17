@@ -9,7 +9,7 @@
     android:padding="@dimen/size_16_sp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainFoodTypeActivity"
-    tools:showIn="@layout/app_bar_main_food_type">
+    tools:showIn="@layout/activity_main_food_type">
 
     <ListView
         android:id="@+id/activity_main_listview"

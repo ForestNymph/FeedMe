@@ -14,6 +14,7 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.ArrayList;
 
+import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 
@@ -84,6 +85,8 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> {
                     prod.setEdited(false);
                     // update total kcal textview after editing product (callback to activity)
                     mListener.onEditItem();
+                    // chcek if calories limit exceeded
+                    CalculateSummary.warningIfCalorieLimitExceeded(mContext);
                 } else {
                     prod.setEdited(true);
                 }

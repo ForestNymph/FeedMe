@@ -50,8 +50,8 @@ public class DailySummaryEmailIntentService extends IntentService {
             mTotalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
 
             sendDailySummaryEmail();
-            archiveRecentlyAddedList();
-            clearRecentlyAddedDB();
+            archiveAddedList();
+            clearAddedDB();
             sendClearAdapterBroadcast();
         }
         // Close DB's
@@ -63,7 +63,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         new EmailManager(getApplicationContext(), mDate, mContentMail);
     }
 
-    private void archiveRecentlyAddedList() {
+    private void archiveAddedList() {
         List<Product> products = DatabaseManager.getAllAddedProductsDB(getApplicationContext());
         for (int i = 0; i < products.size(); ++i) {
             mArchivedDataSource.createArchivedProduct(mDate, products.get(i));
@@ -71,7 +71,7 @@ public class DailySummaryEmailIntentService extends IntentService {
         mArchivedDataSource.createDailyRecap(mDate, mTotalKcal, mContentMail);
     }
 
-    private void clearRecentlyAddedDB() {
+    private void clearAddedDB() {
         mAddedProductDataSource.clearAll();
     }
 

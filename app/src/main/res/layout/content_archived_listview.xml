@@ -20,7 +20,6 @@
         android:dividerHeight="10dp"
         android:drawSelectorOnTop="true"
         android:fadingEdge="none"
-        android:fitsSystemWindows="true"
         android:scrollbarStyle="outsideOverlay"
         tools:ignore="overdraw" />
 </RelativeLayout>

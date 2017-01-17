@@ -33,7 +33,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_food_type);
+        setContentView(R.layout.activity_drawer);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,9 +48,9 @@ public class MainFoodTypeActivity extends AppCompatActivity
             }
         });
 
-        FloatingActionButton recently_fab = (FloatingActionButton) findViewById(R.id.fab_recently);
-        assert recently_fab != null;
-        recently_fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton added_fab = (FloatingActionButton) findViewById(R.id.fab_added);
+        assert added_fab != null;
+        added_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddedFoodActivity.class);
@@ -152,7 +152,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_recently) {
+        if (id == R.id.nav_added) {
             Intent intent = new Intent(this, AddedFoodActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_archived) {
