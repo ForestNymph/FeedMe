@@ -1,7 +1,10 @@
 <resources>
+    <!-- Activities toolbars -->
     <string name="app_name">Feed Me</string>
     <string name="recently_added">ADDED FOOD</string>
-    <string name="show_all_lists">ARCHIVED LIST</string>
+    <string name="show_all_lists">ARCHIVED LISTS</string>
+
+    <!-- Toasts message -->
     <string name="sent_message">Message was sent</string>
     <string name="prepare_message">Preparing message</string>
     <string name="reuse_list">List copy to recently added</string>
@@ -15,6 +18,7 @@
     <string name="swipe_remove">Swipe to remove item</string>
     <string name="total_kcal">TOTAL KCAL:</string>
     <string name="amount">amount</string>
+    <string name="gramm">gramm</string>
 
     <!-- Content description -->
     <string name="cd_image">image</string>
@@ -74,4 +78,13 @@
     <string name="calories_nav_item">Set calories limit</string>
     <string name="about_nav_item">About</string>
     <string name="checkbox_daily_summaries">TURN ON sending daily summaries</string>
+
+    <!-- Dialogs edit fields -->
+    <string name="gmail_address_edit">Gmail address:</string>
+    <string name="gmail_password_edit">Gmail password:</string>
+    <string name="destination_address_edit">Destination address:</string>
+    <string name="server_address_edit">Server address:</string>
+    <string name="server_port_edit">Server port:</string>
+    <string name="database_name_edit">Database name:</string>
+
 </resources>

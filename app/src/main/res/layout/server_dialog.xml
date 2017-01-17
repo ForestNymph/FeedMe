@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_24_sp"
-                android:text="Server address:"
+                android:text="@string/server_address_edit"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_16_sp" />
 
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_24_sp"
-                android:text="Server port:"
+                android:text="@string/server_port_edit"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_16_sp" />
 
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_24_sp"
-                android:text="Database name:"
+                android:text="@string/database_name_edit"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_16_sp" />
 

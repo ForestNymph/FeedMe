@@ -43,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingEnd="@dimen/size_4_sp"
+                android:paddingStart="0sp"
                 android:text="@string/current_message"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_16_sp" />

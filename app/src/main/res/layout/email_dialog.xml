@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_24_sp"
                 android:labelFor="@+id/mailfrom_mail"
-                android:text="Gmail address:"
+                android:text="@string/gmail_address_edit"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_16_sp" />
 
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_24_sp"
                 android:labelFor="@+id/mailfrom_password"
-                android:text="Gmail password:"
+                android:text="@string/gmail_password_edit"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_16_sp" />
 
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_24_sp"
                 android:labelFor="@+id/mailto_mail"
-                android:text="Destination address:"
+                android:text="@string/destination_address_edit"
                 android:textColor="@color/colorStandardWhite"
                 android:textSize="@dimen/size_16_sp" />
 
