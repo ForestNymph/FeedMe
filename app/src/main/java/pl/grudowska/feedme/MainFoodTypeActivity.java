@@ -119,7 +119,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         swingBottomInAnimationAdapter.setAbsListView(listView);
 
         assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        // swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+        //swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
         swingBottomInAnimationAdapter.getViewAnimator().disableAnimations();
 
         listView.setAdapter(swingBottomInAnimationAdapter);

@@ -23,7 +23,7 @@ import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class ArchivedActivity extends AppCompatActivity implements OnDismissCallback, DeleteDialogFragment.OnClearItemsCommandListener {
 
-    private static final int INITIAL_DELAY_MILLIS = 300;
+    // private static final int INITIAL_DELAY_MILLIS = 300;
 
     private ArchivedArrayAdapter mArchivedArrayAdapter;
 

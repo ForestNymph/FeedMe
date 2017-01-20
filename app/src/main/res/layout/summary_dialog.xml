@@ -48,13 +48,12 @@
         <ListView
             android:id="@+id/list_summmary"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/text_no_summmary"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorBrokenWhite"
             android:textSize="@dimen/size_18_sp" />
     </LinearLayout>

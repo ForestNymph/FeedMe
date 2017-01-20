@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorDarkGray">
+            android:background="@color/colorPrimaryDark">
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
@@ -41,5 +41,5 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/ic_action_back"
         android:tint="@color/colorBrokenWhite"
-        app:backgroundTint="@color/colorDarkGray" />
+        app:backgroundTint="@color/colorPrimaryDark" />
 </android.support.design.widget.CoordinatorLayout>

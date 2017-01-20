@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorGreen">#5c9747</color>
     <color name="colorGreenNav">#587e4a</color>
-    <color name="colorBlue">#0096c8</color>
+    <color name="colorGreen">#5c9747</color>
     <color name="colorBlueTint">#00749b</color>
-    <color name="colorPurple">#9e3949</color>
+    <color name="colorBlue">#0096c8</color>
     <color name="colorLightPurple">#ae8a8a</color>
+    <color name="colorPurple">#9e3949</color>
     <color name="colorRed">#B01110</color>
     <color name="colorOrange">#C9440D</color>
-    <color name="colorPrimaryDark">#323232</color>
     <color name="colorYellow">#C99113</color>
+    <color name="colorYellowLight">#e7b146</color>
     <color name="colorAccent">#FFBA5B</color>
     <color name="colorBrokenWhite">#fcf7ec</color>
-    <color name="colorNavText">#bfbfbf</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorStandardWhite">#e2e2e2</color>
+    <color name="colorNavText">#bfbfbf</color>
     <color name="colorTextGray">#717171</color>
-    <color name="colorDarkGray">#323232</color>
+    <color name="colorPrimaryDark">#323232</color>
     <color name="colorNearBlack">#23211d</color>
 </resources>
