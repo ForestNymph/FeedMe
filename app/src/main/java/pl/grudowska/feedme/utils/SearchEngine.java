@@ -23,6 +23,8 @@ public class SearchEngine {
         mResult.clear();
         for (int i = 0; i < mProducts.size(); ++i) {
             product = mProducts.get(i);
+
+            // Case sensitive
             if ((product.name).contains(word)) {
                 mResult.add(product);
             }

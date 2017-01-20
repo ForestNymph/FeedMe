@@ -23,7 +23,7 @@ import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class ArchivedActivity extends AppCompatActivity implements OnDismissCallback, DeleteDialogFragment.OnClearItemsCommandListener {
 
-    private static final int INITIAL_DELAY_MILLIS = 300;
+    // private static final int INITIAL_DELAY_MILLIS = 300;
 
     private ArchivedArrayAdapter mArchivedArrayAdapter;
 
@@ -56,8 +56,10 @@ public class ArchivedActivity extends AppCompatActivity implements OnDismissCall
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
                 new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mArchivedArrayAdapter, this));
         swingBottomInAnimationAdapter.setAbsListView(listView);
+
         assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+        // swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+        swingBottomInAnimationAdapter.getViewAnimator().disableAnimations();
 
         listView.setAdapter(swingBottomInAnimationAdapter);
     }
@@ -69,7 +71,7 @@ public class ArchivedActivity extends AppCompatActivity implements OnDismissCall
             // remove dailyRecap from arrayadapter only
             final DailyRecap dailyRecap = mArchivedArrayAdapter.remove(position);
 
-            Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).setCallback(new Snackbar.Callback() {
+            Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).addCallback(new Snackbar.Callback() {
 
                 @Override
                 public void onDismissed(Snackbar snackbar, int event) {
