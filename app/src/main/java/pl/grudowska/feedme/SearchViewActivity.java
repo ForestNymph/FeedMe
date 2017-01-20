@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
-
 import java.util.ArrayList;
 
 import pl.grudowska.feedme.databases.Product;
@@ -18,8 +16,6 @@ import pl.grudowska.feedme.utils.SearchEngine;
 
 public class SearchViewActivity extends AppCompatActivity
         implements SearchView.OnQueryTextListener {
-
-    private static final int INITIAL_DELAY_MILLIS = 100;
 
     private SearchViewArrayAdapter mSearchAdapter;
     private SearchEngine mEngine;
@@ -44,14 +40,7 @@ public class SearchViewActivity extends AppCompatActivity
         });
         // setup adapter
         mSearchAdapter = new SearchViewArrayAdapter(this, new ArrayList<Product>());
-
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mSearchAdapter);
         mListView = (ListView) findViewById(R.id.search_list);
-        assert mListView != null;
-        alphaInAnimationAdapter.setAbsListView(mListView);
-        assert alphaInAnimationAdapter.getViewAnimator() != null;
-        alphaInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
-        // mListView.setAdapter(alphaInAnimationAdapter);
 
         SearchView searchView = (SearchView) findViewById(R.id.search_view);
         assert null != searchView;
@@ -80,7 +69,6 @@ public class SearchViewActivity extends AppCompatActivity
 
     private void displayProducts(String query) {
         mSearchAdapter.updateProductsList(mEngine.search(query));
-        // no animation, products are shown immediately
         mListView.setAdapter(mSearchAdapter);
     }
 }
