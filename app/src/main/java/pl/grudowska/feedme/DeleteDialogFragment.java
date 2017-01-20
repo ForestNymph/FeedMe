@@ -1,10 +1,10 @@
 package pl.grudowska.feedme;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -51,12 +51,12 @@ public class DeleteDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         try {
-            mListener = (OnClearItemsCommandListener) activity;
+            mListener = (OnClearItemsCommandListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnClearItemsCommandListener");
+            throw new ClassCastException(context.toString() + " must implement OnClearItemsCommandListener");
         }
     }
 

@@ -40,7 +40,7 @@ public class AddedFoodActivity extends AppCompatActivity
         DeleteDialogFragment.OnClearItemsCommandListener,
         AddedFoodArrayAdapter.OnEditItemListener {
 
-    private static final int INITIAL_DELAY_MILLIS = 300;
+    // private static final int INITIAL_DELAY_MILLIS = 300;
     private AddedFoodArrayAdapter mAddedFoodAdapter;
 
     private ClearAdapterBroadcastReceiver mClearAdapterReceiver = null;
@@ -114,7 +114,8 @@ public class AddedFoodActivity extends AppCompatActivity
         swingBottomInAnimationAdapter.setAbsListView(listView);
 
         assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+        // swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+        swingBottomInAnimationAdapter.getViewAnimator().disableAnimations();
 
         listView.setAdapter(swingBottomInAnimationAdapter);
 
@@ -156,7 +157,7 @@ public class AddedFoodActivity extends AppCompatActivity
             // update textview with new kcal amount
             mTotalKcalTV.setText(mUpdateTotalKcal);
 
-            Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).setCallback(new Snackbar.Callback() {
+            Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).addCallback(new Snackbar.Callback() {
 
                 @Override
                 public void onDismissed(Snackbar snackbar, int event) {

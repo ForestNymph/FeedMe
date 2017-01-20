@@ -2,6 +2,7 @@ package pl.grudowska.feedme;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,7 +28,7 @@ import pl.grudowska.feedme.utils.SharedPreferencesManager;
 public class MainFoodTypeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final int INITIAL_DELAY_MILLIS = 300;
+    // private static final int INITIAL_DELAY_MILLIS = 300;
     private NavigationView mNavigationView;
 
     @Override
@@ -118,7 +119,8 @@ public class MainFoodTypeActivity extends AppCompatActivity
         swingBottomInAnimationAdapter.setAbsListView(listView);
 
         assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+        //swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+        swingBottomInAnimationAdapter.getViewAnimator().disableAnimations();
 
         listView.setAdapter(swingBottomInAnimationAdapter);
 
@@ -147,7 +149,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();

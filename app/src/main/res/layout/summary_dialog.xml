@@ -48,7 +48,8 @@
         <ListView
             android:id="@+id/list_summmary"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/text_no_summmary"
