@@ -18,7 +18,7 @@ import pl.grudowska.feedme.databases.ProductDataSource;
 
 public class SpecificFoodTypeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_DELAY_MILLIS = 200;
+    private static final int INITIAL_DELAY_MILLIS = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,6 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         assert alphaInAnimationAdapter.getViewAnimator() != null;
         alphaInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
         listView.setAdapter(alphaInAnimationAdapter);
-        listView.setAdapter(specificFoodTypeArrayAdapter);
     }
 
     private ArrayList<Product> getDataByType(String type) {

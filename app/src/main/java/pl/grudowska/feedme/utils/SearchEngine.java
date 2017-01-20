@@ -17,7 +17,7 @@ public class SearchEngine {
         mResult = new ArrayList<>();
     }
 
-    // TODO case sensitive
+    // TODO non-case sensitive
     public List<Product> search(String word) {
         Product product;
         mResult.clear();
