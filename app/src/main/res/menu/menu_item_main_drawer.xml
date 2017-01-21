@@ -5,11 +5,11 @@
         <menu>
             <item
                 android:id="@+id/nav_added"
-                android:icon="@mipmap/ic_list"
+                android:icon="@drawable/ic_list"
                 android:title="@string/added_nav_item" />
             <item
                 android:id="@+id/nav_archived"
-                android:icon="@mipmap/ic_showall"
+                android:icon="@drawable/ic_showall"
                 android:title="@string/archived_nav_item" />
         </menu>
     </item>
@@ -18,7 +18,7 @@
         <menu>
             <item
                 android:id="@+id/nav_server"
-                android:icon="@mipmap/ic_server"
+                android:icon="@drawable/ic_server"
                 android:title="@string/database_nav_item" />
         </menu>
     </item>
@@ -27,12 +27,12 @@
         <menu>
             <item
                 android:id="@+id/nav_email"
-                android:icon="@mipmap/ic_email"
+                android:icon="@drawable/ic_email"
                 android:title="@string/email_nav_item" />
 
             <item
                 android:id="@+id/nav_time"
-                android:icon="@mipmap/ic_time"
+                android:icon="@drawable/ic_time"
                 android:title="@string/time_nav_item" />
         </menu>
     </item>
@@ -41,7 +41,7 @@
         <menu>
             <item
                 android:id="@+id/nav_limit"
-                android:icon="@mipmap/ic_limit"
+                android:icon="@drawable/ic_limit"
                 android:title="@string/calories_nav_item" />
         </menu>
     </item>
@@ -49,7 +49,7 @@
         <menu>
             <item
                 android:id="@+id/nav_about"
-                android:icon="@mipmap/ic_action_about"
+                android:icon="@drawable/ic_action_about"
                 android:title="@string/about_nav_item" />
         </menu>
     </item>

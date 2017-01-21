@@ -29,7 +29,7 @@
         android:layout_gravity="top|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
-        android:src="@mipmap/ic_trash"
+        android:src="@drawable/ic_trash"
         android:tint="@color/colorBrokenWhite"
         app:backgroundTint="@color/colorRed" />
 
