@@ -149,7 +149,6 @@ class SearchViewArrayAdapter extends ArrayAdapter<Product> {
         // if active view is edit view get new amount of product
         if (switcher.getCurrentView().onCheckIsTextEditor()) {
             viewHolder.editView_newamount.setEnabled(true);
-            viewHolder.editView_newamount.setFocusable(true);
             viewHolder.editView_newamount.requestFocus();
             InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(viewHolder.editView_newamount, InputMethodManager.SHOW_IMPLICIT);

@@ -47,6 +47,7 @@ public class AdditionalsDataLoader {
         dataSource.createType("EXTRAS", R.drawable.extras);
         dataSource.createType("CEREALS", R.drawable.cereals);
         dataSource.createType("MACARONI", R.drawable.macaroni);
+
         dataSource.close();
     }
 

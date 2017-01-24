@@ -54,9 +54,9 @@ public class AddedProductDataSource {
         return products;
     }
 
-    private Product createAddedProduct(String date, String type, String name, int def1, int def2, int def3, double kcal, double protein,
-                                       double carbohydrates, double fiber, double fats, double saturated,
-                                       double monounsaturated, double omega3, double omega6, double amount) {
+    private void createAddedProduct(String date, String type, String name, int def1, int def2, int def3, double kcal, double protein,
+                                    double carbohydrates, double fiber, double fats, double saturated,
+                                    double monounsaturated, double omega3, double omega6, double amount) {
         ContentValues values = new ContentValues();
         values.put(AddedProductDB_SQL.COLUMN_DATE, date);
         values.put(AddedProductDB_SQL.COLUMN_TYPE, type);
@@ -76,17 +76,9 @@ public class AddedProductDataSource {
         values.put(AddedProductDB_SQL.COLUMN_AMOUNT, amount);
 
         long productId = mDatabase.insert(AddedProductDB_SQL.TABLE_PRODUCTS_ADDED, null, values);
-        Cursor cursor = mDatabase.query(AddedProductDB_SQL.TABLE_PRODUCTS_ADDED,
+        mDatabase.query(AddedProductDB_SQL.TABLE_PRODUCTS_ADDED,
                 productColumns, AddedProductDB_SQL.COLUMN_ID_PROD + " = " + productId, null,
                 null, null, null);
-
-        // call moveToFirst() for first query,
-        // the cursor starts at index -1
-        cursor.moveToFirst();
-        Product product = cursorToProduct(cursor);
-        cursor.close();
-
-        return product;
     }
 
     private Product cursorToProduct(Cursor cursor) {
@@ -140,10 +132,10 @@ public class AddedProductDataSource {
         return product;
     }
 
-    public Product createSimpleAddedProduct(Product product) {
+    public void createSimpleAddedProduct(Product product) {
         Product addedProduct = getProductIfAlreadyExists(product);
         if (addedProduct == null) {
-            addedProduct = createAddedProduct(
+            createAddedProduct(
                     product.date,
                     product.type,
                     product.name,
@@ -164,7 +156,6 @@ public class AddedProductDataSource {
             // if product already added do not duplicate, only sum amount with existing
             sumAmountOfAddedProduct(addedProduct, product.amount);
         }
-        return addedProduct;
     }
 
     public void editAmountOfAddedProduct(Product product, double amount) {

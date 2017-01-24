@@ -31,10 +31,11 @@
         <activity
             android:name=".AddedFoodActivity"
             android:label="@string/recently_added"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".ArchivedActivity"
-            android:label="@string/show_all_lists" />
+            android:label="@string/show_all_lists"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".SearchViewActivity"
             android:label="@string/title_activity_search"

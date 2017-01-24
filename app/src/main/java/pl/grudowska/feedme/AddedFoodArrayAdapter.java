@@ -1,6 +1,8 @@
 package pl.grudowska.feedme;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.nhaarman.listviewanimations.ArrayAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.UndoAdapter;
 
 import java.util.ArrayList;
 
@@ -18,7 +21,8 @@ import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 
-class AddedFoodArrayAdapter extends ArrayAdapter<Product> {
+
+class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter {
 
     private final Context mContext;
     final private OnEditItemListener mListener;
@@ -114,6 +118,7 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> {
         if (switcher.getCurrentView().onCheckIsTextEditor()) {
             viewHolder.editView_newamount.setEnabled(true);
             viewHolder.editView_newamount.requestFocus();
+
             InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(viewHolder.editView_newamount, InputMethodManager.SHOW_IMPLICIT);
         } else {
@@ -126,6 +131,22 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> {
             }
         }
         return -1;
+    }
+
+    @NonNull
+    @Override
+    public View getUndoView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View view = convertView;
+        if (view == null) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.undo_row, parent, false);
+        }
+        return view;
+    }
+
+    @NonNull
+    @Override
+    public View getUndoClickView(@NonNull View view) {
+        return view.findViewById(R.id.undo_row_undobutton);
     }
 
     // Callback to communicate with activity when product amount is edited

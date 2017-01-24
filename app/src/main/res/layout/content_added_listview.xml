@@ -35,7 +35,7 @@
             android:textSize="@dimen/size_16_sp" />
     </LinearLayout>
 
-    <ListView
+    <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
         android:id="@+id/activity_added_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -8,18 +8,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
+import com.nhaarman.listviewanimations.ArrayAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.SimpleSwipeUndoAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,8 +35,7 @@ import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.EmailManager;
 
 public class AddedFoodActivity extends AppCompatActivity
-        implements OnDismissCallback,
-        DeleteDialogFragment.OnClearItemsCommandListener,
+        implements DeleteDialogFragment.OnClearItemsCommandListener,
         AddedFoodArrayAdapter.OnEditItemListener {
 
     // private static final int INITIAL_DELAY_MILLIS = 300;
@@ -46,7 +44,7 @@ public class AddedFoodActivity extends AppCompatActivity
     private ClearAdapterBroadcastReceiver mClearAdapterReceiver = null;
     private boolean isReceiverRegistered = false;
     private TextView mTotalKcalTV;
-    private int mCurrentTotalKcal = 0;
+    // private int mCurrentTotalKcal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,18 +104,15 @@ public class AddedFoodActivity extends AppCompatActivity
         });
 
         final ArrayList<Product> added = DatabaseManager.getAllAddedProductsDB(getApplicationContext());
-        ListView listView = (ListView) findViewById(R.id.activity_added_listview);
+        DynamicListView listView = (DynamicListView) findViewById(R.id.activity_added_listview);
+
         mAddedFoodAdapter = new AddedFoodArrayAdapter(this, added);
+        SimpleSwipeUndoAdapter swipeUndoAdapter = new SimpleSwipeUndoAdapter(mAddedFoodAdapter,
+                this, new RemoveOnDismissCallback(mAddedFoodAdapter));
+
         assert listView != null;
-        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter =
-                new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mAddedFoodAdapter, this));
-        swingBottomInAnimationAdapter.setAbsListView(listView);
-
-        assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        // swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
-        swingBottomInAnimationAdapter.getViewAnimator().disableAnimations();
-
-        listView.setAdapter(swingBottomInAnimationAdapter);
+        listView.setAdapter(swipeUndoAdapter);
+        listView.enableSimpleSwipeUndo();
 
         mTotalKcalTV = (TextView) findViewById(R.id.total_amount_tv);
         if (mTotalKcalTV != null) {
@@ -144,7 +139,7 @@ public class AddedFoodActivity extends AppCompatActivity
         }
     }
 
-    @Override
+/*    @Override
     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
         for (final int position : reverseSortedPositions) {
 
@@ -193,7 +188,7 @@ public class AddedFoodActivity extends AppCompatActivity
                 }
             }).show();
         }
-    }
+    }*/
 
     @Override
     public void onClearItemsCommand() {
@@ -213,7 +208,7 @@ public class AddedFoodActivity extends AppCompatActivity
     }
 
     private void updateTotalKcalTextView() {
-        mCurrentTotalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
+        int mCurrentTotalKcal = CalculateSummary.getTotalKcal(getApplicationContext());
         String totalStr = Integer.toString(mCurrentTotalKcal);
         mTotalKcalTV.setText(totalStr);
     }
@@ -259,6 +254,28 @@ public class AddedFoodActivity extends AppCompatActivity
         public void onReceive(Context context, Intent intent) {
             mTotalKcalTV.setText("0");
             mAddedFoodAdapter.clear();
+        }
+    }
+
+    private class RemoveOnDismissCallback implements OnDismissCallback {
+
+        private final ArrayAdapter<Product> mAdapter;
+
+        RemoveOnDismissCallback(final ArrayAdapter<Product> adapter) {
+            mAdapter = adapter;
+        }
+
+        @Override
+        public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
+            AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
+            dataSource.open();
+            Product prod;
+            for (int position : reverseSortedPositions) {
+                prod = mAdapter.remove(position);
+                dataSource.deleteAddedProduct(prod);
+            }
+            dataSource.close();
+            updateTotalKcalTextView();
         }
     }
 }

@@ -31,36 +31,27 @@ public class RecapInfoDataSource {
         dbHelper.close();
     }
 
-    public SummaryRange createSummaryRange(String name, int max, int min) {
+    public void createSummaryRange(String name, int max, int min) {
         ContentValues values = new ContentValues();
         values.put(RecapInfoHelperDB_SQL.COLUMN_NAME_SUMMARY, name);
         values.put(RecapInfoHelperDB_SQL.COLUMN_MAX_SUMMARY, max);
         values.put(RecapInfoHelperDB_SQL.COLUMN_MIN_SUMMARY, min);
 
         long productId = mDatabase.insert(RecapInfoHelperDB_SQL.TABLE_SUMMARY, null, values);
-        Cursor cursor = mDatabase.query(RecapInfoHelperDB_SQL.TABLE_SUMMARY,
+        mDatabase.query(RecapInfoHelperDB_SQL.TABLE_SUMMARY,
                 summaryColumns, RecapInfoHelperDB_SQL.COLUMN_ID_SUMMARY + " = " + productId, null,
                 null, null, null);
-        cursor.moveToFirst();
-        SummaryRange newSummary = cursorToSummary(cursor);
-        cursor.close();
-
-        return newSummary;
     }
 
-    public ProductType createType(String name, int image) {
+    public void createType(String name, int image) {
         ContentValues values = new ContentValues();
         values.put(RecapInfoHelperDB_SQL.COLUMN_NAME_TYPE, name);
         values.put(RecapInfoHelperDB_SQL.COLUMN_IMAGE_TYPE, image);
 
         long insertId = mDatabase.insert(RecapInfoHelperDB_SQL.TABLE_TYPE, null, values);
-        Cursor cursor = mDatabase.query(RecapInfoHelperDB_SQL.TABLE_TYPE,
+        mDatabase.query(RecapInfoHelperDB_SQL.TABLE_TYPE,
                 typeColumns, RecapInfoHelperDB_SQL.COLUMN_ID_TYPE + " = " + insertId, null,
                 null, null, null);
-        cursor.moveToFirst();
-        ProductType newType = cursorToType(cursor);
-        cursor.close();
-        return newType;
     }
 
     public List<ProductType> getTypesAllProducts() {

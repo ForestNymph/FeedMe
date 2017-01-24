@@ -84,11 +84,11 @@ public class ArchivedProductDataSource {
         return archived;
     }
 
-    private Product createArchivedProduct(String date, String type, String name,
-                                          int def1, int def2, int def3, double kcal, double protein,
-                                          double carbohydrates, double fiber, double fats,
-                                          double saturated, double monounsaturated,
-                                          double omega3, double omega6, double amount) {
+    private void createArchivedProduct(String date, String type, String name,
+                                       int def1, int def2, int def3, double kcal, double protein,
+                                       double carbohydrates, double fiber, double fats,
+                                       double saturated, double monounsaturated,
+                                       double omega3, double omega6, double amount) {
         ContentValues values = new ContentValues();
         values.put(ArchivedProductDB_SQL.COLUMN_DATE, date);
         values.put(ArchivedProductDB_SQL.COLUMN_TYPE, type);
@@ -108,18 +108,13 @@ public class ArchivedProductDataSource {
         values.put(ArchivedProductDB_SQL.COLUMN_AMOUNT, amount);
 
         long productId = mDatabase.insert(ArchivedProductDB_SQL.TABLE_ARCHIVED, null, values);
-        Cursor cursor = mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED,
-                allColumns, ArchivedProductDB_SQL.COLUMN_ID_PROD + " = " + productId, null,
+        mDatabase.query(ArchivedProductDB_SQL.TABLE_ARCHIVED, allColumns,
+                ArchivedProductDB_SQL.COLUMN_ID_PROD + " = " + productId, null,
                 null, null, null);
-        cursor.moveToFirst();
-        Product archived = cursorToArchivedProduct(cursor);
-        cursor.close();
-
-        return archived;
     }
 
-    public Product createArchivedProduct(String date, Product product) {
-        return createArchivedProduct(
+    public void createArchivedProduct(String date, Product product) {
+        createArchivedProduct(
                 date,
                 product.type,
                 product.name,

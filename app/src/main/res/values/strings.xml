@@ -87,4 +87,8 @@
     <string name="server_port_edit">Server port:</string>
     <string name="database_name_edit">Database name:</string>
 
+    <!-- Undo settings -->
+    <string name="undo_position">UNDO</string>
+    <string name="confirm_remove">Swipe again to remove</string>
+
 </resources>
