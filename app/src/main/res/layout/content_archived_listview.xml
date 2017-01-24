@@ -11,7 +11,7 @@
     tools:context=".ArchivedActivity"
     tools:showIn="@layout/activity_archived">
 
-    <ListView
+    <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
         android:id="@+id/archived_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

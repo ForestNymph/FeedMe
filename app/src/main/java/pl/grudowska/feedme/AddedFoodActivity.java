@@ -38,13 +38,11 @@ public class AddedFoodActivity extends AppCompatActivity
         implements DeleteDialogFragment.OnClearItemsCommandListener,
         AddedFoodArrayAdapter.OnEditItemListener {
 
-    // private static final int INITIAL_DELAY_MILLIS = 300;
     private AddedFoodArrayAdapter mAddedFoodAdapter;
 
     private ClearAdapterBroadcastReceiver mClearAdapterReceiver = null;
     private boolean isReceiverRegistered = false;
     private TextView mTotalKcalTV;
-    // private int mCurrentTotalKcal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,57 +136,6 @@ public class AddedFoodActivity extends AppCompatActivity
             isReceiverRegistered = false;
         }
     }
-
-/*    @Override
-    public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
-        for (final int position : reverseSortedPositions) {
-
-            // remove product only from adapter
-            final Product prod = mAddedFoodAdapter.remove(position);
-            final int removedProductAmount = prod.getKcalRelatedWithAmount();
-            // update total kcal value after removing product from list
-            mCurrentTotalKcal -= removedProductAmount;
-            String mUpdateTotalKcal = Integer.toString(mCurrentTotalKcal);
-            // update textview with new kcal amount
-            mTotalKcalTV.setText(mUpdateTotalKcal);
-
-            Snackbar.make(listView, "Product removed", Snackbar.LENGTH_SHORT).addCallback(new Snackbar.Callback() {
-
-                @Override
-                public void onDismissed(Snackbar snackbar, int event) {
-
-                    switch (event) {
-                        // Action UNDO clicked, product restored
-                        case Snackbar.Callback.DISMISS_EVENT_ACTION: {
-                            // update total kcal value after restored product in adapter
-                            mCurrentTotalKcal += removedProductAmount;
-                            String current = Integer.toString(mCurrentTotalKcal);
-                            // set new value in textview
-                            mTotalKcalTV.setText(current);
-                            mAddedFoodAdapter.add(position, prod);
-                            break;
-                        }
-                        // Non action taken or dismiss swiped or new snackbar shown
-                        // item with connected data removed
-                        case Snackbar.Callback.DISMISS_EVENT_TIMEOUT:
-                        case Snackbar.Callback.DISMISS_EVENT_MANUAL:
-                        case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE:
-                        case Snackbar.Callback.DISMISS_EVENT_SWIPE: {
-                            AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
-                            dataSource.open();
-                            dataSource.deleteAddedProduct(prod);
-                            dataSource.close();
-                            break;
-                        }
-                    }
-                }
-            }).setAction("UNDO", new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            }).show();
-        }
-    }*/
 
     @Override
     public void onClearItemsCommand() {

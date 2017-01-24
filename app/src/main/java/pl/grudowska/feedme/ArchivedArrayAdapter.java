@@ -1,6 +1,8 @@
 package pl.grudowska.feedme;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -10,12 +12,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.nhaarman.listviewanimations.ArrayAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.UndoAdapter;
 
 import java.util.ArrayList;
 
 import pl.grudowska.feedme.databases.DailyRecap;
 
-class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> {
+class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> implements UndoAdapter {
 
     final private Context mContext;
 
@@ -57,6 +60,22 @@ class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> {
         viewHolder.totalkcal_tv.setText(kcalValue);
 
         return convertView;
+    }
+
+    @NonNull
+    @Override
+    public View getUndoView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View view = convertView;
+        if (view == null) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.undo_row, parent, false);
+        }
+        return view;
+    }
+
+    @NonNull
+    @Override
+    public View getUndoClickView(@NonNull View view) {
+        return view.findViewById(R.id.undo_row_undobutton);
     }
 
     @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
