@@ -59,7 +59,7 @@ public class ServerDialogFragment extends DialogFragment {
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // do nothing
-                        ServerDialogFragment.this.getDialog().cancel();
+                        getDialog().cancel();
                     }
                 });
         mDialog = builder.create();

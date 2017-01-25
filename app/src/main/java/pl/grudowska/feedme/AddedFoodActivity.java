@@ -142,7 +142,7 @@ public class AddedFoodActivity extends AppCompatActivity
         mTotalKcalTV.setText("0");
         AddedProductDataSource dataSource = new AddedProductDataSource(getApplicationContext());
         dataSource.open();
-        if (dataSource.getAllAddedProducts().size() != 0) {
+        if (!dataSource.getAllAddedProducts().isEmpty()) {
             mAddedFoodAdapter.clear();
             dataSource.clearAll();
         }

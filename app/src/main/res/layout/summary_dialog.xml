@@ -17,7 +17,6 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:id="@+id/summary_img"
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_gravity="center_vertical"

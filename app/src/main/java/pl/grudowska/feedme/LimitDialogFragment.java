@@ -14,6 +14,8 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
+
 import pl.grudowska.feedme.data.AdditionalsDataLoader;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
@@ -59,7 +61,7 @@ public class LimitDialogFragment extends DialogFragment {
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                LimitDialogFragment.this.getDialog().cancel();
+                getDialog().cancel();
             }
         });
 
@@ -78,9 +80,9 @@ public class LimitDialogFragment extends DialogFragment {
     }
 
     private void setDividerColor(NumberPicker picker) {
-        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
-        for (java.lang.reflect.Field pf : pickerFields) {
-            if (pf.getName().equals("mSelectionDivider")) {
+        Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+        for (Field pf : pickerFields) {
+            if ("mSelectionDivider".equals(pf.getName())) {
                 pf.setAccessible(true);
                 try {
                     pf.set(picker, getResources().getDrawable(R.color.colorBrokenWhite));

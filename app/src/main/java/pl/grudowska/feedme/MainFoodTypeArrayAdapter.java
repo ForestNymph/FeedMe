@@ -79,7 +79,6 @@ class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
         return mMemoryCache.get(key);
     }
 
-    @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
     private static class ViewHolder {
         TextView textView;
         ImageView imageView;

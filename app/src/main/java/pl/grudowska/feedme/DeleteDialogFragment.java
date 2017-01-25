@@ -33,7 +33,7 @@ public class DeleteDialogFragment extends DialogFragment {
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                DeleteDialogFragment.this.getDialog().cancel();
+                getDialog().cancel();
             }
         });
         mDialog = builder.create();
@@ -56,7 +56,7 @@ public class DeleteDialogFragment extends DialogFragment {
         try {
             mListener = (OnClearItemsCommandListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnClearItemsCommandListener");
+            throw new ClassCastException(context + " must implement OnClearItemsCommandListener");
         }
     }
 

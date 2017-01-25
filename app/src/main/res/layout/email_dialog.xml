@@ -18,7 +18,6 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:id="@+id/email_image"
             android:layout_width="@dimen/icon_image_dialog"
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_gravity="center_vertical"
@@ -27,7 +26,6 @@
             android:src="@drawable/email" />
 
         <TextView
-            android:id="@+id/email_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

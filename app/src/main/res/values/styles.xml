@@ -18,6 +18,9 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/size_20_sp</item>
+    </style>
 
     <style name="customTimePickerTheme" parent="android:style/Widget.Material.Light.TimePicker">
         <item name="android:numbersTextColor">@color/colorWhite</item>

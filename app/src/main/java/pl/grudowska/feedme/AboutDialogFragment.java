@@ -30,7 +30,7 @@ public class AboutDialogFragment extends DialogFragment {
         builder.setView(aboutDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        AboutDialogFragment.this.getDialog().cancel();
+                        getDialog().cancel();
                     }
                 });
         TextView aboutTv = (TextView) aboutDialogView.findViewById(R.id.about_view);
@@ -42,7 +42,8 @@ public class AboutDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface arg0) {
                 mDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                        .setTextColor(ContextCompat.getColor(mDialog.getContext(), R.color.colorTextGray));
+                        .setTextColor(ContextCompat.getColor(mDialog.getContext(),
+                                R.color.colorTextGray));
             }
         });
         return mDialog;

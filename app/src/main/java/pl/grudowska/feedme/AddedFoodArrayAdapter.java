@@ -155,7 +155,6 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter
         void onEditItem();
     }
 
-    @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
     private static class ViewHolder {
         ViewSwitcher viewSwitcher;
         TextView textView_name;

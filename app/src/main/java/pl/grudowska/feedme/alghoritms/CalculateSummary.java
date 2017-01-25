@@ -19,7 +19,7 @@ public class CalculateSummary {
 
         List<Product> addedProducts = DatabaseManager.getAllAddedProductsDB(context);
 
-        if (addedProducts.size() == 0) {
+        if (addedProducts.isEmpty()) {
             return null;
         } else {
             double constant = 100;
@@ -93,7 +93,7 @@ public class CalculateSummary {
 
     static public void warningIfCalorieLimitExceeded(Context context) {
         if (CalculateSummary.getTotalKcal(context) > SharedPreferencesManager.loadDataInt(context, "limit", 2300)) {
-            FragmentActivity activity = (FragmentActivity) (context);
+            FragmentActivity activity = (FragmentActivity) context;
             FragmentManager fm = activity.getSupportFragmentManager();
             WarningLimitDialogFragment dialog = new WarningLimitDialogFragment();
             dialog.show(fm, "");

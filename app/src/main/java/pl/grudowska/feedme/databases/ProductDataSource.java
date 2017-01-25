@@ -67,13 +67,11 @@ public class ProductDataSource extends SQLiteOpenHelper {
         return dbFile.exists();
     }
 
-    public boolean openDataBase() throws DatabaseNotExistException {
+    public void openDataBase() throws DatabaseNotExistException {
         if (!checkDBifExists()) {
             throw new DatabaseNotExistException();
         }
         mDataBase = SQLiteDatabase.openDatabase(DATABASE_PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
-
-        return mDataBase != null;
     }
 
     @Override

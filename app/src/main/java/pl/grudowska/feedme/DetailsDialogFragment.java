@@ -44,7 +44,7 @@ public class DetailsDialogFragment extends DialogFragment {
         builder.setView(details).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        DetailsDialogFragment.this.getDialog().cancel();
+                        getDialog().cancel();
                     }
                 });
         mDialog = builder.create();

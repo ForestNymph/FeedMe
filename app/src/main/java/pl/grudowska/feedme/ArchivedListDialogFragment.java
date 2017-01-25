@@ -61,18 +61,18 @@ public class ArchivedListDialogFragment extends DialogFragment {
                         dataSource.close();
 
                         Toast.makeText(getActivity(), R.string.reuse_list, Toast.LENGTH_SHORT).show();
-                        ArchivedListDialogFragment.this.getDialog().cancel();
+                        getDialog().cancel();
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                ArchivedListDialogFragment.this.getDialog().cancel();
+                getDialog().cancel();
             }
         }).setNeutralButton(R.string.resend, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 String contentMail = DatabaseManager.getContentMailByDateDB(getActivity(), mDate);
                 new EmailManager(getActivity(), mDate, contentMail);
                 Toast.makeText(getActivity(), R.string.sent_message, Toast.LENGTH_SHORT).show();
-                ArchivedListDialogFragment.this.getDialog().cancel();
+                getDialog().cancel();
             }
         });
         mDialog = builder.create();
@@ -120,7 +120,7 @@ public class ArchivedListDialogFragment extends DialogFragment {
             Product archived = mProducts.get(position);
 
             String name = archived.name;
-            String amount = String.valueOf(archived.amount) + " g";
+            String amount = archived.amount + " g";
             viewHolder.product_textView.setText(name);
             viewHolder.amount_textView.setText(amount);
 

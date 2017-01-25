@@ -64,7 +64,7 @@ public class ArchivedActivity extends AppCompatActivity
     public void onClearItemsCommand() {
         ArchivedProductDataSource dataSource = new ArchivedProductDataSource(getApplicationContext());
         dataSource.open();
-        if (dataSource.getAllArchivedDailyRecaps().size() != 0) {
+        if (!dataSource.getAllArchivedDailyRecaps().isEmpty()) {
             dataSource.deleteAllArchivedItems();
             mArchivedArrayAdapter.clear();
         }

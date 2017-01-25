@@ -111,7 +111,7 @@ class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
         viewHolder.buttonDetails.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 DetailsDialogFragment details = new DetailsDialogFragment();
-                FragmentActivity activity = (FragmentActivity) (mContext);
+                FragmentActivity activity = (FragmentActivity) mContext;
                 FragmentManager fm = activity.getSupportFragmentManager();
                 details.show(fm, String.valueOf(getItem(position).id));
             }
@@ -140,7 +140,6 @@ class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
         Toast.makeText(mContext, getItem(position).name + " added", Toast.LENGTH_SHORT).show();
     }
 
-    @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
     private static class ViewHolder {
         Button buttonView_1;
         Button buttonView_2;

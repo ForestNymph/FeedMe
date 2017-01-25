@@ -164,7 +164,6 @@ class SearchViewArrayAdapter extends ArrayAdapter<Product> {
         return -1;
     }
 
-    @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
     private static class ViewHolder {
         ViewSwitcher viewSwitcher;
         TextView textView_name;

@@ -42,7 +42,7 @@ public class TimeDialogFragment extends DialogFragment {
 
         TextView time = (TextView) timeDialogView.findViewById(R.id.time_current);
         String timeText = " " + SharedPreferencesManager.loadDataString(getActivity(), "time_hour_str", "23") + ":"
-                + (SharedPreferencesManager.loadDataString(getActivity(), "time_minute_str", "59"));
+                + SharedPreferencesManager.loadDataString(getActivity(), "time_minute_str", "59");
         time.append(timeText);
 
         mPicker = (TimePicker) timeDialogView.findViewById(R.id.picker_time_view);
@@ -79,7 +79,7 @@ public class TimeDialogFragment extends DialogFragment {
                                 SharedPreferencesManager.saveDataString(getActivity(),
                                         "time_hour_str", String.valueOf(hour));
                                 SharedPreferencesManager.saveDataString(getActivity(),
-                                        "time_minute_str", (minute < 10) ? "0" + minute : String.valueOf(minute));
+                                        "time_minute_str", minute < 10 ? "0" + minute : String.valueOf(minute));
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_hour_int", hour);
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_minute_int", minute);
 
@@ -94,7 +94,7 @@ public class TimeDialogFragment extends DialogFragment {
                         }
                 ).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                TimeDialogFragment.this.getDialog().cancel();
+                getDialog().cancel();
             }
         });
 

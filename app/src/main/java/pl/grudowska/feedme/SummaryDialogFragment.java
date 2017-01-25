@@ -52,7 +52,7 @@ public class SummaryDialogFragment extends DialogFragment {
         builder.setView(summaryDialogView).
                 setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        SummaryDialogFragment.this.getDialog().cancel();
+                        getDialog().cancel();
                     }
                 });
         mDialog = builder.create();

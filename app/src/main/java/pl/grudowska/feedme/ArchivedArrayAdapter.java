@@ -31,7 +31,7 @@ class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> implements UndoAdapt
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
         final ViewHolder viewHolder;
-        final DailyRecap recap = this.getItem(position);
+        final DailyRecap recap = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.content_archived_title_row, parent, false);
@@ -50,7 +50,7 @@ class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> implements UndoAdapt
             @Override
             public void onClick(View v) {
                 ArchivedListDialogFragment list = new ArchivedListDialogFragment();
-                FragmentActivity activity = (FragmentActivity) (mContext);
+                FragmentActivity activity = (FragmentActivity) mContext;
                 FragmentManager fm = activity.getSupportFragmentManager();
                 list.show(fm, recap.date);
             }
@@ -78,7 +78,6 @@ class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> implements UndoAdapt
         return view.findViewById(R.id.undo_row_undobutton);
     }
 
-    @SuppressWarnings({"PackageVisibleField", "InstanceVariableNamingConvention"})
     private static class ViewHolder {
         TextView date_tv;
         TextView totalkcal_tv;

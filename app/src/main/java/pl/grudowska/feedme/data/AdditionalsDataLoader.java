@@ -27,7 +27,7 @@ public class AdditionalsDataLoader {
         RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();
 
-        if (dataSource.getTypesAllProducts().size() != 0) {
+        if (!dataSource.getTypesAllProducts().isEmpty()) {
             dataSource.deleteAllTypes();
         }
 
@@ -55,7 +55,7 @@ public class AdditionalsDataLoader {
         RecapInfoDataSource dataSource = new RecapInfoDataSource(context);
         dataSource.open();
 
-        if (dataSource.getAllSummaries().size() != 0) {
+        if (!dataSource.getAllSummaries().isEmpty()) {
             dataSource.deleteAllSummaries();
         }
         // Summary objects db

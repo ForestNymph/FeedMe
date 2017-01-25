@@ -25,7 +25,7 @@ public class SearchEngine {
             product = mProducts.get(i);
 
             // Case sensitive
-            if ((product.name).contains(word)) {
+            if (product.name.contains(word)) {
                 mResult.add(product);
             }
         }

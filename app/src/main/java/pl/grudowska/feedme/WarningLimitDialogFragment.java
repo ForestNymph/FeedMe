@@ -42,7 +42,7 @@ public class WarningLimitDialogFragment extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int id) {
                         // do nothing
-                        WarningLimitDialogFragment.this.getDialog().cancel();
+                        getDialog().cancel();
                     }
                 });
 
