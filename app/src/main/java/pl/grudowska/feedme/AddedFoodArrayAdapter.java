@@ -21,7 +21,6 @@ import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 
-
 class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter {
 
     private final Context mContext;

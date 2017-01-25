@@ -49,7 +49,7 @@ public class AddedFoodActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_added_food);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_added);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab_summary = (FloatingActionButton) findViewById(R.id.fab_summary);

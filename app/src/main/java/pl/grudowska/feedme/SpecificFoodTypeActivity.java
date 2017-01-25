@@ -27,7 +27,7 @@ public class SpecificFoodTypeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_specific_food_type);
         ListView listView = (ListView) findViewById(R.id.specific_listview);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_specific);
 
         Bundle extras = getIntent().getExtras();
         String type_value = "";

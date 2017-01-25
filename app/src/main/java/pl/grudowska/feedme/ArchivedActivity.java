@@ -31,7 +31,7 @@ public class ArchivedActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_archived);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_archived);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_delete);
