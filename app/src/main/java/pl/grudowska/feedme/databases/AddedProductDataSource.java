@@ -172,6 +172,18 @@ public class AddedProductDataSource {
                 new String[]{String.valueOf(product.id)});
     }
 
+    public Product getProduct(long productID) {
+        String selectQuery = "SELECT  * FROM " + AddedProductDB_SQL.TABLE_PRODUCTS_ADDED + " WHERE "
+                + AddedProductDB_SQL.COLUMN_ID_PROD + " = " + productID;
+        Cursor cursor = mDatabase.rawQuery(selectQuery, null);
+
+        cursor.moveToFirst();
+        Product product = cursorToProduct(cursor);
+        cursor.close();
+
+        return product;
+    }
+
     public void clearAll() {
         mDatabase.execSQL("delete from " + AddedProductDB_SQL.TABLE_PRODUCTS_ADDED);
     }

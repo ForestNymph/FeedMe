@@ -119,13 +119,10 @@ public class MainFoodTypeActivity extends AppCompatActivity
         swingBottomInAnimationAdapter.setAbsListView(listView);
 
         assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        //swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
         swingBottomInAnimationAdapter.getViewAnimator().disableAnimations();
-
         listView.setAdapter(swingBottomInAnimationAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> l, View v, int position, long id) {
                 List<String> titles = AdditionalsDataLoader.getTypeTitles(getApplicationContext());

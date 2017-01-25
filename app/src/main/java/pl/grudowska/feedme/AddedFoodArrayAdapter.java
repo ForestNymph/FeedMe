@@ -3,12 +3,15 @@ package pl.grudowska.feedme;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -71,6 +74,17 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter
             viewHolder.viewSwitcher.showNext();
         }
 
+        viewHolder.expand = (ImageView) convertView.findViewById(R.id.expand_image);
+        viewHolder.expand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ExpandProductDetailsDialogFragment expand = new ExpandProductDetailsDialogFragment();
+                FragmentActivity activity = (FragmentActivity) mContext;
+                FragmentManager fm = activity.getSupportFragmentManager();
+                expand.show(fm, String.valueOf(getItem(position).id));
+            }
+        });
+
         viewHolder.edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +102,7 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter
                     prod.setEdited(false);
                     // update total kcal textview after editing product (callback to activity)
                     mListener.onEditItem();
-                    // chcek if calories limit exceeded
+                    // check if calories limit exceeded
                     CalculateSummary.warningIfCalorieLimitExceeded(mContext);
                 } else {
                     prod.setEdited(true);
@@ -156,6 +170,7 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter
 
     private static class ViewHolder {
         ViewSwitcher viewSwitcher;
+        ImageView expand;
         TextView textView_name;
         TextView textView_kcal;
         TextView textView_amount;

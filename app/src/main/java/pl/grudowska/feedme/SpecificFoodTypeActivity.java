@@ -18,8 +18,6 @@ import pl.grudowska.feedme.databases.ProductDataSource;
 
 public class SpecificFoodTypeActivity extends AppCompatActivity {
 
-    // private static final int INITIAL_DELAY_MILLIS = 200;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

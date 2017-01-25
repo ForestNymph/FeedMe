@@ -11,12 +11,20 @@
     android:paddingTop="8sp"
     tools:ignore="overdraw">
 
+    <ImageView
+        android:id="@+id/expand_image"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/size_8_sp"
+        android:layout_marginStart="@dimen/size_16_sp"
+        android:contentDescription="@string/cd_image"
+        android:src="@drawable/ic_summary" />
+
     <TextView
         android:id="@+id/added_name_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16sp"
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:gravity="start|center_vertical"
         android:textColor="@color/colorTextGray"
         android:textSize="@dimen/size_14_sp"

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="8sp"
-    android:paddingTop="8sp"
+    android:paddingBottom="@dimen/size_8_sp"
+    android:paddingTop="@dimen/size_8_sp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:ignore="overdraw">
 
