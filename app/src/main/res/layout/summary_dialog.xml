@@ -22,7 +22,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/size_32_sp"
             android:contentDescription="@string/cd_image"
-            android:src="@drawable/summary" />
+            android:src="@drawable/dialog_summary" />
 
         <TextView
             android:layout_width="match_parent"

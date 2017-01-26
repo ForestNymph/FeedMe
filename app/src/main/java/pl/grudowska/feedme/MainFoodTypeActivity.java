@@ -106,7 +106,7 @@ public class MainFoodTypeActivity extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.activity_main_listview);
         MainFoodTypeArrayAdapter mFoodCardsAdapter = new MainFoodTypeArrayAdapter(this);
 
-        // when app is starting first time load all data to db
+        // when app is starting first dialog_time load all data to db
         if (mFoodCardsAdapter.getCount() == 0) {
             AdditionalsDataLoader.inflateProductsType(getApplicationContext());
             AdditionalsDataLoader.inflateProducsRanges(getApplicationContext());

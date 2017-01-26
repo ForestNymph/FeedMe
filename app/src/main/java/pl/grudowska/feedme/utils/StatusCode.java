@@ -16,10 +16,10 @@ enum StatusCode {
                 Toast.makeText(context, "Database has been successfully synced", Toast.LENGTH_SHORT).show();
                 break;
             case FILE_NOT_FOUND:
-                Toast.makeText(context, "Missing file on the server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Missing file on the dialog_server", Toast.LENGTH_SHORT).show();
                 break;
             case SEND_DATABASE:
-                Toast.makeText(context, "Missing database on the server, database was sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Missing database on the dialog_server, database was sent", Toast.LENGTH_SHORT).show();
                 break;
             case SERVER_DOWN:
                 Toast.makeText(context, "Server is down", Toast.LENGTH_SHORT).show();

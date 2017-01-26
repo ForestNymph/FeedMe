@@ -61,7 +61,7 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter
         // in edit mode) and we scroll list, we causing that the view will be reused for other elements.
         // Must provide that views along the list won't copy SwitcherView in edit mode.
         // And when return to the edited element it will be on edit mode.
-        // Need to check each item status (isEdited - edit property saved in object Product) and is view is in
+        // Need to dialog_check each item status (isEdited - edit property saved in object Product) and is view is in
         // edit mode or not (inEditorMode)
         boolean inEditorMode = viewHolder.viewSwitcher.getCurrentView().onCheckIsTextEditor();
         boolean isEdited = prod.isEdited();
@@ -102,7 +102,7 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter
                     prod.setEdited(false);
                     // update total kcal textview after editing product (callback to activity)
                     mListener.onEditItem();
-                    // check if calories limit exceeded
+                    // dialog_check if calories limit exceeded
                     CalculateSummary.warningIfCalorieLimitExceeded(mContext);
                 } else {
                     prod.setEdited(true);

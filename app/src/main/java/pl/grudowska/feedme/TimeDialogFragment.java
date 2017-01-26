@@ -83,8 +83,8 @@ public class TimeDialogFragment extends DialogFragment {
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_hour_int", hour);
                                 SharedPreferencesManager.saveDataInt(getActivity(), "time_minute_int", minute);
 
-                                // if sending daily summaries is ON - get the current time from the picker
-                                // and set it for sending daily summaries time
+                                // if sending daily summaries is ON - get the current dialog_time from the picker
+                                // and set it for sending daily summaries dialog_time
                                 if (checkbox.isChecked()) {
                                     startDailySummaryEmailService();
                                 } else {
@@ -112,7 +112,7 @@ public class TimeDialogFragment extends DialogFragment {
         return mDialog;
     }
 
-    // To check all setting alarms by app
+    // To dialog_check all setting alarms by app
     // adb shell dumpsys alarm | grep pl.grudowska.feedme
     // Logs reading:
     // https://stackoverflow.com/questions/28742884/how-to-read-adb-shell-dumpsys-alarm-output
@@ -145,7 +145,7 @@ public class TimeDialogFragment extends DialogFragment {
         calendar.set(Calendar.SECOND, 0);
 
         // setInexactRepeating(), Android synchronizes repeating alarms from multiple apps
-        // and fires them at the same time This reduces the total number of times
+        // and fires them at the same dialog_time This reduces the total number of times
         // the system must wake the device, thus reducing drain on the battery
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, pending);
