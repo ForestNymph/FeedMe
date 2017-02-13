@@ -151,7 +151,8 @@
                 android:stateListAnimator="@null"
                 android:text="@string/sync_dialog_button"
                 android:textColor="@color/colorBrokenWhite"
-                android:textSize="@dimen/size_16_sp" />
+                android:textSize="@dimen/size_16_sp"
+                tools:targetApi="lollipop" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

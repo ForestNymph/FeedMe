@@ -44,7 +44,8 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:stateListAnimator="@null" />
+                android:stateListAnimator="@null"
+                tools:targetApi="lollipop" />
 
             <Button
                 android:id="@+id/button_default_two"
@@ -52,7 +53,8 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:stateListAnimator="@null" />
+                android:stateListAnimator="@null"
+                tools:targetApi="lollipop" />
 
             <Button
                 android:id="@+id/button_default_three"
@@ -60,7 +62,8 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:stateListAnimator="@null" />
+                android:stateListAnimator="@null"
+                tools:targetApi="lollipop" />
 
         </LinearLayout>
 
@@ -106,7 +109,8 @@
                 android:layout_weight="1"
                 android:stateListAnimator="@null"
                 android:text="@string/add_button"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:targetApi="lollipop" />
 
         </LinearLayout>
 
@@ -123,7 +127,8 @@
                 android:layout_height="wrap_content"
                 android:stateListAnimator="@null"
                 android:text="@string/dialog_details"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:targetApi="lollipop" />
 
         </LinearLayout>
     </LinearLayout>

@@ -1,6 +1,7 @@
 package pl.grudowska.feedme.dialogFragments;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -59,6 +60,18 @@ public class DeleteDialogFragment extends DialogFragment {
             mListener = (OnClearItemsCommandListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context + " must implement OnClearItemsCommandListener");
+        }
+    }
+
+    // for API<23
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnClearItemsCommandListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity + " must implement OnClearItemsCommandListener");
         }
     }
 

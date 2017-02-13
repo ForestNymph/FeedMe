@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBlue"
@@ -91,7 +92,8 @@
                 android:foregroundTint="@color/colorBrokenWhite"
                 android:text="@string/checkbox_daily_summaries"
                 android:textColor="@color/colorBrokenWhite"
-                android:textSize="@dimen/size_14_sp" />
+                android:textSize="@dimen/size_14_sp"
+                tools:targetApi="lollipop" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

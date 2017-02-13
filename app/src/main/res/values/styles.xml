@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,7 +8,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">Roboto</item>
-        <item name="android:timePickerStyle">@style/customTimePickerTheme</item>
+        <item name="android:timePickerStyle" tools:targetApi="lollipop">
+            @style/customTimePickerTheme
+        </item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -23,9 +25,12 @@
     </style>
 
     <style name="customTimePickerTheme" parent="android:style/Widget.Material.Light.TimePicker">
-        <item name="android:numbersTextColor">@color/colorWhite</item>
-        <item name="android:numbersBackgroundColor">@color/colorBlueTint</item>
-        <item name="android:numbersSelectorColor">@color/colorNearBlack</item>
+        <item name="android:numbersTextColor" tools:targetApi="lollipop">@color/colorWhite</item>
+        <item name="android:numbersBackgroundColor" tools:targetApi="lollipop">
+            @color/colorBlueTint
+        </item>
+        <item name="android:numbersSelectorColor" tools:targetApi="lollipop">@color/colorNearBlack
+        </item>
         <item name="android:headerBackground">@color/colorBlueTint</item>
     </style>
 

@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_16_sp"
         android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginLeft="@dimen/size_32_sp"
+        android:layout_marginRight="@dimen/size_32_sp"
         android:layout_marginStart="@dimen/size_32_sp"
         android:layout_marginTop="@dimen/size_16_sp"
         android:orientation="horizontal"
