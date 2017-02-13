@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "pl.grudowska.feedme"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 4
         versionName "4"
@@ -29,9 +29,9 @@ repositories {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:support-v4:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:support-v4:25.1.1'
+    compile 'com.android.support:design:25.1.1'
     compile 'com.nhaarman.listviewanimations:lib-core:3.1.0@aar'
     compile 'com.nhaarman.listviewanimations:lib-manipulation:3.1.0@aar'
     compile 'com.nhaarman.listviewanimations:lib-core-slh:3.1.0@aar'

@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.services;
 
 import android.app.IntentService;
 import android.content.Intent;

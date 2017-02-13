@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -20,16 +20,18 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.UndoAd
 
 import java.util.ArrayList;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.dialogFragments.ExpandProductDetailsDialogFragment;
 
-class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter {
+public class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter {
 
     private final Context mContext;
     final private OnEditItemListener mListener;
 
-    AddedFoodArrayAdapter(final Context context, ArrayList<Product> added) {
+    public AddedFoodArrayAdapter(final Context context, ArrayList<Product> added) {
         super(added);
         mContext = context;
         mListener = (OnEditItemListener) mContext;
@@ -164,7 +166,7 @@ class AddedFoodArrayAdapter extends ArrayAdapter<Product> implements UndoAdapter
 
     // Callback to communicate with activity when product amount is edited
     // and total kcal should be updated
-    interface OnEditItemListener {
+    public interface OnEditItemListener {
         void onEditItem();
     }
 

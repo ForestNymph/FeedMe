@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,16 +13,17 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.databases.ProductType;
 import pl.grudowska.feedme.utils.BitmapCache;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
-class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
+public class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
 
     private final Context mContext;
     private final BitmapCache mMemoryCache;
 
-    MainFoodTypeArrayAdapter(final Context context) {
+    public MainFoodTypeArrayAdapter(final Context context) {
 
         mContext = context;
         mMemoryCache = new BitmapCache();
@@ -30,7 +31,7 @@ class MainFoodTypeArrayAdapter extends ArrayAdapter<ProductType> {
         createDatabase();
     }
 
-    void createDatabase() {
+    public void createDatabase() {
         List<ProductType> mProductType = DatabaseManager.getTypesAllProductsDB(mContext);
         for (int i = 0; i < mProductType.size(); ++i) {
             add(mProductType.get(i));

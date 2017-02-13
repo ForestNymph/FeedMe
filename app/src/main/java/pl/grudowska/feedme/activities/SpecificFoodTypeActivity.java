@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter
 
 import java.util.ArrayList;
 
+import pl.grudowska.feedme.R;
+import pl.grudowska.feedme.adapters.SpecificFoodTypeArrayAdapter;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
 

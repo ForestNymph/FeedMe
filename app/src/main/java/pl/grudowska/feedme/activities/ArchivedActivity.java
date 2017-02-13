@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,8 +16,11 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.Simple
 
 import java.util.ArrayList;
 
+import pl.grudowska.feedme.R;
+import pl.grudowska.feedme.adapters.ArchivedArrayAdapter;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.DailyRecap;
+import pl.grudowska.feedme.dialogFragments.DeleteDialogFragment;
 import pl.grudowska.feedme.utils.DatabaseManager;
 
 public class ArchivedActivity extends AppCompatActivity

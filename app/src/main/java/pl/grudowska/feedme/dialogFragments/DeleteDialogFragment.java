@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.dialogFragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import pl.grudowska.feedme.R;
 
 public class DeleteDialogFragment extends DialogFragment {
 

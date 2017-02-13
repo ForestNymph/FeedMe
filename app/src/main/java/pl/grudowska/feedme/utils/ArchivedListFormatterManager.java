@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.util.List;
 
-import pl.grudowska.feedme.SummaryResult;
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.Product;
 

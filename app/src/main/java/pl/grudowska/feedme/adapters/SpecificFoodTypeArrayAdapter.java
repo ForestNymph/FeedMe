@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -16,17 +16,19 @@ import com.nhaarman.listviewanimations.itemmanipulation.expandablelistitem.Expan
 
 import java.util.ArrayList;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.dialogFragments.DetailsDialogFragment;
 
 
-class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
+public class SpecificFoodTypeArrayAdapter extends ExpandableListItemAdapter<Product> {
 
     private final Context mContext;
 
-    SpecificFoodTypeArrayAdapter(final Context context, ArrayList<Product> products) {
+    public SpecificFoodTypeArrayAdapter(final Context context, ArrayList<Product> products) {
         super(context, R.layout.content_specific_row, R.id.card_title, R.id.card_content, products);
         mContext = context;
     }

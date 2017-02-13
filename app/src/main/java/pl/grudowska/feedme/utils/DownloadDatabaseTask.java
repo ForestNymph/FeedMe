@@ -28,7 +28,7 @@ public class DownloadDatabaseTask extends AsyncTask<String, Void, StatusCode> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        Toast.makeText(mContext, "Connecting to the dialog_server...wait", Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, "Connecting to the server...wait", Toast.LENGTH_LONG).show();
     }
 
     @Override

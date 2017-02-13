@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_16_sp"
         android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginLeft="@dimen/size_32_sp"
+        android:layout_marginRight="@dimen/size_32_sp"
         android:layout_marginStart="@dimen/size_32_sp"
         android:layout_marginTop="@dimen/size_16_sp"
         android:orientation="horizontal"
@@ -21,6 +23,7 @@
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/size_32_sp"
+            android:layout_marginRight="@dimen/size_32_sp"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/dialog_about" />
 
@@ -40,6 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_20_sp"
         android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginLeft="@dimen/size_32_sp"
+        android:layout_marginRight="@dimen/size_32_sp"
         android:layout_marginStart="@dimen/size_32_sp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -58,6 +63,8 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/size_32_sp"
         android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginLeft="@dimen/size_32_sp"
+        android:layout_marginRight="@dimen/size_32_sp"
         android:layout_marginStart="@dimen/size_32_sp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -66,7 +73,7 @@
             android:id="@+id/list_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorGreenNav"/>
+            android:background="@color/colorGreenNav" />
     </LinearLayout>
 </LinearLayout>
 

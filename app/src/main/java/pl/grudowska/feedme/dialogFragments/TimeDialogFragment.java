@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.dialogFragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -20,6 +20,8 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+import pl.grudowska.feedme.R;
+import pl.grudowska.feedme.services.DailySummaryEmailIntentService;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 import static android.app.PendingIntent.getService;

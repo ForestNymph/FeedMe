@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_16_sp"
         android:layout_marginEnd="@dimen/size_32_sp"
+        android:layout_marginLeft="@dimen/size_32_sp"
+        android:layout_marginRight="@dimen/size_32_sp"
         android:layout_marginStart="@dimen/size_32_sp"
         android:layout_marginTop="@dimen/size_16_sp"
         android:orientation="horizontal">
@@ -19,6 +21,7 @@
             android:layout_height="@dimen/icon_image_dialog"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/size_32_sp"
+            android:layout_marginRight="@dimen/size_32_sp"
             android:contentDescription="@string/cd_image"
             android:src="@drawable/dialog_check" />
 

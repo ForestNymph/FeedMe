@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.dialogFragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 
 public class EmailDialogFragment extends DialogFragment {

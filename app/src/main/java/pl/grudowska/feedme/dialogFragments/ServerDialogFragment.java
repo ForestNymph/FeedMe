@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.dialogFragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.databases.ProductDataSource;
 import pl.grudowska.feedme.utils.DownloadDatabaseTask;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;

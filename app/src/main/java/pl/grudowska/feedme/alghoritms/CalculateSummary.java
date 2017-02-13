@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.grudowska.feedme.SummaryResult;
-import pl.grudowska.feedme.WarningLimitDialogFragment;
 import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.dialogFragments.WarningLimitDialogFragment;
 import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
+import pl.grudowska.feedme.utils.SummaryResult;
 
 public class CalculateSummary {
 

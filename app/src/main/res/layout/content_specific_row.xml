@@ -8,6 +8,8 @@
     android:orientation="vertical"
     android:paddingBottom="@dimen/size_16_sp"
     android:paddingEnd="@dimen/size_8_sp"
+    android:paddingLeft="@dimen/size_8_sp"
+    android:paddingRight="@dimen/size_8_sp"
     android:paddingStart="@dimen/size_8_sp"
     android:paddingTop="@dimen/size_16_sp"
     tools:ignore="overdraw">
@@ -18,6 +20,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:paddingEnd="@dimen/size_16_sp"
+        android:paddingLeft="@dimen/size_16_sp"
+        android:paddingRight="@dimen/size_16_sp"
         android:paddingStart="@dimen/size_16_sp" />
 
     <LinearLayout
@@ -71,6 +75,8 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="4sp"
+                android:layout_marginLeft="4sp"
+                android:layout_marginRight="4sp"
                 android:layout_marginStart="4sp"
                 android:layout_weight="1" />
 
@@ -79,11 +85,15 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4sp"
+                android:layout_marginLeft="4sp"
+                android:layout_marginRight="4sp"
                 android:layout_marginStart="4sp"
                 android:layout_weight="1"
                 android:hint="@string/gramm"
                 android:inputType="number"
                 android:paddingEnd="@dimen/size_16_sp"
+                android:paddingLeft="@dimen/size_16_sp"
+                android:paddingRight="@dimen/size_16_sp"
                 android:paddingStart="@dimen/size_16_sp"
                 android:textColor="@color/colorTextGray"
                 android:textSize="14sp" />

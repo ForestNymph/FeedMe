@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.activities;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -26,10 +26,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import pl.grudowska.feedme.R;
+import pl.grudowska.feedme.adapters.AddedFoodArrayAdapter;
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.ArchivedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
+import pl.grudowska.feedme.dialogFragments.DeleteDialogFragment;
+import pl.grudowska.feedme.dialogFragments.SummaryDialogFragment;
 import pl.grudowska.feedme.utils.ArchivedListFormatterManager;
 import pl.grudowska.feedme.utils.DatabaseManager;
 import pl.grudowska.feedme.utils.EmailManager;

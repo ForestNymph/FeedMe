@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.dialogFragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 

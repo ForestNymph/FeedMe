@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,8 +20,16 @@ import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationA
 
 import java.util.List;
 
+import pl.grudowska.feedme.R;
+import pl.grudowska.feedme.adapters.MainFoodTypeArrayAdapter;
 import pl.grudowska.feedme.data.AdditionalsDataLoader;
 import pl.grudowska.feedme.databases.ProductDataSource;
+import pl.grudowska.feedme.dialogFragments.AboutDialogFragment;
+import pl.grudowska.feedme.dialogFragments.EmailDialogFragment;
+import pl.grudowska.feedme.dialogFragments.LimitDialogFragment;
+import pl.grudowska.feedme.dialogFragments.ServerDialogFragment;
+import pl.grudowska.feedme.dialogFragments.SummaryDialogFragment;
+import pl.grudowska.feedme.dialogFragments.TimeDialogFragment;
 import pl.grudowska.feedme.utils.DownloadDatabaseTask;
 import pl.grudowska.feedme.utils.SharedPreferencesManager;
 

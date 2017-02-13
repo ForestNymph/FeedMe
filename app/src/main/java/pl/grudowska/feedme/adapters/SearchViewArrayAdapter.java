@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,21 +15,22 @@ import com.nhaarman.listviewanimations.ArrayAdapter;
 
 import java.util.List;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 
-class SearchViewArrayAdapter extends ArrayAdapter<Product> {
+public class SearchViewArrayAdapter extends ArrayAdapter<Product> {
 
     private final Context mContext;
     private List<Product> mValues;
 
-    SearchViewArrayAdapter(final Context context, List<Product> values) {
+    public SearchViewArrayAdapter(final Context context, List<Product> values) {
         mContext = context;
         mValues = values;
     }
 
-    void updateProductsList(List<Product> products) {
+    public void updateProductsList(List<Product> products) {
         mValues = products;
     }
 

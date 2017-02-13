@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.dialogFragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -19,9 +19,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.alghoritms.CalculateSummary;
 import pl.grudowska.feedme.databases.SummaryRange;
 import pl.grudowska.feedme.utils.DatabaseManager;
+import pl.grudowska.feedme.utils.SummaryResult;
 
 public class SummaryDialogFragment extends DialogFragment {
 

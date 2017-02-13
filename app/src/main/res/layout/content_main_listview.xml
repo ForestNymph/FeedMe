@@ -8,7 +8,7 @@
     android:background="@color/colorStandardWhite"
     android:padding="@dimen/size_16_sp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainFoodTypeActivity"
+    tools:context=".activities.MainFoodTypeActivity"
     tools:showIn="@layout/activity_main_food_type">
 
     <ListView

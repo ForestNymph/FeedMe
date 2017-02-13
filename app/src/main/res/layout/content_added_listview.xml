@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorStandardWhite"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".AddedFoodActivity"
+    tools:context=".activities.AddedFoodActivity"
     tools:showIn="@layout/activity_added_food">
 
     <LinearLayout
@@ -21,6 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_4_sp"
+            android:layout_marginLeft="@dimen/size_12_sp"
+            android:layout_marginRight="@dimen/size_4_sp"
             android:layout_marginStart="@dimen/size_12_sp"
             android:text="@string/total_kcal"
             android:textColor="@color/colorStandardWhite"

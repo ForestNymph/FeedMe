@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 
+import pl.grudowska.feedme.R;
+import pl.grudowska.feedme.adapters.SearchViewArrayAdapter;
 import pl.grudowska.feedme.databases.Product;
 import pl.grudowska.feedme.utils.SearchEngine;
 

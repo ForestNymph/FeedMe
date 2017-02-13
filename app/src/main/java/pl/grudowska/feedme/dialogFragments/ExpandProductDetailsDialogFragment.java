@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.dialogFragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.databases.AddedProductDataSource;
 import pl.grudowska.feedme.databases.Product;
 

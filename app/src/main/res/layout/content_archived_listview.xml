@@ -8,7 +8,7 @@
     android:background="@color/colorStandardWhite"
     android:padding="@dimen/size_16_sp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ArchivedActivity"
+    tools:context=".activities.ArchivedActivity"
     tools:showIn="@layout/activity_archived">
 
     <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView

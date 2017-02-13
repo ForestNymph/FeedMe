@@ -40,9 +40,9 @@
     <string name="dialog_archived_list">ARCHIVED LIST</string>
 
     <!-- Dialogs buttons -->
-    <string name="cancel">@android:string/cancel</string>
+    <string name="cancel">CANCEL</string>
     <string name="apply">APPLY</string>
-    <string name="ok">@android:string/ok</string>
+    <string name="ok">OK</string>
     <string name="consequences">I UNDERSTAND THE CONSEQUENCES</string>
     <string name="resend">RESEND</string>
     <string name="reuse">RE-USE</string>
@@ -57,7 +57,7 @@
     <string name="time_message">Configure the time for sending daily summaries.</string>
     <string name="server_message">Configure server port and address which hosts the application database</string>
     <string name="dialog_about_message">
-        " Programmer: Sylwia Grudowska\n"
+        "Programmer: Sylwia Grudowska\n"
         "Designer: Sylwia Grudowska\n\n"
         "Date: 2017\n"
         "Version: "

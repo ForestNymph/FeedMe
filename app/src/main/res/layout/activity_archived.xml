@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ArchivedActivity">
+    tools:context=".activities.ArchivedActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
         android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
         android:src="@drawable/ic_trash"
         android:tint="@color/colorBrokenWhite"

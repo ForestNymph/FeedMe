@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.utils;
 
 public class SummaryResult {
 
@@ -18,7 +18,7 @@ public class SummaryResult {
         return mResultType;
     }
 
-    String getSimpleName() {
+    public String getSimpleName() {
         return mSimpleName;
     }
 

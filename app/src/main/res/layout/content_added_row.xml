@@ -16,6 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="@dimen/size_8_sp"
+        android:layout_marginLeft="@dimen/size_16_sp"
+        android:layout_marginRight="@dimen/size_8_sp"
         android:layout_marginStart="@dimen/size_16_sp"
         android:contentDescription="@string/cd_image"
         android:src="@drawable/ic_summary" />
@@ -34,6 +36,7 @@
         android:id="@+id/added_kcal_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8sp"
         android:layout_marginStart="8sp"
         android:layout_weight="1"
         android:gravity="end|center_vertical"
@@ -45,6 +48,7 @@
         android:id="@+id/amount_swchr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="2sp"
         android:layout_marginStart="2sp"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -74,6 +78,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_8_sp"
+        android:layout_marginLeft="@dimen/size_12_sp"
+        android:layout_marginRight="@dimen/size_8_sp"
         android:layout_marginStart="@dimen/size_12_sp"
         android:layout_weight="1"
         android:background="@color/colorGreen"

@@ -1,4 +1,4 @@
-package pl.grudowska.feedme;
+package pl.grudowska.feedme.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -16,13 +16,15 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.UndoAd
 
 import java.util.ArrayList;
 
+import pl.grudowska.feedme.R;
 import pl.grudowska.feedme.databases.DailyRecap;
+import pl.grudowska.feedme.dialogFragments.ArchivedListDialogFragment;
 
-class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> implements UndoAdapter {
+public class ArchivedArrayAdapter extends ArrayAdapter<DailyRecap> implements UndoAdapter {
 
     final private Context mContext;
 
-    ArchivedArrayAdapter(Context context, ArrayList<DailyRecap> recaps) {
+    public ArchivedArrayAdapter(Context context, ArrayList<DailyRecap> recaps) {
         super(recaps);
         mContext = context;
     }
